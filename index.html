@@ -6245,6 +6245,7 @@ async function loadDBCoaches(){
       rate: c.rate||'Contact for rates',
       rinks: (c.rinks||'').split(',').map(r=>r.trim()).filter(Boolean),
       website: c.website||null,
+      email: c.email||'',
       certified: c.certified||false,
       featured: false,
       db: true
@@ -6315,7 +6316,7 @@ function coachCard(c){
     +(c.certifications&&c.certifications.length?'<div style="margin-bottom:14px"><div style="font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Certifications</div><div style="font-size:.72rem;color:var(--muted)">'+c.certifications.join(' · ')+'</div></div>':'')
     +(c.sample
       ?'<div style="background:rgba(168,212,245,.05);border:1px solid rgba(168,212,245,.15);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-size:.72rem;color:var(--muted);margin-bottom:6px">📋 Sample listing — submit yours below</div><button onclick="document.getElementById(\'coach-submit-layout\').scrollIntoView({behavior:\'smooth\'})" style="background:rgba(168,212,245,.12);border:1px solid rgba(168,212,245,.25);color:var(--ice);font-size:.72rem;font-weight:700;padding:6px 14px;border-radius:6px;cursor:pointer">List Your Coaching →</button></div>'
-      :'<a href="mailto:'+c.contact+'?subject=Coaching Inquiry via The Rink Link" style="display:block;text-align:center;background:linear-gradient(135deg,'+color+'22,'+color+'33);border:1px solid '+color+'44;color:'+color+';font-family:\'Barlow Condensed\',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;padding:9px;border-radius:8px;text-decoration:none">✉️ CONTACT COACH</a>')
+      :'<a href="mailto:'+ c.email+'?subject=Coaching Inquiry via The Rink Link" style="display:block;text-align:center;background:linear-gradient(135deg,'+color+'22,'+color+'33);border:1px solid '+color+'44;color:'+color+';font-family:\'Barlow Condensed\',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;padding:9px;border-radius:8px;text-decoration:none">✉️ CONTACT COACH</a>')
     +'</div>';
 }
 
