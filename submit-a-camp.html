@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Submit a Camp — The Rink Link</title>
+<meta name="description" content="Submit your hockey camp to The Rink Link directory. Reach thousands of hockey families across CO, WY, UT & NE."/>
+<meta name="robots" content="noindex"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #060d1f;
+    --card: #0d1a35;
+    --card2: #112040;
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --green: #34d399;
+    --muted: #64748b;
+    --border: #1e2d4a;
+    --border2: rgba(125,211,252,.22);
+    --text: #cbd5e1;
+    --white: #f1f5f9;
+    --r: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--navy); color: var(--text); font-family: 'Barlow', sans-serif; font-size: 1rem; line-height: 1.7; }
+
+  /* HEADER */
+  header { background: #03080f; border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; gap: 16px; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 3px; color: #fff; text-decoration: none; }
+  .logo span { color: var(--ice); }
+  .back-link { margin-left: auto; font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .back-link:hover { color: var(--ice); }
+
+  /* HERO */
+  .hero { padding: 52px 24px 40px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(20,70,155,.4) 0%, transparent 70%); pointer-events: none; }
+  .hero-tag { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--ice); border: 1px solid rgba(125,211,252,.3); padding: 4px 14px; border-radius: 20px; margin-bottom: 16px; position: relative; }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 7vw, 5rem); letter-spacing: 4px; color: #fff; line-height: 1; margin-bottom: 12px; position: relative; }
+  .hero h1 span { color: var(--ice); }
+  .hero-sub { font-size: .95rem; color: var(--muted); max-width: 480px; margin: 0 auto; position: relative; }
+
+  /* LAYOUT */
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* HOW IT WORKS */
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin: 40px 0; }
+  .how-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 18px; text-align: center; }
+  .how-icon { font-size: 1.5rem; margin-bottom: 8px; }
+  .how-title { font-family: 'Barlow Condensed', sans-serif; font-size: .85rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .how-desc { font-size: .73rem; color: var(--muted); line-height: 1.5; }
+
+  /* FORM */
+  .form-card { background: var(--card); border: 1px solid var(--border2); border-radius: 13px; padding: 28px 32px; }
+  .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: .68rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; padding-bottom: 9px; border-bottom: 1px solid var(--border); margin-top: 8px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+  .fgrp { display: flex; flex-direction: column; gap: 6px; }
+  .flbl { font-family: 'Barlow Condensed', sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  .finput { background: #0a1628; border: 1px solid var(--border); border-radius: 7px; color: var(--white); font-family: 'Barlow', sans-serif; font-size: .88rem; padding: 10px 13px; outline: none; transition: border-color .2s; width: 100%; }
+  .finput:focus { border-color: var(--ice); }
+  textarea.finput { resize: vertical; min-height: 90px; }
+  select.finput { cursor: pointer; }
+
+  /* CHECKBOXES */
+  .check-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 7px; }
+  .cb-label { display: flex; align-items: center; gap: 6px; background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; cursor: pointer; font-size: .8rem; color: var(--text); transition: border-color .15s; }
+  .cb-label:hover { border-color: var(--ice); }
+  .cb-label input { accent-color: var(--ice); width: 14px; height: 14px; }
+
+  /* FEATURED BOX */
+  .featured-box { background: rgba(125,211,252,.05); border: 1px solid rgba(125,211,252,.2); border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+  .featured-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 800; color: var(--ice); margin-bottom: 6px; }
+  .featured-desc { font-size: .82rem; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
+  .featured-check { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .featured-check input { accent-color: var(--ice); width: 16px; height: 16px; cursor: pointer; }
+  .featured-check span { font-size: .88rem; color: var(--white); font-weight: 600; }
+
+  /* PRICING NOTE */
+  .pricing-note { background: rgba(245,158,11,.05); border: 1px solid rgba(245,158,11,.2); border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: .8rem; color: var(--muted); line-height: 1.6; }
+  .pricing-note strong { color: var(--gold); }
+
+  /* BUTTON */
+  .btn-submit { width: 100%; background: var(--ice); color: var(--navy); font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 15px; border: none; border-radius: 9px; cursor: pointer; transition: opacity .2s, transform .2s; margin-top: 8px; }
+  .btn-submit:hover { opacity: .9; transform: translateY(-1px); }
+
+  /* SUCCESS */
+  .success-box { display: none; background: rgba(52,211,153,.08); border: 1px solid rgba(52,211,153,.28); border-radius: 10px; padding: 24px; margin-bottom: 28px; }
+  .success-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--green); margin-bottom: 8px; }
+  .success-body { font-size: .85rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+  .btn-reset { background: rgba(255,255,255,.07); border: 1px solid var(--border); color: var(--muted); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .85rem; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+
+  /* TOAST */
+  #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: #1e2d4a; color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-size: .88rem; font-weight: 700; padding: 12px 24px; border-radius: 30px; border: 1px solid var(--border2); opacity: 0; transition: all .35s; z-index: 9999; white-space: nowrap; pointer-events: none; }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  footer { background: #03080f; border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 3px; color: #fff; margin-bottom: 6px; }
+  .footer-logo span { color: var(--ice); }
+  .footer-copy { color: #2a3a5a; font-size: .68rem; }
+
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .full { grid-column: 1; }
+    .form-card { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">The <span>Rink</span> Link</a>
+  <a href="/" class="back-link">← Back to Site</a>
+</header>
+
+<div class="hero">
+  <div class="hero-tag">Coaches & Camp Directors</div>
+  <h1>Submit a <span>Camp</span></h1>
+  <p class="hero-sub">Get your hockey camp in front of thousands of families across CO, WY, UT & NE — and beyond.</p>
+</div>
+
+<div class="container">
+
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-icon">📝</div>
+      <div class="how-title">1. Fill the Form</div>
+      <div class="how-desc">Tell us about your camp — dates, ages, skill levels, price</div>
+    </div>
+    <div class="how-card">
+      <div class="how-icon">🔍</div>
+      <div class="how-title">2. We Review</div>
+      <div class="how-desc">Our team verifies the details within 48 hours</div>
+    </div>
+    <div class="how-card">
+      <div class="how-icon">⛺</div>
+      <div class="how-title">3. Goes Live</div>
+      <div class="how-desc">Camp appears in the directory for hockey families to find</div>
+    </div>
+    <div class="how-card">
+      <div class="how-icon">⭐</div>
+      <div class="how-title">Get Featured</div>
+      <div class="how-desc">Upgrade to a featured listing for top placement & a badge</div>
+    </div>
+  </div>
+
+  <!-- Success message -->
+  <div class="success-box" id="success-box">
+    <div class="success-title">✅ Camp Submission Received!</div>
+    <div class="success-body">Thanks for submitting your camp! We'll review it and add it to the directory within 48 hours. If you selected a featured listing, we'll reach out to you about pricing and next steps.</div>
+    <button class="btn-reset" onclick="resetForm()">↩ Submit Another Camp</button>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card" id="form-wrap">
+
+    <!-- Camp Info -->
+    <div class="section-label">⛺ Camp Information</div>
+    <div class="form-grid">
+      <div class="fgrp full">
+        <label class="flbl">Camp Name *</label>
+        <input class="finput" type="text" id="csf-name" placeholder="e.g. Colorado Elite Hockey Camp"/>
+      </div>
+      <div class="fgrp full">
+        <label class="flbl">Organization / Club</label>
+        <input class="finput" type="text" id="csf-org" placeholder="e.g. Colorado Avalanche Youth Hockey"/>
+      </div>
+      <div class="fgrp full">
+        <label class="flbl">Camp Description *</label>
+        <textarea class="finput" id="csf-description" placeholder="Describe your camp — what players will learn, what makes it special, coaching philosophy, what's included..."></textarea>
+      </div>
+    </div>
+
+    <!-- Location & Dates -->
+    <div class="section-label">📍 Location & Dates</div>
+    <div class="form-grid">
+      <div class="fgrp">
+        <label class="flbl">City *</label>
+        <input class="finput" type="text" id="csf-city" placeholder="Denver"/>
+      </div>
+      <div class="fgrp">
+        <label class="flbl">State</label>
+        <select class="finput" id="csf-state">
+          <option value="CO">Colorado</option>
+          <option value="WY">Wyoming</option>
+          <option value="UT">Utah</option>
+          <option value="NE">Nebraska</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="fgrp full">
+        <label class="flbl">Rink / Facility</label>
+        <input class="finput" type="text" id="csf-rink" placeholder="e.g. Family Sports Center"/>
+      </div>
+      <div class="fgrp">
+        <label class="flbl">Start Date *</label>
+        <input class="finput" type="text" id="csf-date-start" placeholder="June 9, 2025"/>
+      </div>
+      <div class="fgrp">
+        <label class="flbl">End Date *</label>
+        <input class="finput" type="text" id="csf-date-end" placeholder="June 13, 2025"/>
+      </div>
+      <div class="fgrp">
+        <label class="flbl">Duration</label>
+        <input class="finput" type="text" id="csf-duration" placeholder="e.g. 5 days, 3 days"/>
+      </div>
+    </div>
+
+    <!-- Ages & Skill -->
+    <div class="section-label">🏒 Ages & Skill Level</div>
+    <div class="form-grid">
+      <div class="fgrp">
+        <label class="flbl">Minimum Age *</label>
+        <input class="finput" type="number" id="csf-age-min" placeholder="6" min="3" max="18"/>
+      </div>
+      <div class="fgrp">
+        <label class="flbl">Maximum Age *</label>
+        <input class="finput" type="number" id="csf-age-max" placeholder="14" min="3" max="18"/>
+      </div>
+    </div>
+    <div class="fgrp" style="margin-bottom:20px">
+      <label class="flbl">Skill Levels (check all that apply)</label>
+      <div class="check-grid">
+        <label class="cb-label"><input type="checkbox" value="Beginner" class="csf-skill"> Beginner</label>
+        <label class="cb-label"><input type="checkbox" value="Intermediate" class="csf-skill"> Intermediate</label>
+        <label class="cb-label"><input type="checkbox" value="Advanced" class="csf-skill"> Advanced</label>
+        <label class="cb-label"><input type="checkbox" value="Elite" class="csf-skill"> Elite</label>
+        <label class="cb-label"><input type="checkbox" value="All Levels" class="csf-skill"> All Levels</label>
+        <label class="cb-label"><input type="checkbox" value="Goalie Specific" class="csf-skill"> Goalie Specific</label>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="section-label">💰 Pricing & Registration</div>
+    <div class="form-grid">
+      <div class="fgrp">
+        <label class="flbl">Price *</label>
+        <input class="finput" type="text" id="csf-price" placeholder="e.g. $450/week or $150/day"/>
+      </div>
+      <div class="fgrp">
+        <label class="flbl">Registration Link</label>
+        <input class="finput" type="url" id="csf-reg-link" placeholder="https://yourcamp.com/register"/>
+      </div>
+      <div class="fgrp full">
+        <label class="flbl">Registration Notes</label>
+        <input class="finput" type="text" id="csf-reg-note" placeholder="e.g. Early bird discount ends April 1. Fills fast — register early."/>
+      </div>
+    </div>
+
+    <!-- Featured -->
+    <div class="featured-box">
+      <div class="featured-title">⭐ Featured Listing — Get More Registrations</div>
+      <div class="featured-desc">Featured camps appear at the top of search results with a gold border, a Featured badge, and a prominent registration button. Hockey families see you first. We'll contact you after reviewing your submission to discuss pricing.</div>
+      <div class="pricing-note"><strong>Basic listing:</strong> Free — appears in the directory. <strong>Featured listing:</strong> Paid — top placement, gold border, Featured badge, prominent CTA. We'll reach out with pricing details.</div>
+      <label class="featured-check">
+        <input type="checkbox" id="csf-featured"/>
+        <span>Yes, I'm interested in a featured listing</span>
+      </label>
+    </div>
+
+    <!-- Coach Contact -->
+    <div class="section-label">👤 Your Contact Info</div>
+    <div class="form-grid" style="margin-bottom:24px">
+      <div class="fgrp">
+        <label class="flbl">Your Name *</label>
+        <input class="finput" type="text" id="csf-coach-name" placeholder="Jane Smith"/>
+      </div>
+      <div class="fgrp">
+        <label class="flbl">Email *</label>
+        <input class="finput" type="email" id="csf-coach-email" placeholder="jane@yourcamp.com"/>
+      </div>
+      <div class="fgrp">
+        <label class="flbl">Phone</label>
+        <input class="finput" type="tel" id="csf-coach-phone" placeholder="(303) 555-0100"/>
+      </div>
+      <div class="fgrp">
+        <label class="flbl">Your Role</label>
+        <select class="finput" id="csf-coach-role">
+          <option value="head_coach">Head Coach</option>
+          <option value="camp_director">Camp Director</option>
+          <option value="org_rep">Organization Rep</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn-submit" onclick="submitCamp()">⛺ Submit My Camp</button>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">The <span>Rink</span> Link</div>
+  <div class="footer-copy">© 2026 The Rink Link. All rights reserved.</div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+const SB_URL = 'https://zebeyuyzgdczhwgjqedn.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InplYmV5dXl6Z2Rjemh3Z2pxZWRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2MzIyMjUsImV4cCI6MjA4ODIwODIyNX0.O2V3mlz4SyMnLJNaO59eAGw1NilRFNgoluPZRX_BHBY';
+
+async function sbFetch(path, method='GET', body=null){
+  const headers = {
+    'apikey': SB_KEY,
+    'Authorization': 'Bearer ' + SB_KEY,
+    'Content-Type': 'application/json',
+  };
+  if(method==='POST') headers['Prefer'] = 'return=minimal';
+  const opts = { method, headers };
+  if(body) opts.body = JSON.stringify(body);
+  const res = await fetch(SB_URL + '/rest/v1/' + path, opts);
+  const text = await res.text();
+  if(!res.ok) throw new Error('Supabase ' + res.status + ': ' + text);
+  return text ? JSON.parse(text) : [];
+}
+
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+async function submitCamp(){
+  const name = document.getElementById('csf-name').value.trim();
+  const description = document.getElementById('csf-description').value.trim();
+  const city = document.getElementById('csf-city').value.trim();
+  const dateStart = document.getElementById('csf-date-start').value.trim();
+  const dateEnd = document.getElementById('csf-date-end').value.trim();
+  const ageMin = document.getElementById('csf-age-min').value.trim();
+  const ageMax = document.getElementById('csf-age-max').value.trim();
+  const price = document.getElementById('csf-price').value.trim();
+  const coachName = document.getElementById('csf-coach-name').value.trim();
+  const coachEmail = document.getElementById('csf-coach-email').value.trim();
+
+  if(!name){ toast('Please enter the camp name'); return; }
+  if(!description){ toast('Please enter a camp description'); return; }
+  if(!city){ toast('Please enter the city'); return; }
+  if(!dateStart){ toast('Please enter the start date'); return; }
+  if(!dateEnd){ toast('Please enter the end date'); return; }
+  if(!ageMin || !ageMax){ toast('Please enter the age range'); return; }
+  if(!price){ toast('Please enter the price'); return; }
+  if(!coachName){ toast('Please enter your name'); return; }
+  if(!coachEmail || !coachEmail.includes('@')){ toast('Please enter a valid email'); return; }
+
+  const skillLevels = [...document.querySelectorAll('.csf-skill:checked')].map(i => i.value).join(', ');
+  const featured = document.getElementById('csf-featured').checked;
+
+  try {
+    await sbFetch('camp_submissions', 'POST', {
+      camp_name: name,
+      org: document.getElementById('csf-org').value.trim(),
+      description,
+      city,
+      state: document.getElementById('csf-state').value,
+      rink: document.getElementById('csf-rink').value.trim(),
+      date_start: dateStart,
+      date_end: dateEnd,
+      duration: document.getElementById('csf-duration').value.trim(),
+      age_min: parseInt(ageMin),
+      age_max: parseInt(ageMax),
+      skill_levels: skillLevels,
+      price,
+      registration_link: document.getElementById('csf-reg-link').value.trim(),
+      registration_note: document.getElementById('csf-reg-note').value.trim(),
+      featured_interest: featured,
+      coach_name: coachName,
+      coach_email: coachEmail,
+      coach_phone: document.getElementById('csf-coach-phone').value.trim(),
+      coach_role: document.getElementById('csf-coach-role').value,
+      status: 'pending',
+    });
+  } catch(e) {
+    console.warn('Could not save camp submission:', e.message);
+  }
+
+  document.getElementById('success-box').style.display = 'block';
+  document.getElementById('form-wrap').style.display = 'none';
+  document.getElementById('success-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetForm(){
+  document.getElementById('success-box').style.display = 'none';
+  document.getElementById('form-wrap').style.display = 'block';
+  document.getElementById('form-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

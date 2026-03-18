@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>What Hockey Gear Does My Kid Actually Need? | The Rink Link</title>
+<meta name="description" content="A no-fluff guide for Colorado hockey parents — what gear is required, what's optional, what to buy used, and where to get it in Colorado."/>
+<meta property="og:title" content="What Hockey Gear Does My Kid Actually Need?"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. The honest gear guide every new hockey parent needs."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  .callout {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .callout p { margin: 0; color: var(--text); font-size: .97rem; }
+  .callout-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 8px;
+  }
+
+  .warning {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .warning p { margin: 0; color: var(--text); font-size: .97rem; }
+  .warning-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  /* GEAR TABLE */
+  .gear-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 24px 0;
+  }
+  .gear-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+  }
+  .gear-item-left { display: flex; flex-direction: column; gap: 4px; }
+  .gear-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .gear-desc { font-size: .88rem; color: var(--muted); line-height: 1.4; }
+  .gear-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-required {
+    background: rgba(125,211,252,.12);
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.25);
+  }
+  .badge-recommended {
+    background: rgba(52,211,153,.1);
+    color: var(--green);
+    border: 1px solid rgba(52,211,153,.25);
+  }
+  .badge-optional {
+    background: rgba(148,163,184,.08);
+    color: var(--muted);
+    border: 1px solid rgba(148,163,184,.2);
+  }
+  .badge-goalie {
+    background: rgba(245,158,11,.1);
+    color: var(--gold);
+    border: 1px solid rgba(245,158,11,.25);
+  }
+
+  /* PRICE TABLE */
+  .price-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 24px 0;
+  }
+  .price-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: .93rem;
+  }
+  .price-row-name { color: var(--text); font-weight: 500; }
+  .price-new { color: var(--muted); font-size: .85rem; text-align: right; }
+  .price-used {
+    color: var(--green);
+    font-size: .85rem;
+    font-weight: 600;
+    text-align: right;
+  }
+  .price-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+    padding: 8px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .price-total {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg3);
+    border: 1px solid rgba(125,211,252,.2);
+    border-radius: 8px;
+    margin-top: 4px;
+  }
+  .price-total-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .price-total-new { color: var(--muted); font-weight: 600; text-align: right; }
+  .price-total-used { color: var(--green); font-weight: 700; text-align: right; }
+
+  /* NEW VS USED */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: .92rem;
+    color: var(--muted);
+  }
+  .two-col-list li { display: flex; gap: 8px; line-height: 1.4; }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2), var(--bg3));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    margin-top: 56px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 24px; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 13px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    background: var(--ice);
+    color: var(--bg);
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: .82rem;
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 50px 20px 40px; }
+    .content { padding: 0 16px 60px; }
+    .two-col { grid-template-columns: 1fr; }
+    .gear-item { grid-template-columns: 1fr; }
+    .price-row { grid-template-columns: 1fr auto; }
+    .price-row .price-new { display: none; }
+    .price-header .price-new { display: none; }
+    .price-total { grid-template-columns: 1fr auto; }
+    .price-total-new { display: none; }
+    .cta-block { padding: 28px 20px; }
+    footer { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE <em>RINK</em> LINK</a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Parent Guide</div>
+  <h1>What Hockey Gear Does My Kid <em>Actually</em> Need?</h1>
+  <p class="hero-sub">The no-fluff guide for Colorado hockey parents — what's required, what's optional, what to buy used, and where to find it locally.</p>
+  <div class="hero-meta">
+    <span>Colorado</span>
+    <span>·</span>
+    <span>6 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>The <span class="accent">Required</span> Gear — No Exceptions</h2>
+    <p>Every youth hockey league in Colorado requires these items. Your player will not be allowed on the ice without them. Don't skip any of these.</p>
+
+    <div class="gear-grid">
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Hockey Skates</div>
+          <div class="gear-desc">Properly fitted skates are the single most important piece of gear. A bad fit causes blisters, weak ankles, and poor skating development. Get them fitted at a local hockey shop — don't guess on size.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Helmet with Full Cage</div>
+          <div class="gear-desc">USA Hockey requires a full cage (not a visor) for all players under 18. Make sure the helmet has a current HECC certification sticker — expired helmets are not allowed.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Neck Guard</div>
+          <div class="gear-desc">Required for all youth players in Colorado. A non-negotiable safety item that protects against skate blade cuts. Bauer and CCM both make solid options for under $20.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Shoulder Pads</div>
+          <div class="gear-desc">Protects against falls, pucks, and contact. More important as players move into checking levels, but required at all ages.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Elbow Pads</div>
+          <div class="gear-desc">Young players fall — a lot. Elbow pads protect against both falls and errant sticks. Make sure they cover the entire elbow and forearm.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Hockey Gloves</div>
+          <div class="gear-desc">Protect hands and wrists. Should fit snugly without restricting movement. The cuff should overlap with the elbow pad to leave no exposed skin.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Shin Guards</div>
+          <div class="gear-desc">Cover the knee down to the top of the skate boot. Should stay in place during skating — if they're spinning around the leg, they're too big.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Hockey Pants (Breezers)</div>
+          <div class="gear-desc">Cover the hips, thighs, tailbone and kidneys. Essential protection. Sizing matters — they should sit above the knee and not drag on the ice.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Jock / Jill</div>
+          <div class="gear-desc">Required for all players. Boys need a hockey jock or jock shorts with a cup. Girls need a jill or pelvic protector. Not optional.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Hockey Stick</div>
+          <div class="gear-desc">Stick length should reach your child's chin when standing in skates. For beginners, a basic composite or wood stick is fine — don't spend $150 on a stick for a 7-year-old.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Hockey Socks + Skate Laces</div>
+          <div class="gear-desc">Hockey socks go over shin guards and are held up with a garter belt or velcro tabs on the breezers. Grab two pairs — you'll thank yourself on back-to-back game days.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Mouthguard</div>
+          <div class="gear-desc">Required in most Colorado youth leagues. Protects teeth and reduces concussion risk. A basic $5 boil-and-bite works fine for young players.</div>
+        </div>
+        <div class="gear-badge badge-required">Required</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>Strongly <span class="accent">Recommended</span> Gear</h2>
+    <p>Not always required by the rulebook, but experienced hockey families almost universally use these. Worth including from the start.</p>
+
+    <div class="gear-grid">
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Hockey Bag</div>
+          <div class="gear-desc">A proper hockey bag keeps everything organized and contained. Your car will thank you. Wheeled bags are worth it once your player has a full set of gear.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Recommended</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Skate Guards</div>
+          <div class="gear-desc">Protect your blades when walking off the ice. Cheap, essential, and easy to lose — buy two pairs.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Recommended</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Stick Tape</div>
+          <div class="gear-desc">Black tape for the blade, white or clear for the handle. Re-taping is part of hockey life. Buy a few rolls and learn to do it — your kid will love watching you.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Recommended</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Garter Belt or Velcro Tabs</div>
+          <div class="gear-desc">Holds up hockey socks. Some breezers have built-in tabs — check before buying separately.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Recommended</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Extra Skate Laces</div>
+          <div class="gear-desc">Laces break at the worst times. Keep a spare pair in the bag always. Waxed laces stay tied better and are worth the small upgrade.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Recommended</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>What's <span class="accent">Optional</span> (For Now)</h2>
+    <p>These items are nice to have but not necessary when you're just starting out. Save the money until your child has proven they're committed to the sport.</p>
+
+    <div class="gear-grid">
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Compression Shorts / Base Layer</div>
+          <div class="gear-desc">Comfortable and helps with moisture management, but a basic t-shirt and shorts works fine for beginners.</div>
+        </div>
+        <div class="gear-badge badge-optional">Optional</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">High-End Stick</div>
+          <div class="gear-desc">A $150+ composite stick makes zero difference for a player still learning to skate. Start cheap, upgrade when they're ready.</div>
+        </div>
+        <div class="gear-badge badge-optional">Optional</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Shooting Pad / Training Aids</div>
+          <div class="gear-desc">Great for motivated players who want to practice at home. Not necessary in year one.</div>
+        </div>
+        <div class="gear-badge badge-optional">Optional</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Custom Jersey / Socks</div>
+          <div class="gear-desc">Your team will likely provide jerseys. Wait until you know what your association requires before buying extras.</div>
+        </div>
+        <div class="gear-badge badge-optional">Optional</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>If Your Child is a <span class="accent">Goalie</span></h2>
+    <p>Goalie gear is a completely different category — more expensive, more specialized, and much bulkier. Here's what's different:</p>
+
+    <div class="gear-grid">
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Goalie Skates</div>
+          <div class="gear-desc">Different blade profile and boot construction than player skates. Do not put a goalie in player skates.</div>
+        </div>
+        <div class="gear-badge badge-goalie">Goalie Only</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Goalie Pads (Leg Pads)</div>
+          <div class="gear-desc">The most expensive single piece of gear in hockey. Buy used for young goalies — they grow out of them fast.</div>
+        </div>
+        <div class="gear-badge badge-goalie">Goalie Only</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Blocker + Trapper (Gloves)</div>
+          <div class="gear-desc">Replaces regular hockey gloves entirely. Sized separately from player gloves.</div>
+        </div>
+        <div class="gear-badge badge-goalie">Goalie Only</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Goalie Stick</div>
+          <div class="gear-desc">Wider blade and different flex profile. Don't use a player stick for a goalie.</div>
+        </div>
+        <div class="gear-badge badge-goalie">Goalie Only</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Goalie Mask</div>
+          <div class="gear-desc">Must be goalie-certified — a player helmet is not sufficient. Certification requirements vary by level.</div>
+        </div>
+        <div class="gear-badge badge-goalie">Goalie Only</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Chest & Arm Protector</div>
+          <div class="gear-desc">Much larger than player shoulder pads. Covers the chest, arms, and belly.</div>
+        </div>
+        <div class="gear-badge badge-goalie">Goalie Only</div>
+      </div>
+    </div>
+
+    <div class="warning">
+      <div class="warning-label">Money-Saving Tip for Goalie Parents</div>
+      <p>A full set of new goalie gear for a youth player can run $800–$1,500+. Always buy used for young goalies. Many Colorado hockey associations have goalie gear loaner programs — ask your association before spending anything.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>What Should I <span class="accent">Buy New vs. Used?</span></h2>
+    <p>This is one of the most common questions new hockey parents ask — and the answer is nuanced. Here's a simple guide:</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--ice);">Always Buy New</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--ice)">+</span> Helmet — safety item, never buy used</li>
+          <li><span style="color:var(--ice)">+</span> Neck guard — cheap new, don't risk it</li>
+          <li><span style="color:var(--ice)">+</span> Mouthguard — hygiene, obviously</li>
+          <li><span style="color:var(--ice)">+</span> Jock / Jill — hygiene</li>
+          <li><span style="color:var(--ice)">+</span> Skate laces — a few dollars, always new</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--green);">Fine to Buy Used</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--green)">+</span> Shoulder pads, elbow pads, shin guards</li>
+          <li><span style="color:var(--green)">+</span> Hockey pants</li>
+          <li><span style="color:var(--green)">+</span> Gloves</li>
+          <li><span style="color:var(--green)">+</span> Skates (if properly fitted)</li>
+          <li><span style="color:var(--green)">+</span> All goalie equipment</li>
+          <li><span style="color:var(--green)">+</span> Hockey bag, sticks</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Pro Tip</div>
+      <p>Most Colorado hockey associations and rinks host annual used gear sales in August and September before the season starts. These are the best places to build out a full kit at 50–70% off retail. Ask your association when theirs is happening.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-number">06</div>
+    <h2>What Does It All <span class="accent">Cost?</span></h2>
+    <p>Here's a realistic breakdown for a first-year player's full kit in Colorado. Used prices assume good condition gear from a hockey swap or Play It Again Sports.</p>
+
+    <div class="price-header">
+      <div>Item</div>
+      <div style="text-align:right">New</div>
+      <div style="text-align:right;color:var(--green)">Used</div>
+    </div>
+    <div class="price-grid">
+      <div class="price-row">
+        <div class="price-row-name">Skates</div>
+        <div class="price-new">$80–$200</div>
+        <div class="price-used">$30–$80</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-name">Helmet + Cage</div>
+        <div class="price-new">$60–$120</div>
+        <div class="price-used">Buy new</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-name">Shoulder Pads</div>
+        <div class="price-new">$40–$80</div>
+        <div class="price-used">$10–$30</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-name">Elbow Pads</div>
+        <div class="price-new">$25–$60</div>
+        <div class="price-used">$5–$20</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-name">Gloves</div>
+        <div class="price-new">$40–$100</div>
+        <div class="price-used">$10–$35</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-name">Shin Guards</div>
+        <div class="price-new">$30–$70</div>
+        <div class="price-used">$8–$25</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-name">Hockey Pants</div>
+        <div class="price-new">$40–$90</div>
+        <div class="price-used">$10–$35</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-name">Neck Guard</div>
+        <div class="price-new">$15–$25</div>
+        <div class="price-used">Buy new</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-name">Jock / Jill</div>
+        <div class="price-new">$20–$40</div>
+        <div class="price-used">Buy new</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-name">Stick</div>
+        <div class="price-new">$30–$80</div>
+        <div class="price-used">$10–$25</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-name">Hockey Bag + Extras</div>
+        <div class="price-new">$40–$80</div>
+        <div class="price-used">$15–$40</div>
+      </div>
+      <div class="price-total">
+        <div class="price-total-label">Estimated Total</div>
+        <div class="price-total-new">$420–$945</div>
+        <div class="price-total-used">$150–$400</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Bottom Line</div>
+      <p>A smart first-year kit bought mostly used runs $150–$250 for most families. Buying everything new at a big box store can easily hit $600+. Go used for everything except the helmet, neck guard, mouthguard, and jock/jill.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-number">07</div>
+    <h2>Where to Buy Gear <span class="accent">in Colorado</span></h2>
+    <p>Colorado has solid options for both new and used hockey gear. Here's where to look:</p>
+
+    <div class="gear-grid">
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Local Hockey Pro Shops</div>
+          <div class="gear-desc">The best place to get skates properly fitted and sharpened. Staff know hockey and can help with sizing. Worth the extra cost for skates specifically — don't buy skates at a big box store.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Best for Skates</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Play It Again Sports</div>
+          <div class="gear-desc">Multiple Colorado locations. Great for used pads, pants, gloves, and bags. Hit or miss on selection but prices are hard to beat. Check in August before the season.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Best Used</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Association Gear Swaps</div>
+          <div class="gear-desc">Many Colorado associations run annual gear swaps. Free or very cheap gear from families whose kids outgrew it. Ask your association coordinator when theirs happens.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Best Deals</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Facebook Marketplace / OfferUp</div>
+          <div class="gear-desc">Surprisingly good for hockey gear in Colorado hockey communities. Search by size and location. Meet at a rink for safety.</div>
+        </div>
+        <div class="gear-badge badge-optional">Good Option</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-block">
+    <h3>Find Local Gear Shops on <em>Rink Link</em></h3>
+    <p>Browse Colorado hockey pro shops, skate sharpening, and local gear retailers near you.</p>
+    <a href="https://therinklink.com" class="btn">Find Local Shops →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Found this helpful? Share it with your team.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/youth-hockey-gear-guide" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/youth-hockey-gear-guide').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=Helpful gear guide for new hockey parents in Colorado: https://therinklink.com/youth-hockey-gear-guide" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 <a href="https://therinklink.com">The Rink Link</a> — Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>
