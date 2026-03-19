@@ -463,6 +463,8 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       </div>
     </li>
     <li><a onclick="showPage('coaches')" id="nav-coaches">Private Coaches</a></li>
+    <li><a href="/submit-a-camp.html" id="nav-camps">Camps</a></li>
+    <li><a href="/submit-a-camp.html" id="nav-camps">Camps</a></li>
     <li><a onclick="showPage('submit')" id="nav-submit">➕ Submit</a></li>
   </ul>
   <div class="nav-right">
@@ -6316,7 +6318,23 @@ function coachCard(c){
     +(c.certifications&&c.certifications.length?'<div style="margin-bottom:14px"><div style="font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Certifications</div><div style="font-size:.72rem;color:var(--muted)">'+c.certifications.join(' · ')+'</div></div>':'')
     +(c.sample
       ?'<div style="background:rgba(168,212,245,.05);border:1px solid rgba(168,212,245,.15);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-size:.72rem;color:var(--muted);margin-bottom:6px">📋 Sample listing — submit yours below</div><button onclick="document.getElementById(\'coach-submit-layout\').scrollIntoView({behavior:\'smooth\'})" style="background:rgba(168,212,245,.12);border:1px solid rgba(168,212,245,.25);color:var(--ice);font-size:.72rem;font-weight:700;padding:6px 14px;border-radius:6px;cursor:pointer">List Your Coaching →</button></div>'
-      :'<a href="mailto:'+ c.email+'?subject=Coaching Inquiry via The Rink Link" style="display:block;text-align:center;background:linear-gradient(135deg,'+color+'22,'+color+'33);border:1px solid '+color+'44;color:'+color+';font-family:\'Barlow Condensed\',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;padding:9px;border-radius:8px;text-decoration:none">✉️ CONTACT COACH</a>')
+      :coachContactButtons(c,color))
+    +'</div>';
+}
+function coachContactButtons(c,color){
+  var s='font-family:Barlow Condensed,sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;padding:9px;border-radius:8px;text-decoration:none;display:block;text-align:center;background:linear-gradient(135deg,'+color+'22,'+color+'33);border:1px solid '+color+'44;color:'+color;
+  var web=c.website&&c.website.trim();
+  var eml=c.email&&c.email.trim()&&c.email.indexOf('@')>0;
+  if(web&&eml){
+    return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><a href="'+c.website+'" target="_blank" style="'+s+'">Website</a><a href="mailto:'+c.email+'?subject=Coaching Inquiry via The Rink Link" style="'+s+'">Email Coach</a></div>';
+  }else if(web){
+    return '<a href="'+c.website+'" target="_blank" style="'+s+'">Visit Website</a>';
+  }else if(eml){
+    return '<a href="mailto:'+c.email+'?subject=Coaching Inquiry via The Rink Link" style="'+s+'">Contact Coach</a>';
+  }
+  return '';
+}
+
     +'</div>';
 }
 
