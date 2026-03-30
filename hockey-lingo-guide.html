@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hockey Lingo Decoded — The New Family Guide | The Rink Link</title>
+<meta name="description" content="Hockey terms, player slang, gear basics, and parent survival tips — everything you wish someone had handed you on day one."/>
+<meta property="og:title" content="Hockey Lingo Decoded — The New Family Guide"/>
+<meta property="og:description" content="Biscuits, barn burners, and chirping — decoded. The Rink Link's straight-talk glossary for new hockey families."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* Intro callout */
+  .intro-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin-bottom: 48px;
+    font-style: italic;
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section > p { color: var(--muted); margin-bottom: 16px; }
+
+  /* Term list */
+  .term-list { display: flex; flex-direction: column; gap: 0; }
+
+  .term {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(125,211,252,.06);
+  }
+  .term:last-child { border-bottom: none; }
+
+  .term-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .term-def {
+    color: var(--muted);
+    font-size: .97rem;
+    line-height: 1.6;
+  }
+
+  .callout {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-top: 10px;
+  }
+  .callout p { margin: 0; color: var(--text); font-size: .93rem; }
+  .callout-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 6px;
+  }
+
+  .warning {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-top: 10px;
+  }
+  .warning p { margin: 0; color: var(--text); font-size: .93rem; }
+  .warning-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  /* Slang badge grid */
+  .slang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .slang-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    transition: border-color .2s;
+  }
+  .slang-card:hover { border-color: rgba(125,211,252,.3); }
+  .slang-card .slang-word {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    color: var(--ice);
+    margin-bottom: 4px;
+  }
+  .slang-card .slang-def {
+    font-size: .83rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .slang-card .slang-example {
+    font-size: .78rem;
+    color: rgba(125,211,252,.5);
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  .checklist {
+    list-style: none;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .checklist li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: .97rem;
+    color: var(--muted);
+  }
+  .checklist li .icon { font-size: 1rem; margin-top: 3px; flex-shrink: 0; }
+  .checklist li strong { color: var(--text); }
+
+  .cta-box {
+    background: var(--bg2);
+    border: 1px solid rgba(125,211,252,.2);
+    border-radius: 12px;
+    padding: 36px;
+    text-align: center;
+    margin-top: 56px;
+  }
+  .cta-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .cta-box p { color: var(--muted); margin-bottom: 24px; font-size: .97rem; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border-radius: 8px;
+    background: var(--ice);
+    color: var(--bg);
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .82rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .slang-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://therinklink.com">THE RINK <em>LINK</em></a>
+  <a class="nav-back" href="https://therinklink.com">← Back to Rinks</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Hockey Parent Guide</div>
+  <h1>Hockey Lingo — <em>Decoded</em></h1>
+  <p class="hero-sub">Everything you wish someone had handed you on the first day of hockey.</p>
+  <div class="hero-meta">
+    <span>🏒 For New Hockey Families</span>
+    <span>·</span>
+    <span>⏱ 5 min read</span>
+    <span>·</span>
+    <span>📍 Colorado & Beyond</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <div class="intro-block">
+    When my kid started playing hockey, I had no idea what anyone was talking about. Biscuits, barn burners, chirping — and that was just the first practice. I was Googling how to put on shin guards, whether to bring a blanket to the rink, and what half the terms even meant. I couldn't find one place with real answers for families like me — so I built it. This is everything I wish someone had handed me on day one.
+  </div>
+
+  <!-- 01 THE RINK -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>The <span class="accent">Rink</span></h2>
+    <div class="term-list">
+
+      <div class="term">
+        <div class="term-name">The Barn</div>
+        <div class="term-def">What players call the rink. As in, "See you at the barn." You'll be saying it within a week.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Ice / The Sheet</div>
+        <div class="term-def">The playing surface. Hockey people don't say "the floor."</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Boards</div>
+        <div class="term-def">The walls surrounding the ice. Players get checked into them — yes, on purpose.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Glass</div>
+        <div class="term-def">The plexiglass above the boards. Great for watching. Terrible for your eardrums.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>Sit away from the glass during games — it's louder than you'd think.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Crease</div>
+        <div class="term-def">The blue painted area in front of each goal. Opposing players aren't supposed to be in it, and goalies are very protective of their space.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Penalty Box</div>
+        <div class="term-def">Where players sit after breaking a rule. Also called the sin bin.</div>
+        <div class="warning">
+          <div class="warning-label">⚠️ Heads Up</div>
+          <p>Your child will visit the penalty box. Stay calm. Cheer when they come out.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Zamboni</div>
+        <div class="term-def">The machine that resurfaces the ice between periods. Kids are obsessed with it. Adults secretly are too.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>Zamboni breaks are your snack run and bathroom window. Use them wisely.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Locker Room</div>
+        <div class="term-def">Where teams gear up and bond. Parents almost always wait outside — this is intentional.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>The locker room smell is real. There is nothing you can do about this. Accept it.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Warm Room / Lobby</div>
+        <div class="term-def">The heated area outside the rink. Your new best friend during 5am practices.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>Dress in layers. The lobby is warm. The rink is not. Ever.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 THE GEAR -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>The <span class="accent">Gear</span></h2>
+    <div class="term-list">
+
+      <div class="term">
+        <div class="term-name">The Bucket</div>
+        <div class="term-def">The helmet. Every player wears one. Make sure it fits properly — this is not the place to size up for growth.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Cage vs. Visor</div>
+        <div class="term-def">A cage is a full wire mask covering the face. A visor only covers the eyes. Youth hockey almost always requires a full cage.</div>
+        <div class="warning">
+          <div class="warning-label">⚠️ Watch Out</div>
+          <p>Check your association's rules before buying. Don't buy a visor by mistake.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Shin Guards</div>
+        <div class="term-def">Protective pads worn under the socks, protecting the shins and knees. There is a correct order to put on all hockey equipment — and it matters.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>The Rink Link has a full step-by-step dressing guide at <a href="https://therinklink.com/how-to-put-on-hockey-equipment" style="color:var(--ice);">therinklink.com/how-to-put-on-hockey-equipment</a> — read it before the first practice. You'll thank yourself.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Breezers</div>
+        <div class="term-def">Hockey pants. Called breezers in Colorado. Big, padded, and yes — they're supposed to look like that.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Skates</div>
+        <div class="term-def">The most important piece of equipment. Get them properly fitted at a hockey specialty shop, not a department store.</div>
+        <div class="warning">
+          <div class="warning-label">⚠️ Watch Out</div>
+          <p>Skate sizes are NOT the same as shoe sizes — don't buy your kid's shoe size. Skates typically run 1 to 1.5 sizes smaller. Always get fitted in person.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Stick</div>
+        <div class="term-def">Comes in different flexes and lengths. The wrong flex makes shooting much harder for young players — ask your coach before buying.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Bag</div>
+        <div class="term-def">The massive hockey bag that will take over your car, your entryway, and eventually your entire life.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 THE GAME -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>The <span class="accent">Game</span></h2>
+    <div class="term-list">
+
+      <div class="term">
+        <div class="term-name">The Biscuit</div>
+        <div class="term-def">The puck. "Keep your eye on the biscuit."</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Icing</div>
+        <div class="term-def">When a player shoots the puck all the way down the ice from behind center and nobody touches it. Play stops. It's a rule. Just trust it.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>You will be confused by icing calls for most of your first season. Everyone is.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Offsides</div>
+        <div class="term-def">A player can't enter the offensive zone before the puck crosses the blue line. Watch the blue line, not the player.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Power Play</div>
+        <div class="term-def">When one team has more players on the ice because the other team has someone in the penalty box. Great time to watch — lots of action.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Hat Trick</div>
+        <div class="term-def">Three goals scored by the same player in one game. If it happens, fans throw hats on the ice.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>Keep a cheap hat in your bag just in case. It's a hockey tradition you'll want to participate in.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 PLAYER SLANG -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>Player <span class="accent">Slang</span></h2>
+    <p>This is what your kid will start saying. Soon. Learn it now so you're not Googling it in the parking lot.</p>
+
+    <div class="slang-grid">
+
+      <div class="slang-card">
+        <div class="slang-word">Flow</div>
+        <div class="slang-def">Long, glorious hockey hair flowing from under the helmet. A point of serious pride at every level.</div>
+        <div class="slang-example">"Check the flow on that kid."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Celly</div>
+        <div class="slang-def">Short for celebration — what a player does after scoring. Can range from a fist pump to a full choreographed routine.</div>
+        <div class="slang-example">"That celly was unreal."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Deke / Dangle</div>
+        <div class="slang-def">Fancy stickhandling to get around a defender. Your kid will practice these in the driveway starting immediately.</div>
+        <div class="slang-example">"He dangled through the whole defense."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Snipe</div>
+        <div class="slang-def">A perfectly placed, pinpoint-accurate shot. One of the highest compliments in hockey.</div>
+        <div class="slang-example">"What a snipe, bar down!"</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Chirping</div>
+        <div class="slang-def">Trash talk on the ice. Part of the culture at every level — usually all in good fun.</div>
+        <div class="slang-example">"Those two were chirping all game."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Beauty</div>
+        <div class="slang-def">The highest compliment a hockey player can give. A great play, a great person, an incredible celly — all can be a beauty.</div>
+        <div class="slang-example">"He's an absolute beauty."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Barn Burner</div>
+        <div class="slang-def">A high-scoring, back-and-forth, wildly exciting game. You'll know one when you're in it.</div>
+        <div class="slang-example">"That third period was a barn burner."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Wheel</div>
+        <div class="slang-def">To skate fast — really fast. If your kid can wheel, everyone will know.</div>
+        <div class="slang-example">"She can wheel — nobody was catching her."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Sauce</div>
+        <div class="slang-def">A perfectly executed saucer pass — flat and airborne, landing right on a teammate's stick. Hard to do. Incredible to watch.</div>
+        <div class="slang-example">"That sauce was filthy."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Apple</div>
+        <div class="slang-def">An assist. Your kid got an apple means they helped set up a goal. Two apples in one game — treat accordingly.</div>
+        <div class="slang-example">"He had two apples tonight."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Light the Lamp</div>
+        <div class="slang-def">To score a goal. Refers to the red light that goes on behind the net when a goal is scored.</div>
+        <div class="slang-example">"She lit the lamp twice tonight."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Dirty / Greasy</div>
+        <div class="slang-def">A goal scored in a chaotic, scrappy way — usually in front of the net. Not pretty. Totally counts.</div>
+        <div class="slang-example">"That was a dirty goal but we'll take it."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Lettuce</div>
+        <div class="slang-def">Hair. Specifically great hockey hair. Often used interchangeably with flow.</div>
+        <div class="slang-example">"Look at that lettuce."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Mitts</div>
+        <div class="slang-def">Hands — specifically a player's stickhandling hands. "He's got mitts" means he can really handle the puck.</div>
+        <div class="slang-example">"Kid's got silky mitts."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Pipes</div>
+        <div class="slang-def">The goalposts. Hitting the pipe means the puck hit the post. Devastating when it's your team.</div>
+        <div class="slang-example">"Off the pipe and out. Unbelievable."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Breadwinner</div>
+        <div class="slang-def">The goal that wins the game. The most important goal scored.</div>
+        <div class="slang-example">"She potted the breadwinner with two minutes left."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Bender</div>
+        <div class="slang-def">A player whose ankles collapse inward when skating. Said affectionately — mostly. Also motivation to get properly fitted skates.</div>
+        <div class="slang-example">"Get that kid some new skates."</div>
+      </div>
+
+      <div class="slang-card">
+        <div class="slang-word">Gongshow</div>
+        <div class="slang-def">Total chaos — on or off the ice. A wild, unruly situation. Can be used admiringly.</div>
+        <div class="slang-example">"That third period was an absolute gongshow."</div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">💡 The Simple Version</div>
+      <p>When your kid starts using these words at home, it means they're becoming a real hockey player. Embrace it. Maybe even try one yourself — they'll either love it or be mortified. Both are a win.</p>
+    </div>
+  </div>
+
+  <!-- 05 PARENT SURVIVAL -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>Parent <span class="accent">Survival Guide</span></h2>
+    <div class="term-list">
+
+      <div class="term">
+        <div class="term-name">5am Ice</div>
+        <div class="term-def">Early morning practice slots, often before school. It's exactly as brutal as it sounds.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>Set two alarms. Lay out all the gear the night before. Every single time.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Hockey Time</div>
+        <div class="term-def">Everything in hockey takes longer than scheduled. Practice runs late. Games run late. Parking lots are slow.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>Add 30 minutes to everything on your calendar. You'll still occasionally be late.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Dry Land</div>
+        <div class="term-def">Off-ice training — conditioning, skating drills in shoes, stickhandling practice. Just as important as ice time.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">House vs. Travel</div>
+        <div class="term-def">House (rec) hockey stays local with manageable schedules. Travel hockey involves tournaments, road trips, and much higher costs.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>Both are great. Know what fits your family's life before committing — the jump from house to travel is significant.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Tournament Weekend</div>
+        <div class="term-def">Multi-game events held Friday through Sunday, often at multiple rinks across the region.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>Pack snacks, a blanket, a charger, patience, and more snacks. You will be at a rink all weekend.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Stick Tap</div>
+        <div class="term-def">Players tap their sticks on the ice to show respect for a great play or acknowledge teammates. One of the best traditions in the sport.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">The Hockey Family</div>
+        <div class="term-def">The community of parents, coaches, and kids you'll spend your weekends with for years. They become your people.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>Lean into the community early. The friendships you build in hockey rink lobbies are real ones.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 COLORADO HOCKEY -->
+  <div class="section">
+    <div class="section-number">06</div>
+    <h2>Colorado <span class="accent">Hockey</span></h2>
+    <div class="term-list">
+
+      <div class="term">
+        <div class="term-name">CAHA — Colorado Amateur Hockey Association</div>
+        <div class="term-def">The governing body for amateur hockey in Colorado. Your team registers through them each season.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">USA Hockey</div>
+        <div class="term-def">The national governing body. Every player needs a USA Hockey registration number before stepping on the ice.</div>
+        <div class="callout">
+          <div class="callout-label">💡 Parent Tip</div>
+          <p>Register early at usahockey.com — you can't skate without it.</p>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">Altitude</div>
+        <div class="term-def">Colorado's elevation means players may tire more quickly, especially opponents from lower elevations. Your home team is used to it — visiting teams are not.</div>
+      </div>
+
+      <div class="term">
+        <div class="term-name">House Level / Rec Hockey</div>
+        <div class="term-def">Local-league hockey with no tryouts and everyone plays. A great starting point for most families new to the sport.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h3>Find Rinks Near You</h3>
+    <p>Browse ice rinks across Colorado, Wyoming, Utah & Nebraska — with locker room info, pricing, stick & puck times, and everything your family needs on game day.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Found this helpful? Share it with your team.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/hockey-lingo-guide" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/hockey-lingo-guide').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=Great hockey lingo guide for new families: https://therinklink.com/hockey-lingo-guide" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 <a href="https://therinklink.com">The Rink Link</a> — Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>
