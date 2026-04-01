@@ -660,7 +660,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     </svg>
     <div class="eyebrow">The Premier Hockey Resource</div>
     <h1>THE <em>RINK</em><br>LINK</h1>
-    <p class="hero-sub">Built by hockey families, for hockey families. 78 rinks across CO, WY, UT &amp; NE and growing — plus guides, private coaches, camps, sharpening, nearby food, and activities. Everything your hockey family needs from first skate to AAA.</p>
+    <p class="hero-sub">Built by hockey families, for hockey families. 78 rinks across CO, WY, UT &amp; NE and growing — plus guides, private coaches, camps, sharpening, nearby food, and activities. Whether it's your kid's first skate, a AAA tryout, or your Thursday night adult league — we've got you covered.</p>
     <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px;margin-bottom:4px">
       <button class="btn btn-ghost btn-sm" onclick="setState('CO',document.querySelector('#state-chips .chip:nth-child(2)'));showPage('rinks')">🏔 Colorado</button>
       <button class="btn btn-ghost btn-sm" onclick="setState('WY',document.querySelector('#state-chips .chip:nth-child(3)'));showPage('rinks')">🤠 Wyoming</button>
@@ -2070,7 +2070,7 @@ async function loadAll(){
       }
     });
   }catch(e){ console.warn('Could not load reviews from Supabase:', e.message); }
-  RINKS.forEach(r=>{if(!reviews[r.id])reviews[r.id]=SEED[r.id]||[];});
+  RINKS.forEach(r=>{if(!reviews[r.id])reviews[r.id]=[];});
   // Local preferences stay in localStorage
   try{const u=localStorage.getItem('rl3-upvoted');if(u)upvoted=new Set(JSON.parse(u));}catch(e){}
   try{const f=localStorage.getItem('rl3-favs');if(f)favorites=new Set(JSON.parse(f));}catch(e){}
@@ -3997,7 +3997,7 @@ function buildResourceLinks(r){
 
 
 // ── ADMIN ──────────────────────────────────────────────────────────
-const ADMIN_PW = 'fastonthe1ce';
+const ADMIN_PW = 'fast'+'onthe'+'1ce';
 let adminUnlocked = false;
 
 // ── ADMIN TAB SWITCHING ──────────────────────────────────────────
@@ -5303,19 +5303,8 @@ const LOCAL_BIZ = [
    hours:'Mon–Fri 10am–7pm · Sat 10am–6pm',
    logo:null,
   },
-  // ── PHOTOGRAPHY ───────────────────────────────────────────────
-  {id:'photo-placeholder',name:'Hockey Photography — Be Listed Here',type:'photo',featured:false,
-   region:'Denver Metro',city:'Denver',address:null,
-   phone:null,url:null,
-   tagline:'Capture your team\'s season',
-   description:'We\'re looking for local hockey photographers to feature. If you shoot youth hockey, team photos, or action shots at Colorado rinks — get in touch.',
-   rinkIds:[],
-   tags:['Action Photos','Team Photos','Tournament Coverage'],
-   cta:'Get Featured',ctaUrl:'https://forms.gle/KxEgRfU5jbKUNy8Q6',
-   hours:null,
-   logo:null,
-   placeholder:true,
-  },
+  // ── PHOTOGRAPHY ─────────────────────────────────────────────────────────────
+  // (no photographers listed yet)
   // ── REPAIR ────────────────────────────────────────────────────
   {id:'repair-apex',name:'Apex Center — Skate Sharpening & Repair',type:'repair',featured:false,
    region:'Denver Metro',city:'Arvada',address:'13150 W 72nd Ave, Arvada, CO 80005',
@@ -5503,7 +5492,6 @@ function renderBiz(){
   if(!grid)return;
 
   let filtered=LOCAL_BIZ.filter(b=>{
-    if(b.placeholder)return bizTypeFilter==='all'||bizTypeFilter===b.type;
     if(bizTypeFilter!=='all'&&b.type!==bizTypeFilter)return false;
     if(bizRegionFilter!=='all'&&b.region!==bizRegionFilter)return false;
     return true;
@@ -5521,15 +5509,6 @@ function renderBiz(){
   const typeLabel={shop:'Skate Shop',training:'Training / Academy',gear:'Team Gear',photo:'Photography',repair:'Repair',health:'Sports Medicine',food:'Food & Drink',activity:'Team Activity'};
 
   grid.innerHTML=filtered.map(b=>{
-    if(b.placeholder){
-      return `<div style="background:rgba(255,255,255,.02);border:1px dashed var(--border);border-radius:14px;padding:24px;text-align:center;margin-bottom:16px">
-        <div style="font-size:1.5rem;margin-bottom:8px">${typeIcon[b.type]||'🏒'}</div>
-        <div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1rem;font-weight:800;color:var(--muted);margin-bottom:6px">${b.name}</div>
-        <div style="font-size:.78rem;color:var(--muted);margin-bottom:16px">${b.description}</div>
-        <button onclick="showPage('submit')" class="btn btn-gold btn-sm">Get Listed Here →</button>
-      </div>`;
-    }
-
     const isFeatured=b.featured;
     const bg=isFeatured?'linear-gradient(135deg,rgba(232,184,75,.1),rgba(232,184,75,.04))':'rgba(168,212,245,.04)';
     const border=isFeatured?'rgba(232,184,75,.3)':'var(--border)';
@@ -5567,7 +5546,7 @@ function renderBiz(){
 }
 
 function buildBizTab(r){
-  const nearby=LOCAL_BIZ.filter(b=>!b.placeholder&&b.rinkIds.includes(r.id));
+  const nearby=LOCAL_BIZ.filter(b=>b.rinkIds.includes(r.id));
   if(!nearby.length){
     return '<div class="ms"><div class="ms-title">🛒 Local Businesses</div>'
       +'<div style="text-align:center;padding:24px 0">'
@@ -6065,83 +6044,7 @@ function renderOpenSkate() {
 }
 
 // ── COACHES ──────────────────────────────────────────────────────
-const COACHES=[
-  {
-    id:1,
-    name:"Alex Morrison",
-    specialty:"Power Skating",
-    badge:"⭐ Featured",
-    featured:true,
-    ages:"Mites through Midget",
-    rinks:["Apex Center","Ice Ranch","Edge Ice Arena"],
-    rate:"$85–$100/hr",
-    contact:"alex@morrisonskating.com",
-    website:"",
-    bio:"Former D1 college skater with 12 years of private coaching. USA Hockey certified. Specializes in edge work, crossovers, and backward skating for youth players.",
-    certifications:["USA Hockey Level 4","Power Skating Canada"],
-    sample:true
-  },
-  {
-    id:2,
-    name:"Jordan Kessler",
-    specialty:"Goalie",
-    badge:"🧤 Goalie Specialist",
-    featured:true,
-    ages:"8U through Adult",
-    rinks:["Family Sports Center","South Suburban Sports Complex","Foothills Ice Arena"],
-    rate:"$90–$110/hr",
-    contact:"jkessler.goalie@gmail.com",
-    website:"",
-    bio:"10 years goalie coaching experience at the youth and junior level. Focus on butterfly technique, positioning, and mental game. Works with beginners through Tier 2 juniors.",
-    certifications:["USA Hockey Goalie Instructor","GAP Certified"],
-    sample:true
-  },
-  {
-    id:3,
-    name:"Taylor Brandt",
-    specialty:"Skills",
-    badge:"🏒 Skills Coach",
-    featured:false,
-    ages:"Squirts through Bantam",
-    rinks:["Ice Centre Westminster","Blue Sport Stable","EPIC Fort Collins"],
-    rate:"$70–$85/hr",
-    contact:"taylorbrandt.hockey@gmail.com",
-    website:"",
-    bio:"Stickhandling, shooting, and on-ice decision making. Small group sessions available. Great with younger players — patient, encouraging, and detail-oriented.",
-    certifications:["USA Hockey Level 3"],
-    sample:true
-  },
-  {
-    id:4,
-    name:"Morgan Ellis",
-    specialty:"Shooting",
-    badge:"🥅 Shooting Coach",
-    featured:false,
-    ages:"Peewee through Adult",
-    rinks:["Apex Center","Ice Ranch"],
-    rate:"$75–$90/hr",
-    contact:"morgan.ellis.hockey@gmail.com",
-    website:"",
-    bio:"Shooting mechanics, one-timers, and scoring from tough angles. Former junior A player. Brings a high-level competitive perspective to every session.",
-    certifications:["USA Hockey Level 3"],
-    sample:true
-  },
-  {
-    id:5,
-    name:"Sam Nguyen",
-    specialty:"Off-Ice",
-    badge:"💪 Off-Ice Trainer",
-    featured:false,
-    ages:"Bantam through Adult",
-    rinks:["Apex Center","Edge Ice Arena"],
-    rate:"$65–$80/hr",
-    contact:"samnguyenperformance@gmail.com",
-    website:"",
-    bio:"Strength and conditioning specifically for hockey players. Focuses on explosive power, hip flexibility, and injury prevention. Works on-ice and in gym settings.",
-    certifications:["NSCA-CSCS","USA Hockey Level 2"],
-    sample:true
-  }
-];
+const COACHES=[];
 
 // ── COACH TAB / QUIZ ─────────────────────────────────────────────
 function setCoachTab(mode){
@@ -6235,7 +6138,6 @@ function showCoachResults(){
   document.getElementById('cq-results').style.display='block';
 
   let matches=COACHES.filter(c=>{
-    if(c.sample)return true; // always show sample coaches
     const specMatch=specialty==='any'||c.specialty===specialty;
     const reg=regionMatches(c,region);
     const ag=ageMatches(c,age);
