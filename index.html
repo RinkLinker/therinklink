@@ -1722,6 +1722,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
           <div style="display:flex;gap:8px">
             <button class="admin-tab active" id="atab-reviews" onclick="switchAdminTab('reviews')">📋 Reviews</button>
             <button class="admin-tab" id="atab-coaches" onclick="switchAdminTab('coaches')">🎯 Coaches</button>
+            <button class="admin-tab" id="atab-camps" onclick="switchAdminTab('camps')">⛺ Camps</button>
             <button class="admin-tab" id="atab-tips" onclick="switchAdminTab('tips')">💡 Tips</button>
             <button class="admin-tab" id="atab-rinks" onclick="switchAdminTab('rinks')">🏒 Rink Submissions</button>
             <button class="admin-tab" id="atab-agent" onclick="switchAdminTab('agent')">🤖 Rink Agent</button>
@@ -1746,6 +1747,12 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         <div id="admin-tab-coaches" style="display:none">
           <div id="admin-coaches-empty" style="text-align:center;padding:48px 0;color:var(--muted)"><div style="font-size:2rem;margin-bottom:12px">✅</div><div>No pending coach submissions.</div></div>
           <div id="admin-coaches-list"></div>
+        </div>
+
+        <!-- Camps Tab -->
+        <div id="admin-tab-camps" style="display:none">
+          <div id="admin-camps-empty" style="text-align:center;padding:48px 0;color:var(--muted)"><div style="font-size:2rem;margin-bottom:12px">✅</div><div>No pending camp submissions.</div></div>
+          <div id="admin-camps-list"></div>
         </div>
 
         <!-- Tips Tab -->
@@ -1943,7 +1950,7 @@ const RINKS=[
 ];
 
 const CAMPS=[
-{id:'c1',name:'Golden Stick Hockey Spring Camp',org:'Golden Stick Hockey / Nick Brusa',city:'Westminster',rink:'Ice Centre at the Promenade',address:'1 W Flatiron Crossing Dr, Westminster',phone:'',website:'https://www.goldenstickhockey.com/camp',type:'skills',ageMin:8,ageMax:15,skillLevels:['Beginner','Intermediate','Advanced'],months:['March','June'],duration:'2 days',cost:'$250/weekend',description:'Position-specific weekend camps led by former USHL coach Nick Brusa and professional skating coach Jill Kombeitz. Focus on skating mechanics, decision-making, and game-transferable habits — timed around tryout season.',highlights:['Former USHL coach Nick Brusa','Pro skating coach Jill Kombeitz','Position-specific reps','Perfect tryout prep'],registrationNote:'Limited enrollment — spots fill fast. Check goldenstickhockey.com for upcoming dates.',region:'Denver Metro'},
+{id:'c1',name:'Golden Stick Hockey Spring Camp',org:'Golden Stick Hockey / Nick Brusa',city:'Westminster',rink:'Ice Centre at the Promenade',address:'1 W Flatiron Crossing Dr, Westminster',phone:'',website:'https://www.goldenstickhockey.com/camp',type:'skills',ageMin:8,ageMax:15,skillLevels:['Beginner','Intermediate','Advanced'],months:['March','June'],duration:'2 days',cost:'$250/weekend',description:'Position-specific weekend camps led by former USHL coach Nick Brusa and professional skating coach Jill Kombeitz. Focus on skating mechanics, decision-making, and game-transferable habits — timed around tryout season.',highlights:['Former USHL coach Nick Brusa','Pro skating coach Jill Kombeitz','Position-specific reps','Perfect tryout prep'],registrationNote:'Limited enrollment — spots fill fast. Check goldenstickhockey.com for upcoming dates.',region:'Denver Metro',featured:true},
 {id:'c2',name:'Bob Johnson Hockey School',org:'Bob Johnson Hockey School',city:'Breckenridge',rink:'Stephen C. West Ice Arena',address:'189 Boreas Pass Rd, Breckenridge',phone:'(719) 440-5027',website:'https://www.bobjohnsonhockeyschool.com',type:'elite',ageMin:7,ageMax:18,skillLevels:['Intermediate','Advanced'],months:['July'],duration:'6 days',cost:'$985 skaters / $195 goalies',description:'One of Colorado\'s most storied hockey schools, now at Breckenridge while Dobson Arena renovates. Three on-ice sessions per day plus daily video and lecture sessions. A tradition of excellence since the 1970s.',highlights:['3 on-ice sessions daily','Video & lecture sessions','Goalie-specific program','Mountain Colorado setting'],registrationNote:'2026 sessions: July 19-24 & July 26-31. Registration opens Jan 13, 2026.',region:'Mountain'},
 {id:'c3',name:'Planet Hockey Skills Camp — Denver/Arvada',org:'Planet Hockey',city:'Arvada',rink:'Apex Center',address:'13150 W 72nd Ave, Arvada',phone:'',website:'https://www.planethockey.com/coloradohockeycamp-arvada2',type:'skills',ageMin:6,ageMax:18,skillLevels:['Beginner','Intermediate','Advanced'],months:['June','July','August'],duration:'5 days',cost:'Check website',description:'Planet Hockey has run elite skills camps since 1994 across the globe. Colorado sessions cover power skating, stickhandling, passing, scoring, and 1v1 battles. Multiple Arvada sessions plus Denver University, Superior, Fort Collins, and Steamboat Springs.',highlights:['32 years of camp experience','3,000+ players annually','Multiple Colorado locations','Certified international staff'],registrationNote:'2026 Colorado dates: Arvada June 22-26, July 13-17, Aug 3-7. Denver/DU June 8-12 & July 27-31. Fort Collins & Superior also available.',region:'Denver Metro'},
 {id:'c4',name:'Rocky Mountain Adventure Hockey Camp',org:'Rocky Mountain Hockey Schools',city:'Steamboat Springs',rink:'Howelsen Ice Arena',address:'375 Howelsen Pkwy, Steamboat Springs',phone:'',website:'https://rmhshockey.com',type:'skills',ageMin:10,ageMax:18,skillLevels:['Intermediate','Advanced'],months:['June','July'],duration:'5 days',cost:'$599–$1,050',description:'World-class on-ice instruction combined with outdoor mountain adventures including rock climbing, mountain biking, kayaking, and hiking. RMHS is renowned for skill development — this camp adds the full Colorado mountain experience.',highlights:['3.5 hrs on ice daily','Mountain adventure activities daily','Goalie-specific training (max 4/group)','Video analysis & chalk talks'],registrationNote:'2026 dates: June 28 – July 4. Registration opens January 1.',region:'Mountain'},
@@ -4002,12 +4009,13 @@ let adminUnlocked = false;
 
 // ── ADMIN TAB SWITCHING ──────────────────────────────────────────
 function switchAdminTab(tab){
-  ['reviews','coaches','tips','rinks','agent'].forEach(t=>{
+  ['reviews','coaches','camps','tips','rinks','agent'].forEach(t=>{
     document.getElementById('admin-tab-'+t).style.display = tab===t?'block':'none';
     document.getElementById('atab-'+t).classList.toggle('active', tab===t);
   });
   if(tab==='agent') agentInit();
   if(tab==='coaches') adminLoadCoaches();
+  if(tab==='camps') adminLoadCamps();
   if(tab==='tips') adminLoadTips();
   if(tab==='rinks') adminLoadRinks();
 }
@@ -4050,6 +4058,49 @@ async function adminRejectCoach(id){
   await sbFetch('Coaches?id=eq.'+id,'DELETE');
   document.getElementById('ccard-'+id)?.remove();
   toast('🗑 Coach submission rejected.');
+}
+
+async function adminLoadCamps(){
+  const list = document.getElementById('admin-camps-list');
+  const empty = document.getElementById('admin-camps-empty');
+  list.innerHTML = '<div style="color:var(--muted);padding:20px;text-align:center">Loading...</div>';
+  try{
+    const rows = await sbFetch('camp_submissions?status=eq.pending&order=id.desc');
+    if(!rows.length){ list.innerHTML=''; empty.style.display='block'; return; }
+    empty.style.display='none';
+    list.innerHTML = rows.map(c => `
+      <div id="campcard-${c.id}" style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:0">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:var(--white)">${c.camp_name} ${c.featured_interest?'<span style="background:rgba(232,184,75,.15);border:1px solid rgba(232,184,75,.3);color:var(--gold);font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:10px">⭐ Wants Featured</span>':''}</div>
+            <div style="font-size:.78rem;color:var(--ice);margin-top:2px">${c.org||''} · ${c.city||''}, ${c.state||''}</div>
+            <div style="font-size:.74rem;color:var(--muted);margin-top:3px">${c.date_start||''} – ${c.date_end||''} · Ages ${c.age_min||'?'}–${c.age_max||'?'} · ${c.price||'Price TBD'}</div>
+            <div style="font-size:.74rem;color:var(--muted);margin-top:2px">Rink: ${c.rink||'Not specified'} · Skills: ${c.skill_levels||'Not specified'}</div>
+            ${c.description?`<div style="font-size:.82rem;color:var(--white);margin-top:8px;background:rgba(255,255,255,.04);border-radius:6px;padding:10px">${c.description}</div>`:''}
+            <div style="font-size:.74rem;color:var(--muted);margin-top:6px">Submitted by: <strong style="color:var(--white)">${c.coach_name||''}</strong> · ${c.coach_email||''} · ${c.coach_phone||''}</div>
+            ${c.registration_link?`<div style="margin-top:4px"><a href="${c.registration_link}" target="_blank" style="font-size:.74rem;color:var(--ice)">Registration link ↗</a></div>`:''}
+          </div>
+          <div style="display:flex;gap:8px;flex-shrink:0">
+            <button class="btn btn-sm" style="background:#2ecc71;color:#fff;font-weight:700" onclick="adminApproveCamp(${c.id},'${c.coach_email}','${c.camp_name}')">✓ Approve</button>
+            <button class="btn btn-sm" style="background:#e74c3c;color:#fff;font-weight:700" onclick="adminRejectCamp(${c.id})">✕ Reject</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }catch(e){ list.innerHTML='<div style="color:#e74c3c;padding:20px">Error: '+e.message+'</div>'; }
+}
+
+async function adminApproveCamp(id, email, name){
+  await sbFetch('camp_submissions?id=eq.'+id,'PATCH',{status:'approved'});
+  document.getElementById('campcard-'+id).style.opacity='0.5';
+  document.getElementById('campcard-'+id).innerHTML += '<div style="background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.25);border-radius:8px;padding:12px;margin-top:10px"><div style="font-size:.8rem;font-weight:700;color:#2ecc71;margin-bottom:4px">✅ Approved — now live on camps page</div><a href="mailto:'+email+'?subject=Your camp is live on The Rink Link&body=Hi,%0A%0AGreat news — your camp '+name+' is now live on The Rink Link!%0A%0AThanks for listing with us.%0A%0AThe Rink Link Team" style="display:inline-block;margin-top:6px;background:#2ecc71;color:var(--navy);font-size:.75rem;font-weight:800;padding:6px 14px;border-radius:6px;text-decoration:none">✉️ Email Confirmation</a></div>';
+  toast('✅ Camp approved and live!');
+}
+
+async function adminRejectCamp(id){
+  await sbFetch('camp_submissions?id=eq.'+id,'PATCH',{status:'rejected'});
+  document.getElementById('campcard-'+id)?.remove();
+  toast('🗑 Camp submission rejected.');
 }
 
 async function adminLoadTips(){
@@ -4666,7 +4717,7 @@ function renderSNP(){
     const aR=hasRealSchedule(a.stickPuckTimes)?1:0;
     const bR=hasRealSchedule(b.stickPuckTimes)?1:0;
     if(bR!==aR)return bR-aR;
-    return b.sheets-a.sheets;
+    return a.name.localeCompare(b.name);
   });
 
   const countEl=document.getElementById('snp-count');
@@ -5785,6 +5836,12 @@ function renderDropin(){
   const grid=document.getElementById('dropin-grid');
   if(!grid)return;
 
+  filtered.sort((a,b)=>{
+    const aR=a.schedule&&a.schedule.length&&!a.schedule[0].toLowerCase().includes('check')?1:0;
+    const bR=b.schedule&&b.schedule.length&&!b.schedule[0].toLowerCase().includes('check')?1:0;
+    if(bR!==aR)return bR-aR;
+    return a.name.localeCompare(b.name);
+  });
   grid.innerHTML=filtered.map(d=>{
     const rink=RINKS.find(r=>r.id===d.rinkId);
     const op=rink?isOpen(rink):'unknown';
@@ -5825,22 +5882,59 @@ let campTypeFilter='all',campMonthFilter='all';
 const CAMP_TYPE_LABELS={beginner:'🐣 Beginner',skills:'🏒 Skills',elite:'⭐ Elite / D1',development:'📋 Development',specialty:'🥅 Specialty'};
 const CAMP_TYPE_ICONS={beginner:'🐣',skills:'🏒',elite:'⭐',development:'📋',specialty:'🥅'};
 
-function renderCamps(){
+async function renderCamps(){
   const sv=(document.getElementById('camp-search')?.value||'').toLowerCase();
-  const filtered=CAMPS.filter(c=>{
-    if(campTypeFilter!=='all'&&c.type!==campTypeFilter)return false;
-    if(campMonthFilter!=='all'&&!c.months.includes(campMonthFilter))return false;
-    if(sv&&!c.name.toLowerCase().includes(sv)&&!c.city.toLowerCase().includes(sv)&&!c.org.toLowerCase().includes(sv))return false;
-    return true;
-  });
   const grid=document.getElementById('camps-grid');
   if(!grid)return;
+
+  // Load approved camps from Supabase
+  let dbCamps=[];
+  try{
+    const rows=await sbFetch('camp_submissions?status=eq.approved&order=id.desc');
+    dbCamps=rows.map(c=>({
+      id:'db-'+c.id,
+      name:c.camp_name||'',
+      org:c.org||'',
+      city:c.city||'',
+      rink:c.rink||'',
+      website:c.registration_link||'',
+      type:'skills',
+      ageMin:c.age_min||6,
+      ageMax:c.age_max||18,
+      skillLevels:(c.skill_levels||'').split(', ').filter(Boolean),
+      months:[],
+      duration:'',
+      cost:c.price||'Check website',
+      description:c.description||'',
+      highlights:[],
+      registrationNote:c.registration_note||'',
+      region:'',
+      featured:c.featured_interest||false,
+      fromDB:true
+    }));
+  }catch(e){ console.warn('Could not load camps from Supabase:', e.message); }
+
+  // Merge hardcoded + DB camps
+  const allCamps=[...CAMPS,...dbCamps];
+
+  const filtered=allCamps.filter(c=>{
+    if(campTypeFilter!=='all'&&c.type!==campTypeFilter)return false;
+    if(campMonthFilter!=='all'&&c.months&&!c.months.includes(campMonthFilter))return false;
+    if(sv&&!c.name.toLowerCase().includes(sv)&&!c.city.toLowerCase().includes(sv)&&!(c.org||'').toLowerCase().includes(sv))return false;
+    return true;
+  });
+
+  filtered.sort((a,b)=>{
+    if((b.featured?1:0)!==(a.featured?1:0))return (b.featured?1:0)-(a.featured?1:0);
+    return a.name.localeCompare(b.name);
+  });
   const ageBadge=c=>'Ages '+c.ageMin+(c.ageMax>=18?'–18+':'–'+c.ageMax);
   const monthsBadge=c=>c.months.join(' / ');
   grid.innerHTML=filtered.map(c=>`
-    <div class="camp-card">
+    <div class="camp-card" style="${c.featured?'border-color:rgba(232,184,75,.45);background:linear-gradient(135deg,rgba(232,184,75,.06),var(--card))':''}">
       <div class="camp-head">
         <div class="camp-type-badge ct-${c.type}">${CAMP_TYPE_ICONS[c.type]||'🏒'} ${CAMP_TYPE_LABELS[c.type]||c.type}</div>
+        ${c.featured?'<div style="position:absolute;top:12px;right:12px;background:rgba(232,184,75,.15);border:1px solid rgba(232,184,75,.4);color:var(--gold);font-size:.62rem;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:20px">⭐ FEATURED</div>':''}
         <div class="camp-name">${c.name}</div>
         <div class="camp-org">${c.org}</div>
         <div style="font-size:.71rem;color:var(--muted)">${c.city} &middot; <a href="${c.website}" target="_blank" style="color:var(--ice)">Website ↗</a></div>
@@ -5988,7 +6082,15 @@ function renderOpenSkate() {
     return;
   }
 
-  grid.innerHTML = rinks.sort((a,b) => a.name.localeCompare(b.name)).map(r => {
+  rinks.sort((a,b)=>{
+    const days=['sun','mon','tue','wed','thu','fri','sat'];
+    const todayKey=days[new Date().getDay()];
+    const aH=a.hours&&a.hours[todayKey]&&!a.hours[todayKey].toLowerCase().includes('check')&&a.hours[todayKey]!=='Varies'?1:0;
+    const bH=b.hours&&b.hours[todayKey]&&!b.hours[todayKey].toLowerCase().includes('check')&&b.hours[todayKey]!=='Varies'?1:0;
+    if(bH!==aH)return bH-aH;
+    return a.name.localeCompare(b.name);
+  });
+  grid.innerHTML = rinks.map(r => {
     const todayHours = r.hours ? r.hours[days[todayIdx]] : null;
     const tomorrowHours = r.hours ? r.hours[days[tomorrowIdx]] : null;
     const op = isOpen(r);
