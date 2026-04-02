@@ -2259,7 +2259,7 @@ function renderRinks(){
       +(()=>{
   const hasWifi=r.parentInfo&&r.parentInfo.wifi&&r.parentInfo.wifi.available;
   const hasLB=r.parentInfo&&r.parentInfo.livebarn&&r.parentInfo.livebarn.available;
-  const hasSharp=r.amenities&&r.amenities.some(a=>a.toLowerCase().includes('sharp'));
+  const hasSharp=(r.amenities&&r.amenities.some(a=>a.toLowerCase().includes('sharp')))||(r.nearby&&r.nearby.sharpening&&/on.site|facilit|available/i.test(r.nearby.sharpening))||(r.shops&&r.shops.some(s=>(s.detail||'').toLowerCase().includes('sharp')));
   const hasLockers=r.locker&&r.locker.rooms>0;
   const pill=(label,on)=>'<span style="font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:10px;background:'+(on?'rgba(46,204,113,.1)':'rgba(255,255,255,.04)')+';border:1px solid '+(on?'rgba(46,204,113,.3)':'var(--border)')+';color:'+(on?'#2ecc71':'#334155')+'">'+label+'</span>';
   return '<div style="display:flex;flex-wrap:wrap;gap:4px;padding:0 14px 10px">'
@@ -3009,6 +3009,7 @@ async function submitWear2(rid){
   const name=document.getElementById('wn2-'+rid).value.trim();
   const role=document.getElementById('wr2-'+rid).value;
   const text=document.getElementById('wt2-'+rid).value.trim();
+  const wifi=document.getElementById('wwifi2-'+rid)?.value||'';
   if(!name){toast('Please enter your name');return;}
   if(!text){toast('Please share your insider tip');return;}
   const now=new Date(),months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -3017,7 +3018,7 @@ async function submitWear2(rid){
   reviews[rid].push(rv);
   await saveRev();
   try{
-    await sbFetch('rinkTips','POST',{rink_id:rid,rink_name:(RINKS.find(x=>x.id===rid)||{}).name||'',name,role,tip:text,date:rv.date,pending:true});
+    await sbFetch('rinkTips','POST',{rink_id:rid,rink_name:(RINKS.find(x=>x.id===rid)||{}).name||'',name,role,tip:text+(wifi?'\n[WiFi: '+wifi+']':''),date:rv.date,pending:true});
   }catch(e){console.warn('Wear tip DB error:',e.message);}
   toggleWearForm2(rid);
   toast('✅ Insider tip submitted! Pending moderation.');
@@ -3818,6 +3819,7 @@ function buildTabTheRink(r){
     +'<div class="fgrp"><label class="flbl">Your Name</label><input class="finput" type="text" id="wn2-'+r.id+'" placeholder="e.g. Sarah K."/></div>'
     +'<div class="fgrp"><label class="flbl">Role</label><select class="finput" id="wr2-'+r.id+'"><option>Hockey Parent</option><option>Player</option><option>Coach</option><option>Hockey Fan</option></select></div>'
     +'</div>'
+    +'<div class="fgrp"><label class="flbl">📶 Is there WiFi at this rink?</label><select class="finput" id="wwifi2-'+r.id+'"><option value="">Not sure</option><option value="yes">Yes — free WiFi</option><option value="paid">Yes — paid WiFi</option><option value="no">No WiFi</option></select></div>'
     +'<div class="fgrp"><label class="flbl">Your tip</label><textarea class="finput" id="wt2-'+r.id+'" rows="3" placeholder="e.g. Bring heavy blankets — upper sections are really cold..."></textarea></div>'
     +'<div class="factions"><button class="fsub" onclick="submitWear2('+r.id+')">Share an Insider Tip</button><button class="fcan" onclick="toggleWearForm2('+r.id+')">Cancel</button></div>'
     +'</div>'
