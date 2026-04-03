@@ -99,9 +99,9 @@ nav{position:fixed;top:38px;left:0;right:0;z-index:199;display:flex;align-items:
 .btn-ice{background:var(--ice);color:var(--navy);padding:13px 30px;font-size:.9rem}.btn-ice:hover{background:var(--ice2);transform:translateY(-2px)}
 .btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--muted);padding:13px 24px;font-size:.86rem}.btn-ghost:hover{border-color:var(--ice);color:var(--ice)}
 .btn-sm{padding:7px 15px;font-size:.7rem}.btn-gold{background:rgba(232,184,75,.13);border:1px solid rgba(232,184,75,.28);color:var(--gold);padding:7px 15px;font-size:.7rem;border-radius:5px}.btn-gold:hover{background:rgba(232,184,75,.22)}
-.stats-bar{background:var(--steel);border-bottom:1px solid var(--border);padding:22px}
-.stats-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-around;gap:18px}
-.stat{text-align:center}.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;color:var(--ice);line-height:1}.stat-label{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.stats-bar{background:var(--steel);border-bottom:1px solid var(--border);padding:18px 22px}
+.stats-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-around;gap:12px}
+.stat{text-align:center;cursor:pointer;padding:8px 16px;border-radius:8px;transition:background .15s}.stat:hover{background:rgba(125,211,252,.07)}.stat-num{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--ice);line-height:1}.stat-label{font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px}
 .section{padding:72px 24px}.section-alt{background:var(--navy2)}.container{max-width:1200px;margin:0 auto}
 .sh{margin-bottom:44px}.sl{font-family:\'Barlow Condensed\',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
 .st{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.8vw,3.2rem);letter-spacing:2px;line-height:1;margin-bottom:11px}.sd{color:var(--muted);font-size:.92rem;max-width:500px;line-height:1.7}
@@ -442,7 +442,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
     <li><a onclick="showPage('rinks')" id="nav-rinks">Rinks</a></li>
     <li><a onclick="showPage('map')" id="nav-map">By Region</a></li>
-    <li><a onclick="showPage('nearby')" id="nav-nearby">Game Day Guide</a></li>
+    <li><a onclick="showPage('nearby')" id="nav-nearby">🎒 Game Day Guide</a></li>
     <li class="nav-dropdown">
       <a class="nav-dropdown-trigger" id="nav-icetime">Want Ice Time ▾</a>
       <div class="nav-dropdown-menu">
@@ -452,7 +452,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       </div>
     </li>
     <li class="nav-dropdown">
-      <a class="nav-dropdown-trigger" id="nav-resources">Resources ▾</a>
+      <a class="nav-dropdown-trigger" id="nav-resources">Guides & Info ▾</a>
       <div class="nav-dropdown-menu">
         <a onclick="showPage('sharpen');closeDropdowns()">⚙️ Sharpening Finder</a>
         <a onclick="showPage('checklist');closeDropdowns()">✅ What to Bring</a>
@@ -495,7 +495,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <div class="mnav-card" onclick="mobileNav('rinks')">
       <div class="mnav-card-icon">🏟️</div>
       <div class="mnav-card-title">All Rinks</div>
-      <div class="mnav-card-desc">75 rinks across CO, WY, UT & NE</div>
+      <div class="mnav-card-desc">78 rinks across CO, WY, UT & NE</div>
     </div>
     <div class="mnav-card" onclick="mobileNav('map')">
       <div class="mnav-card-icon">🗺️</div>
@@ -508,7 +508,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div class="mnav-card-desc">Open ice sessions near you</div>
     </div>
     <div class="mnav-card" onclick="mobileNav('openskate')">
-      <div style="font-size:1.5rem;margin-bottom:6px">⛸</div>
+      <div class="mnav-card-icon">⛸️</div>
       <div class="mnav-card-title">Open Skate</div>
       <div style="font-size:.75rem;color:var(--muted)">Just skate. No gear required.</div>
     </div>
@@ -520,7 +520,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   </div>
 
   <!-- Resources -->
-  <div class="mobile-nav-section-label">📚 Resources</div>
+  <div class="mobile-nav-section-label">📚 Guides & Info</div>
   <div class="mobile-nav-grid">
     <div class="mnav-card" onclick="mobileNav('sharpen')">
       <div class="mnav-card-icon">⚙️</div>
@@ -538,7 +538,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div class="mnav-card-desc">USA Hockey level guide</div>
     </div>
     <div class="mnav-card" onclick="mobileNav('nearby')">
-      <div class="mnav-card-icon">🍕</div>
+      <div class="mnav-card-icon">🎒</div>
       <div class="mnav-card-title">Game Day Guide</div>
       <div class="mnav-card-desc">Food, hotels & hangouts by rink</div>
     </div>
@@ -583,7 +583,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   <div class="mobile-nav-section-label">👥 Community</div>
   <div class="mobile-nav-grid">
     <div class="mnav-card" onclick="mobileNav('leagues')">
-      <div class="mnav-card-icon">🏆</div>
+      <div class="mnav-card-icon">🏒</div>
       <div class="mnav-card-title">Adult Leagues</div>
       <div class="mnav-card-desc">Find a league to join</div>
     </div>
@@ -675,21 +675,23 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   </div>
   <div class="stats-bar">
     <div class="stats-inner">
-      <div class="stat"><div class="stat-num">78</div><div class="stat-label">Rinks & Growing</div></div>
-      <div class="stat"><div class="stat-num">4</div><div class="stat-label">States Covered</div></div>
-      <div class="stat"><div class="stat-num">🧥</div><div class="stat-label">Wear Guides</div></div>
-      <div class="stat"><div class="stat-num">🏒</div><div class="stat-label">Coaches & Camps</div></div>
-      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Free Forever</div></div>
+      <div class="stat" onclick="showPage('rinks')"><div class="stat-num">78</div><div class="stat-label">Rinks & Growing</div></div>
+      <div class="stat" onclick="showPage('map')"><div class="stat-num">4</div><div class="stat-label">States Covered</div></div>
+      <div class="stat" onclick="showPage('rinks')"><div class="stat-num">🧥</div><div class="stat-label">Wear Guides</div></div>
+      <div class="stat" onclick="showPage('coaches')"><div class="stat-num">🏒</div><div class="stat-label">Coaches & Camps</div></div>
+      <div class="stat" onclick="showPage('rinks')"><div class="stat-num">100%</div><div class="stat-label">Free Forever</div></div>
     </div>
   </div>
   <div class="section">
     <div class="container" style="max-width:680px;text-align:center">
       <div class="sh"><div class="sl">Everything In One Place</div><div class="st">Built for Hockey Families</div><div class="sd">One place for everything your hockey family needs — no more juggling five websites before game day.</div></div>
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:28px;margin-top:8px">
-        <div><div style="font-size:1.5rem;margin-bottom:6px">🧥</div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px">Dress Right</div><div style="font-size:.75rem;color:var(--muted)">Wear guides & coldness ratings for every rink</div></div>
-        <div><div style="font-size:1.5rem;margin-bottom:6px">🍽️</div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px">Game Day</div><div style="font-size:.75rem;color:var(--muted)">Food, hotels, parking & activities nearby</div></div>
-        <div><div style="font-size:1.5rem;margin-bottom:6px">🏒</div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px">Get Ice Time</div><div style="font-size:.75rem;color:var(--muted)">Stick & puck, drop-in & open skate schedules</div></div>
-        <div><div style="font-size:1.5rem;margin-bottom:6px">⭐</div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px">Go Deeper</div><div style="font-size:.75rem;color:var(--muted)">Coaches, camps, sharpening, lockers & reviews</div></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:16px">
+        <button onclick="showPage('rinks')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">🏟️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Find a Rink</div><div style="font-size:.72rem;color:var(--muted)">78 rinks across 4 states</div></button>
+        <button onclick="showPage('nearby')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">🎒</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Game Day Guide</div><div style="font-size:.72rem;color:var(--muted)">Food, hotels & activities</div></button>
+        <button onclick="showPage('sticknpuck')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">🏒</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Get Ice Time</div><div style="font-size:.72rem;color:var(--muted)">Stick & puck, drop-in & open skate</div></button>
+        <button onclick="showPage('coaches')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">👨‍🏫</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Private Coaches</div><div style="font-size:.72rem;color:var(--muted)">Find a coach near you</div></button>
+        <button onclick="showPage('camps')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">⛺</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Hockey Camps</div><div style="font-size:.72rem;color:var(--muted)">Summer & seasonal camps</div></button>
+        <button onclick="showPage('sharpen')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">⚙️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Sharpening</div><div style="font-size:.72rem;color:var(--muted)">Find shops near your rink</div></button>
       </div>
     </div>
   </div>
