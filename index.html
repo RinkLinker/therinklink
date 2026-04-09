@@ -682,6 +682,12 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div class="stat" onclick="showPage('rinks')"><div class="stat-num">100%</div><div class="stat-label">Free Forever</div></div>
     </div>
   </div>
+  <div id="snp-today-section" class="section" style="padding-top:22px;padding-bottom:4px">
+    <div class="container">
+      <div class="sh" style="text-align:left;margin-bottom:12px"><div class="sl">🏒 Ice Time Today</div><div class="st" style="font-size:1.35rem">Stick &amp; Puck Today</div></div>
+      <div id="snp-today-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"></div>
+    </div>
+  </div>
   <div class="section">
     <div class="container" style="max-width:680px;text-align:center">
       <div class="sh"><div class="sl">Everything In One Place</div><div class="st">Built for Hockey Families</div><div class="sd">One place for everything your hockey family needs — no more juggling five websites before game day.</div></div>
@@ -2208,6 +2214,7 @@ function showPage(name){
   document.getElementById('page-'+name).classList.add('active');
   const n=document.getElementById('nav-'+name);if(n)n.classList.add('active');
   window.scrollTo(0,0);
+  if(name==='home')renderSNPToday();
   if(name==='rinks')renderRinks();
   if(name==='map')renderMap();
   if(name==='favs'){renderFavs();if(window._iceTimeFilter===undefined)window._iceTimeFilter='all';}
@@ -2232,6 +2239,20 @@ function showPage(name){
   if(typeof updateBottomTabs==='function')updateBottomTabs(name);
   if(name==='submit'){loadSubmissions().then(()=>{updateSubmitCount();});resetSubmitForm&&document.getElementById('submit-form-wrap')&&(document.getElementById('submit-success').style.display='none',document.getElementById('submit-form-wrap').style.display='block');}
   if(name==='admin'){if(!adminUnlocked){document.getElementById('admin-pw-input').value='';document.getElementById('admin-pw-err').style.display='none';}}
+}
+
+function getWearBadge(r){
+  const level=r.temp&&r.temp.level;
+  if(!level)return '';
+  const map={
+    cold:{label:'🥶 Dress for winter',cls:'tp-cold'},
+    cool:{label:'🧥 Bring a coat',cls:'tp-cool'},
+    moderate:{label:'👕 Light layer',cls:'tp-moderate'},
+    warm:{label:'😊 Comfortable',cls:'tp-warm'}
+  };
+  const m=map[level];
+  if(!m)return '';
+  return '<div class="temp-pill '+m.cls+'" style="margin-bottom:6px">'+m.label+'</div>';
 }
 
 function renderRinks(){
@@ -2274,6 +2295,7 @@ function renderRinks(){
       +'</div>'
       +'<div class="card-body">'
       +'<div class="card-rating"><div class="stars">'+starsH(a)+'</div><span class="rating-txt">'+(a?a.toFixed(1)+' ('+cnt+' reviews)':'No reviews yet')+'</span></div>'
+      +getWearBadge(r)
       +(r.highlight?'<div class="tags" style="margin-bottom:8px"><span class="tag hl">&#11088; '+r.highlight+'</span></div>':'')
       +'<div class="card-quick-stats">'
       +'<div class="card-qs" style="text-align:left;padding:5px 8px"><div class="card-qs-label" style="margin-bottom:3px">Ice Time</div>'+schedLinks+'</div>'
@@ -3220,7 +3242,15 @@ function buildRevTab(r){
     +'<div class="form-title">Leave a Review</div>'
     +'<div class="frow">'
     +'<div class="fgrp"><label class="flbl">Your Name</label><input class="finput" type="text" id="rn-'+r.id+'" placeholder="e.g. Mike T."/></div>'
-    +'<div class="fgrp"><label class="flbl">Role</label><select class="finput" id="rr-'+r.id+'"><option>Hockey Parent</option><option>Player</option><option>Coach</option><option>Hockey Fan</option></select></div>'
+    +'<div class="fgrp"><label class="flbl">Role</label><select class="finput" id="rr-'+r.id+'" onchange="toggleSpectatorSection('+r.id+', this.value)"><option>Hockey Parent</option><option>Player</option><option>Coach</option><option>Hockey Fan</option><option>Hockey Fan / Spectator</option></select></div>'
+    +'</div>'
+    +'<div id="spec-'+r.id+'" style="display:none;background:rgba(91,184,245,.05);border:1px solid rgba(91,184,245,.15);border-radius:8px;padding:10px 12px;margin-bottom:4px">'
+    +'<div class="fgrp" style="margin-bottom:6px"><label class="flbl">Spectator Experience</label>'
+    +'<div class="spicker" id="ssp-'+r.id+'" data-val="0">'+[1,2,3,4,5].map(i=>'<span class="sp" data-val="'+i+'" onclick="setStar(\'ssp-'+r.id+'\','+i+')">&#9733;</span>').join('')+'</div>'
+    +'</div>'
+    +'<div class="fgrp" style="margin-bottom:0"><label class="flbl">Spectator Notes <span style="color:var(--muted);font-weight:400">(optional)</span></label>'
+    +'<textarea class="finput" id="sst-'+r.id+'" placeholder="Seating, sightlines, warmth, accessibility..."></textarea>'
+    +'</div>'
     +'</div>'
     +'<div class="fgrp"><label class="flbl">Overall Rating</label>'
     +'<div class="spicker" id="sp-'+r.id+'" data-val="0">'+[1,2,3,4,5].map(i=>'<span class="sp" data-val="'+i+'" onclick="setStar(\'sp-'+r.id+'\','+i+')">&#9733;</span>').join('')+'</div></div>'
@@ -3261,6 +3291,7 @@ function attachPickers(){
 }
 
 function toggleRevForm(rid){document.getElementById('rf-'+rid).classList.toggle('open');}
+function toggleSpectatorSection(rid,role){const sec=document.getElementById('spec-'+rid);if(sec)sec.style.display=role==='Hockey Fan / Spectator'?'block':'none';}
 
 async function submitReview(rid){
   const name=document.getElementById('rn-'+rid).value.trim();
@@ -4717,6 +4748,39 @@ let snpRegion='all';
 
 function getSNPRinks(){
   return RINKS.filter(r=>r.stickPuckTimes&&r.stickPuckTimes.scheduleUrl&&!(r.pricing&&r.pricing.stickPuck&&r.pricing.stickPuck.includes('N/A')));
+}
+
+function renderSNPToday(){
+  const sec=document.getElementById('snp-today-section');
+  const grid=document.getElementById('snp-today-grid');
+  if(!sec||!grid)return;
+  const rinks=getSNPRinks().filter(r=>{
+    const spt=r.stickPuckTimes;
+    return spt&&spt.schedule&&hasRealSchedule(spt)&&spt.schedule.some(s=>sessionIsToday(s));
+  });
+  if(!rinks.length){sec.style.display='none';return;}
+  sec.style.display='';
+  grid.innerHTML=rinks.map(r=>{
+    const spt=r.stickPuckTimes;
+    const todaySessions=spt.schedule.filter(s=>sessionIsToday(s));
+    const price=spt.cost&&!spt.cost.toLowerCase().includes('check')&&!spt.cost.toLowerCase().includes('n/a')?spt.cost:(r.pricing&&r.pricing.stickPuck&&!r.pricing.stickPuck.toLowerCase().includes('check')&&!r.pricing.stickPuck.includes('N/A')?r.pricing.stickPuck:null);
+    const hasBooking=!!spt.bookingUrl;
+    return '<div style="background:var(--steel);border:1px solid var(--border);border-radius:10px;overflow:hidden">'
+      +'<div style="padding:10px 14px;border-bottom:1px solid var(--border)">'
+      +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1rem;font-weight:800;color:var(--white)">'+r.name+'</div>'
+      +'<div style="font-size:.68rem;color:var(--muted)">'+r.city+' · '+r.region+'</div>'
+      +'</div>'
+      +'<div style="padding:10px 14px">'
+      +'<div style="font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:5px">TODAY\'S SESSIONS</div>'
+      +todaySessions.map(s=>'<div style="font-size:.8rem;color:var(--white);padding:3px 0 3px 8px;border-left:2px solid rgba(46,204,113,.5);margin-bottom:3px">'+s+'</div>').join('')
+      +(price?'<div style="font-size:.72rem;color:var(--gold);font-weight:700;margin-top:6px">💰 '+price+'</div>':'')
+      +'</div>'
+      +'<div style="padding:8px 14px 12px;display:flex;gap:6px;border-top:1px solid var(--border)">'
+      +'<button class="btn btn-ghost btn-sm" onclick="openModal('+r.id+')">Details</button>'
+      +(hasBooking?'<a class="btn btn-sm" style="background:linear-gradient(135deg,#2ecc71,#27ae60);color:#fff;text-decoration:none;font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.78rem;padding:7px 14px;border-radius:6px;letter-spacing:.5px" href="'+spt.bookingUrl+'" target="_blank" rel="noopener">🎟 Book</a>'
+        :'<a class="btn btn-ghost btn-sm" href="'+spt.scheduleUrl+'" target="_blank" rel="noopener">📅 Schedule</a>')
+      +'</div></div>';
+  }).join('');
 }
 
 function sessionIsToday(dayStr){
@@ -6641,7 +6705,7 @@ function setRegionView(view){
 }
 
 (async()=>{
-  await loadAll();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();
+  await loadAll();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();renderSNPToday();
   if(window.location.hash==="#admin") showPage("admin");
 })();
 
