@@ -2774,13 +2774,11 @@ function buildModal(r){
     +'<div class="mtabs">'
     +'<button class="mtab active" onclick="switchTab(\'therink\',this)">🏟️<br>The Rink</button>'
     +'<button class="mtab" onclick="switchTab(\'neighborhood\',this)">📍<br>Nearby</button>'
-    +'<button class="mtab" onclick="switchTab(\'community\',this)">💬<br>Community</button>'
-    +'<button class="mtab" onclick="switchTab(\'tips\',this)">💡<br>Tips</button>'
+    +'<button class="mtab" onclick="switchTab(\'community\',this)">⭐<br>Reviews</button>'
     +'</div>'
     +'<div id="tb-therink" class="tbody active">'+buildTabTheRink(r)+'</div>'
     +'<div id="tb-neighborhood" class="tbody">'+buildTabNeighborhood(r)+'</div>'
-    +'<div id="tb-community" class="tbody">'+buildTabCommunity(r)+'</div>'
-    +'<div id="tb-tips" class="tbody">'+buildWearTab(r)+'</div>';
+    +'<div id="tb-community" class="tbody">'+buildTabCommunity(r)+'</div>';
   attachPickers();
 }
 
