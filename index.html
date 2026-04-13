@@ -449,6 +449,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         <a onclick="showPage('sticknpuck');closeDropdowns()">🏒 Stick & Puck</a>
         <a onclick="showPage('dropin');closeDropdowns()">🥅 Drop-In Hockey</a>
         <a onclick="showPage('openskate');closeDropdowns()">⛸ Open Skate</a>
+        <a onclick="showPage('training');closeDropdowns()">🎯 Training Facilities</a>
       </div>
     </li>
     <li class="nav-dropdown">
@@ -1003,6 +1004,20 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         </div>
       </div>
       <div id="camps-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TRAINING FACILITIES PAGE -->
+<div id="page-training" class="page">
+  <div class="section">
+    <div class="container">
+      <div class="sh">
+        <div class="sl">Skill Development</div>
+        <div class="st">Training Facilities</div>
+        <div class="sd">Purpose-built facilities for skill development, dryland training, and player improvement — from beginner to elite.</div>
+      </div>
+      <div id="training-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-bottom:48px"></div>
     </div>
   </div>
 </div>
@@ -2236,6 +2251,7 @@ function showPage(name){
   }
   if(name==='sticknpuck')renderSNP();
   if(name==='camps')renderCamps();
+  if(name==='training')renderTraining();
   if(typeof updateBottomTabs==='function')updateBottomTabs(name);
   if(name==='submit'){loadSubmissions().then(()=>{updateSubmitCount();});resetSubmitForm&&document.getElementById('submit-form-wrap')&&(document.getElementById('submit-success').style.display='none',document.getElementById('submit-form-wrap').style.display='block');}
   if(name==='admin'){if(!adminUnlocked){document.getElementById('admin-pw-input').value='';document.getElementById('admin-pw-err').style.display='none';}}
@@ -6231,6 +6247,31 @@ function renderOpenSkate() {
     html += '</div></div>';
     html += '</div>';
     return html;
+  }).join('');
+}
+
+// ── TRAINING FACILITIES ──────────────────────────────────────────
+const TRAINING_FACILITIES=[
+  {id:'tf1',name:'ELEV802 Denver',city:'Englewood',region:'Denver Metro',phone:'(303) 819-8246',website:'https://www.elev802denver.com',description:'Custom 80x47 ice rink purpose-built for skill development. Stick and puck, 3v3 drop-in, small group skills, private training, shooting bay and off-ice training. Year-round.',tags:['Skills Training','Stick and Puck','3v3','Private Ice','Shooting Bay','Off-Ice']},
+  {id:'tf2',name:'Aces Sports Academy',city:'Littleton',region:'Denver Metro',phone:'(303) 284-6088',website:'https://acessportsacademy.com',description:'Daily on-ice skill development with qualified coaches, weekly off-ice strength and conditioning, private dryland facility. Beginner to advanced levels.',tags:['Skills','Dryland','Strength and Conditioning','On-Ice','All Levels']},
+  {id:'tf3',name:'Springs Bighorns',city:'Colorado Springs',region:'Colorado Springs',website:'https://www.springsbighorns.com',description:'Summer and fall development programs for youth and high school players. Skill development, dryland training and competition opportunities.',tags:['Skills','Dryland','Summer Programs','Youth','High School']}
+];
+
+function renderTraining(){
+  const grid=document.getElementById('training-grid');
+  if(!grid)return;
+  grid.innerHTML=TRAINING_FACILITIES.map(f=>{
+    return '<div style="background:var(--card);border:1px solid var(--border);border-radius:13px;padding:20px;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform=\'translateY(-3px)\';this.style.boxShadow=\'0 8px 24px rgba(0,0,0,.3)\'" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'\'">'
+      +'<div style="font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ice);margin-bottom:5px">'+f.region+'</div>'
+      +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:2px">'+f.name+'</div>'
+      +'<div style="font-size:.72rem;color:var(--muted);margin-bottom:10px">'+f.city+'</div>'
+      +'<div style="font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:12px">'+f.description+'</div>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px">'+f.tags.map(t=>'<span style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);color:var(--ice);font-size:.65rem;font-weight:600;padding:2px 8px;border-radius:10px">'+t+'</span>').join('')+'</div>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:8px">'
+      +(f.phone?'<a href="tel:'+f.phone+'" style="display:inline-flex;align-items:center;gap:5px;background:rgba(91,184,245,.08);border:1px solid rgba(91,184,245,.2);color:var(--ice);font-size:.72rem;font-weight:700;padding:6px 13px;border-radius:6px;text-decoration:none">📞 '+f.phone+'</a>':'')
+      +(f.website?'<a href="'+f.website+'" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:rgba(232,184,75,.08);border:1px solid rgba(232,184,75,.22);color:var(--gold);font-size:.72rem;font-weight:700;padding:6px 13px;border-radius:6px;text-decoration:none">🌐 Website ↗</a>':'')
+      +'</div>'
+      +'</div>';
   }).join('');
 }
 
