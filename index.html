@@ -2299,8 +2299,13 @@ function renderRinks(){
     const psPrice=r.pricing&&r.pricing.publicSkate?r.pricing.publicSkate.replace(/\|.*$/,'').trim().split(' ')[0]:'Check site';
     const snpPrice=r.pricing&&r.pricing.stickPuck?r.stickPuckTimes&&r.stickPuckTimes.cost&&r.stickPuckTimes.cost!=='Check website'?r.stickPuckTimes.cost.split(' ')[0]:'Check site':'—';
     const snpUrl=r.stickPuckTimes&&r.stickPuckTimes.scheduleUrl?r.stickPuckTimes.scheduleUrl:null;
+    const snpBookUrl=r.stickPuckTimes&&r.stickPuckTimes.bookingUrl?r.stickPuckTimes.bookingUrl:null;
     const psUrl=r.website||null;
-    const schedLinks=(snpUrl?'<a href="'+snpUrl+'" target="_blank" onclick="event.stopPropagation()" style="display:block;color:var(--ice);font-size:.68rem;font-weight:700;text-decoration:none;padding:2px 0">🏒 Stick &amp; Puck ↗</a>':'')+(psUrl?'<a href="'+psUrl+'" target="_blank" onclick="event.stopPropagation()" style="display:block;color:var(--muted);font-size:.68rem;font-weight:600;text-decoration:none;padding:2px 0">⛸ Public Skate ↗</a>':'');
+    const snpBtn=snpBookUrl
+      ?'<a href="'+snpBookUrl+'" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;background:rgba(91,184,245,.12);border:1px solid rgba(91,184,245,.35);color:var(--ice);font-size:.67rem;font-weight:700;padding:4px 10px;border-radius:5px;text-decoration:none;margin-bottom:4px">🎟 Book Ice Time ↗</a>'
+      :snpUrl?'<a href="'+snpUrl+'" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;background:rgba(91,184,245,.07);border:1px solid rgba(91,184,245,.2);color:var(--ice);font-size:.67rem;font-weight:700;padding:4px 10px;border-radius:5px;text-decoration:none;margin-bottom:4px">📅 View Schedule ↗</a>'
+      :'';
+    const schedLinks=snpBtn+(psUrl?'<a href="'+psUrl+'" target="_blank" onclick="event.stopPropagation()" style="display:block;color:var(--muted);font-size:.67rem;font-weight:600;text-decoration:none;padding:2px 0">⛸ Public Skate ↗</a>':'');
     const coldness=r.temp?r.temp.level:'';
     const coldColor={'cold':'var(--cold)','cool':'var(--ice)','moderate':'var(--gold)','warm':'#f97316'}[coldness]||'var(--muted)';
     const coldLabel={'cold':'🥶 Bundle up','cool':'🧥 Light jacket','moderate':'👕 Comfortable','warm':'☀️ Dress light'}[coldness]||'—';
