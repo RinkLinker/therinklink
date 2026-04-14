@@ -179,6 +179,7 @@ nav{position:fixed;top:38px;left:0;right:0;z-index:199;display:flex;align-items:
 .mi-name{font-family:\'Barlow Condensed\',sans-serif;font-size:.92rem;font-weight:700;margin-bottom:2px}.mi-city{font-size:.7rem;color:var(--muted);margin-bottom:5px}.mi-row{display:flex;align-items:center;gap:7px}
 .map-canvas{position:relative;background:var(--navy);overflow:hidden}
 .map-tt{position:absolute;background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:13px 16px;pointer-events:none;min-width:185px;z-index:10;transition:opacity .2s}.map-tt.hide{opacity:0}
+.leaflet-popup-pane{z-index:700!important}.leaflet-popup{z-index:700!important}.leaflet-popup-content-wrapper{background:#0d1a35!important;border:1px solid rgba(168,212,245,.25)!important;border-radius:10px!important;color:#fff!important;box-shadow:0 8px 32px rgba(0,0,0,.6)!important;padding:0!important}.leaflet-popup-content{margin:14px 16px!important;color:#fff!important}.leaflet-popup-tip{background:#0d1a35!important}.leaflet-popup-close-button{color:#94a3b8!important;font-size:18px!important;top:8px!important;right:10px!important}
 .mtt-name{font-family:\'Barlow Condensed\',sans-serif;font-size:.92rem;font-weight:700;margin-bottom:3px}.mtt-city{font-size:.72rem;color:var(--muted);margin-bottom:6px}.mtt-row{display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--muted);margin-bottom:3px}
 #co-map{width:100%;height:100%}.rink-pin{cursor:pointer}
 .overlay{position:fixed;inset:0;background:rgba(3,8,20,.9);z-index:300;display:flex;align-items:center;justify-content:center;padding:14px;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(8px)}.overlay.open{opacity:1;pointer-events:all}
@@ -807,7 +808,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         <div class="rinks-grid" id="rinks-grid"></div>
       </div>
       <div id="rinks-map-view" style="display:none">
-        <div id="rinks-leaflet-map" style="height:70vh;min-height:480px;border-radius:12px;overflow:hidden;border:1px solid var(--border2)"></div>
+        <div id="rinks-leaflet-map" style="height:70vh;min-height:480px;border-radius:12px;border:1px solid var(--border2);position:relative;z-index:0"></div>
         <div style="font-size:.72rem;color:var(--muted);margin-top:8px;text-align:center">Tap any pin to see rink details · Map data © OpenStreetMap contributors</div>
       </div>
     </div>
@@ -853,7 +854,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
             <button class="chip" onclick="setRegionMapState('NE',this)">🌽 Nebraska</button>
           </div>
         </div>
-        <div id="region-leaflet-map" style="height:70vh;min-height:480px;border-radius:12px;overflow:hidden;border:1px solid var(--border2)"></div>
+        <div id="region-leaflet-map" style="height:70vh;min-height:480px;border-radius:12px;border:1px solid var(--border2);position:relative;z-index:0"></div>
         <div style="font-size:.72rem;color:var(--muted);margin-top:8px;text-align:center">Tap any pin to see rink details · Map data © OpenStreetMap contributors</div>
       </div>
     </div>
