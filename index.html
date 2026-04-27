@@ -675,12 +675,13 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <div class="eyebrow">America's Hockey Resource</div>
     <h1>THE <em>RINK</em><br>LINK</h1>
     <p class="hero-sub">Built by hockey families, for hockey families. The largest directory of ice rinks across all 50 states — plus coaches, camps, sharpening, nearby food, and activities. Whether it's your kid's first skate, a AAA tryout, or your Thursday night adult league — we've got you covered.</p>
-    <div style="display:flex;gap:8px;justify-content:center;align-items:stretch;margin-top:18px;margin-bottom:4px;flex-wrap:wrap">
+    <div style="display:flex;gap:8px;justify-content:center;align-items:stretch;margin-top:18px;margin-bottom:4px;flex-wrap:wrap;position:relative">
       <input id="hero-zip" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="Enter zip code" style="padding:12px 18px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;letter-spacing:.5px;outline:none;width:160px;text-align:center" onkeydown="if(event.key==='Enter')heroZipSearch()"/>
       <select id="hero-radius" style="background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.25);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;padding:12px 10px;cursor:pointer;outline:none">
+        <option value="5" style="background:#0f1923;color:#fff">5 miles</option>
         <option value="10" style="background:#0f1923;color:#fff">10 miles</option>
-        <option value="25" style="background:#0f1923;color:#fff">25 miles</option>
-        <option value="50" selected style="background:#0f1923;color:#fff">50 miles</option>
+        <option value="25" selected style="background:#0f1923;color:#fff">25 miles</option>
+        <option value="50" style="background:#0f1923;color:#fff">50 miles</option>
         <option value="100" style="background:#0f1923;color:#fff">100 miles</option>
       </select>
       <button class="btn btn-ice" onclick="heroZipSearch()" style="padding:12px 24px;font-size:.9rem;letter-spacing:1px">🔍 Find Rinks Near Me</button>
@@ -700,7 +701,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div class="stat" onclick="showPage('rinks')"><div class="stat-num">100%</div><div class="stat-label">Free Forever</div></div>
     </div>
   </div>
-  <div id="snp-today-section" class="section" style="padding-top:22px;padding-bottom:4px">
+  <div id="snp-today-section" class="section" style="padding-top:22px;padding-bottom:4px;display:none">
     <div class="container">
       <div class="sh" style="text-align:left;margin-bottom:12px"><div class="sl">🏒 Ice Time Today</div><div class="st" style="font-size:1.35rem">Stick &amp; Puck Today</div></div>
       <div id="snp-today-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px"></div>
@@ -710,7 +711,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <div class="container" style="max-width:680px;text-align:center">
       <div class="sh"><div class="sl">Everything In One Place</div><div class="st">Built for Hockey Families</div><div class="sd">One place for everything your hockey family needs — no more juggling five websites before game day.</div></div>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:16px">
-        <button onclick="showPage('rinks')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">🏟️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Find a Rink</div><div style="font-size:.72rem;color:var(--muted)">78 rinks across 4 states</div></button>
+        <button onclick="showPage('rinks')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">🏟️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Find a Rink</div><div style="font-size:.72rem;color:var(--muted)" id="feature-rink-count">1,100+ rinks across all 50 states</div></button>
         <button onclick="showPage('nearby')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">🎒</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Game Day Guide</div><div style="font-size:.72rem;color:var(--muted)">Food, hotels & activities</div></button>
         <button onclick="toggleMobileNav()" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">🏒</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Get Ice Time</div><div style="font-size:.72rem;color:var(--muted)">Stick & puck, drop-in & open skate</div></button>
         <button onclick="showPage('coaches')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">👨‍🏫</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Private Coaches</div><div style="font-size:.72rem;color:var(--muted)">Find a coach near you</div></button>
@@ -2469,6 +2470,8 @@ function buildStateSelects(){
   if(rmss)rmss.innerHTML=makeOptions();
   const rc=document.getElementById('stat-rink-count');
   if(rc)rc.textContent=RINKS.length.toLocaleString();
+  const fc=document.getElementById('feature-rink-count');
+  if(fc)fc.textContent=RINKS.length.toLocaleString()+' rinks across all 50 states';
 }
 
 async function heroZipSearch(){
@@ -6849,7 +6852,7 @@ function makeLeafletMap(containerId, rinks) {
   }).addTo(map);
   const bounds = [];
   rinks.forEach(r => {
-    const coords = RINK_COORDS[r.id];
+    const coords = RINK_COORDS[r.id] || (r.lat && r.lng ? [r.lat, r.lng] : null);
     if (!coords) return;
     const color = regionColors[r.region] || '#a8d4f5';
     L.marker(coords, {icon: makePinIcon(color, r.type==='outdoor')})
@@ -6903,7 +6906,7 @@ function setRegionView(view){
 }
 
 (async()=>{
-  await loadAll();RINKS=await fetchRinks();buildStateSelects();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();renderSNPToday();
+  await loadAll();RINKS=await fetchRinks();buildStateSelects();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();
   if(window.location.hash==="#admin") showPage("admin");
 })();
 
