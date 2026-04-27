@@ -694,10 +694,8 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   </div>
   <div class="stats-bar">
     <div class="stats-inner">
-      <div class="stat" onclick="showPage('rinks')"><div class="stat-num" id="stat-rink-count">—</div><div class="stat-label">Rinks & Growing</div></div>
+      <div class="stat" onclick="showPage('rinks')"><div class="stat-num" id="stat-rink-count">—</div><div class="stat-label">Ice Rinks Nationwide</div></div>
       <div class="stat" onclick="showPage('map')"><div class="stat-num">50</div><div class="stat-label">All 50 States</div></div>
-      <div class="stat" onclick="showPage('rinks')"><div class="stat-num">42</div><div class="stat-label">S&amp;P Programs</div></div>
-      <div class="stat" onclick="showPage('rinks')"><div class="stat-num">37</div><div class="stat-label">LiveBarn Venues</div></div>
       <div class="stat" onclick="showPage('rinks')"><div class="stat-num">100%</div><div class="stat-label">Free Forever</div></div>
     </div>
   </div>
@@ -950,21 +948,10 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
           <input class="search-input" type="text" placeholder="Search rinks or cities..." id="snp-search" oninput="renderSNP()"/>
           <span class="search-icon">🔍</span>
         </div>
-        <div class="chips" id="snp-region-chips">
-          <button class="chip active" onclick="setSNPRegion('all',this)">All Regions</button>
-          <button class="chip" onclick="setSNPRegion('Denver Metro',this)">Denver Metro</button>
-          <button class="chip" onclick="setSNPRegion('Colorado Springs',this)">CO Springs</button>
-          <button class="chip" onclick="setSNPRegion('Northern Colorado',this)">Northern CO</button>
-          <button class="chip" onclick="setSNPRegion('Mountain',this)">Mountain</button>
-          <button class="chip" onclick="setSNPRegion('Western Colorado',this)">Western CO</button>
-          <button class="chip" onclick="setSNPRegion('Wyoming',this)">Wyoming</button>
-          <button class="chip" onclick="setSNPRegion('Utah',this)">Utah</button>
-          <button class="chip" onclick="setSNPRegion('Nebraska',this)">Nebraska</button>
-        </div>
+        <select id="snp-state-select" onchange="setSNPState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
       </div>
 
       <!-- Results count -->
-      <div id="snp-count" style="font-size:.75rem;color:var(--muted);margin-bottom:16px"></div>
 
       <div id="snp-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"></div>
     </div>
@@ -2465,9 +2452,11 @@ function buildStateSelects(){
   const ss=document.getElementById('state-select');
   const rss=document.getElementById('region-state-select');
   const rmss=document.getElementById('region-map-state-select');
+  const snpss=document.getElementById('snp-state-select');
   if(ss)ss.innerHTML=makeOptions();
   if(rss)rss.innerHTML=makeOptions();
   if(rmss)rmss.innerHTML=makeOptions();
+  if(snpss)snpss.innerHTML=makeOptions();
   const rc=document.getElementById('stat-rink-count');
   if(rc)rc.textContent=RINKS.length.toLocaleString();
   const fc=document.getElementById('feature-rink-count');
@@ -4922,10 +4911,19 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 
 // ── STICK & PUCK ──
-let snpRegion='all';
+let snpState='all';
 
 function getSNPRinks(){
-  return RINKS.filter(r=>r.stickPuckTimes&&r.stickPuckTimes.scheduleUrl&&!(r.pricing&&r.pricing.stickPuck&&r.pricing.stickPuck.includes('N/A')));
+  return RINKS.filter(r=>{
+    const spt=r.stickPuckTimes;
+    if(!spt||!spt.scheduleUrl)return false;
+    if(r.pricing&&r.pricing.stickPuck&&r.pricing.stickPuck.includes('N/A'))return false;
+    return spt.schedule&&spt.schedule.some(s=>
+      !s.toLowerCase().includes('check')&&
+      !s.toLowerCase().includes('contact')&&
+      s.trim().length>3
+    );
+  });
 }
 
 function renderSNPToday(){
@@ -4977,7 +4975,7 @@ function hasRealSchedule(spt){
 function renderSNP(){
   const sv=(document.getElementById('snp-search')?.value||'').toLowerCase();
   const rinks=getSNPRinks().filter(r=>{
-    if(snpRegion!=='all'&&r.region!==snpRegion)return false;
+    if(snpState!=='all'&&r.state!==snpState)return false;
     if(sv&&!r.name.toLowerCase().includes(sv)&&!r.city.toLowerCase().includes(sv))return false;
     return true;
   });
@@ -4988,9 +4986,6 @@ function renderSNP(){
     if(bR!==aR)return bR-aR;
     return a.name.localeCompare(b.name);
   });
-
-  const countEl=document.getElementById('snp-count');
-  if(countEl)countEl.textContent=rinks.length+' rinks with stick & puck programs'+(snpRegion!=='all'?' in '+snpRegion:'');
 
   const grid=document.getElementById('snp-grid');
   if(!grid)return;
@@ -5045,7 +5040,7 @@ function renderSNP(){
   }).join('');
 }
 
-function setSNPRegion(r,btn){snpRegion=r;document.querySelectorAll('#snp-region-chips .chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');renderSNP();}
+function setSNPState(s){snpState=s;const sel=document.getElementById('snp-state-select');if(sel)sel.value=s;renderSNP();}
 
 
 // ── SKATE SHARPENING FINDER ──────────────────────────────────────
