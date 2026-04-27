@@ -1981,7 +1981,7 @@ async function fetchRinks() {
       id:       r.id,
       lat:      parseFloat(r.lat),
       lng:      parseFloat(r.lng),
-      state:    r.state     ?? '',
+      state:    r.state     || null,
       name:     r.name      ?? '',
       region:   r.region    ?? '',
       city:     r.city      ?? '',
@@ -2037,7 +2037,7 @@ async function fetchRinks() {
       mapPos: {x:null, y:null},
     }));
     return [...RINKS_LOCAL, ...remote].sort((a, b) => {
-      const s = (a.state || 'CO').localeCompare(b.state || 'CO');
+      const s = (a.state || '\uffff').localeCompare(b.state || '\uffff');
       return s !== 0 ? s : a.name.localeCompare(b.name);
     });
   } catch(e) {
