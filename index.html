@@ -2432,7 +2432,7 @@ function haversine(lat1,lng1,lat2,lng2){
 
 function buildStateSelects(){
   const states=[...new Set(RINKS.map(r=>r.state).filter(Boolean))]
-    .sort((a,b)=>a==='CO'?-1:b==='CO'?1:a.localeCompare(b));
+    .sort((a,b)=>a.localeCompare(b));
   Object.keys(STATE_REGIONS).forEach(k=>delete STATE_REGIONS[k]);
   STATE_REGIONS['all']=[...new Set(RINKS.map(r=>r.region).filter(Boolean))];
   states.forEach(s=>{
