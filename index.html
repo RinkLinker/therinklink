@@ -676,7 +676,13 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <h1>THE <em>RINK</em><br>LINK</h1>
     <p class="hero-sub">Built by hockey families, for hockey families. The largest directory of ice rinks across all 50 states — plus coaches, camps, sharpening, nearby food, and activities. Whether it's your kid's first skate, a AAA tryout, or your Thursday night adult league — we've got you covered.</p>
     <div style="display:flex;gap:8px;justify-content:center;align-items:stretch;margin-top:18px;margin-bottom:4px;flex-wrap:wrap">
-      <input id="hero-zip" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="Enter zip code" style="padding:12px 18px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;letter-spacing:.5px;outline:none;width:180px;text-align:center" onkeydown="if(event.key==='Enter')heroZipSearch()"/>
+      <input id="hero-zip" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="Enter zip code" style="padding:12px 18px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;letter-spacing:.5px;outline:none;width:160px;text-align:center" onkeydown="if(event.key==='Enter')heroZipSearch()"/>
+      <select id="hero-radius" style="background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.25);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;padding:12px 10px;cursor:pointer;outline:none">
+        <option value="10" style="background:#0f1923;color:#fff">10 miles</option>
+        <option value="25" style="background:#0f1923;color:#fff">25 miles</option>
+        <option value="50" selected style="background:#0f1923;color:#fff">50 miles</option>
+        <option value="100" style="background:#0f1923;color:#fff">100 miles</option>
+      </select>
       <button class="btn btn-ice" onclick="heroZipSearch()" style="padding:12px 24px;font-size:.9rem;letter-spacing:1px">🔍 Find Rinks Near Me</button>
     </div>
     <div class="hero-cta">
@@ -764,10 +770,10 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div id="rinks-list-view">
         <div class="toolbar" style="flex-direction:column;align-items:stretch;gap:8px">
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-            <div class="search-wrap" style="flex:1"><input class="search-input" type="text" placeholder="Search rinks or cities..." id="rink-search" oninput="renderRinks()"/><span class="search-icon">🔍</span></div>
+            <div class="search-wrap" style="flex:1"><input class="search-input" type="text" placeholder="Search rinks or cities..." id="rink-search" oninput="nearbyRinks=null;renderRinks()"/><span class="search-icon">🔍</span></div>
           </div>
           <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
-            <div class="chips" id="state-chips"></div>
+            <select id="state-select" onchange="setState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
             <div id="region-chips-wrap" style="display:none;align-items:center;gap:6px">
               <span style="width:1px;height:16px;background:var(--border);display:inline-block;margin:0 2px"></span>
               <div class="chips" id="region-chips"></div>
@@ -825,14 +831,14 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 
       <div id="region-list-view">
         <div class="toolbar" style="margin-bottom:28px">
-          <div class="chips" id="region-state-chips"></div>
+          <select id="region-state-select" onchange="setRegionState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
         </div>
         <div id="region-grid"></div>
       </div>
 
       <div id="region-map-view" style="display:none">
         <div class="toolbar" style="margin-bottom:16px">
-          <div class="chips" id="region-map-state-chips"></div>
+          <select id="region-map-state-select" onchange="setRegionMapState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
         </div>
         <div id="region-leaflet-map" style="height:70vh;min-height:480px;border-radius:12px;border:1px solid var(--border2);position:relative;z-index:0"></div>
         <div style="font-size:.72rem;color:var(--muted);margin-top:8px;text-align:center">Tap any pin to see rink details · Map data © OpenStreetMap contributors</div>
@@ -2352,18 +2358,25 @@ function getWearBadge(r){
 }
 
 function renderRinks(){
-  const sv=(document.getElementById('rink-search').value||'').toLowerCase();
-  const f=RINKS.filter(r=>{
-    if(activeState!=='all'&&r.state!==activeState)return false;
-    if(activeRegion!=='all'&&r.region!==activeRegion)return false;
-    if(activeType!=='all'&&r.type!==activeType)return false;
-    if(sv&&!r.name.toLowerCase().includes(sv)&&!r.city.toLowerCase().includes(sv))return false;
-    if(filterFavs&&!favorites.has(r.id))return false;
-    if(filterOpen&&isOpen(r)!=='open')return false;
-    return true;
-  });
   const g=document.getElementById('rinks-grid');
-  g.innerHTML=f.sort((a,b)=>a.name.localeCompare(b.name)).map(r=>{
+  let f,nearbyBanner='';
+  if(nearbyRinks){
+    f=nearbyRinks;
+    nearbyBanner='<div style="background:rgba(91,184,245,.1);border:1px solid rgba(91,184,245,.3);border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;grid-column:1/-1"><span style="color:var(--ice);font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.88rem">📍 '+f.length+' rink'+(f.length!==1?'s':'')+' within '+nearbyRadiusMi+' miles of '+nearbyZip+'</span><button onclick="nearbyRinks=null;renderRinks()" style="background:none;border:1px solid rgba(91,184,245,.4);color:var(--ice);font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.75rem;padding:3px 10px;border-radius:5px;cursor:pointer">✕ Clear</button></div>';
+  } else {
+    const sv=(document.getElementById('rink-search').value||'').toLowerCase();
+    f=RINKS.filter(r=>{
+      if(activeState!=='all'&&r.state!==activeState)return false;
+      if(activeRegion!=='all'&&r.region!==activeRegion)return false;
+      if(activeType!=='all'&&r.type!==activeType)return false;
+      if(sv&&!r.name.toLowerCase().includes(sv)&&!r.city.toLowerCase().includes(sv))return false;
+      if(filterFavs&&!favorites.has(r.id))return false;
+      if(filterOpen&&isOpen(r)!=='open')return false;
+      return true;
+    });
+    f=f.sort((a,b)=>a.name.localeCompare(b.name));
+  }
+  const cards=f.map(r=>{
     const rv=reviews[r.id]||[],a=avgR(rv),cnt=rv.filter(x=>!x.pending).length,op=isOpen(r),isFav=favorites.has(r.id);
     const psPrice=r.pricing&&r.pricing.publicSkate?r.pricing.publicSkate.replace(/\|.*$/,'').trim().split(' ')[0]:'Check site';
     const snpPrice=r.pricing&&r.pricing.stickPuck?r.stickPuckTimes&&r.stickPuckTimes.cost&&r.stickPuckTimes.cost!=='Check website'?r.stickPuckTimes.cost.split(' ')[0]:'Check site':'—';
@@ -2422,12 +2435,23 @@ function renderRinks(){
       +'<button class="btn btn-ice btn-sm" onclick="event.stopPropagation();openModal('+r.id+')" style="font-weight:800;font-size:.8rem">View Full Details →</button></div>'
       +'</div>';
   }).join('')||'<div style="color:var(--muted);padding:36px 0;grid-column:1/-1">No rinks match your filters.</div>';
+  g.innerHTML=nearbyBanner+cards;
 }
 
 const STATE_REGIONS={};
 const STATE_EMOJI={CO:'🏔',WY:'🤠',UT:'⛷',NE:'🌽'};
+const STATE_NAMES={AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',DC:'Washington D.C.'};
 
-function buildStateChips(){
+let nearbyRinks=null,nearbyZip='',nearbyRadiusMi=50;
+
+function haversine(lat1,lng1,lat2,lng2){
+  const R=3958.8,rad=Math.PI/180;
+  const dLat=(lat2-lat1)*rad,dLng=(lng2-lng1)*rad;
+  const a=Math.sin(dLat/2)**2+Math.cos(lat1*rad)*Math.cos(lat2*rad)*Math.sin(dLng/2)**2;
+  return R*2*Math.asin(Math.sqrt(a));
+}
+
+function buildStateSelects(){
   const states=[...new Set(RINKS.map(r=>r.state).filter(Boolean))]
     .sort((a,b)=>a==='CO'?-1:b==='CO'?1:a.localeCompare(b));
   Object.keys(STATE_REGIONS).forEach(k=>delete STATE_REGIONS[k]);
@@ -2435,36 +2459,52 @@ function buildStateChips(){
   states.forEach(s=>{
     STATE_REGIONS[s]=[...new Set(RINKS.filter(r=>r.state===s).map(r=>r.region).filter(Boolean))];
   });
-  const makeChips=(fn)=>{
-    return `<button class="chip active" onclick="${fn}('all',this)">All States</button>`
-      +states.map(s=>`<button class="chip" data-state="${s}" onclick="${fn}('${s}',this)">${STATE_EMOJI[s]||'🏒'} ${s}</button>`).join('');
-  };
-  const sc=document.getElementById('state-chips');
-  const rsc=document.getElementById('region-state-chips');
-  const rmsc=document.getElementById('region-map-state-chips');
-  if(sc)sc.innerHTML=makeChips('setState');
-  if(rsc)rsc.innerHTML=makeChips('setRegionState');
-  if(rmsc)rmsc.innerHTML=makeChips('setRegionMapState');
+  const makeOptions=()=>'<option value="all">All States</option>'
+    +states.map(s=>`<option value="${s}">${s}${STATE_NAMES[s]?' \u2014 '+STATE_NAMES[s]:''}</option>`).join('');
+  const ss=document.getElementById('state-select');
+  const rss=document.getElementById('region-state-select');
+  const rmss=document.getElementById('region-map-state-select');
+  if(ss)ss.innerHTML=makeOptions();
+  if(rss)rss.innerHTML=makeOptions();
+  if(rmss)rmss.innerHTML=makeOptions();
   const rc=document.getElementById('stat-rink-count');
   if(rc)rc.textContent=RINKS.length.toLocaleString();
 }
 
-function heroZipSearch(){
+async function heroZipSearch(){
   const zip=(document.getElementById('hero-zip').value||'').trim();
-  if(!/^\d{5}$/.test(zip)){
-    const inp=document.getElementById('hero-zip');
-    inp.style.borderColor='rgba(231,76,60,.8)';
-    setTimeout(()=>inp.style.borderColor='rgba(255,255,255,0.25)',1500);
-    return;
-  }
-  document.getElementById('rink-search').value=zip;
-  showPage('rinks');
-  renderRinks();
+  const inp=document.getElementById('hero-zip');
+  const btn=document.querySelector('[onclick="heroZipSearch()"]');
+  const origLabel=btn?btn.innerHTML:'';
+  const flashError=()=>{inp.style.borderColor='rgba(231,76,60,.8)';setTimeout(()=>inp.style.borderColor='rgba(255,255,255,0.25)',1800);};
+  if(!/^\d{5}$/.test(zip)){flashError();return;}
+  if(btn){btn.innerHTML='Searching…';btn.disabled=true;}
+  try{
+    const res=await fetch('https://api.zippopotam.us/us/'+zip);
+    if(!res.ok)throw new Error('ZIP not found');
+    const data=await res.json();
+    const place=data.places[0];
+    const lat=parseFloat(place.latitude),lng=parseFloat(place.longitude);
+    const radius=parseInt(document.getElementById('hero-radius').value)||50;
+    const results=RINKS
+      .filter(r=>r.lat&&r.lng)
+      .map(r=>({...r,_miles:haversine(lat,lng,r.lat,r.lng)}))
+      .filter(r=>r._miles<=radius)
+      .sort((a,b)=>a._miles-b._miles);
+    if(!results.length){flashError();if(btn){btn.innerHTML=origLabel;btn.disabled=false;}return;}
+    nearbyRinks=results;
+    nearbyZip=zip;
+    nearbyRadiusMi=radius;
+    showPage('rinks');
+    renderRinks();
+  }catch(e){flashError();}
+  if(btn){btn.innerHTML=origLabel;btn.disabled=false;}
 }
 function setState(s,btn){
+  nearbyRinks=null;
   activeState=s;activeRegion='all';
-  document.querySelectorAll('#state-chips .chip').forEach(c=>c.classList.remove('active'));
-  btn.classList.add('active');
+  const sel=document.getElementById('state-select');
+  if(sel)sel.value=s;
   const rc=document.getElementById('region-chips');
   const wrap=document.getElementById('region-chips-wrap');
   const regions=STATE_REGIONS[s]||[];
@@ -2480,10 +2520,10 @@ function setState(s,btn){
   }
   renderRinks();
 }
-function setRegion(r,btn){activeRegion=r;document.querySelectorAll('#region-chips .chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');renderRinks();}
-function setType(t,btn){activeType=t;document.querySelectorAll('#type-chips .chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');renderRinks();}
-function toggleOpenF(btn){filterOpen=!filterOpen;btn.classList.toggle('active',filterOpen);renderRinks();}
-function toggleFavF(btn){filterFavs=!filterFavs;btn.classList.toggle('active',filterFavs);renderRinks();}
+function setRegion(r,btn){nearbyRinks=null;activeRegion=r;document.querySelectorAll('#region-chips .chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');renderRinks();}
+function setType(t,btn){nearbyRinks=null;activeType=t;document.querySelectorAll('#type-chips .chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');renderRinks();}
+function toggleOpenF(btn){nearbyRinks=null;filterOpen=!filterOpen;btn.classList.toggle('active',filterOpen);renderRinks();}
+function toggleFavF(btn){nearbyRinks=null;filterFavs=!filterFavs;btn.classList.toggle('active',filterFavs);renderRinks();}
 
 async function toggleFav(id){
   if(favorites.has(id)){favorites.delete(id);toast('Removed from favorites');}
@@ -2496,8 +2536,8 @@ let regionStateFilter='all';
 
 function setRegionState(state,btn){
   regionStateFilter=state;
-  document.querySelectorAll('#region-state-chips .chip').forEach(c=>c.classList.remove('active'));
-  btn.classList.add('active');
+  const sel=document.getElementById('region-state-select');
+  if(sel)sel.value=state;
   renderRegions();
 }
 
@@ -6840,10 +6880,8 @@ function setRinksView(view){
 
 function setRegionMapState(state, btn) {
   regionMapStateFilter = state;
-  // Update active chip
-  document.querySelectorAll('#region-map-state-chips .chip').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  // Re-render map with filtered rinks
+  const sel=document.getElementById('region-map-state-select');
+  if(sel)sel.value=state;
   const filtered = state === 'all' ? RINKS : RINKS.filter(r => (r.state||'CO') === state);
   setTimeout(()=>{ regionLeaflet = makeLeafletMap('region-leaflet-map', filtered); }, 50);
 }
@@ -6865,7 +6903,7 @@ function setRegionView(view){
 }
 
 (async()=>{
-  await loadAll();RINKS=await fetchRinks();buildStateChips();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();renderSNPToday();
+  await loadAll();RINKS=await fetchRinks();buildStateSelects();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();renderSNPToday();
   if(window.location.hash==="#admin") showPage("admin");
 })();
 
