@@ -767,7 +767,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 <div id="page-rinks" class="page">
   <div class="section">
     <div class="container">
-      <div class="sh"><div class="sl">Colorado Ice Rinks</div><div class="st">Find Your Rink</div><div class="sd">Reviews, pricing, locker rooms and everything for game day.</div></div>
+      <div class="sh"><div class="sl" id="rinks-page-label">US Ice Rinks</div><div class="st">Find Your Rink</div><div class="sd">Reviews, pricing, locker rooms and everything for game day.</div></div>
       <!-- View toggle -->
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
         <button id="rinks-list-btn" onclick="setRinksView('list')" style="background:var(--ice);color:var(--navy);border:none;font-family:\'Barlow Condensed\',sans-serif;font-weight:800;font-size:.8rem;padding:7px 16px;border-radius:7px;cursor:pointer;letter-spacing:1px">☰ List</button>
@@ -2500,6 +2500,8 @@ function setState(s,btn){
   activeState=s;activeRegion='all';
   const sel=document.getElementById('state-select');
   if(sel)sel.value=s;
+  const label=document.getElementById('rinks-page-label');
+  if(label)label.textContent=s==='all'?'US Ice Rinks':(STATE_NAMES[s]||s)+' Ice Rinks';
   const rc=document.getElementById('region-chips');
   const wrap=document.getElementById('region-chips-wrap');
   const regions=STATE_REGIONS[s]||[];
