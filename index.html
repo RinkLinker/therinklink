@@ -449,7 +449,6 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   <ul class="nav-links">
     <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
     <li><a onclick="showPage('rinks')" id="nav-rinks">Rinks</a></li>
-    <li><a onclick="showPage('map')" id="nav-map">By Region</a></li>
     <li><a onclick="showPage('nearby')" id="nav-nearby">🎒 Game Day Guide</a></li>
     <li class="nav-dropdown">
       <a class="nav-dropdown-trigger" id="nav-icetime">Want Ice Time ▾</a>
@@ -505,11 +504,6 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div class="mnav-card-icon">🏟️</div>
       <div class="mnav-card-title">All Rinks</div>
       <div class="mnav-card-desc">Ice rinks across all 50 states</div>
-    </div>
-    <div class="mnav-card" onclick="mobileNav('map')">
-      <div class="mnav-card-icon">🗺️</div>
-      <div class="mnav-card-title">By Region</div>
-      <div class="mnav-card-desc">Browse map or list by area</div>
     </div>
     <div class="mnav-card" onclick="mobileNav('sticknpuck')">
       <div class="mnav-card-icon">🏒</div>
@@ -688,14 +682,13 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     </div>
     <div class="hero-cta">
       <button class="btn btn-ice" onclick="showPage('rinks')" style="padding:15px 40px;font-size:.95rem;letter-spacing:1px">🏒 Find a Rink</button>
-      <button class="btn btn-ghost" onclick="showPage('map')">🗺 View Map</button>
       <button class="btn btn-ghost hero-submit-btn" onclick="showPage('submit')">➕ Submit a Rink</button>
     </div>
   </div>
   <div class="stats-bar">
     <div class="stats-inner">
       <div class="stat" onclick="showPage('rinks')"><div class="stat-num" id="stat-rink-count">—</div><div class="stat-label">Ice Rinks Nationwide</div></div>
-      <div class="stat" onclick="showPage('map')"><div class="stat-num">50</div><div class="stat-label">All 50 States</div></div>
+      <div class="stat" onclick="showPage('rinks')"><div class="stat-num">50</div><div class="stat-label">All 50 States</div></div>
       <div class="stat" onclick="showPage('rinks')"><div class="stat-num">100%</div><div class="stat-label">Free Forever</div></div>
     </div>
   </div>
@@ -761,7 +754,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <div class="footer-logo">The <span>Rink</span> Link</div>
     <div class="footer-tag">Hockey Rinks, Stick & Puck, and Everything Around the Ice — All 50 States</div>
     <div class="footer-links">
-      <a onclick="showPage('rinks')">Rinks</a><a onclick="showPage('map')">By Region</a>
+      <a onclick="showPage('rinks')">Rinks</a>
       <a onclick="showPage('nearby')">Game Day Guide</a><a onclick="showPage('sticknpuck')">Stick & Puck</a><a onclick="showPage('dropin')">Drop-In Hockey</a><a onclick="showPage('openskate')">Open Skate</a><a onclick="showPage('sharpen')">Sharpening</a>
       <a onclick="showPage('checklist')">What to Bring</a><a onclick="showPage('levels')">Age Guide</a><a onclick="showPage('camps')">Hockey Camps</a><a href="/how-to-choose-a-hockey-coach.html" target="_blank">Parent Guides</a><a href="/hockey-lingo-guide.html" target="_blank">Hockey Lingo</a><a href="/youth-hockey-gear-guide.html" target="_blank">Gear Guide</a><a href="/what-is-aaa-hockey.html" target="_blank">AAA Guide</a><a href="/hockey-tryout-guide.html" target="_blank">Tryout Guide</a><a href="/hockey-skate-stick-sizing.html" target="_blank">Sizing Guide</a>
       <a onclick="showPage('favs')">Favorites</a><a onclick="showPage('coaches')">Coaches</a><a onclick="showPage('submit')">Submit a Rink</a><a href="mailto:crew@therinklink.com">crew@therinklink.com</a>
@@ -827,7 +820,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 </div>
 
 <!-- MAP PAGE -->
-<div id="page-map" class="page">
+<div id="page-map" class="page" style="display:none">
   <div class="section">
     <div class="container">
       <div class="sh">
