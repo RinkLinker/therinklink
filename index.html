@@ -100,14 +100,14 @@ nav{position:fixed;top:38px;left:0;right:0;z-index:199;display:flex;align-items:
 .hero-badges{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:30px;animation:up .7s .3s ease both;position:relative}
 .badge{background:rgba(168,212,245,.07);border:1px solid var(--border);border-radius:100px;padding:6px 16px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--ice);text-transform:uppercase;cursor:pointer;transition:all .2s}
 .badge:hover{background:rgba(168,212,245,.14);border-color:rgba(168,212,245,.35)}
-.hero-cta{display:flex;gap:12px;margin-top:40px;animation:up .7s .4s ease both;position:relative;flex-wrap:wrap;justify-content:center}
+.hero-cta{display:flex;gap:12px;margin-top:16px;animation:up .7s .4s ease both;position:relative;flex-wrap:wrap;justify-content:center}
 @keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .btn{display:inline-flex;align-items:center;gap:7px;font-family:\'Barlow Condensed\',sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;border-radius:6px;border:none;cursor:pointer;transition:all .2s}
 .btn-ice{background:var(--ice);color:var(--navy);padding:13px 30px;font-size:.9rem}.btn-ice:hover{background:var(--ice2);transform:translateY(-2px)}
 .btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--muted);padding:13px 24px;font-size:.86rem}.btn-ghost:hover{border-color:var(--ice);color:var(--ice)}
 .btn-sm{padding:7px 15px;font-size:.7rem}.btn-gold{background:rgba(232,184,75,.13);border:1px solid rgba(232,184,75,.28);color:var(--gold);padding:7px 15px;font-size:.7rem;border-radius:5px}.btn-gold:hover{background:rgba(232,184,75,.22)}
 .stats-bar{background:var(--steel);border-bottom:1px solid var(--border);padding:18px 22px}
-.stats-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-around;gap:12px}
+.stats-inner{max-width:720px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-evenly;gap:12px}
 .stat{text-align:center;cursor:pointer;padding:8px 16px;border-radius:8px;transition:background .15s}.stat:hover{background:rgba(125,211,252,.07)}.stat-num{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--ice);line-height:1}.stat-label{font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px}
 .section{padding:72px 24px}.section-alt{background:var(--navy2)}.container{max-width:1200px;margin:0 auto}
 .sh{margin-bottom:44px}.sl{font-family:\'Barlow Condensed\',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
@@ -675,7 +675,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <div class="eyebrow">America's Hockey Resource</div>
     <h1>THE <em>RINK</em><br>LINK</h1>
     <p class="hero-sub">Built by hockey families, for hockey families. The largest directory of ice rinks across all 50 states — plus coaches, camps, sharpening, nearby food, and activities. Whether it's your kid's first skate, a AAA tryout, or your Thursday night adult league — we've got you covered.</p>
-    <div style="display:flex;gap:8px;justify-content:center;align-items:stretch;margin-top:18px;margin-bottom:4px;flex-wrap:wrap;position:relative">
+    <div style="display:flex;gap:8px;justify-content:center;align-items:center;margin-top:22px;margin-bottom:20px;flex-wrap:wrap;position:relative">
       <input id="hero-zip" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="Enter zip code" style="padding:12px 18px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;letter-spacing:.5px;outline:none;width:160px;text-align:center" onkeydown="if(event.key==='Enter')heroZipSearch()"/>
       <select id="hero-radius" style="background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.25);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;padding:12px 10px;cursor:pointer;outline:none">
         <option value="5" style="background:#0f1923;color:#fff">5 miles</option>
@@ -716,6 +716,20 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         <button onclick="showPage('camps')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">⛺</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Hockey Camps</div><div style="font-size:.72rem;color:var(--muted)">Summer & seasonal camps</div></button>
         <button onclick="showPage('sharpen')" style="background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.18);border-radius:12px;padding:16px 20px;cursor:pointer;text-align:center;min-width:130px;transition:transform .15s,border-color .15s" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(125,211,252,.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(168,212,245,.18)'"><div style="font-size:1.5rem;margin-bottom:6px">⚙️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px;color:var(--white)">Sharpening</div><div style="font-size:.72rem;color:var(--muted)">Find shops near your rink</div></button>
       </div>
+    </div>
+  </div>
+  <!-- WHAT RINKS MAKE THE LIST -->
+  <div class="section section-alt">
+    <div class="container" style="max-width:640px;text-align:center">
+      <div class="sh">
+        <div class="sl">Our Standards</div>
+        <div class="st">What Rinks Make The List?</div>
+      </div>
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;color:var(--muted);line-height:1.7;margin-top:16px;margin-bottom:28px">
+        The Rink Link includes dedicated ice facilities where skating is the primary purpose — public skating, stick &amp; puck, lessons, leagues, and open ice. We focus on rinks that are open to the public regularly. Large event arenas and temporary seasonal rinks are not included.<br><br>
+        Think your rink should be listed? Submit it and we will review it.
+      </p>
+      <button class="btn btn-ghost" onclick="showPage('submit')" style="padding:12px 32px;font-size:.9rem;letter-spacing:1px">➕ Submit a Rink</button>
     </div>
   </div>
   <!-- EMAIL SIGNUP -->
