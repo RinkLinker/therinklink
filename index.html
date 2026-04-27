@@ -672,14 +672,12 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <rect x="50" y="160" width="40" height="80" stroke="white" stroke-width="2"/>
       <rect x="910" y="160" width="40" height="80" stroke="white" stroke-width="2"/>
     </svg>
-    <div class="eyebrow">The Premier Hockey Resource</div>
+    <div class="eyebrow">America's Hockey Resource</div>
     <h1>THE <em>RINK</em><br>LINK</h1>
-    <p class="hero-sub">Built by hockey families, for hockey families. 78 rinks across CO, WY, UT &amp; NE and growing — plus guides, private coaches, camps, sharpening, nearby food, and activities. Whether it's your kid's first skate, a AAA tryout, or your Thursday night adult league — we've got you covered.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px;margin-bottom:4px">
-      <button class="btn btn-ghost btn-sm" onclick="setState('CO',document.querySelector('#state-chips .chip:nth-child(2)'));showPage('rinks')">🏔 Colorado</button>
-      <button class="btn btn-ghost btn-sm" onclick="setState('WY',document.querySelector('#state-chips .chip:nth-child(3)'));showPage('rinks')">🤠 Wyoming</button>
-      <button class="btn btn-ghost btn-sm" onclick="setState('UT',document.querySelector('#state-chips .chip:nth-child(4)'));showPage('rinks')">⛷ Utah</button>
-      <button class="btn btn-ghost btn-sm" onclick="setState('NE',document.querySelector('#state-chips .chip:nth-child(5)'));showPage('rinks')">🌽 Nebraska</button>
+    <p class="hero-sub">Built by hockey families, for hockey families. The largest directory of ice rinks across all 50 states — plus coaches, camps, sharpening, nearby food, and activities. Whether it's your kid's first skate, a AAA tryout, or your Thursday night adult league — we've got you covered.</p>
+    <div style="display:flex;gap:8px;justify-content:center;align-items:stretch;margin-top:18px;margin-bottom:4px;flex-wrap:wrap">
+      <input id="hero-zip" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="Enter zip code" style="padding:12px 18px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;letter-spacing:.5px;outline:none;width:180px;text-align:center" onkeydown="if(event.key==='Enter')heroZipSearch()"/>
+      <button class="btn btn-ice" onclick="heroZipSearch()" style="padding:12px 24px;font-size:.9rem;letter-spacing:1px">🔍 Find Rinks Near Me</button>
     </div>
     <div class="hero-cta">
       <button class="btn btn-ice" onclick="showPage('rinks')" style="padding:15px 40px;font-size:.95rem;letter-spacing:1px">🏒 Find a Rink</button>
@@ -689,8 +687,8 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   </div>
   <div class="stats-bar">
     <div class="stats-inner">
-      <div class="stat" onclick="showPage('rinks')"><div class="stat-num">78</div><div class="stat-label">Rinks & Growing</div></div>
-      <div class="stat" onclick="showPage('map')"><div class="stat-num">4</div><div class="stat-label">States Covered</div></div>
+      <div class="stat" onclick="showPage('rinks')"><div class="stat-num" id="stat-rink-count">—</div><div class="stat-label">Rinks & Growing</div></div>
+      <div class="stat" onclick="showPage('map')"><div class="stat-num">50</div><div class="stat-label">All 50 States</div></div>
       <div class="stat" onclick="showPage('rinks')"><div class="stat-num">42</div><div class="stat-label">S&amp;P Programs</div></div>
       <div class="stat" onclick="showPage('rinks')"><div class="stat-num">37</div><div class="stat-label">LiveBarn Venues</div></div>
       <div class="stat" onclick="showPage('rinks')"><div class="stat-num">100%</div><div class="stat-label">Free Forever</div></div>
@@ -769,13 +767,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
             <div class="search-wrap" style="flex:1"><input class="search-input" type="text" placeholder="Search rinks or cities..." id="rink-search" oninput="renderRinks()"/><span class="search-icon">🔍</span></div>
           </div>
           <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
-            <div class="chips" id="state-chips">
-              <button class="chip active" onclick="setState('all',this)">All States</button>
-              <button class="chip" onclick="setState('CO',this)">🏔 CO</button>
-              <button class="chip" onclick="setState('WY',this)">🤠 WY</button>
-              <button class="chip" onclick="setState('UT',this)">⛷ UT</button>
-              <button class="chip" onclick="setState('NE',this)">🌽 NE</button>
-            </div>
+            <div class="chips" id="state-chips"></div>
             <div id="region-chips-wrap" style="display:none;align-items:center;gap:6px">
               <span style="width:1px;height:16px;background:var(--border);display:inline-block;margin:0 2px"></span>
               <div class="chips" id="region-chips"></div>
@@ -833,26 +825,14 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 
       <div id="region-list-view">
         <div class="toolbar" style="margin-bottom:28px">
-          <div class="chips" id="region-state-chips">
-            <button class="chip active" onclick="setRegionState('all',this)">All States</button>
-            <button class="chip" onclick="setRegionState('CO',this)">🏔 Colorado</button>
-            <button class="chip" onclick="setRegionState('WY',this)">🌾 Wyoming</button>
-            <button class="chip" onclick="setRegionState('UT',this)">⛷ Utah</button>
-            <button class="chip" onclick="setRegionState('NE',this)">🌽 Nebraska</button>
-          </div>
+          <div class="chips" id="region-state-chips"></div>
         </div>
         <div id="region-grid"></div>
       </div>
 
       <div id="region-map-view" style="display:none">
         <div class="toolbar" style="margin-bottom:16px">
-          <div class="chips" id="region-map-state-chips">
-            <button class="chip active" onclick="setRegionMapState('all',this)">All States</button>
-            <button class="chip" onclick="setRegionMapState('CO',this)">🏔 Colorado</button>
-            <button class="chip" onclick="setRegionMapState('WY',this)">🌾 Wyoming</button>
-            <button class="chip" onclick="setRegionMapState('UT',this)">⛷ Utah</button>
-            <button class="chip" onclick="setRegionMapState('NE',this)">🌽 Nebraska</button>
-          </div>
+          <div class="chips" id="region-map-state-chips"></div>
         </div>
         <div id="region-leaflet-map" style="height:70vh;min-height:480px;border-radius:12px;border:1px solid var(--border2);position:relative;z-index:0"></div>
         <div style="font-size:.72rem;color:var(--muted);margin-top:8px;text-align:center">Tap any pin to see rink details · Map data © OpenStreetMap contributors</div>
@@ -2437,18 +2417,54 @@ function renderRinks(){
   }).join('')||'<div style="color:var(--muted);padding:36px 0;grid-column:1/-1">No rinks match your filters.</div>';
 }
 
-const STATE_REGIONS={'all':['Denver Metro','Colorado Springs','Northern Colorado','Mountain','Western Colorado','Southern Colorado'],'CO':['Denver Metro','Colorado Springs','Northern Colorado','Mountain','Western Colorado','Southern Colorado'],'WY':['Wyoming'],'UT':['Utah'],'NE':['Nebraska']};
+const STATE_REGIONS={};
+const STATE_EMOJI={CO:'🏔',WY:'🤠',UT:'⛷',NE:'🌽'};
+
+function buildStateChips(){
+  const states=[...new Set(RINKS.map(r=>r.state).filter(Boolean))]
+    .sort((a,b)=>a==='CO'?-1:b==='CO'?1:a.localeCompare(b));
+  Object.keys(STATE_REGIONS).forEach(k=>delete STATE_REGIONS[k]);
+  STATE_REGIONS['all']=[...new Set(RINKS.map(r=>r.region).filter(Boolean))];
+  states.forEach(s=>{
+    STATE_REGIONS[s]=[...new Set(RINKS.filter(r=>r.state===s).map(r=>r.region).filter(Boolean))];
+  });
+  const makeChips=(fn)=>{
+    return `<button class="chip active" onclick="${fn}('all',this)">All States</button>`
+      +states.map(s=>`<button class="chip" data-state="${s}" onclick="${fn}('${s}',this)">${STATE_EMOJI[s]||'🏒'} ${s}</button>`).join('');
+  };
+  const sc=document.getElementById('state-chips');
+  const rsc=document.getElementById('region-state-chips');
+  const rmsc=document.getElementById('region-map-state-chips');
+  if(sc)sc.innerHTML=makeChips('setState');
+  if(rsc)rsc.innerHTML=makeChips('setRegionState');
+  if(rmsc)rmsc.innerHTML=makeChips('setRegionMapState');
+  const rc=document.getElementById('stat-rink-count');
+  if(rc)rc.textContent=RINKS.length.toLocaleString();
+}
+
+function heroZipSearch(){
+  const zip=(document.getElementById('hero-zip').value||'').trim();
+  if(!/^\d{5}$/.test(zip)){
+    const inp=document.getElementById('hero-zip');
+    inp.style.borderColor='rgba(231,76,60,.8)';
+    setTimeout(()=>inp.style.borderColor='rgba(255,255,255,0.25)',1500);
+    return;
+  }
+  document.getElementById('rink-search').value=zip;
+  showPage('rinks');
+  renderRinks();
+}
 function setState(s,btn){
   activeState=s;activeRegion='all';
   document.querySelectorAll('#state-chips .chip').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
   const rc=document.getElementById('region-chips');
   const wrap=document.getElementById('region-chips-wrap');
-  const regions=STATE_REGIONS[s]||STATE_REGIONS['CO'];
+  const regions=STATE_REGIONS[s]||[];
   if(s==='all'){
     wrap.style.display='none';
     rc.innerHTML='';
-  } else if(regions.length===1){
+  } else if(regions.length<=1){
     wrap.style.display='none';
     rc.innerHTML='';
   } else {
@@ -6842,7 +6858,7 @@ function setRegionView(view){
 }
 
 (async()=>{
-  await loadAll();RINKS=await fetchRinks();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();renderSNPToday();
+  await loadAll();RINKS=await fetchRinks();buildStateChips();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();renderSNPToday();
   if(window.location.hash==="#admin") showPage("admin");
 })();
 
