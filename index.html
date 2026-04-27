@@ -1058,17 +1058,14 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 
           <div class="quiz-step active" id="cqs-1">
             <div style="font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Question 1 of 4</div>
-            <div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:6px">Where do you skate?</div>
+            <div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:6px">What state do you skate in?</div>
             <div style="font-size:.83rem;color:var(--muted);margin-bottom:24px">We'll show coaches who work at rinks near you.</div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px">
-              <button class="quiz-opt" onclick="cqPick(1,'region','Denver Metro')">🏙 Denver Metro</button>
-              <button class="quiz-opt" onclick="cqPick(1,'region','Colorado Springs')">⛰ Colorado Springs</button>
-              <button class="quiz-opt" onclick="cqPick(1,'region','Northern Colorado')">🌾 Northern CO</button>
-              <button class="quiz-opt" onclick="cqPick(1,'region','Mountain')">🏔 Mountains</button>
-              <button class="quiz-opt" onclick="cqPick(1,'region','Western Colorado')">🌵 Western CO</button>
-              <button class="quiz-opt" onclick="cqPick(1,'region','Wyoming')">🤠 Wyoming</button>
-              <button class="quiz-opt" onclick="cqPick(1,'region','Utah')">⛷ Utah</button>
-              <button class="quiz-opt" onclick="cqPick(1,'region','any')">📍 Flexible / No preference</button>
+            <div style="display:flex;flex-direction:column;gap:12px;max-width:360px">
+              <select id="coach-state-select" style="background:var(--card);color:var(--text);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:10px 14px;font-size:.9rem;width:100%">
+                <option value="">Select a state…</option>
+                <option value="any">Flexible / No preference</option>
+              </select>
+              <button class="quiz-opt" style="width:100%" onclick="var s=document.getElementById('coach-state-select').value;if(s)cqPick(1,'state',s)">Next →</button>
             </div>
           </div>
 
@@ -1147,7 +1144,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         <div>
           <div style="font-family:\'Barlow Condensed\',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px">🎯 Are You a Coach?</div>
           <div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.6rem;font-weight:800;line-height:1.15;margin-bottom:14px">Get in front of thousands of<br><span style="color:var(--ice)">hockey families</span></div>
-          <div style="font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:20px">The Rink Link is where hockey parents in Colorado, Wyoming, Utah and Nebraska go to find everything for game day. A listing here puts your name in front of families actively looking for coaching — at the exact rink where you work.</div>
+          <div style="font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:20px">The Rink Link is where hockey parents across all 50 states go to find everything for game day. A listing here puts your name in front of families actively looking for coaching — at the exact rink where you work.</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
             <div style="display:flex;align-items:center;gap:10px;font-size:.83rem"><span style="color:var(--gold);font-size:1rem">✓</span> <span><strong style="color:var(--gold)">Beta offer — first 10 coaches FREE for 6 months</strong></span></div>
             <div style="display:flex;align-items:center;gap:10px;font-size:.83rem"><span style="color:var(--ice);font-size:1rem">✓</span> <span>Then just $15/month or $150/year</span></div>
@@ -2460,10 +2457,16 @@ function buildStateSelects(){
   const rss=document.getElementById('region-state-select');
   const rmss=document.getElementById('region-map-state-select');
   const snpss=document.getElementById('snp-state-select');
+  const css=document.getElementById('coach-state-select');
   if(ss)ss.innerHTML=makeOptions();
   if(rss)rss.innerHTML=makeOptions();
   if(rmss)rmss.innerHTML=makeOptions();
   if(snpss)snpss.innerHTML=makeOptions();
+  if(css){
+    const coachOpts='<option value="">Select a state…</option><option value="any">Flexible / No preference</option>'
+      +states.map(s=>`<option value="${s}">${s}${STATE_NAMES[s]?' \u2014 '+STATE_NAMES[s]:''}</option>`).join('');
+    css.innerHTML=coachOpts;
+  }
   const rc=document.getElementById('stat-rink-count');
   if(rc)rc.textContent=RINKS.length.toLocaleString();
   const fc=document.getElementById('feature-rink-count');
