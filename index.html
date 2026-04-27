@@ -2345,10 +2345,10 @@ function renderRinks(){
       if(filterOpen&&isOpen(r)!=='open')return false;
       return true;
     });
-    const stateSortFn=(a,b)=>{const s=(a.state||'').localeCompare(b.state||'');return s!==0?s:a.name.localeCompare(b.name);};
+    const stateSortFn=(a,b)=>{const s=(a.state||'\uffff').localeCompare(b.state||'\uffff');return s!==0?s:a.name.localeCompare(b.name);};
     f=f.sort(stateSortFn);
   }
-  const sortFn=nearbyRinks?(a,b)=>a._miles-b._miles:(a,b)=>{const s=(a.state||'').localeCompare(b.state||'');return s!==0?s:a.name.localeCompare(b.name);};
+  const sortFn=nearbyRinks?(a,b)=>a._miles-b._miles:(a,b)=>{const s=(a.state||'\uffff').localeCompare(b.state||'\uffff');return s!==0?s:a.name.localeCompare(b.name);};
   const favList=f.filter(r=>favorites.has(r.id)).sort(sortFn);
   const restList=f.filter(r=>!favorites.has(r.id)).sort(sortFn);
   const makeCard=r=>{
