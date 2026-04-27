@@ -1865,7 +1865,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 <div class="toast" id="toast"></div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const RINKS=[
+const RINKS_LOCAL=[
 /* ── INDOOR RINKS ── */
 {id:1,lat:39.59169,lng:-104.84910,state:"CO",name:"Family Sports Center Ice Arena",region:"Denver Metro",city:"Centennial",address:"6901 S Peoria St, Centennial, CO 80112",phone:"(303) 708-9500",sheets:2,website:"https://www.ssprd.org/family-sports-center",type:"indoor",amenities:["Skate Sharpening","Pro Shop","Avalanche Grill Restaurant","Locker Rooms","Entertainment Center","Mini Golf","Laser Tag","Bumper Cars"],highlight:"Colorado Avalanche Training Home",hours:{mon:"Check ssprd.org/Family-Sports-Ice-Schedule",tue:"Check website",wed:"Check website",thu:"Check website",fri:"Check website",sat:"Check website",sun:"Check website"},iceTimes:"Public Skate: Check ssprd.org/Family-Sports-Ice-Schedule for current sessions. Take-A-Shot (stick & puck) M-F available. Drop-in Hockey 18+ also available.",stickPuckTimes:{scheduleUrl:"https://www.ssprd.org/Adult-Ice-Hockey",bookingUrl:"https://ssprd.finnlyconnect.com/schedule",schedule:["Check ssprd.org for current schedule"],cost:"Check website",limit:"Check website",tips:"You might see Colorado Avalanche players practicing! Avalanche Grill restaurant and bar on-site with views of the ice."},parking:"Free surface lot, 300+ spaces",transit:"Light rail to Dry Creek Station, then rideshare",nearby:{food:["Avalanche Grill on-site (full menu restaurant & bar)","Chipotle (0.24mi)","Panera Bread (2.27mi)"],hotels:["Hyatt Place Centennial (0.8mi)","Marriott Denver Tech Center (1.2mi)"],sharpening:"On-site pro shop - all hollows available"},notes:"150,000 sq ft entertainment complex. Colorado Avalanche practice facility - sometimes fans can watch. Two NHL sheets. Also has mini golf, laser tag, climbing wall, bumper cars, arcade. Part of South Suburban Parks and Recreation District (SSPRD).",temp:{live:58,seasonal:{fall:58,winter:55,spring:60,summer:62},level:"cool",desc:"Pro-grade ice conditions year-round. Light jacket recommended.",wear:["Light jacket","Long pants","Thin gloves optional"]},locker:{rooms:8,capacity:"Full team (20+)",features:["Hot showers","Individual lockers","Rubber floors","Climate control"],reservation:"Call ahead for tournaments",notes:"Pro-grade locker rooms used by Avalanche practice staff."},pricing:{publicSkate:"$8.50 district / $11 non-district (M-F days) | $8/$10 (Fri eve & weekends) | Children under 3 free | Check ssprd.org/Family-Sports-Ice-Schedule",rental:"Res. $2.50 / Non-res. $3.50",stickPuck:"Take-A-Shot: District $11 / Non-district $13 (M-F) | Drop-in Hockey 18+: $12/$13.50 | Reserve by calling (303) 708-9500",icePractice:"Contact Laura Schott: LSchott@ssprd.org or 303-754-0553",lessons:"Check ssprd.org"},discounts:[{name:"SSPRD District Resident",detail:"South Suburban district residents get reduced rates",code:null}],shops:[{name:"Family Sports Pro Shop",dist:"On-site",detail:"Full equipment, custom fitting, sharpening. Open daily."},{name:"Pure Hockey - Centennial",dist:"1.5mi",detail:"Large chain store, full equipment, trade-ins accepted."}],parentInfo:{livebarn:{available:true,url:"https://watch.livebarn.com/en/venue/family-sports-ice-arena"},livebarn:{available:true,url:"https://watch.livebarn.com/en/venue/family-sports-center"},wifi:{available:null},food:{tier:"restaurant",name:"Avalanche Grill",details:"Full restaurant & bar on-site with views of the ice. Full menu, beer & wine. Open during all sessions."},localCoffee:null},mapPos:{x:460,y:290}},
 {id:2,lat:38.78828,lng:-104.79423,state:"CO",name:"The Broadmoor World Arena",region:"Colorado Springs",city:"Colorado Springs",address:"3185 Venetucci Blvd, Colorado Springs, CO 80906",phone:"(719) 477-2100",sheets:2,website:"https://www.broadmoorworldarena.com",type:"indoor",amenities:["Skate Sharpening","Cafe","Ballet Studio","Pro Shop","Video Analysis"],highlight:"Olympic & NHL Ice",hours:{mon:"6am-10pm",tue:"6am-10pm",wed:"6am-10pm",thu:"6am-10pm",fri:"6am-11pm",sat:"7am-11pm",sun:"7am-10pm"},iceTimes:"Public Skate: Check broadmoorworldarena.com for schedule. Ice Hall office: (719) 477-2178",stickPuckTimes:{scheduleUrl:"https://www.broadmoorworldarena.com/icehall/public-activities-schedule",schedule:["Check broadmoorworldarena.com for current schedule"],cost:"Check website",limit:"Check website",tips:"World-class ice. Two sheets: NHL and Olympic size."},parking:"Free lot adjacent to arena",transit:"Mountain Metro Route 25 nearby",nearby:{food:["Broadmoor Resort Dining (0.5mi)","Red Robin (1.1mi)","Texas Roadhouse (1.4mi)"],hotels:["The Broadmoor (0.5mi)","Holiday Inn Express (2mi)","Comfort Inn (2.5mi)"],sharpening:"Full-service pro shop on-site"},notes:"8,000-seat main arena plus adjacent Ice Hall with two practice rinks: one NHL-size, one Olympic-size. Home to Colorado College Tigers. For Learn to Skate, Learn to Play Hockey, or Public Skate info, call Ice Hall Office at (719) 477-2178.",temp:{live:55,seasonal:{fall:55,winter:52,spring:57,summer:58},level:"cold",desc:"Two sheets mean consistent cold air. One of the colder arenas in Colorado.",wear:["Heavy jacket","Warm layers","Wool socks","Hat & gloves","Blanket for long tournaments"]},locker:{rooms:10,capacity:"Full team + overflow",features:["Hot showers","Whiteboard","A/V capability","Equipment drying"],reservation:"Required for tournaments - book 2 weeks ahead",notes:"Olympic-caliber facilities used by USA Hockey development camps."},pricing:{publicSkate:"$6 admission | $4 skate rental | Check broadmoorworldarena.com for current schedule",rental:"$4 skate rental",stickPuck:"Pick-up hockey limited to 20 skaters + 3 goalies. Must be 18+. Sign up online (no phone reservations as of Jan 2026).",icePractice:"Call (719) 477-2100",lessons:"Call Ice Hall at (719) 477-2178"},discounts:[{name:"CC Student Discount",detail:"Check with Ice Hall for Colorado College student rates",code:null}],shops:[{name:"World Arena Pro Shop",lat:38.79062,lng:-104.80139,dist:"On-site",detail:"Full service shop, custom hollows, equipment tuning."},{name:"Play It Again Sports",dist:"2.8mi",detail:"Used equipment, great for youth players on a budget."}],mapPos:{x:415,y:355}},
@@ -2007,6 +2007,80 @@ mapPos:{x:611,y:275}},
 {id:74,lat:41.25784,lng:-95.92817,name:"Omaha Riverfront Skate Ribbon (Outdoor)",state:"NE",region:"Nebraska",city:"Omaha",address:"900 Farnam St, Omaha, NE 68102",phone:"(402) 444-5955",sheets:1,website:"https://www.omahaskateribbon.com",type:"outdoor",amenities:["Skate Rentals","Warming Area","Fire Pits","Downtown Views"],highlight:"Outdoor Downtown Omaha Trail",hours:{mon:"Check website",tue:"Check website",wed:"Check website",thu:"Check website",fri:"Check website",sat:"Check website",sun:"Check website"},iceTimes:"Seasonal: Nov–Feb | Free admission",parking:"Downtown Omaha paid parking",transit:"Metro bus and walkable downtown",nearby:{food:[],hotels:[],sharpening:"Check with rink"},notes:"Trail-style outdoor ribbon rink along the Omaha riverfront. Free to skate. Steps from the Gene Leahy Mall and Kiewit Luminarium. Popular weekend destination.",temp:{live:30,seasonal:{fall:null,winter:28,spring:null,summer:null},level:"cold",desc:"Outdoor urban rink. Nebraska winters are cold and sometimes windy — full gear required.",wear:["Full winter gear","Heavy jacket","Wind protection","Hat & gloves","Hand warmers"]},locker:{rooms:0,capacity:"N/A",features:["Warming shelter","Fire pits"],reservation:"Reservations recommended on weekends",notes:"Free outdoor skating on the Omaha riverfront. Great urban experience."},pricing:{publicSkate:"⚠️ Verify pricing before visiting — check the rink website or call ahead",rental:"Check website",stickPuck:"Check website",icePractice:"Contact rink",lessons:"Contact rink"},discounts:[],shops:[{name:"Ribbon rental booth",dist:"On-site",detail:"Skate rentals."}],stickPuckTimes:{scheduleUrl:"https://www.omahaskateribbon.com",schedule:["Seasonal outdoor ribbon — check website for dates"],cost:"Check website",limit:"First come, first served",tips:"Outdoor skate ribbon along the Omaha riverfront. Beautiful urban skating experience. Seasonal winter only."},mapPos:{x:617,y:280}}
 
 ];
+
+let RINKS = RINKS_LOCAL;
+
+async function fetchRinks() {
+  try {
+    const rows = await sbFetch('rinks?select=*&id=gte.79&order=id.asc');
+    const remote = rows.map(r => ({
+      id:       r.id,
+      lat:      parseFloat(r.lat),
+      lng:      parseFloat(r.lng),
+      state:    r.state     ?? '',
+      name:     r.name      ?? '',
+      region:   r.region    ?? '',
+      city:     r.city      ?? '',
+      address:  r.address   ?? '',
+      phone:    r.phone     ?? null,
+      sheets:   r.sheets    ?? 1,
+      website:  r.website   ?? null,
+      type:     r.type      ?? 'indoor',
+      highlight: null,
+      amenities: [],
+      hours: {mon:'Check website',tue:'Check website',wed:'Check website',
+              thu:'Check website',fri:'Check website',sat:'Check website',sun:'Check website'},
+      iceTimes: null,
+      notes:    r.notes     ?? null,
+      parking:  r.parking   ?? null,
+      transit:  null,
+      nearby: {
+        food:       r.food       ? [r.food]  : [],
+        hotels:     [],
+        sharpening: r.sharpening ? 'On-site' : null,
+      },
+      temp:     null,
+      locker: {
+        rooms:       r.locker_rooms ?? null,
+        capacity:    null,
+        features:    [],
+        reservation: null,
+        notes:       null,
+      },
+      pricing: {
+        publicSkate: r.price_public_skate ?? null,
+        rental:      null,
+        stickPuck:   r.price_stick_puck   ?? null,
+        icePractice: null,
+        lessons:     null,
+      },
+      discounts: [],
+      shops: r.on_site_shops ? [{name:'On-site shop',dist:'On-site',detail:null}] : [],
+      stickPuckTimes: {
+        scheduleUrl: r.registration_url  ?? null,
+        bookingUrl:  r.registration_url  ?? null,
+        schedule:    ['Check website'],
+        cost:        r.price_stick_puck  ?? null,
+        limit:       null,
+        tips:        null,
+      },
+      parentInfo: {
+        livebarn:    {available: r.livebarn ?? false, url: null},
+        wifi:        r.wifi != null ? {available: r.wifi, cost:'free'} : null,
+        food:        r.food ? {tier:'unknown',name:r.food,details:r.food} : null,
+        localCoffee: null,
+      },
+      mapPos: {x:null, y:null},
+    }));
+    return [...RINKS_LOCAL, ...remote].sort((a, b) => {
+      const s = (a.state ?? '').localeCompare(b.state ?? '');
+      return s !== 0 ? s : a.name.localeCompare(b.name);
+    });
+  } catch(e) {
+    console.warn('fetchRinks failed, using local data only:', e);
+    return RINKS_LOCAL;
+  }
+}
 
 const CAMPS=[
 {id:'c1',name:'Golden Stick Hockey Spring Camp',org:'Golden Stick Hockey / Nick Brusa',city:'Westminster',rink:'Ice Centre at the Promenade',address:'1 W Flatiron Crossing Dr, Westminster',phone:'',website:'https://www.goldenstickhockey.com/camp',type:'skills',ageMin:8,ageMax:15,skillLevels:['Beginner','Intermediate','Advanced'],months:['March','June'],duration:'2 days',cost:'$250/weekend',description:'Position-specific weekend camps led by former USHL coach Nick Brusa and professional skating coach Jill Kombeitz. Focus on skating mechanics, decision-making, and game-transferable habits — timed around tryout season.',highlights:['Former USHL coach Nick Brusa','Pro skating coach Jill Kombeitz','Position-specific reps','Perfect tryout prep'],registrationNote:'Limited enrollment — spots fill fast. Check goldenstickhockey.com for upcoming dates.',region:'Denver Metro',featured:true},
@@ -4617,9 +4691,9 @@ function exportUpdatedSite(){
     .then(r=>r.text())
     .then(html=>{
       // Replace the RINKS array in the source HTML
-      const rinksJson = 'const RINKS=' + JSON.stringify(RINKS) + ';';
-      // Find and replace the RINKS array
-      const updated = html.replace(/const RINKS=\[[\s\S]*?\];/, rinksJson);
+      const rinksJson = 'const RINKS_LOCAL=' + JSON.stringify(RINKS_LOCAL) + ';';
+      // Find and replace the RINKS_LOCAL array
+      const updated = html.replace(/const RINKS_LOCAL=\[[\s\S]*?\];/, rinksJson);
       // Download
       const blob = new Blob([updated], {type:'text/html'});
       const a = document.createElement('a');
@@ -6768,7 +6842,7 @@ function setRegionView(view){
 }
 
 (async()=>{
-  await loadAll();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();renderSNPToday();
+  await loadAll();RINKS=await fetchRinks();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();renderSNPToday();
   if(window.location.hash==="#admin") showPage("admin");
 })();
 

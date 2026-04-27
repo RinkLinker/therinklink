@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scrape-rinks.js --local)",
+      "Bash(powershell.exe -Command \"Get-Command node -ErrorAction SilentlyContinue | Select-Object Source\")",
+      "Bash(cmd.exe /c \"where node 2>&1\")",
+      "Bash(cmd.exe /c \"node --version 2>&1\")",
+      "Bash(cmd.exe /c \"echo %PATH%\")",
+      "Read(//c/Program Files/nodejs/**)",
+      "Read(//c/Users/layne/.nvm/**)"
+    ]
+  }
+}
