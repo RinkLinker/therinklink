@@ -1,0 +1,265 @@
+/* RinkLinker — Rink detail page styles
+   Place this file at the root of your site: /rink-page.css
+   All rink pages reference it as ../rink-page.css
+*/
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #f8f9fb;
+}
+
+a { color: #1a6fc4; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Header ── */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 1.5rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.site-header nav a {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ── Rink page layout ── */
+.rink-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+/* ── Hero ── */
+.rink-hero {
+  margin-bottom: 2rem;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.breadcrumb a { color: #888; }
+.breadcrumb a:hover { color: #1a6fc4; }
+
+h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
+
+.rink-location {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+.rink-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #e8f0fb;
+  color: #1a5fa8;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+/* ── Body sections ── */
+.rink-body > section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.rink-body h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* ── Badges ── */
+.badge-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 99px;
+  border: 1px solid transparent;
+}
+
+.badge-yes {
+  background: #ecfdf5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+.badge-info {
+  background: #eff6ff;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.badge-neutral {
+  background: #f3f4f6;
+  color: #6b7280;
+  border-color: #e5e7eb;
+}
+
+/* ── Pricing ── */
+.price-block {
+  margin-bottom: 1.25rem;
+}
+
+.price-block:last-child { margin-bottom: 0; }
+
+.price-block h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.price-block ul {
+  list-style: none;
+  padding: 0;
+}
+
+.price-block li {
+  font-size: 14px;
+  color: #374151;
+  padding: 4px 0;
+  border-bottom: 1px solid #f9fafb;
+}
+
+.price-block li:last-child { border-bottom: none; }
+
+/* ── Contact ── */
+.contact-list {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.contact-list li {
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.contact-list li:last-child { border-bottom: none; }
+
+.contact-list strong {
+  color: #6b7280;
+  font-weight: 500;
+  min-width: 70px;
+  display: inline-block;
+}
+
+.social-links {
+  display: flex;
+  gap: 10px;
+  margin: 0.75rem 0;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  font-size: 13px;
+  background: #f3f4f6;
+  color: #374151;
+  padding: 5px 14px;
+  border-radius: 99px;
+  border: 1px solid #e5e7eb;
+}
+
+.social-link:hover {
+  background: #e5e7eb;
+  text-decoration: none;
+}
+
+.btn-register {
+  display: inline-block;
+  margin-top: 0.75rem;
+  background: #1a6fc4;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.btn-register:hover {
+  background: #155fa8;
+  text-decoration: none;
+}
+
+/* ── Notes ── */
+.notes p {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+}
+
+/* ── Map ── */
+.map-link {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 13px;
+  color: #9ca3af;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 2rem;
+}
+
+.site-footer a { color: #9ca3af; }
+.site-footer a:hover { color: #555; }
+.footer-small { margin-top: 4px; }
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .rink-page { padding: 1.25rem 1rem 3rem; }
+  .rink-body > section { padding: 1rem; }
+  .contact-list strong { min-width: 60px; }
+}

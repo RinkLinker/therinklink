@@ -681,6 +681,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       </select>
       <button class="btn btn-ice" onclick="heroZipSearch()" style="padding:12px 24px;font-size:.9rem;letter-spacing:1px">🔍 Find Rinks Near Me</button>
     </div>
+    <div id="hero-zip-msg" style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.5px;padding:8px 18px;border-radius:7px;margin-top:-8px;margin-bottom:12px"></div>
   </div>
   <div class="stats-bar">
     <div class="stats-inner">
@@ -2467,13 +2468,28 @@ async function heroZipSearch(){
   const zip=(document.getElementById('hero-zip').value||'').trim();
   const inp=document.getElementById('hero-zip');
   const btn=document.querySelector('[onclick="heroZipSearch()"]');
+  const msg=document.getElementById('hero-zip-msg');
   const origLabel=btn?btn.innerHTML:'';
-  const flashError=()=>{inp.style.borderColor='rgba(231,76,60,.8)';setTimeout(()=>inp.style.borderColor='rgba(255,255,255,0.25)',1800);};
-  if(!/^\d{5}$/.test(zip)){flashError();return;}
+  const showMsg=(text,isErr)=>{
+    if(!msg)return;
+    msg.textContent=text;
+    msg.style.display='block';
+    msg.style.background=isErr?'rgba(231,76,60,.18)':'rgba(46,204,113,.15)';
+    msg.style.border='1px solid '+(isErr?'rgba(231,76,60,.5)':'rgba(46,204,113,.4)');
+    msg.style.color=isErr?'#f88':'#6ee7b7';
+    if(isErr)setTimeout(()=>{if(msg)msg.style.display='none';},3500);
+  };
+  const flashError=(text)=>{
+    inp.style.borderColor='rgba(231,76,60,.8)';
+    setTimeout(()=>inp.style.borderColor='rgba(255,255,255,0.25)',2500);
+    showMsg(text||'Please enter a valid 5-digit ZIP code.',true);
+  };
+  if(!/^\d{5}$/.test(zip)){flashError('Please enter a valid 5-digit ZIP code.');return;}
   if(btn){btn.innerHTML='Searching…';btn.disabled=true;}
+  if(msg)msg.style.display='none';
   try{
     const res=await fetch('https://api.zippopotam.us/us/'+zip);
-    if(!res.ok)throw new Error('ZIP not found');
+    if(!res.ok)throw new Error('ZIP '+zip+' not found — try another ZIP code.');
     const data=await res.json();
     const place=data.places[0];
     const lat=parseFloat(place.latitude),lng=parseFloat(place.longitude);
@@ -2483,13 +2499,20 @@ async function heroZipSearch(){
       .map(r=>({...r,_miles:haversine(lat,lng,r.lat,r.lng)}))
       .filter(r=>r._miles<=radius)
       .sort((a,b)=>a._miles-b._miles);
-    if(!results.length){flashError();if(btn){btn.innerHTML=origLabel;btn.disabled=false;}return;}
+    if(!results.length){
+      flashError('No rinks found within '+radius+' miles of '+zip+'. Try a larger radius.');
+      if(btn){btn.innerHTML=origLabel;btn.disabled=false;}
+      return;
+    }
     nearbyRinks=results;
     nearbyZip=zip;
     nearbyRadiusMi=radius;
     showPage('rinks');
     renderRinks();
-  }catch(e){flashError();}
+  }catch(e){
+    console.error('heroZipSearch error:',e);
+    flashError(e.message||'Could not look up that ZIP — check your connection and try again.');
+  }
   if(btn){btn.innerHTML=origLabel;btn.disabled=false;}
 }
 function setState(s,btn){
