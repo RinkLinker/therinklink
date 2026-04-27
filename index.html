@@ -826,7 +826,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div class="sh">
         <div class="sl">Browse by Location</div>
         <div class="st">Rinks by Region</div>
-        <div class="sd">75 rinks across Colorado, Wyoming, Utah and Nebraska — organized by region so you can find what's closest. Click any rink for the full profile.</div>
+        <div class="sd">Ice rinks across all 50 states — find what's closest to you.</div>
       </div>
 
       <!-- View toggle -->
@@ -1253,14 +1253,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
           <input class="search-input" type="text" placeholder="Search by rink or city..." id="sharpen-search" oninput="renderSharpen()"/>
           <span class="search-icon">🔍</span>
         </div>
-        <div class="chips" id="sharpen-chips">
-          <button class="chip active" onclick="setSharpenRegion('all',this)">All Regions</button>
-          <button class="chip" onclick="setSharpenRegion('Denver Metro',this)">Denver Metro</button>
-          <button class="chip" onclick="setSharpenRegion('Colorado Springs',this)">CO Springs</button>
-          <button class="chip" onclick="setSharpenRegion('Northern Colorado',this)">Northern CO</button>
-          <button class="chip" onclick="setSharpenRegion('Mountain',this)">Mountain</button>
-          <button class="chip" onclick="setSharpenRegion('Western Colorado',this)">Western CO</button>
-        </div>
+        <select id="sharpen-state-select" onchange="setSharpenState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
       </div>
       <!-- Hollow guide -->
       <div style="background:linear-gradient(135deg,rgba(168,212,245,.07),rgba(91,184,245,.03));border:1px solid rgba(168,212,245,.18);border-radius:var(--r);padding:18px 22px;margin-bottom:28px">
@@ -1448,15 +1441,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
           <input class="search-input" type="text" placeholder="Search rinks or cities..." id="openskate-search" oninput="renderOpenSkate()"/>
           <span class="search-icon">🔍</span>
         </div>
-        <div class="chips" id="openskate-region-chips">
-          <button class="chip active" onclick="setOpenSkateRegion('all',this)">All Regions</button>
-          <button class="chip" onclick="setOpenSkateRegion('Denver Metro',this)">Denver Metro</button>
-          <button class="chip" onclick="setOpenSkateRegion('Colorado Springs',this)">CO Springs</button>
-          <button class="chip" onclick="setOpenSkateRegion('Mountain',this)">Mountain</button>
-          <button class="chip" onclick="setOpenSkateRegion('Wyoming',this)">Wyoming</button>
-          <button class="chip" onclick="setOpenSkateRegion('Utah',this)">Utah</button>
-          <button class="chip" onclick="setOpenSkateRegion('Nebraska',this)">Nebraska</button>
-        </div>
+        <select id="openskate-state-select" onchange="setOpenSkateState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
       </div>
       <div id="openskate-count" style="font-size:.75rem;color:var(--muted);margin-bottom:16px"></div>
       <div id="openskate-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"></div>
@@ -1525,13 +1510,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
           <button class="chip" onclick="setBizFilter('type','activity',this)">🎳 Team Activities</button>
           <button class="chip" onclick="setBizFilter('type','food',this)">🍕 Food & Drink</button>
         </div>
-        <div class="chips" id="biz-region-chips">
-          <button class="chip active" onclick="setBizFilter('region','all',this)">All Areas</button>
-          <button class="chip" onclick="setBizFilter('region','Denver Metro',this)">Denver Metro</button>
-          <button class="chip" onclick="setBizFilter('region','Colorado Springs',this)">CO Springs</button>
-          <button class="chip" onclick="setBizFilter('region','Northern Colorado',this)">Northern CO</button>
-          <button class="chip" onclick="setBizFilter('region','Mountain',this)">Mountain</button>
-        </div>
+        <select id="biz-state-select" onchange="setBizStateFilter(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
       </div>
 
       <div id="biz-grid"></div>
@@ -2058,7 +2037,7 @@ async function fetchRinks() {
       mapPos: {x:null, y:null},
     }));
     return [...RINKS_LOCAL, ...remote].sort((a, b) => {
-      const s = (a.state ?? '').localeCompare(b.state ?? '');
+      const s = (a.state || 'CO').localeCompare(b.state || 'CO');
       return s !== 0 ? s : a.name.localeCompare(b.name);
     });
   } catch(e) {
@@ -2366,9 +2345,13 @@ function renderRinks(){
       if(filterOpen&&isOpen(r)!=='open')return false;
       return true;
     });
-    f=f.sort((a,b)=>a.name.localeCompare(b.name));
+    const stateSortFn=(a,b)=>{const s=(a.state||'').localeCompare(b.state||'');return s!==0?s:a.name.localeCompare(b.name);};
+    f=f.sort(stateSortFn);
   }
-  const cards=f.map(r=>{
+  const sortFn=nearbyRinks?(a,b)=>a._miles-b._miles:(a,b)=>{const s=(a.state||'').localeCompare(b.state||'');return s!==0?s:a.name.localeCompare(b.name);};
+  const favList=f.filter(r=>favorites.has(r.id)).sort(sortFn);
+  const restList=f.filter(r=>!favorites.has(r.id)).sort(sortFn);
+  const makeCard=r=>{
     const rv=reviews[r.id]||[],a=avgR(rv),cnt=rv.filter(x=>!x.pending).length,op=isOpen(r),isFav=favorites.has(r.id);
     const psPrice=r.pricing&&r.pricing.publicSkate?r.pricing.publicSkate.replace(/\|.*$/,'').trim().split(' ')[0]:'Check site';
     const snpPrice=r.pricing&&r.pricing.stickPuck?r.stickPuckTimes&&r.stickPuckTimes.cost&&r.stickPuckTimes.cost!=='Check website'?r.stickPuckTimes.cost.split(' ')[0]:'Check site':'—';
@@ -2426,8 +2409,12 @@ function renderRinks(){
       +'<div class="card-foot"><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showNearbyForRink('+r.id+')" title="Game day guide">🎒 Game Day</button>'
       +'<button class="btn btn-ice btn-sm" onclick="event.stopPropagation();openModal('+r.id+')" style="font-weight:800;font-size:.8rem">View Full Details →</button></div>'
       +'</div>';
-  }).join('')||'<div style="color:var(--muted);padding:36px 0;grid-column:1/-1">No rinks match your filters.</div>';
-  g.innerHTML=nearbyBanner+cards;
+  };
+  const favDivider=favList.length&&restList.length
+    ?'<div style="grid-column:1/-1;padding:12px 0 6px;font-size:.65rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(232,184,75,.2);margin-bottom:4px">⭐ Your Favorites</div>'
+    :'';
+  const noResults=!f.length?'<div style="color:var(--muted);padding:36px 0;grid-column:1/-1">No rinks match your filters.</div>':'';
+  g.innerHTML=nearbyBanner+favDivider+favList.map(makeCard).join('')+restList.map(makeCard).join('')+noResults;
 }
 
 const STATE_REGIONS={};
@@ -2458,10 +2445,16 @@ function buildStateSelects(){
   const rmss=document.getElementById('region-map-state-select');
   const snpss=document.getElementById('snp-state-select');
   const css=document.getElementById('coach-state-select');
+  const sharpenSel=document.getElementById('sharpen-state-select');
+  const openSkateSel=document.getElementById('openskate-state-select');
+  const bizSel=document.getElementById('biz-state-select');
   if(ss)ss.innerHTML=makeOptions();
   if(rss)rss.innerHTML=makeOptions();
   if(rmss)rmss.innerHTML=makeOptions();
   if(snpss)snpss.innerHTML=makeOptions();
+  if(sharpenSel)sharpenSel.innerHTML=makeOptions();
+  if(openSkateSel)openSkateSel.innerHTML=makeOptions();
+  if(bizSel)bizSel.innerHTML=makeOptions();
   if(css){
     const coachOpts='<option value="">Select a state…</option><option value="any">Flexible / No preference</option>'
       +states.map(s=>`<option value="${s}">${s}${STATE_NAMES[s]?' \u2014 '+STATE_NAMES[s]:''}</option>`).join('');
@@ -2547,12 +2540,12 @@ function renderRegions(){
   const grid=document.getElementById('region-grid');
   if(!grid)return;
   const stateEmoji={CO:'🏔',WY:'🤠',UT:'⛷',NE:'🌽'};
-  const regionOrder={'Denver Metro':1,'Colorado Springs':2,'Northern Colorado':3,'Mountain':4,'Western Colorado':5,'Southern Colorado':6,'Statewide':7,'Wyoming':8,'Utah':9,'Nebraska':10};
+  const coRegionOrder={'Denver Metro':1,'Colorado Springs':2,'Northern Colorado':3,'Mountain':4,'Western Colorado':5,'Southern Colorado':6,'Statewide':7};
   let rinks=RINKS;
   if(regionStateFilter!=='all') rinks=RINKS.filter(r=>(r.state||'CO')===regionStateFilter);
   const byRegion={};
   rinks.forEach(r=>{const reg=r.region||'Other';if(!byRegion[reg])byRegion[reg]=[];byRegion[reg].push(r);});
-  const sorted=Object.keys(byRegion).sort((a,b)=>(regionOrder[a]||99)-(regionOrder[b]||99));
+  const sorted=Object.keys(byRegion).sort((a,b)=>(coRegionOrder[a]||99)-(coRegionOrder[b]||99)||a.localeCompare(b));
   grid.innerHTML=sorted.map(reg=>{
     const rList=byRegion[reg];
     const states=[...new Set(rList.map(r=>r.state||'CO'))];
@@ -5054,19 +5047,17 @@ function setSNPState(s){snpState=s;const sel=document.getElementById('snp-state-
 
 
 // ── SKATE SHARPENING FINDER ──────────────────────────────────────
-let sharpenRegion='all';
+let sharpenState='all';
 
-function setSharpenRegion(r,btn){
-  sharpenRegion=r;
-  document.querySelectorAll('#sharpen-chips .chip').forEach(c=>c.classList.remove('active'));
-  btn.classList.add('active');
+function setSharpenState(s){
+  sharpenState=s;
   renderSharpen();
 }
 
 function renderSharpen(){
   const sv=(document.getElementById('sharpen-search')?.value||'').toLowerCase();
   const rinks=RINKS.filter(r=>{
-    if(sharpenRegion!=='all'&&r.region!==sharpenRegion)return false;
+    if(sharpenState!=='all'&&(r.state||'CO')!==sharpenState)return false;
     if(r.closed)return false;
     if(sv&&!r.name.toLowerCase().includes(sv)&&!r.city.toLowerCase().includes(sv))return false;
     // Only rinks with on-site sharpening or shops with sharpening mentioned
@@ -5801,14 +5792,18 @@ const LOCAL_BIZ = [
   },
 
 ];
-let bizRegionFilter='all';
+let bizStateFilter='all';
 
 function setBizFilter(type,val,btn){
   if(type==='type') bizTypeFilter=val;
-  else bizRegionFilter=val;
-  const chipId=type==='type'?'biz-type-chips':'biz-region-chips';
+  const chipId='biz-type-chips';
   document.querySelectorAll('#'+chipId+' .chip').forEach(c=>c.classList.remove('active'));
-  btn.classList.add('active');
+  if(btn)btn.classList.add('active');
+  renderBiz();
+}
+
+function setBizStateFilter(s){
+  bizStateFilter=s;
   renderBiz();
 }
 
@@ -5818,7 +5813,7 @@ function renderBiz(){
 
   let filtered=LOCAL_BIZ.filter(b=>{
     if(bizTypeFilter!=='all'&&b.type!==bizTypeFilter)return false;
-    if(bizRegionFilter!=='all'&&b.region!==bizRegionFilter)return false;
+    if(bizStateFilter!=='all'&&(b.state||'CO')!==bizStateFilter)return false;
     return true;
   });
 
@@ -6260,8 +6255,6 @@ function updateSubmitCount(){
 const US_STATES=['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'];
 
 function renderStateProgress(){
-  const LIVE_STATES=['CO','WY','UT','NE'];
-
   const el=document.getElementById('state-progress');
   if(!el)return;
   const statesWithSubs=new Set(submissions.map(s=>s.state||'CO'));
@@ -6323,12 +6316,10 @@ function resetSubmitForm(){
 
 // ── OPEN SKATE ───────────────────────────────────────────────────
 
-let openSkateRegion = 'all';
+let openSkateState = 'all';
 
-function setOpenSkateRegion(r, btn) {
-  openSkateRegion = r;
-  document.querySelectorAll('#openskate-region-chips .chip').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
+function setOpenSkateState(s) {
+  openSkateState = s;
   renderOpenSkate();
 }
 
@@ -6344,7 +6335,7 @@ function renderOpenSkate() {
   const tomorrowIdx = (todayIdx + 1) % 7;
 
   let rinks = RINKS.filter(r => {
-    if (openSkateRegion !== 'all' && r.region !== openSkateRegion && (r.state||'CO') !== openSkateRegion) return false;
+    if (openSkateState !== 'all' && (r.state||'CO') !== openSkateState) return false;
     if (sv && !r.name.toLowerCase().includes(sv) && !r.city.toLowerCase().includes(sv)) return false;
     return true;
   });
