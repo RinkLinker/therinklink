@@ -2147,7 +2147,7 @@ async function sbFetch(path, method='GET', body=null){
 
 let reviews={},upvoted=new Set(),favorites=new Set(),homeRink=null;
 let activeState='all',activeRegion='all',activeType='all',filterOpen=false,filterFavs=false,nearbyFilter='all';
-let currentRinkId=null,selMapRink=null;
+let currentRinkId=null,selMapRink=null,_modalRink=null;
 
 async function loadAll(){
   // Load approved reviews from Supabase
@@ -2404,8 +2404,7 @@ function renderRinks(){
     +'<span style="font-size:.6rem;color:#334155;padding:2px 4px;align-self:center">+ more inside →</span>'
     +'</div>';
 })()
-      +'<div class="card-foot"><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showNearbyForRink('+r.id+')" title="Game day guide">🎒 Game Day</button>'
-      +'<button class="btn btn-ice btn-sm" onclick="event.stopPropagation();openModal('+r.id+')" style="font-weight:800;font-size:.8rem">View Full Details →</button></div>'
+      +'<div class="card-foot"><button class="btn btn-ice btn-sm" onclick="event.stopPropagation();openModal('+r.id+')" style="font-weight:800;font-size:.8rem">View Full Details →</button></div>'
       +'</div>';
   };
   const favDivider=favList.length&&restList.length
@@ -2942,13 +2941,17 @@ function openModal(id){
   buildModal(r);
   document.getElementById('modal-ov').classList.add('open');
   document.body.style.overflow='hidden';
-  // Fetch fresh reviews and tips from DB
   loadDBReviews(id);
-  loadDBTips(id);
 }
 
 function buildModal(r){
+  _modalRink=r;
   const rv=reviews[r.id]||[],a=avgR(rv),cnt=rv.filter(x=>!x.pending).length,op=isOpen(r),isFav=favorites.has(r.id);
+  const weatherId='wx-m-'+r.id;
+  const parkingShort=r.parking.toLowerCase().includes('free')?'Free':'Check';
+  const schedUrl=r.stickPuckTimes&&r.stickPuckTimes.scheduleUrl?r.stickPuckTimes.scheduleUrl:r.website;
+  const psPrice=r.pricing&&r.pricing.publicSkate?r.pricing.publicSkate:null;
+  const psIsUnverified=psPrice&&psPrice.includes('⚠️');
   document.getElementById('modal-inner').innerHTML=
     '<div class="mhead"><div>'
     +'<div style="font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px">'+r.region+' &middot; '+r.city+(r.type==='outdoor'?' &middot; <span style="color:var(--cold)">❄ Outdoor/Seasonal</span>':'')+'</div>'
@@ -2965,21 +2968,295 @@ function buildModal(r){
     +(r.id!==homeRink?'<button class="btn btn-gold btn-sm" onclick="setHomeRink('+r.id+')">&#127968; Set Home</button>':'<span style="background:rgba(232,184,75,.1);border:1px solid rgba(232,184,75,.22);color:var(--gold);padding:5px 11px;border-radius:5px;font-size:.67rem;font-weight:700">&#127968; Home Rink</span>')
     +'</div></div>'
     +'<button class="mclose" onclick="closeModal()">&#x2715;</button></div>'
-    +'<div class="mtabs">'
-    +'<button class="mtab active" onclick="switchTab(\'therink\',this)">🏟️<br>The Rink</button>'
-    +'<button class="mtab" onclick="switchTab(\'neighborhood\',this)">📍<br>Nearby</button>'
-    +'<button class="mtab" onclick="switchTab(\'community\',this)">⭐<br>Reviews</button>'
+    +'<div style="padding:14px;display:flex;flex-direction:column;gap:8px">'
+    +'<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">'
+    +'<div style="background:rgba(91,184,245,.07);border:1px solid rgba(91,184,245,.18);border-radius:8px;padding:8px 6px;text-align:center">'
+    +'<div style="font-size:.95rem;font-weight:900;font-family:\'Barlow Condensed\',sans-serif;color:var(--ice)">'+r.sheets+'</div>'
+    +'<div style="font-size:.58rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-top:1px">NHL Sheets</div>'
     +'</div>'
-    +'<div id="tb-therink" class="tbody active">'+buildTabTheRink(r)+'</div>'
-    +'<div id="tb-neighborhood" class="tbody">'+buildTabNeighborhood(r)+'</div>'
-    +'<div id="tb-community" class="tbody">'+buildTabCommunity(r)+'</div>';
+    +'<div id="'+weatherId+'" style="background:rgba(91,184,245,.07);border:1px solid rgba(91,184,245,.18);border-radius:8px;padding:8px 6px;text-align:center">'
+    +'<div style="font-size:.95rem;color:var(--muted)">···</div>'
+    +'<div style="font-size:.58rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-top:1px">Outside Now</div>'
+    +'</div>'
+    +'<div style="background:rgba(91,184,245,.07);border:1px solid rgba(91,184,245,.18);border-radius:8px;padding:8px 6px;text-align:center">'
+    +'<div style="font-size:.95rem;font-weight:900;font-family:\'Barlow Condensed\',sans-serif;color:#2ecc71">'+parkingShort+'</div>'
+    +'<div style="font-size:.58rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-top:1px">Parking</div>'
+    +'</div>'
+    +'</div>'
+    +'<div style="background:rgba(26,155,230,.08);border:1px solid rgba(26,155,230,.28);border-radius:12px;padding:15px">'
+    +'<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">'
+    +'<div>'
+    +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white)">📅 Ice Schedule</div>'
+    +'<div style="font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.5">Times shift weekly — always verify before heading out</div>'
+    +'</div>'
+    +'<a href="'+schedUrl+'" target="_blank" rel="noopener" style="flex-shrink:0;background:linear-gradient(135deg,#1a9be6,#0e7abf);color:#fff;font-weight:700;font-size:.75rem;padding:8px 13px;border-radius:8px;text-decoration:none">View ↗</a>'
+    +'</div>'
+    +'<div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(91,184,245,.15)">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'
+    +'<div style="font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#f39c12">⛸️ Public Skate</div>'
+    +'<a href="'+schedUrl+'" target="_blank" rel="noopener" style="font-size:.68rem;color:var(--ice);font-weight:700;text-decoration:none">Schedule ↗</a>'
+    +'</div>'
+    +(psPrice&&!psIsUnverified
+      ?'<div style="font-size:.75rem;color:var(--muted);line-height:1.5">'+psPrice+'</div>'
+      :'<div style="font-size:.75rem;color:var(--muted)">Check website for current times &amp; prices</div>')
+    +'</div>'
+    +(r.stickPuckTimes
+      ?'<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(91,184,245,.1)">'
+        +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'
+        +'<div style="font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ice)">🏒 Stick &amp; Puck</div>'
+        +(r.stickPuckTimes.bookingUrl?'<a href="'+r.stickPuckTimes.bookingUrl+'" target="_blank" rel="noopener" style="font-size:.68rem;color:#2ecc71;font-weight:700;text-decoration:none">Book ↗</a>':'')
+        +'</div>'
+        +'<div style="font-size:.75rem;color:var(--muted)">'+r.stickPuckTimes.cost+'</div>'
+        +'</div>'
+      :'')
+    +'</div>'
+    +'</div>'
+    +lazyAccordion('acc-'+r.id+'-price','Pricing','💰',r.id,'pricing')
+    +lazyAccordion('acc-'+r.id+'-fac','Amenities','🏟️',r.id,'amenities')
+    +lazyAccordion('acc-'+r.id+'-contact','Contact & Info','📞',r.id,'contact')
+    +lazyAccordion('acc-'+r.id+'-reviews','Reviews','⭐',r.id,'reviews')
+    +lazyAccordion('acc-'+r.id+'-around','Around the Rink','📍',r.id,'around')
+    +lazyAccordion('acc-'+r.id+'-teams','Teams & Resources','🏒',r.id,'teams');
   attachPickers();
+  setTimeout(()=>fetchRinkWeather(r.lat,r.lng,weatherId),50);
 }
 
-function switchTab(name,btn){
-  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tbody').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');document.getElementById('tb-'+name).classList.add('active');
+function lazyAccordion(uid,label,emoji,rinkId,section){
+  return '<div class="acc-card">'
+    +'<button class="acc-hd" onclick="toggleAcc(\''+uid+'\')">'
+    +'<span class="acc-label">'+emoji+' '+label+'</span>'
+    +'<span class="acc-chevron" id="chv-'+uid+'">›</span>'
+    +'</button>'
+    +'<div class="acc-body" id="'+uid+'" style="display:none" data-section="'+section+'" data-rink="'+rinkId+'" data-loaded="false">'
+    +'<div style="padding:14px;color:var(--muted);font-size:.82rem">Loading...</div>'
+    +'</div>'
+    +'</div>';
+}
+
+function buildModalSection(section,rinkId,el){
+  const r=RINKS.find(x=>x.id===rinkId);
+  if(!r){el.innerHTML='<div style="padding:14px;color:var(--muted)">Data not available.</div>';return;}
+  if(section==='pricing')el.innerHTML=buildSectionPricing(r);
+  else if(section==='amenities')el.innerHTML=buildSectionAmenities(r);
+  else if(section==='contact')el.innerHTML=buildSectionContact(r);
+  else if(section==='reviews'){el.innerHTML=buildSectionReviews(r);attachPickers();}
+  else if(section==='around')el.innerHTML=buildSectionAroundRink(r);
+  else if(section==='teams')el.innerHTML=buildSectionTeamsResources(r);
+}
+
+function buildSectionPricing(r){
+  const pr=r.pricing;
+  let html='<div style="display:flex;flex-direction:column;gap:8px;padding:14px">';
+  [{lbl:'Public Skate',val:pr.publicSkate},{lbl:'Skate Rental',val:pr.rental},{lbl:'Stick & Puck',val:pr.stickPuck},{lbl:'Ice Practice',val:pr.icePractice}].forEach(row=>{
+    if(!row.val)return;
+    const unv=row.val.includes('⚠️');
+    html+='<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--border)">'
+      +'<span style="font-size:.78rem;color:var(--muted);flex-shrink:0">'+row.lbl+'</span>'
+      +'<span style="font-size:.78rem;color:'+(unv?'#f59e0b':'var(--white)')+';text-align:right;max-width:60%">'+(unv?'⚠️ Check website':row.val)+'</span>'
+      +'</div>';
+  });
+  if(r.discounts&&r.discounts.length){
+    r.discounts.forEach(d=>{
+      html+='<div style="background:rgba(232,184,75,.06);border:1px solid rgba(232,184,75,.18);border-radius:7px;padding:8px 11px;margin-top:2px">'
+        +'<div style="font-size:.72rem;font-weight:700;color:var(--gold)">🎟 '+d.name+'</div>'
+        +'<div style="font-size:.72rem;color:var(--muted);margin-top:2px">'+d.detail+'</div>'
+        +'</div>';
+    });
+  }
+  html+='</div>';
+  return html;
+}
+
+function buildSectionAmenities(r){
+  const p=r.parentInfo;
+  const l=r.locker;
+  const isOutdoor=r.type==='outdoor';
+  const isMtn=r.region==='Mountain';
+  const wearRvs=(reviews[r.id]||[]).filter(x=>!x.pending&&x.wear);
+  let html='<div style="display:flex;flex-direction:column;gap:8px;padding:14px">';
+  if(p&&p.food){
+    const tierIcon={restaurant:'🍽',snackbar:'🥪',vending:'🤖',none:'❌'}[p.food.tier]||'🍴';
+    const tierLabel={restaurant:'Full Restaurant',snackbar:'Snack Bar',vending:'Vending Only',none:'No Food'}[p.food.tier];
+    const tierColor={restaurant:'#2ecc71',snackbar:'#f39c12',vending:'#e67e22',none:'#e74c3c'}[p.food.tier]||'var(--muted)';
+    html+='<div style="display:flex;align-items:flex-start;gap:12px;padding:11px 13px;background:rgba(255,255,255,.03);border-radius:9px;border:1px solid var(--border)">'
+      +'<span style="font-size:1.3rem;flex-shrink:0">'+tierIcon+'</span>'
+      +'<div><div style="font-size:.78rem;font-weight:700;color:'+tierColor+'">'+tierLabel+' · '+p.food.name+'</div>'
+      +'<div style="font-size:.73rem;color:var(--muted);margin-top:3px;line-height:1.5">'+p.food.details+'</div>'
+      +(p.localCoffee?'<div style="font-size:.72rem;color:#f1c40f;margin-top:4px">☕ '+p.localCoffee.name+'</div>':'')
+      +'</div></div>';
+  } else {
+    html+='<div style="display:flex;align-items:center;gap:10px;padding:10px 13px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:9px">'
+      +'<span style="opacity:.4">🍴</span>'
+      +'<div style="font-size:.75rem;color:var(--muted)">Food info not confirmed — check with the rink</div>'
+      +'</div>';
+  }
+  const wifiAvail=p&&p.wifi&&p.wifi.available===true;
+  const wifiFalse=p&&p.wifi&&p.wifi.available===false;
+  if(wifiAvail){
+    html+='<div style="display:flex;align-items:center;gap:10px;padding:10px 13px;background:rgba(46,204,113,.06);border:1px solid rgba(46,204,113,.2);border-radius:9px">'
+      +'<span>📶</span><div><div style="font-size:.78rem;font-weight:700;color:#2ecc71">WiFi Available</div>'
+      +'<div style="font-size:.7rem;color:var(--muted)">'+(p.wifi.cost==='free'?'Free to connect':'Paid — ask staff')+'</div></div></div>';
+  } else if(wifiFalse){
+    html+='<div style="display:flex;align-items:center;gap:10px;padding:10px 13px;background:rgba(231,76,60,.04);border:1px solid rgba(231,76,60,.15);border-radius:9px">'
+      +'<span style="opacity:.5">📶</span><div style="font-size:.75rem;color:var(--muted)">No WiFi at this rink</div></div>';
+  } else {
+    html+='<div style="display:flex;align-items:center;gap:10px;padding:10px 13px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:9px">'
+      +'<span style="opacity:.4">📶</span><div style="font-size:.75rem;color:var(--muted)">WiFi — not confirmed · ask at the desk</div></div>';
+  }
+  const lb=p&&p.livebarn;
+  if(lb&&lb.available===true){
+    html+='<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 13px;background:rgba(52,152,219,.07);border:1px solid rgba(52,152,219,.22);border-radius:9px">'
+      +'<div style="display:flex;align-items:center;gap:10px"><span>📹</span>'
+      +'<div><div style="font-size:.78rem;font-weight:700;color:#3498db">LiveBarn Available</div>'
+      +'<div style="font-size:.7rem;color:var(--muted)">Watch live &amp; on-demand</div></div></div>'
+      +'<a href="'+(lb.url||'https://livebarn.com')+'" target="_blank" rel="noopener" style="font-size:.7rem;color:#3498db;font-weight:700;text-decoration:none">Watch ↗</a>'
+      +'</div>';
+  } else if(lb&&lb.available===false){
+    html+='<div style="display:flex;align-items:center;gap:10px;padding:10px 13px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:9px">'
+      +'<span style="opacity:.4">📹</span><div style="font-size:.75rem;color:var(--muted)">LiveBarn not available at this rink</div></div>';
+  } else {
+    html+='<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 13px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:9px">'
+      +'<div style="display:flex;align-items:center;gap:10px"><span style="opacity:.5">📹</span>'
+      +'<div><div style="font-size:.78rem;font-weight:700;color:var(--muted)">LiveBarn — not confirmed</div>'
+      +'<div style="font-size:.7rem;color:var(--muted)">May be available · check livebarn.com</div></div></div>'
+      +'<a href="https://www.livebarn.com/venue-search" target="_blank" rel="noopener" style="font-size:.7rem;color:var(--ice);font-weight:700;text-decoration:none">Search ↗</a>'
+      +'</div>';
+  }
+  if(l){
+    html+='<div style="margin-top:4px;padding-top:10px;border-top:1px solid var(--border)">'
+      +'<div style="font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">🚪 Locker Rooms</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">'
+      +'<div style="background:rgba(91,184,245,.06);border:1px solid rgba(91,184,245,.15);border-radius:8px;padding:10px;text-align:center">'
+      +'<div style="font-size:1.3rem;font-weight:900;font-family:\'Barlow Condensed\',sans-serif;color:var(--ice)">'+l.rooms+'</div>'
+      +'<div style="font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:1px">Rooms</div>'
+      +'</div>'
+      +'<div style="background:rgba(91,184,245,.06);border:1px solid rgba(91,184,245,.15);border-radius:8px;padding:10px;text-align:center">'
+      +'<div style="font-size:.82rem;font-weight:700;color:var(--white)">'+l.capacity+'</div>'
+      +'<div style="font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:1px">Capacity</div>'
+      +'</div></div>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">'+l.features.map(f=>'<span style="background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted);font-size:.68rem;font-weight:600;padding:4px 9px;border-radius:20px">'+f+'</span>').join('')+'</div>'
+      +'<div style="font-size:.75rem;color:var(--muted);line-height:1.6">'+l.notes+'</div>'
+      +'</div>';
+  }
+  const onSiteShops=(r.shops||[]).filter(s=>s.dist==='On-site'||s.dist==='On campus'||s.dist==='In arena');
+  if(onSiteShops.length){
+    html+='<div style="margin-top:4px;padding-top:10px;border-top:1px solid var(--border)">'
+      +'<div style="font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">🛒 On-Site Shops</div>'
+      +'<div style="display:flex;flex-direction:column;gap:7px">'
+      +onSiteShops.map(s=>'<div style="padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
+        +'<div style="font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:2px">'+s.name+'</div>'
+        +'<div style="font-size:.73rem;color:var(--muted)">'+s.detail+'</div>'
+        +'</div>').join('')
+      +'</div></div>';
+  }
+  const indoorTips=['🧥 Light-to-medium jacket — spectators feel colder than players','🧣 Blanket for long games or tournaments','☕ Hot drinks are your best friend','🧤 Thin gloves for extended spectating','🧒 Kids feel cold faster — always pack an extra layer'];
+  const outdoorTips=['🥶 Full winter gear — dress like you\'re going skiing','🧥 Heavy insulated jacket, thermal underlayers','🧤 Ski gloves — hands get cold fast','🔥 Hand warmers highly recommended','🧢 Hat or balaclava — ears go numb fast'];
+  const mtnBonus=isMtn?['⛰️ Altitude makes it feel colder','🌬️ Wind chill can be significant']:[];
+  const tips=isOutdoor?[...outdoorTips,...mtnBonus]:indoorTips;
+  html+='<div style="margin-top:4px;padding-top:10px;border-top:1px solid var(--border)">'
+    +'<div style="font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">🧥 What to Wear</div>'
+    +'<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:'+(wearRvs.length?'10':'0')+'px">'+tips.map(t=>'<div style="font-size:.78rem;color:var(--muted);line-height:1.5">'+t+'</div>').join('')+'</div>'
+    +(wearRvs.length?'<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px">'+wearRvs.slice(0,3).map(x=>'<div style="background:rgba(91,184,245,.05);border:1px solid rgba(91,184,245,.15);border-radius:8px;padding:8px 12px;font-size:.75rem;color:var(--muted);line-height:1.5"><span style="color:var(--ice);font-weight:700">'+x.name+':</span> '+x.wear+'</div>').join('')+'</div>':'')
+    +'<button class="write-btn" style="width:100%" onclick="toggleWearForm2('+r.id+')">✏️ Share Insider Tip</button>'
+    +'<div class="rev-form" id="wf2-'+r.id+'">'
+    +'<div class="form-title">What should families wear &amp; bring?</div>'
+    +'<div class="frow">'
+    +'<div class="fgrp"><label class="flbl">Your Name</label><input class="finput" type="text" id="wn2-'+r.id+'" placeholder="e.g. Sarah K."/></div>'
+    +'<div class="fgrp"><label class="flbl">Role</label><select class="finput" id="wr2-'+r.id+'"><option>Hockey Parent</option><option>Player</option><option>Coach</option><option>Hockey Fan</option></select></div>'
+    +'</div>'
+    +'<div class="fgrp"><label class="flbl">📶 WiFi at this rink?</label><select class="finput" id="wwifi2-'+r.id+'"><option value="">Not sure</option><option value="yes">Yes — free WiFi</option><option value="paid">Yes — paid WiFi</option><option value="no">No WiFi</option></select></div>'
+    +'<div class="fgrp"><label class="flbl">Your tip</label><textarea class="finput" id="wt2-'+r.id+'" rows="3" placeholder="e.g. Bring heavy blankets — upper sections are really cold..."></textarea></div>'
+    +'<div class="factions"><button class="fsub" onclick="submitWear2('+r.id+')">Share Insider Tip</button><button class="fcan" onclick="toggleWearForm2('+r.id+')">Cancel</button></div>'
+    +'</div>'
+    +'</div>';
+  html+='</div>';
+  return html;
+}
+
+function buildSectionContact(r){
+  return '<div style="display:flex;flex-direction:column;gap:10px;padding:14px">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center">'
+    +'<span style="font-size:.78rem;color:var(--muted)">📞 Phone</span>'
+    +'<a href="tel:'+r.phone+'" style="font-size:.85rem;font-weight:700;color:var(--ice);text-decoration:none">'+r.phone+'</a>'
+    +'</div>'
+    +'<div style="height:1px;background:var(--border)"></div>'
+    +'<div style="display:flex;justify-content:space-between;align-items:center">'
+    +'<span style="font-size:.78rem;color:var(--muted)">🌐 Website</span>'
+    +'<a href="'+r.website+'" target="_blank" rel="noopener" style="font-size:.85rem;font-weight:700;color:var(--ice);text-decoration:none">Visit ↗</a>'
+    +'</div>'
+    +'<div style="height:1px;background:var(--border)"></div>'
+    +'<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">'
+    +'<span style="font-size:.78rem;color:var(--muted)">📍 Address</span>'
+    +'<a href="https://maps.google.com/?q='+encodeURIComponent(r.address+' '+r.city)+'" target="_blank" rel="noopener" style="font-size:.78rem;font-weight:700;color:var(--ice);text-decoration:none;text-align:right;max-width:60%">'+r.address+' ↗</a>'
+    +'</div>'
+    +'<div style="height:1px;background:var(--border)"></div>'
+    +'<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">'
+    +'<span style="font-size:.78rem;color:var(--muted);flex-shrink:0">🅿️ Parking</span>'
+    +'<span style="font-size:.78rem;color:var(--white);text-align:right;max-width:65%">'+r.parking+'</span>'
+    +'</div>'
+    +'</div>';
+}
+
+function buildSectionReviews(r){
+  return '<div style="padding:14px">'+buildRevTab(r)+'</div>';
+}
+
+function buildSectionAroundRink(r){
+  let html='<div style="display:flex;flex-direction:column;gap:10px;padding:14px">';
+  html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
+    +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:8px">⚡ Skate Sharpening</div>'
+    +'<div style="font-size:.82rem;color:var(--muted)">'+r.nearby.sharpening+'</div>'
+    +'</div>';
+  html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
+    +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:10px">🍔 Food &amp; Drinks</div>'
+    +'<div style="display:flex;flex-direction:column;gap:7px">'
+    +r.nearby.food.map(f=>{
+      const name=f.split('(')[0].trim();
+      const dist=f.includes('(')?f.split('(')[1].replace(')','').trim():'';
+      return '<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
+        +'<span style="font-size:.82rem;color:var(--white)">🍴 '+name+'</span>'
+        +(dist?'<span style="font-size:.7rem;color:var(--muted);flex-shrink:0;margin-left:8px">'+dist+'</span>':'')
+        +'</div>';
+    }).join('')
+    +'</div></div>';
+  html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
+    +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:10px">🏨 Hotels</div>'
+    +'<div style="display:flex;flex-direction:column;gap:7px">'
+    +r.nearby.hotels.map(h=>{
+      const name=h.split('(')[0].trim();
+      const dist=h.includes('(')?h.split('(')[1].replace(')','').trim():'';
+      return '<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
+        +'<span style="font-size:.82rem;color:var(--white)">🏨 '+name+'</span>'
+        +(dist?'<span style="font-size:.7rem;color:var(--muted);flex-shrink:0;margin-left:8px">'+dist+'</span>':'')
+        +'</div>';
+    }).join('')
+    +'</div></div>';
+  const nearbyShops=(r.shops||[]).filter(s=>s.dist!=='On-site'&&s.dist!=='On campus'&&s.dist!=='In arena');
+  if(nearbyShops.length){
+    html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
+      +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:10px">🛒 Nearby Hockey Shops</div>'
+      +'<div style="display:flex;flex-direction:column;gap:7px">'
+      +nearbyShops.map(s=>'<div style="padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
+        +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">'
+        +'<span style="font-size:.82rem;font-weight:700;color:var(--white)">'+s.name+'</span>'
+        +'<span style="font-size:.7rem;color:var(--muted)">'+s.dist+'</span>'
+        +'</div>'
+        +'<div style="font-size:.73rem;color:var(--muted)">'+s.detail+'</div>'
+        +'</div>').join('')
+      +'</div></div>';
+  }
+  html+=buildBizTab(r);
+  html+='</div>';
+  return html;
+}
+
+function buildSectionTeamsResources(r){
+  let html='<div style="padding:14px;display:flex;flex-direction:column;gap:10px">';
+  html+=buildTeams(r);
+  html+=buildLeaguesTab(r);
+  html+=buildResourceLinks(r);
+  html+='</div>';
+  return html;
 }
 
 // ── RINK TEAMS DATA (sourced from MYHockey Rankings / CAHA) ──────
@@ -3296,10 +3573,10 @@ async function loadDBReviews(rid){
       upvotes: r.upvotes||0,
       pending: false
     })), ...existing];
-    // Refresh community tab if open
-    const el = document.getElementById('tb-community');
+    // Refresh reviews section if already expanded
+    const el = document.getElementById('acc-'+rid+'-reviews');
     const r = RINKS.find(x=>x.id===rid);
-    if(el && r) el.innerHTML = buildTabCommunity(r);
+    if(el && r && el.dataset.loaded==='true') el.innerHTML = buildSectionReviews(r);
   }catch(e){ console.warn('loadDBReviews error:',e.message); }
 }
 
@@ -3330,7 +3607,8 @@ async function submitWear(rid){
   toggleWearForm(rid);
   toast('✅ Insider tip submitted! Pending moderation.');
   const r=RINKS.find(x=>x.id===rid);
-  if(document.getElementById('tb-therink'))document.getElementById('tb-therink').innerHTML=buildTabTheRink(r);
+  const amenEl=document.getElementById('acc-'+rid+'-fac');
+  if(amenEl&&amenEl.dataset.loaded==='true')amenEl.innerHTML=buildSectionAmenities(r);
 }
 
 
@@ -3523,7 +3801,8 @@ async function submitReview(rid){
   }
   toggleRevForm(rid);
   const r=RINKS.find(x=>x.id===rid);
-  if(document.getElementById('tb-community'))document.getElementById('tb-community').innerHTML=buildTabCommunity(r);
+  const revEl=document.getElementById('acc-'+rid+'-reviews');
+  if(revEl&&revEl.dataset.loaded==='true'){revEl.innerHTML=buildSectionReviews(r);attachPickers();}
 }
 
 async function upvoteRev(reviewId,rinkId){
@@ -3865,6 +4144,10 @@ function toggleAcc(id){
   const open=el.style.display==='none';
   el.style.display=open?'block':'none';
   if(chv)chv.style.transform=open?'rotate(90deg)':'';
+  if(open&&el.dataset.loaded==='false'&&el.dataset.section){
+    buildModalSection(el.dataset.section,parseInt(el.dataset.rink),el);
+    el.dataset.loaded='true';
+  }
 }
 
 async function fetchRinkWeather(lat,lng,elId){
@@ -4184,71 +4467,92 @@ function buildTabCommunity(r){
   return html;
 }
 
+const USA_HOCKEY_AFFILIATES = {
+  AK:{name:'Alaska State Hockey Association',url:'https://alaskastatehockey.com'},
+  AL:{name:'Southern Amateur Hockey Association (SAHA)',url:'https://sahaonline.org'},
+  AR:{name:'Southern Amateur Hockey Association (SAHA)',url:'https://sahaonline.org'},
+  AZ:{name:'Arizona Amateur Hockey Association',url:'https://azamateurhockey.org'},
+  CA:{name:'California Amateur Hockey Association',url:'https://caha.com'},
+  CO:{name:'Colorado Amateur Hockey Association (CAHA)',url:'https://coloradohockey.org'},
+  CT:{name:'Connecticut Hockey Conference',url:'https://chchockey.org'},
+  DC:{name:'Potomac Valley Amateur Hockey Association (PVAHA)',url:'https://pvaha.org'},
+  DE:{name:'Atlantic Amateur Hockey Association',url:'https://atlantic-district.org'},
+  FL:{name:'Statewide Amateur Hockey of Florida',url:'https://sahofhockey.org'},
+  GA:{name:'Southern Amateur Hockey Association (SAHA)',url:'https://sahaonline.org'},
+  HI:{name:'California Amateur Hockey Association (Hawaii)',url:'https://caha.com'},
+  IA:{name:'Midwest Amateur Hockey Association (MWAHA)',url:'https://tristatehockey.com'},
+  ID:{name:'Idaho Amateur Hockey Association',url:'https://idahoamateurhockey.com'},
+  IL:{name:'Amateur Hockey Association of Illinois',url:'https://ahai.org'},
+  IN:{name:'Mid-American District Hockey (MidAm)',url:'https://midamhockey.com'},
+  KS:{name:'Midwest Amateur Hockey Association (MWAHA)',url:'https://tristatehockey.com'},
+  KY:{name:'Mid-American District Hockey (MidAm)',url:'https://midamhockey.com'},
+  LA:{name:'Southern Amateur Hockey Association (SAHA)',url:'https://sahaonline.org'},
+  MA:{name:'Massachusetts Hockey',url:'https://mahockey.org'},
+  MD:{name:'Potomac Valley Amateur Hockey Association (PVAHA)',url:'https://pvaha.org'},
+  ME:{name:'Maine Amateur Hockey Association',url:'https://meaha.com'},
+  MI:{name:'Michigan Amateur Hockey Association',url:'https://maha.org'},
+  MN:{name:'Minnesota Hockey',url:'https://minnesotahockey.org'},
+  MO:{name:'Missouri Hockey Inc',url:'https://missourihockey.org'},
+  MS:{name:'Southern Amateur Hockey Association (SAHA)',url:'https://sahaonline.org'},
+  NC:{name:'Carolina Amateur Hockey Association',url:'https://carolinahockey.org'},
+  ND:{name:'North Dakota Amateur Hockey Association',url:'https://ndaha.org'},
+  NE:{name:'Midwest Amateur Hockey Association (MWAHA)',url:'https://tristatehockey.com'},
+  NH:{name:'New Hampshire Amateur Hockey Association',url:'https://nhhockey.com'},
+  NJ:{name:'Atlantic Amateur Hockey Association',url:'https://atlantic-district.org'},
+  NM:{name:'Land of Enchantment Amateur Hockey Association',url:'https://newmexicohockey.org'},
+  NV:{name:'Nevada Amateur Hockey Association',url:'https://nevadahockey.org'},
+  NY:{name:'New York State Amateur Hockey Association',url:'https://nysaha.com'},
+  OH:{name:'Mid-American District Hockey (MidAm)',url:'https://midamhockey.com'},
+  OR:{name:'Oregon State Hockey Association',url:'https://oregonstatehockey.com'},
+  PA:{name:'Atlantic Amateur Hockey Association',url:'https://atlantic-district.org'},
+  RI:{name:'Rhode Island Amateur Hockey Association',url:'https://ri-hockey.org'},
+  SC:{name:'Carolina Amateur Hockey Association',url:'https://carolinahockey.org'},
+  SD:{name:'South Dakota Amateur Hockey Association',url:'https://sdaha.org'},
+  TN:{name:'Southern Amateur Hockey Association (SAHA)',url:'https://sahaonline.org'},
+  UT:{name:'Utah Amateur Hockey Association',url:'https://utah-hockey.com'},
+  VA:{name:'Potomac Valley Amateur Hockey Association (PVAHA)',url:'https://pvaha.org'},
+  VT:{name:'Vermont Amateur Hockey Association',url:'https://vermonthockey.org'},
+  WA:{name:'Pacific Northwest Amateur Hockey Association',url:'https://pnaha.com'},
+  WI:{name:'Wisconsin Amateur Hockey Association (WAHA)',url:'https://wahahockey.com'},
+  WV:{name:'Mid-American District Hockey (MidAm)',url:'https://midamhockey.com'},
+  WY:{name:'Wyoming Amateur Hockey Association',url:'https://wyohockey.org'},
+};
+
 function buildResourceLinks(r){
-  // State-specific governing body links
-  const stateOrgs = {
-    CO: [
-      {label:'Colorado Amateur Hockey (CAHA)',url:'https://www.coloradohockey.org',desc:'Leagues, standings, tournaments & player registration for Colorado'},
-      {label:'Colorado Hockey Officials (COHO)',url:'https://www.coloradohockeyofficials.com',desc:'Referee assignments and officiating info for CO'},
-    ],
-    WY: [
-      {label:'Wyoming Amateur Hockey (WAHA)',url:'https://www.wyominghockey.org',desc:'Governing body for amateur hockey in Wyoming'},
-    ],
-    UT: [
-      {label:'Utah Hockey Association (UHA)',url:'https://www.utahhockey.com',desc:'Youth and adult hockey leagues across Utah'},
-    ],
-    NE: [
-      {label:'Nebraska Hockey (NEHA)',url:'https://www.nebraskahockey.org',desc:'Youth and adult hockey leagues and tournaments in Nebraska'},
-    ],
-  };
-
-  const stateLinks = stateOrgs[r.state] || [];
-
-  const nationalLinks = [
-    {label:'USA Hockey',url:'https://www.usahockey.com',icon:'🇺🇸',desc:'National governing body — player registration, rules, development programs'},
-    {label:'My Hockey Rankings',url:'https://www.myhockeyrankings.com',icon:'📊',desc:'Team rankings, tournament results and schedules across North America'},
+  const aff=USA_HOCKEY_AFFILIATES[r.state];
+  const nationalLinks=[
+    {label:'USA Hockey',url:'https://www.usahockey.com',icon:'🇺🇸',desc:'National governing body — registration, rules, development programs'},
+    {label:'My Hockey Rankings',url:'https://www.myhockeyrankings.com',icon:'📊',desc:'Team rankings, tournament results and schedules'},
     {label:'LiveBarn Venue Search',url:'https://www.livebarn.com/venue-search',icon:'📹',desc:'Find out if this rink has live streaming cameras'},
     {label:'HockeyMonkey',url:'https://www.hockeymonkey.com',icon:'🛒',desc:'Online gear, team orders and equipment'},
   ];
-
-  let html = '<div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;overflow:hidden">';
-  html += '<div style="padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px">';
-  html += '<span style="font-size:1rem">🔗</span>';
-  html += '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:.85rem;font-weight:800;letter-spacing:.5px;color:var(--white)">Hockey Resources</div>';
-  html += '</div>';
-  html += '<div style="padding:12px 14px;display:flex;flex-direction:column;gap:6px">';
-
-  // State orgs first
-  if(stateLinks.length){
-    html += '<div style="font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:2px">' + r.state + ' Governing Body</div>';
-    stateLinks.forEach(link => {
-      html += `<a href="${link.url}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;background:rgba(91,184,245,.06);border:1px solid rgba(91,184,245,.15);border-radius:8px;text-decoration:none">
-        <div>
-          <div style="font-size:.78rem;font-weight:700;color:var(--ice)">${link.label}</div>
-          <div style="font-size:.68rem;color:var(--muted);margin-top:1px">${link.desc}</div>
-        </div>
-        <span style="font-size:.7rem;color:var(--ice);flex-shrink:0">↗</span>
-      </a>`;
-    });
-    html += '<div style="margin-top:4px"></div>';
+  let html='<div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;overflow:hidden">';
+  html+='<div style="padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px">';
+  html+='<span style="font-size:1rem">🔗</span>';
+  html+='<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:.85rem;font-weight:800;letter-spacing:.5px;color:var(--white)">Hockey Resources</div>';
+  html+='</div>';
+  html+='<div style="padding:12px 14px;display:flex;flex-direction:column;gap:6px">';
+  if(aff){
+    html+='<div style="font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:2px">'+r.state+' Governing Body</div>';
+    html+='<a href="https://'+aff.url+'" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;background:rgba(91,184,245,.06);border:1px solid rgba(91,184,245,.15);border-radius:8px;text-decoration:none">'
+      +'<div><div style="font-size:.78rem;font-weight:700;color:var(--ice)">'+aff.name+'</div>'
+      +'<div style="font-size:.68rem;color:var(--muted);margin-top:1px">Leagues, registration &amp; tournaments in '+r.state+'</div></div>'
+      +'<span style="font-size:.7rem;color:var(--ice);flex-shrink:0">↗</span>'
+      +'</a>';
+    html+='<div style="margin-top:4px"></div>';
   }
-
-  // National links
-  html += '<div style="font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:2px">National Resources</div>';
-  nationalLinks.forEach(link => {
-    html += `<a href="${link.url}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;text-decoration:none">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:.9rem">${link.icon}</span>
-        <div>
-          <div style="font-size:.78rem;font-weight:600;color:var(--white)">${link.label}</div>
-          <div style="font-size:.68rem;color:var(--muted);margin-top:1px">${link.desc}</div>
-        </div>
-      </div>
-      <span style="font-size:.7rem;color:var(--muted);flex-shrink:0">↗</span>
-    </a>`;
+  html+='<div style="font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:2px">National Resources</div>';
+  nationalLinks.forEach(link=>{
+    html+='<a href="'+link.url+'" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;text-decoration:none">'
+      +'<div style="display:flex;align-items:center;gap:8px">'
+      +'<span style="font-size:.9rem">'+link.icon+'</span>'
+      +'<div><div style="font-size:.78rem;font-weight:600;color:var(--white)">'+link.label+'</div>'
+      +'<div style="font-size:.68rem;color:var(--muted);margin-top:1px">'+link.desc+'</div></div>'
+      +'</div>'
+      +'<span style="font-size:.7rem;color:var(--muted);flex-shrink:0">↗</span>'
+      +'</a>';
   });
-
-  html += '</div></div>';
+  html+='</div></div>';
   return html;
 }
 
