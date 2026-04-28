@@ -1,5 +1,7 @@
-const CACHE = 'trl-v1';
+const CACHE = 'trl-v2';
 
+// Only cache local assets — no external CDN URLs.
+// External URLs (Leaflet, etc.) are cached lazily on first use via the fetch handler.
 const PRECACHE = [
   '/',
   '/index.html',
@@ -9,18 +11,17 @@ const PRECACHE = [
   '/apple-touch-icon.png',
   '/icon-512x512.png',
   '/site.webmanifest',
-  'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css',
-  'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',
 ];
 
-// Pre-cache static assets on install
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(PRECACHE)).then(() => self.skipWaiting())
+    caches.open(CACHE)
+      .then(c => c.addAll(PRECACHE))
+      .then(() => self.skipWaiting())
+      .catch(() => self.skipWaiting())
   );
 });
 
-// Remove old caches on activate
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
@@ -30,15 +31,19 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
+  // Only handle GET requests
+  if (e.request.method !== 'GET') return;
+
   const url = e.request.url;
 
-  // Network-only: zip lookup, analytics, third-party scripts
+  // Network-only: analytics, zip lookup, Supabase auth endpoints, CDN edge scripts
   if (
     url.includes('zippopotam.us') ||
     url.includes('googletagmanager') ||
     url.includes('convertkit') ||
     url.includes('cdn-cgi')
   ) {
+    e.respondWith(fetch(e.request));
     return;
   }
 
@@ -47,25 +52,45 @@ self.addEventListener('fetch', e => {
     e.respondWith(
       fetch(e.request)
         .then(res => {
-          const clone = res.clone();
-          caches.open(CACHE).then(c => c.put(e.request, clone));
+          try {
+            const clone = res.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone));
+          } catch (_) {}
           return res;
         })
-        .catch(() => caches.match(e.request))
+        .catch(() => caches.match(e.request).then(r => r || Response.error()))
     );
     return;
   }
 
-  // Cache-first: everything else (local assets, Leaflet CDN, Google Fonts)
+  // Network-first for HTML navigation requests — ensures fresh page on deploy
+  if (e.request.mode === 'navigate') {
+    e.respondWith(
+      fetch(e.request)
+        .then(res => {
+          try {
+            const clone = res.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone));
+          } catch (_) {}
+          return res;
+        })
+        .catch(() => caches.match(e.request).then(r => r || caches.match('/index.html')))
+    );
+    return;
+  }
+
+  // Cache-first: static assets and CDN resources (Leaflet, Google Fonts, etc.)
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
       return fetch(e.request).then(res => {
         if (!res || res.status !== 200 || res.type === 'opaque') return res;
-        const clone = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
+        try {
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        } catch (_) {}
         return res;
-      });
+      }).catch(() => Response.error());
     })
   );
 });
