@@ -2145,7 +2145,7 @@ async function sbFetch(path, method='GET', body=null){
   return text ? JSON.parse(text) : [];
 }
 
-let reviews={},upvoted=new Set(),favorites=new Set(),homeRink=null;
+let reviews={},rinkTipsCache={},upvoted=new Set(),favorites=new Set(),homeRink=null;
 let activeState='all',activeRegion='all',activeType='all',filterOpen=false,filterFavs=false,nearbyFilter='all';
 let currentRinkId=null,selMapRink=null,_modalRink=null;
 
@@ -2941,7 +2941,7 @@ function openModal(id){
   buildModal(r);
   document.getElementById('modal-ov').classList.add('open');
   document.body.style.overflow='hidden';
-  loadDBReviews(id);
+  prefetchRinkData(id);
 }
 
 function buildModal(r){
@@ -3156,7 +3156,13 @@ function buildSectionAmenities(r){
   html+='<div style="margin-top:4px;padding-top:10px;border-top:1px solid var(--border)">'
     +'<div style="font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">🧥 What to Wear</div>'
     +'<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:'+(wearRvs.length?'10':'0')+'px">'+tips.map(t=>'<div style="font-size:.78rem;color:var(--muted);line-height:1.5">'+t+'</div>').join('')+'</div>'
-    +(wearRvs.length?'<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px">'+wearRvs.slice(0,3).map(x=>'<div style="background:rgba(91,184,245,.05);border:1px solid rgba(91,184,245,.15);border-radius:8px;padding:8px 12px;font-size:.75rem;color:var(--muted);line-height:1.5"><span style="color:var(--ice);font-weight:700">'+x.name+':</span> '+x.wear+'</div>').join('')+'</div>':'')
+    +(()=>{
+      const allTips=[
+        ...wearRvs.slice(0,3).map(x=>({name:x.name,text:x.wear})),
+        ...(rinkTipsCache[r.id]||[]).slice(0,3).map(t=>({name:t.name,text:t.tip}))
+      ];
+      return allTips.length?'<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px">'+allTips.map(x=>'<div style="background:rgba(91,184,245,.05);border:1px solid rgba(91,184,245,.15);border-radius:8px;padding:8px 12px;font-size:.75rem;color:var(--muted);line-height:1.5"><span style="color:var(--ice);font-weight:700">'+x.name+':</span> '+x.text+'</div>').join('')+'</div>':'';
+    })()
     +'<button class="write-btn" style="width:100%" onclick="toggleWearForm2('+r.id+')">✏️ Share Insider Tip</button>'
     +'<div class="rev-form" id="wf2-'+r.id+'">'
     +'<div class="form-title">What should families wear &amp; bring?</div>'
@@ -3556,28 +3562,57 @@ async function loadDBTips(rid){
   }catch(e){ el.innerHTML=''; }
 }
 
+async function prefetchRinkData(id){
+  try{
+    const [reviewRows,tipRows]=await Promise.all([
+      sbFetch('Reviews?rink_id=eq.'+id+'&pending=eq.false&order=id.desc'),
+      sbFetch('rinkTips?rink_id=eq.'+id+'&pending=eq.false&order=id.desc')
+    ]);
+    // Merge reviews into local state
+    const existing=(reviews[id]||[]).filter(x=>x.pending);
+    reviews[id]=[...reviewRows.map(row=>({
+      id:row.id,
+      name:row.reviewer_name||row.name||'Anonymous',
+      role:row.role,
+      date:row.date,
+      overall:row.overall,
+      cats:typeof row.cats==='string'?JSON.parse(row.cats||'{}'):(row.cats||{}),
+      text:row.review_text||row.text||'',
+      upvotes:row.upvotes||0,
+      pending:false
+    })),...existing];
+    // Cache tips by rink id
+    rinkTipsCache[id]=tipRows;
+    // Refresh sections that are already open
+    const r=RINKS.find(x=>x.id===id);
+    if(!r)return;
+    const revEl=document.getElementById('acc-'+id+'-reviews');
+    if(revEl&&revEl.dataset.loaded==='true'){revEl.innerHTML=buildSectionReviews(r);attachPickers();}
+    const amenEl=document.getElementById('acc-'+id+'-fac');
+    if(amenEl&&amenEl.dataset.loaded==='true')amenEl.innerHTML=buildSectionAmenities(r);
+  }catch(e){console.warn('prefetchRinkData error:',e.message);}
+}
+
 async function loadDBReviews(rid){
   try{
-    const rows = await sbFetch('Reviews?rink_id=eq.'+rid+'&pending=eq.false&order=id.desc');
-    if(!rows.length) return;
-    // Merge into local reviews object (map Supabase field names to local names)
-    const existing = (reviews[rid]||[]).filter(x=>x.pending); // keep pending local ones
-    reviews[rid] = [...rows.map(r=>({
-      id: r.id,
-      name: r.reviewer_name||r.name||'Anonymous',
-      role: r.role,
-      date: r.date,
-      overall: r.overall,
-      cats: typeof r.cats==='string'?JSON.parse(r.cats||'{}'):(r.cats||{}),
-      text: r.review_text||r.text||'',
-      upvotes: r.upvotes||0,
-      pending: false
-    })), ...existing];
-    // Refresh reviews section if already expanded
-    const el = document.getElementById('acc-'+rid+'-reviews');
-    const r = RINKS.find(x=>x.id===rid);
-    if(el && r && el.dataset.loaded==='true') el.innerHTML = buildSectionReviews(r);
-  }catch(e){ console.warn('loadDBReviews error:',e.message); }
+    const rows=await sbFetch('Reviews?rink_id=eq.'+rid+'&pending=eq.false&order=id.desc');
+    if(!rows.length)return;
+    const existing=(reviews[rid]||[]).filter(x=>x.pending);
+    reviews[rid]=[...rows.map(row=>({
+      id:row.id,
+      name:row.reviewer_name||row.name||'Anonymous',
+      role:row.role,
+      date:row.date,
+      overall:row.overall,
+      cats:typeof row.cats==='string'?JSON.parse(row.cats||'{}'):(row.cats||{}),
+      text:row.review_text||row.text||'',
+      upvotes:row.upvotes||0,
+      pending:false
+    })),...existing];
+    const el=document.getElementById('acc-'+rid+'-reviews');
+    const r=RINKS.find(x=>x.id===rid);
+    if(el&&r&&el.dataset.loaded==='true'){el.innerHTML=buildSectionReviews(r);attachPickers();}
+  }catch(e){console.warn('loadDBReviews error:',e.message);}
 }
 
 
