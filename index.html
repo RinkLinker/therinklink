@@ -183,6 +183,15 @@ nav{position:fixed;top:38px;left:0;right:0;z-index:199;display:flex;align-items:
 .leaflet-popup-pane{z-index:700!important}.leaflet-popup{z-index:700!important}.leaflet-popup-content-wrapper{background:#0d1a35!important;border:1px solid rgba(168,212,245,.25)!important;border-radius:10px!important;color:#fff!important;box-shadow:0 8px 32px rgba(0,0,0,.6)!important;padding:0!important}.leaflet-popup-content{margin:14px 16px!important;color:#fff!important}.leaflet-popup-tip{background:#0d1a35!important}.leaflet-popup-close-button{color:#94a3b8!important;font-size:18px!important;top:8px!important;right:10px!important}
 .mtt-name{font-family:\'Barlow Condensed\',sans-serif;font-size:.92rem;font-weight:700;margin-bottom:3px}.mtt-city{font-size:.72rem;color:var(--muted);margin-bottom:6px}.mtt-row{display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--muted);margin-bottom:3px}
 #co-map{width:100%;height:100%}.rink-pin{cursor:pointer}
+.map-legend{position:absolute;bottom:40px;right:12px;z-index:400;background:rgba(6,13,31,.93);border:1px solid rgba(168,212,245,.2);border-radius:10px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);min-width:152px;pointer-events:auto}
+.legend-toggle{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;background:none;border:none;color:rgba(168,212,245,.9);font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:9px 12px;cursor:pointer;white-space:nowrap}
+.legend-body{padding:0 12px 10px}
+.legend-sec-lbl{font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(168,212,245,.38);margin-bottom:5px;margin-top:2px}
+.legend-row{display:flex;align-items:center;gap:7px;margin-bottom:3px}
+.legend-dot{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(0,0,0,.3);flex-shrink:0}
+.legend-lbl{font-size:.71rem;color:rgba(240,244,255,.85);white-space:nowrap}
+.legend-divider{border-top:1px solid rgba(168,212,245,.1);margin:7px 0}
+@media(max-width:600px){.legend-body{display:none}.map-legend{bottom:12px;right:8px}}
 .overlay{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(3,8,20,.9);z-index:300;display:flex;align-items:center;justify-content:center;padding:14px;opacity:0;pointer-events:none;transition:opacity .25s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}.overlay.open{opacity:1;pointer-events:all}
 .modal{background:var(--navy2);border:1px solid var(--border2);border-radius:13px;width:100%;max-width:760px;max-height:92vh;overflow-y:auto;transform:translateY(16px);transition:transform .25s;scrollbar-width:thin;scrollbar-color:var(--steel) transparent}.overlay.open .modal{transform:translateY(0)}
 .mhead{padding:24px 30px 17px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;position:sticky;top:0;background:var(--navy2);z-index:3}
@@ -845,7 +854,28 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         <div class="toolbar" style="margin-bottom:16px">
           <select id="region-map-state-select" onchange="setRegionMapState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
         </div>
-        <div id="region-leaflet-map" style="height:70vh;min-height:480px;border-radius:12px;border:1px solid var(--border2);position:relative;z-index:0"></div>
+        <div style="position:relative">
+          <div id="region-leaflet-map" style="height:70vh;min-height:480px;border-radius:12px;border:1px solid var(--border2);position:relative;z-index:0"></div>
+          <div class="map-legend">
+            <button class="legend-toggle" onclick="toggleMapLegend()">🗺 Legend <span id="legend-chv">▼</span></button>
+            <div id="legend-body">
+              <div class="legend-sec-lbl">Region</div>
+              <div class="legend-row"><div class="legend-dot" style="background:#a8d4f5"></div><span class="legend-lbl">Denver Metro</span></div>
+              <div class="legend-row"><div class="legend-dot" style="background:#f5a8a8"></div><span class="legend-lbl">Colorado Springs</span></div>
+              <div class="legend-row"><div class="legend-dot" style="background:#a8f5c0"></div><span class="legend-lbl">N. Colorado</span></div>
+              <div class="legend-row"><div class="legend-dot" style="background:#f5e6a8"></div><span class="legend-lbl">Mountain</span></div>
+              <div class="legend-row"><div class="legend-dot" style="background:#d4a8f5"></div><span class="legend-lbl">W. Colorado</span></div>
+              <div class="legend-row"><div class="legend-dot" style="background:#f5c8a8"></div><span class="legend-lbl">S. Colorado</span></div>
+              <div class="legend-row"><div class="legend-dot" style="background:#a8eef5"></div><span class="legend-lbl">Wyoming</span></div>
+              <div class="legend-row"><div class="legend-dot" style="background:#f5a8d4"></div><span class="legend-lbl">Utah</span></div>
+              <div class="legend-row"><div class="legend-dot" style="background:#c8f5a8"></div><span class="legend-lbl">Nebraska</span></div>
+              <div class="legend-divider"></div>
+              <div class="legend-sec-lbl">Rink Type</div>
+              <div class="legend-row"><span style="font-size:.88rem;line-height:1">🏒</span><span class="legend-lbl">Indoor Rink</span></div>
+              <div class="legend-row"><span style="font-size:.88rem;line-height:1">❄️</span><span class="legend-lbl">Outdoor Rink</span></div>
+            </div>
+          </div>
+        </div>
         <div style="font-size:.72rem;color:var(--muted);margin-top:8px;text-align:center">Tap any pin to see rink details · Map data © OpenStreetMap contributors</div>
       </div>
     </div>
@@ -2589,6 +2619,14 @@ function renderRegions(){
 }
 
 function renderMap(){renderRegions();}
+function toggleMapLegend(){
+  const b=document.getElementById('legend-body');
+  const c=document.getElementById('legend-chv');
+  if(!b)return;
+  const show=b.style.display==='none'||b.style.display==='';
+  b.style.display=show?'block':'none';
+  if(c)c.textContent=show?'▲':'▼';
+}
 
 function renderFavs(){
   const out=document.getElementById('favs-content');
