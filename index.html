@@ -214,6 +214,7 @@ nav{position:fixed;top:38px;left:0;right:0;z-index:199;display:flex;align-items:
 .rev-text{font-size:.84rem;color:var(--muted);line-height:1.6;margin-bottom:10px;font-style:italic}
 .upvote-btn{display:flex;align-items:center;gap:5px;background:transparent;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:5px;font-size:.71rem;font-weight:600;cursor:pointer;transition:all .2s}.upvote-btn:hover,.upvote-btn.voted{border-color:var(--ice);color:var(--ice);background:rgba(168,212,245,.05)}
 .write-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,212,245,.07);border:1px solid rgba(168,212,245,.2);color:var(--ice);padding:10px 19px;border-radius:7px;font-family:\'Barlow Condensed\',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;margin-bottom:19px}.write-btn:hover{background:rgba(168,212,245,.12)}
+.role-btn{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:9px;color:var(--muted);font-family:\'Barlow Condensed\',sans-serif;font-size:.88rem;font-weight:700;padding:13px 6px;cursor:pointer;transition:all .15s;text-align:center;line-height:1.3}.role-btn.active{background:rgba(91,184,245,.13);border-color:rgba(91,184,245,.45);color:var(--ice)}.role-btn:hover:not(.active){background:rgba(255,255,255,.08);color:var(--white)}
 .rev-form{background:var(--card);border:1px solid rgba(168,212,245,.16);border-radius:9px;padding:19px;margin-bottom:20px;display:none}.rev-form.open{display:block}
 .form-title{font-family:\'Barlow Condensed\',sans-serif;font-size:.97rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:15px}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:2px}.fgrp{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
@@ -3577,6 +3578,11 @@ async function prefetchRinkData(id){
       date:row.date,
       overall:row.overall,
       cats:typeof row.cats==='string'?JSON.parse(row.cats||'{}'):(row.cats||{}),
+      seating_comfort:row.seating_comfort,
+      warmth:row.warmth,
+      viewing_quality:row.viewing_quality,
+      concessions:row.concessions,
+      kid_friendly:row.kid_friendly,
       text:row.review_text||row.text||'',
       upvotes:row.upvotes||0,
       pending:false
@@ -3742,29 +3748,52 @@ function buildRevTab(r){
     +'<div class="cat-bars">'+cats.map(c=>'<div class="cbrow"><div class="cb-lbl">'+catL[c]+'</div><div class="cbtrack"><div class="cbfill" style="width:'+(catA[c]?catA[c]/5*100:0)+'%"></div></div><div class="cb-score">'+(catA[c]?catA[c].toFixed(1):'--')+'</div></div>').join('')+'</div>'
     +'</div>':'';
 
+  const starPicker=(pid,small)=>{
+    const cls=small?'cs':'sp';
+    const fn=small?'setCatStar':'setStar';
+    return '<div class="'+(small?'cpicker':'spicker')+'" id="'+pid+'" data-val="0">'
+      +[1,2,3,4,5].map(i=>'<span class="'+cls+'" data-val="'+i+'" onclick="'+fn+'(\''+pid+'\','+i+')">&#9733;</span>').join('')
+      +'</div>';
+  };
+  const pcCats=[{k:'ice',l:'Ice Quality'},{k:'parking',l:'Parking'},{k:'amenities',l:'Amenities'},{k:'locker',l:'Locker Rooms'},{k:'food',l:'Food'}];
+  const specCats=[{k:'sc',l:'Seating Comfort'},{k:'warmth',l:'Warmth'},{k:'vq',l:'Viewing Quality'},{k:'conc',l:'Concessions'},{k:'kf',l:'Kid Friendly'}];
   html+='<button class="write-btn" onclick="toggleRevForm('+r.id+')">&#x270F; Write a Review</button>'
     +'<div class="rev-form" id="rf-'+r.id+'">'
-    +'<div class="form-title">Leave a Review</div>'
-    +'<div class="frow">'
-    +'<div class="fgrp"><label class="flbl">Your Name</label><input class="finput" type="text" id="rn-'+r.id+'" placeholder="e.g. Mike T."/></div>'
-    +'<div class="fgrp"><label class="flbl">Role</label><select class="finput" id="rr-'+r.id+'" onchange="toggleSpectatorSection('+r.id+', this.value)"><option>Hockey Parent</option><option>Player</option><option>Coach</option><option>Hockey Fan</option><option>Hockey Fan / Spectator</option></select></div>'
-    +'</div>'
-    +'<div id="spec-'+r.id+'" style="display:none;background:rgba(91,184,245,.05);border:1px solid rgba(91,184,245,.15);border-radius:8px;padding:10px 12px;margin-bottom:4px">'
-    +'<div class="fgrp" style="margin-bottom:6px"><label class="flbl">Spectator Experience</label>'
-    +'<div class="spicker" id="ssp-'+r.id+'" data-val="0">'+[1,2,3,4,5].map(i=>'<span class="sp" data-val="'+i+'" onclick="setStar(\'ssp-'+r.id+'\','+i+')">&#9733;</span>').join('')+'</div>'
-    +'</div>'
-    +'<div class="fgrp" style="margin-bottom:0"><label class="flbl">Spectator Notes <span style="color:var(--muted);font-weight:400">(optional)</span></label>'
-    +'<textarea class="finput" id="sst-'+r.id+'" placeholder="Seating, sightlines, warmth, accessibility..."></textarea>'
-    +'</div>'
-    +'</div>'
+    +'<input type="hidden" id="role-val-'+r.id+'" value="">'
+    +'<div class="form-title">Write a Review</div>'
+    +'<div class="fgrp" style="margin-bottom:16px">'
+    +'<div class="flbl" style="margin-bottom:8px">I am a&#8230;</div>'
+    +'<div style="display:flex;gap:8px">'
+    +'<button class="role-btn" id="rbtn-player-'+r.id+'" onclick="selectReviewRole('+r.id+',\'player\')">🏒<br>Player</button>'
+    +'<button class="role-btn" id="rbtn-coach-'+r.id+'" onclick="selectReviewRole('+r.id+',\'coach\')">🎽<br>Coach</button>'
+    +'<button class="role-btn" id="rbtn-spectator-'+r.id+'" onclick="selectReviewRole('+r.id+',\'spectator\')">👀<br>Spectator</button>'
+    +'</div></div>'
+    +'<div id="ratings-step-'+r.id+'" style="display:none">'
+    // Player / Coach category ratings
+    +'<div id="pc-ratings-'+r.id+'" style="display:none">'
+    +'<div class="fgrp"><div class="flbl" style="margin-bottom:7px">Rate the Rink</div>'
+    +'<div class="cat-grid">'
+    +pcCats.map(c=>'<div class="citem"><div class="clbl">'+c.l+'</div>'+starPicker('cp-'+c.k+'-'+r.id,true)+'</div>').join('')
+    +'</div></div></div>'
+    // Spectator category ratings
+    +'<div id="spec-ratings-'+r.id+'" style="display:none">'
+    +'<div class="fgrp"><div class="flbl" style="margin-bottom:7px">Rate Your Experience</div>'
+    +'<div class="cat-grid">'
+    +specCats.map(c=>'<div class="citem"><div class="clbl">'+c.l+'</div>'+starPicker('cp-'+c.k+'-'+r.id,true)+'</div>').join('')
+    +'</div></div></div>'
+    // Overall — all roles
     +'<div class="fgrp"><label class="flbl">Overall Rating</label>'
-    +'<div class="spicker" id="sp-'+r.id+'" data-val="0">'+[1,2,3,4,5].map(i=>'<span class="sp" data-val="'+i+'" onclick="setStar(\'sp-'+r.id+'\','+i+')">&#9733;</span>').join('')+'</div></div>'
-    +'<div class="fgrp"><label class="flbl">Rate Categories</label>'
-    +'<div class="cat-grid">'+cats.map(c=>'<div class="citem"><div class="clbl">'+catL[c]+'</div><div class="cpicker" id="cp-'+c+'-'+r.id+'" data-val="0">'+[1,2,3,4,5].map(i=>'<span class="cs" data-val="'+i+'" onclick="setCatStar(\'cp-'+c+'-'+r.id+'\','+i+')">&#9733;</span>').join('')+'</div></div>').join('')+'</div></div>'
-    +'<div class="fgrp"><label class="flbl">Your Review</label><textarea class="finput" id="rt-'+r.id+'" placeholder="Share your experience - ice quality, temperature, parking, family-friendliness..."></textarea></div>'
-    +'<div class="factions"><button class="fsub" onclick="submitReview('+r.id+')">Submit Review</button><button class="fcan" onclick="toggleRevForm('+r.id+')">Cancel</button></div>'
-    +'<div class="fnote">Reviews are open and moderated before appearing publicly.</div>'
-    +'</div>';
+    +starPicker('sp-'+r.id,false)+'</div>'
+    // Name + review text
+    +'<div class="fgrp"><label class="flbl">Your Name</label>'
+    +'<input class="finput" type="text" id="rn-'+r.id+'" placeholder="e.g. Mike T."/></div>'
+    +'<div class="fgrp"><label class="flbl">Your Review</label>'
+    +'<textarea class="finput" id="rt-'+r.id+'" rows="3" placeholder="Share your experience at this rink..."></textarea></div>'
+    +'<div class="factions"><button class="fsub" onclick="submitReview('+r.id+')">Submit Review</button>'
+    +'<button class="fcan" onclick="toggleRevForm('+r.id+')">Cancel</button></div>'
+    +'<div class="fnote">Reviews are moderated before appearing publicly.</div>'
+    +'</div>'  // close ratings-step
+    +'</div>'; // close rev-form
 
   if(!approved.length) html+='<div style="color:var(--muted);padding:22px 0;text-align:center">No reviews yet - be the first!</div>';
   html+='<div class="rev-list">'+approved.map(rv=>buildRevCard(rv)).join('')+'</div>';
@@ -3774,12 +3803,22 @@ function buildRevTab(r){
 
 function buildRevCard(rv){
   const voted=upvoted.has(rv.id);
-  const cL={ice:'Ice',parking:'Parking',amenities:'Amenities',locker:'Locker',food:'Food'};
-  const cH=rv.cats?Object.entries(rv.cats).map(([k,v])=>'<div class="rev-cat"><span>'+(cL[k]||k)+'</span><div style="display:flex;gap:1px">'+[1,2,3,4,5].map(i=>'<span style="font-size:.59rem;color:'+(i<=v?'var(--gold)':'#2a3a5a')+'">&#9733;</span>').join('')+'</div></div>').join(''):'';
+  const pcL={ice:'Ice',parking:'Parking',amenities:'Amenities',locker:'Locker',food:'Food'};
+  const specL={seating_comfort:'Seating',warmth:'Warmth',viewing_quality:'Sightlines',concessions:'Concessions',kid_friendly:'Kid Friendly'};
+  const isSpec=rv.role==='spectator'||rv.role==='Spectator'||rv.role==='Hockey Fan / Spectator';
+  const miniStars=v=>'<div style="display:flex;gap:1px">'+[1,2,3,4,5].map(i=>'<span style="font-size:.59rem;color:'+(i<=v?'var(--gold)':'#2a3a5a')+'">&#9733;</span>').join('')+'</div>';
+  let cH='';
+  if(isSpec){
+    ['seating_comfort','warmth','viewing_quality','concessions','kid_friendly'].forEach(k=>{
+      if(rv[k])cH+='<div class="rev-cat"><span>'+(specL[k])+'</span>'+miniStars(rv[k])+'</div>';
+    });
+  }else if(rv.cats&&Object.keys(rv.cats).length){
+    cH=Object.entries(rv.cats).map(([k,v])=>'<div class="rev-cat"><span>'+(pcL[k]||k)+'</span>'+miniStars(v)+'</div>').join('');
+  }
   return '<div class="rev-card">'
     +'<div class="rev-top"><div><div class="rev-name">'+rv.name+' <span style="font-weight:400;font-size:.74rem;color:var(--muted)">&middot; '+rv.role+'</span></div><div class="rev-date">'+rv.date+'</div></div>'
     +'<div style="display:flex;gap:2px">'+[1,2,3,4,5].map(i=>'<span style="font-size:.78rem;color:'+(i<=rv.overall?'var(--gold)':'#2a3a5a')+'">&#9733;</span>').join('')+'</div></div>'
-    +'<div class="rev-cats">'+cH+'</div>'
+    +(cH?'<div class="rev-cats">'+cH+'</div>':'')
     +'<div class="rev-text">"'+rv.text+'"</div>'
     +'<button class="upvote-btn'+(voted?' voted':'')+'" onclick="upvoteRev(\''+rv.id+'\','+currentRinkId+')" id="ub-'+rv.id+'">&#x1F44D; Helpful <span id="uc-'+rv.id+'">'+(rv.upvotes||0)+'</span></button>'
     +'</div>';
@@ -3796,42 +3835,63 @@ function attachPickers(){
 }
 
 function toggleRevForm(rid){document.getElementById('rf-'+rid).classList.toggle('open');}
-function toggleSpectatorSection(rid,role){const sec=document.getElementById('spec-'+rid);if(sec)sec.style.display=role==='Hockey Fan / Spectator'?'block':'none';}
+function selectReviewRole(rid,role){
+  const inp=document.getElementById('role-val-'+rid);
+  if(inp)inp.value=role;
+  ['player','coach','spectator'].forEach(r=>{
+    const btn=document.getElementById('rbtn-'+r+'-'+rid);
+    if(btn)btn.classList.toggle('active',r===role);
+  });
+  const step=document.getElementById('ratings-step-'+rid);
+  if(step)step.style.display='block';
+  const isPC=role==='player'||role==='coach';
+  const pc=document.getElementById('pc-ratings-'+rid);
+  const sp=document.getElementById('spec-ratings-'+rid);
+  if(pc)pc.style.display=isPC?'block':'none';
+  if(sp)sp.style.display=isPC?'none':'block';
+  const ta=document.getElementById('rt-'+rid);
+  if(ta)ta.placeholder=isPC
+    ?'How was the ice? Describe parking, locker rooms, food nearby...'
+    :'How was the seating, sightlines, warmth? Good for families with kids?';
+}
 
 async function submitReview(rid){
-  const name=document.getElementById('rn-'+rid).value.trim();
-  const role=document.getElementById('rr-'+rid).value;
-  const text=document.getElementById('rt-'+rid).value.trim();
-  const overall=parseInt(document.getElementById('sp-'+rid).dataset.val);
+  const role=document.getElementById('role-val-'+rid)?.value||'';
+  const name=(document.getElementById('rn-'+rid)?.value||'').trim();
+  const text=(document.getElementById('rt-'+rid)?.value||'').trim();
+  const overall=parseInt(document.getElementById('sp-'+rid)?.dataset.val||0);
+  if(!role){toast('Please select your role');return;}
   if(!name){toast('Please enter your name');return;}
-  if(!overall){toast('Please select a rating');return;}
+  if(!overall){toast('Please select an overall rating');return;}
   if(!text){toast('Please write a review');return;}
-  const cats={};
-  ['ice','parking','amenities','locker','food'].forEach(c=>{const el=document.getElementById('cp-'+c+'-'+rid);if(el){const v=parseInt(el.dataset.val||0);if(v)cats[c]=v;}});
   const now=new Date(),months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const rv={id:'r'+Date.now(),name,role,text,overall,cats,date:months[now.getMonth()]+' '+now.getFullYear(),upvotes:0,pending:true};
+  const date=months[now.getMonth()]+' '+now.getFullYear();
+  const rinkName=(RINKS.find(x=>x.id===rid)||{}).name||'';
+  const payload={rink_id:rid,rink_name:rinkName,reviewer_name:name,role,overall,review_text:text,pending:true,date,upvotes:0};
+  let cats={};
+  if(role==='player'||role==='coach'){
+    ['ice','parking','amenities','locker','food'].forEach(c=>{
+      const el=document.getElementById('cp-'+c+'-'+rid);
+      if(el){const v=parseInt(el.dataset.val||0);if(v)cats[c]=v;}
+    });
+    if(Object.keys(cats).length)payload.cats=JSON.stringify(cats);
+  }else{
+    const specMap={seating_comfort:'sc',warmth:'warmth',viewing_quality:'vq',concessions:'conc',kid_friendly:'kf'};
+    Object.entries(specMap).forEach(([col,pfx])=>{
+      const el=document.getElementById('cp-'+pfx+'-'+rid);
+      if(el){const v=parseInt(el.dataset.val||0);if(v)payload[col]=v;}
+    });
+  }
+  const rv={id:'r'+Date.now(),name,role,text,overall,cats,date,upvotes:0,pending:true};
   if(!reviews[rid])reviews[rid]=[];
   reviews[rid].push(rv);
   await saveRev();
-  // Save to Supabase
   try{
-    const result = await sbFetch('Reviews', 'POST', {
-      rink_id: rid,
-      rink_name: (RINKS.find(r=>r.id===rid)||{}).name || '',
-      reviewer_name: rv.name,
-      role: rv.role,
-      review_text: rv.text,
-      overall: rv.overall,
-      date: rv.date,
-      upvotes: 0,
-      pending: true,
-      cats: rv.cats ? JSON.stringify(rv.cats) : null,
-    });
-    console.log('Supabase insert result:', result);
+    await sbFetch('Reviews','POST',payload);
     toast('✅ Review submitted! Pending moderation.');
   }catch(e){
-    console.error('Supabase insert failed:', e);
-    toast('⚠️ Submit error: ' + e.message);
+    console.error('Supabase insert failed:',e);
+    toast('⚠️ Submit error: '+e.message);
     return;
   }
   toggleRevForm(rid);
