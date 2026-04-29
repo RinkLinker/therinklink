@@ -965,16 +965,28 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         </div>
       </div>
 
-      <div class="toolbar">
-        <div class="search-wrap">
-          <input class="search-input" type="text" placeholder="Search rinks or cities..." id="snp-search" oninput="renderSNP()"/>
-          <span class="search-icon">🔍</span>
+      <div style="margin-bottom:20px">
+        <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center">
+          <div class="search-wrap" style="flex:1;min-width:140px;max-width:220px">
+            <input class="search-input" type="text" placeholder="ZIP code" id="snp-zip" maxlength="5" inputmode="numeric" onkeydown="if(event.key==='Enter')runIceZipSearch('snp',renderSNP)"/>
+            <span class="search-icon">📍</span>
+          </div>
+          <select id="snp-radius" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none">
+            <option value="10">10 mi</option>
+            <option value="25" selected>25 mi</option>
+            <option value="50">50 mi</option>
+            <option value="100">100 mi</option>
+          </select>
+          <button id="snp-zip-btn" class="btn btn-sm" onclick="runIceZipSearch('snp',renderSNP)" style="white-space:nowrap">Find Nearby</button>
+          <button id="snp-clear-btn" class="btn btn-ghost btn-sm" onclick="clearIceZip('snp',renderSNP)" style="display:none;white-space:nowrap">✕ Clear</button>
         </div>
-        <select id="snp-state-select" onchange="setSNPState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="font-size:.72rem;color:var(--muted);white-space:nowrap">— or browse by state —</span>
+          <select id="snp-state-select" onchange="setSNPState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
+        </div>
       </div>
 
-      <!-- Results count -->
-
+      <div id="snp-count" style="font-size:.75rem;color:var(--muted);margin-bottom:16px"></div>
       <div id="snp-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"></div>
     </div>
   </div>
@@ -1428,6 +1440,20 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
           <button class="chip" onclick="setDropinFilter('all-ages',this)">👨‍👩‍👧 All Ages</button>
         </div>
       </div>
+      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
+        <div class="search-wrap" style="flex:1;min-width:140px;max-width:220px">
+          <input class="search-input" type="text" placeholder="ZIP code" id="di-zip" maxlength="5" inputmode="numeric" onkeydown="if(event.key==='Enter')runIceZipSearch('di',renderDropin)"/>
+          <span class="search-icon">📍</span>
+        </div>
+        <select id="di-radius" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none">
+          <option value="10">10 mi</option>
+          <option value="25" selected>25 mi</option>
+          <option value="50">50 mi</option>
+          <option value="100">100 mi</option>
+        </select>
+        <button id="di-zip-btn" class="btn btn-sm" onclick="runIceZipSearch('di',renderDropin)" style="white-space:nowrap">Find Nearby</button>
+        <button id="di-clear-btn" class="btn btn-ghost btn-sm" onclick="clearIceZip('di',renderDropin)" style="display:none;white-space:nowrap">✕ Clear</button>
+      </div>
       <div id="dropin-count" style="font-size:.75rem;color:var(--muted);margin-bottom:16px"></div>
       <div id="dropin-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"></div>
     </div>
@@ -1451,12 +1477,25 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
           <div style="font-size:.8rem;color:var(--muted);line-height:1.6">Open skate is free-skate time on public ice — no hockey gear required. Skate rentals usually available. Great for athletes who want low-key ice time, families, and anyone who just wants to skate without structure.</div>
         </div>
       </div>
-      <div class="toolbar">
-        <div class="search-wrap">
-          <input class="search-input" type="text" placeholder="Search rinks or cities..." id="openskate-search" oninput="renderOpenSkate()"/>
-          <span class="search-icon">🔍</span>
+      <div style="margin-bottom:20px">
+        <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center">
+          <div class="search-wrap" style="flex:1;min-width:140px;max-width:220px">
+            <input class="search-input" type="text" placeholder="ZIP code" id="os-zip" maxlength="5" inputmode="numeric" onkeydown="if(event.key==='Enter')runIceZipSearch('os',renderOpenSkate)"/>
+            <span class="search-icon">📍</span>
+          </div>
+          <select id="os-radius" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none">
+            <option value="10">10 mi</option>
+            <option value="25" selected>25 mi</option>
+            <option value="50">50 mi</option>
+            <option value="100">100 mi</option>
+          </select>
+          <button id="os-zip-btn" class="btn btn-sm" onclick="runIceZipSearch('os',renderOpenSkate)" style="white-space:nowrap">Find Nearby</button>
+          <button id="os-clear-btn" class="btn btn-ghost btn-sm" onclick="clearIceZip('os',renderOpenSkate)" style="display:none;white-space:nowrap">✕ Clear</button>
         </div>
-        <select id="openskate-state-select" onchange="setOpenSkateState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="font-size:.72rem;color:var(--muted);white-space:nowrap">— or browse by state —</span>
+          <select id="openskate-state-select" onchange="setOpenSkateState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
+        </div>
       </div>
       <div id="openskate-count" style="font-size:.75rem;color:var(--muted);margin-bottom:16px"></div>
       <div id="openskate-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"></div>
@@ -5340,6 +5379,49 @@ function handleOvClick(e){if(e.target===document.getElementById('modal-ov'))clos
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 
+// ── ICE ZIP SEARCH (shared by S&P, Open Skate, Drop-in) ──
+let snpZipLat=null,snpZipLng=null,snpZipRadius=25;
+let osZipLat=null,osZipLng=null,osZipRadius=25;
+let diZipLat=null,diZipLng=null,diZipRadius=25;
+
+async function runIceZipSearch(prefix,renderFn){
+  const zipEl=document.getElementById(prefix+'-zip');
+  const zip=(zipEl?.value||'').trim();
+  const radius=parseInt(document.getElementById(prefix+'-radius')?.value||'25');
+  const btn=document.getElementById(prefix+'-zip-btn');
+  const clr=document.getElementById(prefix+'-clear-btn');
+  if(!/^\d{5}$/.test(zip)){
+    if(zipEl){zipEl.style.borderColor='rgba(231,76,60,.8)';setTimeout(()=>{zipEl.style.borderColor='';},2500);}
+    return;
+  }
+  if(btn){btn.textContent='Searching…';btn.disabled=true;}
+  try{
+    const res=await fetch('https://api.zippopotam.us/us/'+zip);
+    if(!res.ok)throw new Error('ZIP not found');
+    const data=await res.json();
+    const lat=parseFloat(data.places[0].latitude),lng=parseFloat(data.places[0].longitude);
+    if(prefix==='snp'){snpZipLat=lat;snpZipLng=lng;snpZipRadius=radius;snpState='all';const ss=document.getElementById('snp-state-select');if(ss)ss.value='all';}
+    if(prefix==='os'){osZipLat=lat;osZipLng=lng;osZipRadius=radius;openSkateState='all';const ss=document.getElementById('openskate-state-select');if(ss)ss.value='all';}
+    if(prefix==='di'){diZipLat=lat;diZipLng=lng;diZipRadius=radius;}
+    if(clr)clr.style.display='';
+    renderFn();
+  }catch(e){
+    if(zipEl){zipEl.style.borderColor='rgba(231,76,60,.8)';setTimeout(()=>{zipEl.style.borderColor='';},2500);}
+  }
+  if(btn){btn.textContent='Find Nearby';btn.disabled=false;}
+}
+
+function clearIceZip(prefix,renderFn){
+  if(prefix==='snp'){snpZipLat=null;snpZipLng=null;}
+  if(prefix==='os'){osZipLat=null;osZipLng=null;}
+  if(prefix==='di'){diZipLat=null;diZipLng=null;}
+  const zipEl=document.getElementById(prefix+'-zip');
+  const clr=document.getElementById(prefix+'-clear-btn');
+  if(zipEl)zipEl.value='';
+  if(clr)clr.style.display='none';
+  renderFn();
+}
+
 // ── STICK & PUCK ──
 let snpState='all';
 
@@ -5348,11 +5430,7 @@ function getSNPRinks(){
     const spt=r.stickPuckTimes;
     if(!spt||!spt.scheduleUrl)return false;
     if(r.pricing&&r.pricing.stickPuck&&r.pricing.stickPuck.includes('N/A'))return false;
-    return spt.schedule&&spt.schedule.some(s=>
-      !s.toLowerCase().includes('check')&&
-      !s.toLowerCase().includes('contact')&&
-      s.trim().length>3
-    );
+    return true;
   });
 }
 
@@ -5403,25 +5481,38 @@ function hasRealSchedule(spt){
 }
 
 function renderSNP(){
-  const sv=(document.getElementById('snp-search')?.value||'').toLowerCase();
-  const rinks=getSNPRinks().filter(r=>{
-    if(snpState!=='all'&&r.state!==snpState)return false;
-    if(sv&&!r.name.toLowerCase().includes(sv)&&!r.city.toLowerCase().includes(sv))return false;
-    return true;
-  });
-
-  rinks.sort((a,b)=>{
-    const aR=hasRealSchedule(a.stickPuckTimes)?1:0;
-    const bR=hasRealSchedule(b.stickPuckTimes)?1:0;
-    if(bR!==aR)return bR-aR;
-    return a.name.localeCompare(b.name);
-  });
+  let rinks;
+  if(snpZipLat!==null){
+    rinks=getSNPRinks().filter(r=>r.lat&&r.lng&&haversine(snpZipLat,snpZipLng,r.lat,r.lng)<=snpZipRadius);
+    rinks.sort((a,b)=>haversine(snpZipLat,snpZipLng,a.lat,a.lng)-haversine(snpZipLat,snpZipLng,b.lat,b.lng));
+  }else{
+    rinks=getSNPRinks().filter(r=>{
+      if(snpState!=='all'&&r.state!==snpState)return false;
+      return true;
+    });
+    rinks.sort((a,b)=>{
+      const aR=hasRealSchedule(a.stickPuckTimes)?1:0;
+      const bR=hasRealSchedule(b.stickPuckTimes)?1:0;
+      if(bR!==aR)return bR-aR;
+      return a.name.localeCompare(b.name);
+    });
+  }
 
   const grid=document.getElementById('snp-grid');
+  const countEl=document.getElementById('snp-count');
   if(!grid)return;
 
+  if(countEl){
+    if(snpZipLat!==null){
+      const zip=(document.getElementById('snp-zip')?.value||'').trim();
+      countEl.textContent=rinks.length+' rink'+(rinks.length!==1?'s':'')+' within '+snpZipRadius+' miles'+(zip?' of '+zip:'');
+    }else{
+      countEl.textContent=rinks.length+' rink'+(rinks.length!==1?'s with':'with')+' stick & puck'+(snpState!=='all'?' in '+snpState:'');
+    }
+  }
+
   if(!rinks.length){
-    grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🏒</div><div style="font-size:.98rem;font-weight:600;margin-bottom:6px">No rinks found</div><div style="font-size:.84rem">Try a different region or search term.</div></div>';
+    grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🏒</div><div style="font-size:.98rem;font-weight:600;margin-bottom:6px">No rinks found</div><div style="font-size:.84rem">'+(snpZipLat!==null?'Try a larger radius or search a different area.':'Try a different state or search term.')+'</div></div>';
     return;
   }
 
@@ -5470,7 +5561,14 @@ function renderSNP(){
   }).join('');
 }
 
-function setSNPState(s){snpState=s;const sel=document.getElementById('snp-state-select');if(sel)sel.value=s;renderSNP();}
+function setSNPState(s){
+  snpState=s;
+  snpZipLat=null;snpZipLng=null;
+  const zi=document.getElementById('snp-zip');const clr=document.getElementById('snp-clear-btn');
+  if(zi)zi.value='';if(clr)clr.style.display='none';
+  const sel=document.getElementById('snp-state-select');if(sel)sel.value=s;
+  renderSNP();
+}
 
 
 // ── SKATE SHARPENING FINDER ──────────────────────────────────────
@@ -6519,15 +6617,32 @@ function setDropinFilter(f,btn){
 }
 
 function renderDropin(){
-  const filtered=DROPIN_DATA.filter(d=>{
+  let filtered=DROPIN_DATA.filter(d=>{
     if(dropinFilter==='all')return true;
-    return d.type===dropinFilter||d.type==='all-ages'&&dropinFilter==='all-ages'||
-           (dropinFilter==='adult'&&d.type==='adult')||(dropinFilter==='youth'&&d.type==='youth')||
-           (dropinFilter==='all-ages'&&d.type==='all-ages');
+    return d.type===dropinFilter||(dropinFilter==='all-ages'&&d.type==='all-ages')||
+           (dropinFilter==='adult'&&d.type==='adult')||(dropinFilter==='youth'&&d.type==='youth');
   });
 
+  if(diZipLat!==null){
+    filtered=filtered.filter(d=>{
+      const rink=RINKS.find(r=>r.id===d.rinkId);
+      return rink&&rink.lat&&rink.lng&&haversine(diZipLat,diZipLng,rink.lat,rink.lng)<=diZipRadius;
+    });
+    filtered.sort((a,b)=>{
+      const ra=RINKS.find(r=>r.id===a.rinkId),rb=RINKS.find(r=>r.id===b.rinkId);
+      return (ra?haversine(diZipLat,diZipLng,ra.lat,ra.lng):99999)-(rb?haversine(diZipLat,diZipLng,rb.lat,rb.lng):99999);
+    });
+  }
+
   const countEl=document.getElementById('dropin-count');
-  if(countEl)countEl.textContent=filtered.length+' rinks with drop-in hockey';
+  if(countEl){
+    if(diZipLat!==null){
+      const zip=(document.getElementById('di-zip')?.value||'').trim();
+      countEl.textContent=filtered.length+' rink'+(filtered.length!==1?'s':'')+' within '+diZipRadius+' miles'+(zip?' of '+zip:'');
+    }else{
+      countEl.textContent=filtered.length+' rinks with drop-in hockey';
+    }
+  }
 
   const grid=document.getElementById('dropin-grid');
   if(!grid)return;
@@ -6747,6 +6862,9 @@ let openSkateState = 'all';
 
 function setOpenSkateState(s) {
   openSkateState = s;
+  osZipLat=null;osZipLng=null;
+  const zi=document.getElementById('os-zip');const clr=document.getElementById('os-clear-btn');
+  if(zi)zi.value='';if(clr)clr.style.display='none';
   renderOpenSkate();
 }
 
@@ -6755,33 +6873,43 @@ function renderOpenSkate() {
   const countEl = document.getElementById('openskate-count');
   if (!grid) return;
 
-  const sv = (document.getElementById('openskate-search') ? document.getElementById('openskate-search').value : '').toLowerCase();
   const days = ['sun','mon','tue','wed','thu','fri','sat'];
   const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const todayIdx = new Date().getDay();
   const tomorrowIdx = (todayIdx + 1) % 7;
 
-  let rinks = RINKS.filter(r => {
-    if (openSkateState !== 'all' && (r.state||'CO') !== openSkateState) return false;
-    if (sv && !r.name.toLowerCase().includes(sv) && !r.city.toLowerCase().includes(sv)) return false;
-    return true;
-  });
+  let rinks;
+  if(osZipLat!==null){
+    rinks=RINKS.filter(r=>r.lat&&r.lng&&haversine(osZipLat,osZipLng,r.lat,r.lng)<=osZipRadius);
+    rinks.sort((a,b)=>haversine(osZipLat,osZipLng,a.lat,a.lng)-haversine(osZipLat,osZipLng,b.lat,b.lng));
+  }else{
+    rinks=RINKS.filter(r=>{
+      if(openSkateState!=='all'&&(r.state||'CO')!==openSkateState)return false;
+      return true;
+    });
+    rinks.sort((a,b)=>{
+      const tk=days[new Date().getDay()];
+      const aH=a.hours&&a.hours[tk]&&!a.hours[tk].toLowerCase().includes('check')&&a.hours[tk]!=='Varies'?1:0;
+      const bH=b.hours&&b.hours[tk]&&!b.hours[tk].toLowerCase().includes('check')&&b.hours[tk]!=='Varies'?1:0;
+      if(bH!==aH)return bH-aH;
+      return a.name.localeCompare(b.name);
+    });
+  }
 
-  if (countEl) countEl.textContent = rinks.length + ' rink' + (rinks.length !== 1 ? 's' : '') + ' — tap a rink to see full details';
+  if(countEl){
+    if(osZipLat!==null){
+      const zip=(document.getElementById('os-zip')?.value||'').trim();
+      countEl.textContent=rinks.length+' rink'+(rinks.length!==1?'s':'')+' within '+osZipRadius+' miles'+(zip?' of '+zip:'');
+    }else{
+      countEl.textContent=rinks.length+' rink'+(rinks.length!==1?'s':'')+(openSkateState!=='all'?' in '+openSkateState:'')+' — tap a rink to see full details';
+    }
+  }
 
   if (!rinks.length) {
     grid.innerHTML = '<div style="color:var(--muted);padding:36px 0;grid-column:1/-1;text-align:center">No rinks match your search.</div>';
     return;
   }
 
-  rinks.sort((a,b)=>{
-    const days=['sun','mon','tue','wed','thu','fri','sat'];
-    const todayKey=days[new Date().getDay()];
-    const aH=a.hours&&a.hours[todayKey]&&!a.hours[todayKey].toLowerCase().includes('check')&&a.hours[todayKey]!=='Varies'?1:0;
-    const bH=b.hours&&b.hours[todayKey]&&!b.hours[todayKey].toLowerCase().includes('check')&&b.hours[todayKey]!=='Varies'?1:0;
-    if(bH!==aH)return bH-aH;
-    return a.name.localeCompare(b.name);
-  });
   grid.innerHTML = rinks.map(r => {
     const todayHours = r.hours ? r.hours[days[todayIdx]] : null;
     const tomorrowHours = r.hours ? r.hours[days[tomorrowIdx]] : null;
