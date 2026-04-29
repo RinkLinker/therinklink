@@ -402,6 +402,15 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   .badge-row{flex-wrap:wrap;gap:5px}
   .badge-row .badge{font-size:.6rem}
 }
+@media(max-width:500px){
+.overlay{align-items:flex-end;padding:0}
+.modal{border-radius:16px 16px 0 0;max-height:92vh;width:100%;max-width:100%}
+.mhead{padding:13px 14px 11px}
+.acc-hd{min-height:48px;padding:12px 14px}
+.role-btn{min-height:50px;font-size:.8rem;padding:10px 4px}
+.write-btn{display:flex;width:100%;box-sizing:border-box;justify-content:center}
+.factions{display:flex;flex-direction:column;gap:8px}.factions .fsub,.factions .fcan{width:100%;text-align:center}
+}
 .acc-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;overflow:hidden}.acc-hd{width:100%;background:transparent;border:none;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;text-align:left}.acc-hd:hover{background:rgba(255,255,255,.03)}.acc-label{display:flex;align-items:center;gap:8px}.acc-chevron{color:var(--muted);font-size:1.1rem;transition:transform .2s;font-weight:400}.acc-body{border-top:1px solid var(--border)}
 
 .admin-tab{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:.78rem;font-weight:700;padding:7px 14px;cursor:pointer;transition:all .15s}
@@ -2957,7 +2966,8 @@ function buildModal(r){
   const rv=reviews[r.id]||[],a=avgR(rv),cnt=rv.filter(x=>!x.pending).length,op=isOpen(r),isFav=favorites.has(r.id);
   const weatherId='wx-m-'+r.id;
   const parkingShort=r.parking.toLowerCase().includes('free')?'Free':'Check';
-  const schedUrl=r.stickPuckTimes&&r.stickPuckTimes.scheduleUrl?r.stickPuckTimes.scheduleUrl:r.website;
+  const spBookUrl=r.stickPuckTimes&&(r.stickPuckTimes.bookingUrl||r.stickPuckTimes.scheduleUrl)||r.website;
+  const spBookLabel=r.stickPuckTimes&&r.stickPuckTimes.bookingUrl?'Book ↗':'Schedule ↗';
   const psPrice=r.pricing&&r.pricing.publicSkate?r.pricing.publicSkate:null;
   const psIsUnverified=psPrice&&psPrice.includes('⚠️');
   document.getElementById('modal-inner').innerHTML=
@@ -2997,12 +3007,12 @@ function buildModal(r){
     +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white)">📅 Ice Schedule</div>'
     +'<div style="font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.5">Times shift weekly — always verify before heading out</div>'
     +'</div>'
-    +'<a href="'+schedUrl+'" target="_blank" rel="noopener" style="flex-shrink:0;background:linear-gradient(135deg,#1a9be6,#0e7abf);color:#fff;font-weight:700;font-size:.75rem;padding:8px 13px;border-radius:8px;text-decoration:none">View ↗</a>'
+    +'<a href="'+r.website+'" target="_blank" rel="noopener" style="flex-shrink:0;background:linear-gradient(135deg,#1a9be6,#0e7abf);color:#fff;font-weight:700;font-size:.75rem;padding:8px 13px;border-radius:8px;text-decoration:none">View ↗</a>'
     +'</div>'
     +'<div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(91,184,245,.15)">'
     +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'
     +'<div style="font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#f39c12">⛸️ Public Skate</div>'
-    +'<a href="'+schedUrl+'" target="_blank" rel="noopener" style="font-size:.68rem;color:var(--ice);font-weight:700;text-decoration:none">Schedule ↗</a>'
+    +'<a href="'+r.website+'" target="_blank" rel="noopener" style="font-size:.68rem;color:var(--ice);font-weight:700;text-decoration:none">Schedule ↗</a>'
     +'</div>'
     +(psPrice&&!psIsUnverified
       ?'<div style="font-size:.75rem;color:var(--muted);line-height:1.5">'+psPrice+'</div>'
@@ -3012,9 +3022,9 @@ function buildModal(r){
       ?'<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(91,184,245,.1)">'
         +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'
         +'<div style="font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ice)">🏒 Stick &amp; Puck</div>'
-        +(r.stickPuckTimes.bookingUrl?'<a href="'+r.stickPuckTimes.bookingUrl+'" target="_blank" rel="noopener" style="font-size:.68rem;color:#2ecc71;font-weight:700;text-decoration:none">Book ↗</a>':'')
+        +'<a href="'+spBookUrl+'" target="_blank" rel="noopener" style="font-size:.68rem;color:#2ecc71;font-weight:700;text-decoration:none">'+spBookLabel+'</a>'
         +'</div>'
-        +'<div style="font-size:.75rem;color:var(--muted)">'+r.stickPuckTimes.cost+'</div>'
+        +(r.stickPuckTimes.cost?'<div style="font-size:.75rem;color:var(--muted)">'+r.stickPuckTimes.cost+'</div>':'')
         +'</div>'
       :'')
     +'</div>'
@@ -3171,17 +3181,6 @@ function buildSectionAmenities(r){
       ];
       return allTips.length?'<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px">'+allTips.map(x=>'<div style="background:rgba(91,184,245,.05);border:1px solid rgba(91,184,245,.15);border-radius:8px;padding:8px 12px;font-size:.75rem;color:var(--muted);line-height:1.5"><span style="color:var(--ice);font-weight:700">'+x.name+':</span> '+x.text+'</div>').join('')+'</div>':'';
     })()
-    +'<button class="write-btn" style="width:100%" onclick="toggleWearForm2('+r.id+')">✏️ Share Insider Tip</button>'
-    +'<div class="rev-form" id="wf2-'+r.id+'">'
-    +'<div class="form-title">What should families wear &amp; bring?</div>'
-    +'<div class="frow">'
-    +'<div class="fgrp"><label class="flbl">Your Name</label><input class="finput" type="text" id="wn2-'+r.id+'" placeholder="e.g. Sarah K."/></div>'
-    +'<div class="fgrp"><label class="flbl">Role</label><select class="finput" id="wr2-'+r.id+'"><option>Hockey Parent</option><option>Player</option><option>Coach</option><option>Hockey Fan</option></select></div>'
-    +'</div>'
-    +'<div class="fgrp"><label class="flbl">📶 WiFi at this rink?</label><select class="finput" id="wwifi2-'+r.id+'"><option value="">Not sure</option><option value="yes">Yes — free WiFi</option><option value="paid">Yes — paid WiFi</option><option value="no">No WiFi</option></select></div>'
-    +'<div class="fgrp"><label class="flbl">Your tip</label><textarea class="finput" id="wt2-'+r.id+'" rows="3" placeholder="e.g. Bring heavy blankets — upper sections are really cold..."></textarea></div>'
-    +'<div class="factions"><button class="fsub" onclick="submitWear2('+r.id+')">Share Insider Tip</button><button class="fcan" onclick="toggleWearForm2('+r.id+')">Cancel</button></div>'
-    +'</div>'
     +'</div>';
   html+='</div>';
   return html;
