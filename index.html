@@ -5491,9 +5491,13 @@ function renderSNP(){
       return true;
     });
     rinks.sort((a,b)=>{
-      const aR=hasRealSchedule(a.stickPuckTimes)?1:0;
-      const bR=hasRealSchedule(b.stickPuckTimes)?1:0;
-      if(bR!==aR)return bR-aR;
+      // Only prioritize confirmed schedules when a specific state is selected —
+      // otherwise CO rinks (the only ones with real time data) dominate the all-states view.
+      if(snpState!=='all'){
+        const aR=hasRealSchedule(a.stickPuckTimes)?1:0;
+        const bR=hasRealSchedule(b.stickPuckTimes)?1:0;
+        if(bR!==aR)return bR-aR;
+      }
       return a.name.localeCompare(b.name);
     });
   }
@@ -6888,10 +6892,14 @@ function renderOpenSkate() {
       return true;
     });
     rinks.sort((a,b)=>{
-      const tk=days[new Date().getDay()];
-      const aH=a.hours&&a.hours[tk]&&!a.hours[tk].toLowerCase().includes('check')&&a.hours[tk]!=='Varies'?1:0;
-      const bH=b.hours&&b.hours[tk]&&!b.hours[tk].toLowerCase().includes('check')&&b.hours[tk]!=='Varies'?1:0;
-      if(bH!==aH)return bH-aH;
+      // Only prioritize rinks with known today-hours when a specific state is selected —
+      // otherwise CO rinks (the only ones with detailed hours data) dominate the all-states view.
+      if(openSkateState!=='all'){
+        const tk=days[new Date().getDay()];
+        const aH=a.hours&&a.hours[tk]&&!a.hours[tk].toLowerCase().includes('check')&&a.hours[tk]!=='Varies'?1:0;
+        const bH=b.hours&&b.hours[tk]&&!b.hours[tk].toLowerCase().includes('check')&&b.hours[tk]!=='Varies'?1:0;
+        if(bH!==aH)return bH-aH;
+      }
       return a.name.localeCompare(b.name);
     });
   }
