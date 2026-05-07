@@ -480,6 +480,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <li class="nav-dropdown">
       <a class="nav-dropdown-trigger" id="nav-resources">Guides & Info ▾</a>
       <div class="nav-dropdown-menu">
+        <a onclick="showPage('stores');closeDropdowns()">🏒 Hockey Stores</a>
         <a onclick="showPage('sharpen');closeDropdowns()">⚙️ Sharpening Finder</a>
         <a onclick="showPage('checklist');closeDropdowns()">✅ What to Bring</a>
         <a onclick="showPage('levels');closeDropdowns()">📋 Age & Level Guide</a>
@@ -548,6 +549,11 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   <!-- Resources -->
   <div class="mobile-nav-section-label">📚 Guides & Info</div>
   <div class="mobile-nav-grid">
+    <div class="mnav-card" onclick="mobileNav('stores')">
+      <div class="mnav-card-icon">🏒</div>
+      <div class="mnav-card-title">Hockey Stores</div>
+      <div class="mnav-card-desc">Gear, sharpening & pro stock</div>
+    </div>
     <div class="mnav-card" onclick="mobileNav('sharpen')">
       <div class="mnav-card-icon">⚙️</div>
       <div class="mnav-card-title">Sharpening</div>
@@ -1747,6 +1753,48 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   </div>
 </div>
 
+<!-- HOCKEY STORES PAGE -->
+<div id="page-stores" class="page">
+  <div class="section">
+    <div class="container">
+      <div class="sh">
+        <div class="sl" id="stores-page-label">US Hockey Stores</div>
+        <div class="st">Hockey Stores</div>
+        <div class="sd">Find local hockey shops with gear, sharpening, pro stock, and expert fitting near you.</div>
+      </div>
+      <div class="toolbar" style="flex-direction:column;align-items:stretch;gap:8px">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <select id="store-state-select" onchange="setStoreState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <input id="store-zip" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="ZIP code..." style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;outline:none;letter-spacing:.5px;width:100px" onkeydown="if(event.key==='Enter')storeZipSearch()"/>
+          <select id="store-radius" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px">
+            <option value="10">10 mi</option>
+            <option value="25" selected>25 mi</option>
+            <option value="50">50 mi</option>
+            <option value="100">100 mi</option>
+          </select>
+          <button class="btn btn-ice" onclick="storeZipSearch()" style="padding:7px 16px;font-size:.82rem;letter-spacing:1px">Find Near Me</button>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+          <div class="chips" id="store-sharpen-chips">
+            <button class="chip active" onclick="setStoreSharpening('all',this)">All</button>
+            <button class="chip" onclick="setStoreSharpening('yes',this)">✓ Sharpening</button>
+            <button class="chip" onclick="setStoreSharpening('no',this)">No Sharpening</button>
+          </div>
+          <span style="width:1px;height:16px;background:var(--border);display:inline-block;margin:0 2px"></span>
+          <div class="chips" id="store-tag-chips">
+            <button class="chip active" onclick="setStoreTag('all',this)">All Inventory</button>
+            <button class="chip" onclick="setStoreTag('new',this)">New Gear</button>
+            <button class="chip" onclick="setStoreTag('used',this)">Used Gear</button>
+          </div>
+        </div>
+      </div>
+      <div id="stores-grid" class="rinks-grid" style="margin-top:18px"></div>
+    </div>
+  </div>
+</div>
+
 <div id="page-admin" class="page">
   <div class="section">
     <div class="container" style="max-width:860px">
@@ -2204,6 +2252,8 @@ async function sbFetch(path, method='GET', body=null){
 let reviews={},rinkTipsCache={},upvoted=new Set(),favorites=new Set(),homeRink=null;
 let activeState='all',activeRegion='all',activeType='all',filterOpen=false,filterFavs=false,nearbyFilter='all';
 let currentRinkId=null,selMapRink=null,_modalRink=null;
+let STORES=[], activeStoreState='all', activeStoreSharpening='all', activeStoreTag='all';
+let nearbyStores=null, nearbyStoreZip='', nearbyStoreRadiusMi=25;
 
 async function loadAll(){
   // Load approved reviews from Supabase
@@ -2358,6 +2408,7 @@ function showPage(name, skipHistory){
   if(name==='sticknpuck')renderSNP();
   if(name==='camps')renderCamps();
   if(name==='training')renderTraining();
+  if(name==='stores')renderStores();
   if(typeof updateBottomTabs==='function')updateBottomTabs(name);
   if(name==='submit'){loadSubmissions().then(()=>{updateSubmitCount();});resetSubmitForm&&document.getElementById('submit-form-wrap')&&(document.getElementById('submit-success').style.display='none',document.getElementById('submit-form-wrap').style.display='block');}
   if(name==='admin'){if(!adminUnlocked){document.getElementById('admin-pw-input').value='';document.getElementById('admin-pw-err').style.display='none';}}
@@ -2596,6 +2647,150 @@ function setRegion(r,btn){nearbyRinks=null;activeRegion=r;document.querySelector
 function setType(t,btn){nearbyRinks=null;activeType=t;document.querySelectorAll('#type-chips .chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');renderRinks();}
 function toggleOpenF(btn){nearbyRinks=null;filterOpen=!filterOpen;btn.classList.toggle('active',filterOpen);renderRinks();}
 function toggleFavF(btn){nearbyRinks=null;filterFavs=!filterFavs;btn.classList.toggle('active',filterFavs);renderRinks();}
+
+// ── HOCKEY STORES ──────────────────────────────────────────────────────────
+async function fetchStores(){
+  try{
+    const PAGE=1000;
+    let rows=[],offset=0;
+    while(true){
+      const batch=await sbFetch('hockey_stores?select=*&order=state.asc,store_name.asc&limit='+PAGE+'&offset='+offset);
+      rows=rows.concat(batch);
+      if(batch.length<PAGE)break;
+      offset+=PAGE;
+    }
+    return rows.map(r=>({
+      id:r.id,
+      name:r.store_name??'',
+      street:r.street_address??'',
+      city:r.city??'',
+      state:r.state??'',
+      zip:r.zip??'',
+      lat:parseFloat(r.latitude)||null,
+      lng:parseFloat(r.longitude)||null,
+      phone:r.phone??null,
+      hours:r.hours??null,
+      tags:r.tags??'',
+      notes:r.notes??null,
+      website:r.website??null,
+      sharpening:!!r.sharpening,
+      pro_stock:!!r.pro_stock,
+      skate_fitting:!!r.skate_fitting,
+    }));
+  }catch(e){
+    console.warn('fetchStores failed:',e);
+    return [];
+  }
+}
+
+function renderStores(){
+  const g=document.getElementById('stores-grid');
+  if(!g)return;
+  let f,banner='';
+  if(nearbyStores){
+    f=nearbyStores;
+    banner='<div style="background:rgba(91,184,245,.1);border:1px solid rgba(91,184,245,.3);border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;grid-column:1/-1"><span style="color:var(--ice);font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.88rem">📍 '+f.length+' store'+(f.length!==1?'s':'')+' within '+nearbyStoreRadiusMi+' miles of '+nearbyStoreZip+'</span><button onclick="nearbyStores=null;renderStores()" style="background:none;border:1px solid rgba(91,184,245,.4);color:var(--ice);font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.75rem;padding:3px 10px;border-radius:5px;cursor:pointer">✕ Clear</button></div>';
+  }else{
+    f=STORES.filter(s=>{
+      if(activeStoreState!=='all'&&s.state!==activeStoreState)return false;
+      if(activeStoreSharpening==='yes'&&!s.sharpening)return false;
+      if(activeStoreSharpening==='no'&&s.sharpening)return false;
+      if(activeStoreTag==='new'&&!(s.tags||'').toLowerCase().includes('new'))return false;
+      if(activeStoreTag==='used'&&!(s.tags||'').toLowerCase().includes('used'))return false;
+      return true;
+    });
+  }
+  const makeStoreCard=s=>{
+    const sharpenBadge=s.sharpening
+      ?'<span style="background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.35);color:#2ecc71;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:4px">✓ Sharpening</span>'
+      :'<span style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:4px">— No Sharpening</span>';
+    const proStockBadge=s.pro_stock?'<span style="background:rgba(232,184,75,.12);border:1px solid rgba(232,184,75,.3);color:var(--gold);font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:4px">Pro Stock</span>':'';
+    const fittingBadge=s.skate_fitting?'<span style="background:rgba(91,184,245,.1);border:1px solid rgba(91,184,245,.3);color:var(--ice);font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:4px">Skate Fitting</span>':'';
+    const badges=[sharpenBadge,proStockBadge,fittingBadge].filter(Boolean).join(' ');
+    const distLine=s._miles!=null?'<div style="font-size:.68rem;color:var(--ice);font-weight:700;margin-bottom:4px">'+s._miles.toFixed(1)+' mi away</div>':'';
+    return '<div class="rink-card" style="cursor:default">'
+      +'<div class="card-head">'
+      +'<div class="card-region">'+s.city+' · '+s.state+'</div>'
+      +'<div class="card-name">'+s.name+'</div>'
+      +'<div class="card-addr">'+s.street+'</div>'
+      +distLine
+      +(s.phone?'<a class="card-phone-inline" href="tel:'+s.phone+'">'+s.phone+'</a>':'')
+      +'</div>'
+      +'<div class="card-body">'
+      +(s.hours?'<div style="font-size:.72rem;color:var(--muted);margin-bottom:8px">🕐 '+s.hours+'</div>':'')
+      +'<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px">'+badges+'</div>'
+      +(s.notes?'<div style="font-size:.68rem;color:var(--muted);line-height:1.4">'+s.notes+'</div>':'')
+      +'</div>'
+      +(s.website?'<div class="card-foot"><a href="'+s.website+'" target="_blank" rel="noopener" class="btn btn-ice btn-sm" style="font-weight:800;font-size:.8rem">Visit Website ↗</a></div>':'')
+      +'</div>';
+  };
+  const noResults=!f.length?'<div style="color:var(--muted);padding:36px 0;grid-column:1/-1">No hockey stores match your filters.</div>':'';
+  g.innerHTML=banner+f.map(makeStoreCard).join('')+noResults;
+}
+
+function setStoreState(s){
+  nearbyStores=null;
+  activeStoreState=s;
+  const label=document.getElementById('stores-page-label');
+  if(label)label.textContent=s==='all'?'US Hockey Stores':(STATE_NAMES[s]||s)+' Hockey Stores';
+  renderStores();
+}
+
+function setStoreSharpening(v,btn){
+  activeStoreSharpening=v;
+  document.querySelectorAll('#store-sharpen-chips .chip').forEach(c=>c.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderStores();
+}
+
+function setStoreTag(v,btn){
+  activeStoreTag=v;
+  document.querySelectorAll('#store-tag-chips .chip').forEach(c=>c.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderStores();
+}
+
+async function storeZipSearch(){
+  const zip=(document.getElementById('store-zip').value||'').trim();
+  const inp=document.getElementById('store-zip');
+  const btn=document.querySelector('[onclick="storeZipSearch()"]');
+  if(!/^\d{5}$/.test(zip)){
+    inp.style.borderColor='rgba(231,76,60,.8)';
+    setTimeout(()=>{inp.style.borderColor='';},2000);
+    return;
+  }
+  if(btn){btn.textContent='Searching…';btn.disabled=true;}
+  try{
+    const res=await fetch('https://api.zippopotam.us/us/'+zip);
+    if(!res.ok)throw new Error('ZIP not found');
+    const data=await res.json();
+    const place=data.places[0];
+    const lat=parseFloat(place.latitude),lng=parseFloat(place.longitude);
+    const radius=parseInt(document.getElementById('store-radius').value)||25;
+    const results=STORES
+      .filter(s=>s.lat&&s.lng)
+      .map(s=>({...s,_miles:haversine(lat,lng,s.lat,s.lng)}))
+      .filter(s=>s._miles<=radius)
+      .sort((a,b)=>a._miles-b._miles);
+    nearbyStores=results;
+    nearbyStoreZip=zip;
+    nearbyStoreRadiusMi=radius;
+    renderStores();
+  }catch(e){
+    console.error('storeZipSearch error:',e);
+    inp.style.borderColor='rgba(231,76,60,.8)';
+    setTimeout(()=>{inp.style.borderColor='';},2000);
+  }
+  if(btn){btn.textContent='Find Near Me';btn.disabled=false;}
+}
+function buildStoreStateSelect(){
+  const sel=document.getElementById('store-state-select');
+  if(!sel)return;
+  const states=[...new Set(STORES.map(s=>s.state).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+  sel.innerHTML='<option value="all">All States</option>'
+    +states.map(s=>'<option value="'+s+'">'+s+(STATE_NAMES[s]?' — '+STATE_NAMES[s]:'')+'</option>').join('');
+}
+// ── END HOCKEY STORES ──────────────────────────────────────────────────────
 
 async function toggleFav(id){
   if(favorites.has(id)){favorites.delete(id);toast('Removed from favorites');}
@@ -7478,6 +7673,7 @@ function setRegionView(view){
 
 (async()=>{
   await loadAll();RINKS=await fetchRinks();buildStateSelects();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();
+  STORES=await fetchStores();buildStoreStateSelect();renderStores();
   if(window.location.hash==="#admin") showPage("admin");
 })();
 
