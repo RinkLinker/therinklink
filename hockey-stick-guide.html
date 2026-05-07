@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hockey Stick Guide for Parents — Flex, Size, Curves &amp; Buying Tips | The Rink Link</title>
+<meta name="description" content="Everything hockey parents need to know about choosing the right stick — flex by age and weight, sizing, blade curves, pro stock, and money-saving tips."/>
+<meta property="og:title" content="Hockey Stick Guide for Parents — Flex, Size, Curves &amp; Buying Tips"/>
+<meta property="og:description" content="The no-fluff stick guide every hockey parent needs — flex, sizing, curves, pro stock, and how to never overpay."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  .callout {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .callout p { margin: 0; color: var(--text); font-size: .97rem; }
+  .callout-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 8px;
+  }
+
+  .warning {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .warning p { margin: 0; color: var(--text); font-size: .97rem; }
+  .warning-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .gear-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 24px 0;
+  }
+  .gear-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+  }
+  .gear-item-left { display: flex; flex-direction: column; gap: 4px; }
+  .gear-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .gear-desc { font-size: .88rem; color: var(--muted); line-height: 1.4; }
+  .gear-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-required {
+    background: rgba(125,211,252,.12);
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.25);
+  }
+  .badge-recommended {
+    background: rgba(52,211,153,.1);
+    color: var(--green);
+    border: 1px solid rgba(52,211,153,.25);
+  }
+  .badge-optional {
+    background: rgba(148,163,184,.08);
+    color: var(--muted);
+    border: 1px solid rgba(148,163,184,.2);
+  }
+  .badge-warning {
+    background: rgba(245,158,11,.1);
+    color: var(--gold);
+    border: 1px solid rgba(245,158,11,.25);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: .92rem;
+    color: var(--muted);
+  }
+  .two-col-list li { display: flex; gap: 8px; line-height: 1.4; }
+
+  /* FLEX TABLE */
+  .flex-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: .9rem;
+  }
+  .flex-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .flex-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(125,211,252,.06);
+    color: var(--muted);
+    vertical-align: middle;
+  }
+  .flex-table tr:last-child td { border-bottom: none; }
+  .flex-table tr:hover td { background: rgba(125,211,252,.03); }
+  .flex-table td:first-child { color: var(--text); font-weight: 500; }
+  .flex-highlight {
+    color: var(--ice) !important;
+    font-weight: 700 !important;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem !important;
+    letter-spacing: .5px;
+  }
+
+  /* CURVE CARDS */
+  .curve-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .curve-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .curve-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--ice);
+    background: rgba(125,211,252,.08);
+    border: 1px solid rgba(125,211,252,.2);
+    border-radius: 6px;
+    padding: 6px 14px;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1.1;
+  }
+  .curve-badge small {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .6rem;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .curve-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .curve-desc { font-size: .88rem; color: var(--muted); line-height: 1.4; }
+
+  /* BUDGET TIERS */
+  .budget-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 24px 0;
+  }
+  .budget-tier {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .budget-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    color: var(--gold);
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 90px;
+  }
+  .budget-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .95rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .budget-desc { font-size: .88rem; color: var(--muted); line-height: 1.4; }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2), var(--bg3));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    margin-top: 56px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 24px; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 13px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    background: var(--ice);
+    color: var(--bg);
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: .82rem;
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 50px 20px 40px; }
+    .content { padding: 0 16px 60px; }
+    .two-col { grid-template-columns: 1fr; }
+    .gear-item { grid-template-columns: 1fr; }
+    .curve-card { grid-template-columns: 1fr; }
+    .budget-tier { grid-template-columns: 1fr; }
+    .cta-block { padding: 28px 20px; }
+    footer { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE <em>RINK</em> LINK</a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Buying Guide</div>
+  <h1>The Hockey Stick Guide <em>Parents</em> Actually Need</h1>
+  <p class="hero-sub">Flex, sizing, blade curves, pro stock, and how to never overpay — everything in one place.</p>
+  <div class="hero-meta">
+    <span>All Ages &amp; Levels</span>
+    <span>·</span>
+    <span>8 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- 01 FLEX GUIDE -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>The <span class="accent">Flex</span> Guide</h2>
+    <p>Flex is the single most important spec on a hockey stick. It measures how much force (in pounds) it takes to bend the stick one inch. Get it wrong and shooting mechanics suffer — often without anyone realizing why.</p>
+
+    <div class="callout">
+      <div class="callout-label">The Rule of Thumb</div>
+      <p><strong>Flex = roughly half your body weight in pounds.</strong> A 100 lb player should be on a flex 40–50. A 160 lb player, flex 75–85. This is a starting point — playing style, position, and shooting mechanics all factor in.</p>
+    </div>
+
+    <table class="flex-table">
+      <thead>
+        <tr>
+          <th>Age</th>
+          <th>Weight</th>
+          <th>Recommended Flex</th>
+          <th>Common Label</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>4–6</td>
+          <td>40–55 lbs</td>
+          <td class="flex-highlight">20–30</td>
+          <td>Youth / Twig</td>
+        </tr>
+        <tr>
+          <td>7–9</td>
+          <td>55–75 lbs</td>
+          <td class="flex-highlight">30–40</td>
+          <td>Youth</td>
+        </tr>
+        <tr>
+          <td>9–12</td>
+          <td>75–100 lbs</td>
+          <td class="flex-highlight">40–50</td>
+          <td>Junior</td>
+        </tr>
+        <tr>
+          <td>12–14</td>
+          <td>100–130 lbs</td>
+          <td class="flex-highlight">50–65</td>
+          <td>Intermediate</td>
+        </tr>
+        <tr>
+          <td>14–16</td>
+          <td>130–160 lbs</td>
+          <td class="flex-highlight">65–75</td>
+          <td>Intermediate / Senior</td>
+        </tr>
+        <tr>
+          <td>16+</td>
+          <td>160–185 lbs</td>
+          <td class="flex-highlight">75–87</td>
+          <td>Senior</td>
+        </tr>
+        <tr>
+          <td>Adult / Heavy</td>
+          <td>185+ lbs</td>
+          <td class="flex-highlight">95–110</td>
+          <td>Senior Stiff / Pro</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Common flex numbers you'll see on shelves:</strong> 30, 40, 50, 65, 75, 85, 87, 95, 100, 102, 110. Not all brands use the same numbers — a CCM 75 and a Bauer 75 are close but not identical.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--red)">❌ Too Stiff</div>
+        <ul class="two-col-list">
+          <li><span>→</span> Can't load the stick properly on shots</li>
+          <li><span>→</span> Slap shots feel weak despite effort</li>
+          <li><span>→</span> Wrists and arms tire quickly</li>
+          <li><span>→</span> Common mistake for young players on adult sticks</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--gold)">⚠️ Too Whippy</div>
+        <ul class="two-col-list">
+          <li><span>→</span> Puck releases inconsistently</li>
+          <li><span>→</span> Passes feel mushy and imprecise</li>
+          <li><span>→</span> Stick breaks faster under load</li>
+          <li><span>→</span> Common for older players using youth sticks</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 SIZING GUIDE -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>Sizing <span class="accent">Guide</span></h2>
+    <p>Stick length affects balance, puck control, and comfort. A stick that's too long is just as bad as one that's too short — both force bad habits.</p>
+
+    <div class="callout">
+      <div class="callout-label">How to Measure</div>
+      <p><strong>In skates:</strong> stick should reach the nose to chin.<br/><strong>Off skates (no skates on):</strong> stick should reach chin to nose tip.<br/>Stand the stick straight up next to your player and use this as your guide every time.</p>
+    </div>
+
+    <div class="gear-grid">
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Youth</div>
+          <div class="gear-desc">Ages 4–8 roughly. Shortest sticks, lowest flex (20–40). Often sold as a single piece. Good for players still learning to skate — don't overthink it at this age, just get the length right.</div>
+        </div>
+        <div class="gear-badge badge-optional">Ages 4–8</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Junior</div>
+          <div class="gear-desc">Ages 7–12 roughly. Flex range 30–60. Most come with a blade already attached (one-piece). This is where blade curves start to matter — P92 or P28 are both solid choices.</div>
+        </div>
+        <div class="gear-badge badge-optional">Ages 7–12</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Intermediate</div>
+          <div class="gear-desc">Ages 11–15 roughly, or lighter adults. Flex range 55–75. Shorter and lighter than senior sticks. A good 13-year-old who's growing fast should be measured carefully — they may straddle intermediate and senior.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Ages 11–15</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Senior</div>
+          <div class="gear-desc">Ages 14+ and most adults. Flex range 75–110. Full length. The vast majority of sticks sold in hockey shops are senior. If your teen is on the fence between intermediate and senior, err toward intermediate — a stiff senior stick will hurt their shot development.</div>
+        </div>
+        <div class="gear-badge badge-required">Ages 14+</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">When to Size Up</div>
+      <p>If your player is hunching over to handle the puck or the stick is consistently reaching above their nose on skates, it's time for a longer stick. Don't wait for the stick to break — sizing up early saves mechanics.</p>
+    </div>
+
+    <div class="warning">
+      <div class="warning-label">Cutting a Stick Changes the Flex</div>
+      <p>Every inch you cut off the top of a stick <strong>increases the effective flex by roughly 3–5 points.</strong> Cut 2 inches off a flex-75 and you're effectively skating with an 80–85. Factor this in before you buy, especially if you're buying a stick that needs to be trimmed.</p>
+    </div>
+  </div>
+
+  <!-- 03 PRO STOCK -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>Pro Stock <span class="accent">Explained</span></h2>
+    <p>Pro stock sticks are sticks built to NHL player specifications that don't make it onto the ice — overruns, spec changes, equipment switches. They're identical in construction to what pros use, sold at a fraction of retail.</p>
+
+    <div class="callout">
+      <div class="callout-label">Where to Buy</div>
+      <p><strong>HockeyStickMan</strong> is the most trusted source for pro stock sticks in North America. Their inventory changes constantly — check often. You can get a $350 retail stick for $80–$140. The catch: flex and curve options are whatever was ordered by the team, not a full consumer menu.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--green)">✓ Pros</div>
+        <ul class="two-col-list">
+          <li><span>→</span> Same build quality as retail top-of-line</li>
+          <li><span>→</span> Significantly cheaper — often 50–70% off</li>
+          <li><span>→</span> Some specs not available at retail</li>
+          <li><span>→</span> Great for serious players on a budget</li>
+          <li><span>→</span> Some have unique flex profiles pros prefer</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--red)">✗ Cons</div>
+        <ul class="two-col-list">
+          <li><span>→</span> Limited flex and curve selection</li>
+          <li><span>→</span> May have team markings or custom graphics</li>
+          <li><span>→</span> No warranty or return policy</li>
+          <li><span>→</span> Flex labeling may differ from retail</li>
+          <li><span>→</span> Inventory is unpredictable — no restocks</li>
+        </ul>
+      </div>
+    </div>
+
+    <p><strong>Who should buy pro stock:</strong> players who already know their preferred flex and curve, and want the most stick for their money. Not ideal for beginners who are still figuring out what they like.</p>
+  </div>
+
+  <!-- 04 BLADE CURVES -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>Blade <span class="accent">Curves</span></h2>
+    <p>The blade curve affects how the puck sits, where it releases, and what shots feel natural. There are dozens of curves — but three cover 90% of players.</p>
+
+    <div class="curve-grid">
+      <div class="curve-card">
+        <div class="curve-badge">P92<small>Crosby</small></div>
+        <div>
+          <div class="curve-name">Mid Curve — The Most Popular</div>
+          <div class="curve-desc">The default choice for most players. The curve starts in the middle of the blade, giving you a balanced feel for passing, receiving, and shooting. Great for wrist shots and snap shots. If you're not sure what curve to get, start here. Marketed as "P29" by some brands.</div>
+        </div>
+      </div>
+      <div class="curve-card">
+        <div class="curve-badge">P28<small>McDavid</small></div>
+        <div>
+          <div class="curve-name">Toe Curve — For Skilled Puck Handlers</div>
+          <div class="curve-desc">The curve is concentrated toward the toe of the blade. Makes toe drags and snap shots feel electric, but receiving passes on the heel takes more practice. Popular with skilled forwards and players who do a lot of stickhandling. Not ideal for beginners — the toe curve punishes inconsistent hand position.</div>
+        </div>
+      </div>
+      <div class="curve-card">
+        <div class="curve-badge">P88<small>Kane</small></div>
+        <div>
+          <div class="curve-name">Mid-Heel Curve — For Slap Shots &amp; Defense</div>
+          <div class="curve-desc">Curve starts toward the heel of the blade. Excellent for slap shots and one-timers. Popular with defensemen and power forwards. The heel-heavy curve makes it easier to load up on big shots, but toe-side dangles are harder. If your player shoots mostly from the point, worth a look.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Left vs. Right — Explained Simply</div>
+      <p>This confuses almost every new hockey parent. <strong>"Left" and "right" refers to which side the blade curves toward when you look at it face-up.</strong> A left-handed stick is held with the right hand on top — it's the most common in North America. If your player shoots "left," buy a left stick. When in doubt, watch which way they naturally hold a broom — that's their stick hand.</p>
+    </div>
+
+    <p>Curve names vary by brand. Bauer's P92 is CCM's P29 is Warrior's W28 — they're all roughly the same Crosby-style mid curve. When in doubt, ask a shop employee to compare them side by side.</p>
+  </div>
+
+  <!-- 05 BUDGET GUIDE -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>Budget <span class="accent">Guide</span></h2>
+    <p>You do not need a $350 stick. A beginner will not shoot better with a top-of-line stick — they'll just break an expensive one. Buy for the level your player is at right now, not where you hope they'll be.</p>
+
+    <div class="budget-grid">
+      <div class="budget-tier">
+        <div class="budget-price">Under $50</div>
+        <div>
+          <div class="budget-label">Beginner / Learn to Skate</div>
+          <div class="budget-desc">One-piece composite or wood sticks in youth sizes. Perfect for ages 4–7 or anyone just starting out. They'll break it, lose it, or outgrow it in a season. Don't spend more. ABS plastic blades are fine at this stage.</div>
+        </div>
+      </div>
+      <div class="budget-tier">
+        <div class="budget-price">$50–$150</div>
+        <div>
+          <div class="budget-label">Recreational Sweet Spot</div>
+          <div class="budget-desc">Entry-to-mid composite sticks from Bauer, CCM, or Warrior. This is the best value range for 90% of youth and adult rec players. Lightweight, proper flex options, decent blade response. Buy here first and move up only when your player is consistently breaking sticks or clearly ready for more.</div>
+        </div>
+      </div>
+      <div class="budget-tier">
+        <div class="budget-price">$150–$300</div>
+        <div>
+          <div class="budget-label">Serious / Travel / AAA</div>
+          <div class="budget-desc">Mid-to-high-end sticks with better carbon layup, faster shot release, and lighter weight. Worth it for competitive players practicing several times a week. At this tier, brand and model matter more — demo if you can, and buy the same model again once you know it works for your player.</div>
+        </div>
+      </div>
+      <div class="budget-tier">
+        <div class="budget-price">$300+</div>
+        <div>
+          <div class="budget-label">Elite / Pro Stock</div>
+          <div class="budget-desc">Top-of-line retail (Supreme UltraSonic, FT6 Pro, Covert QRE, etc.) or pro stock from HockeyStickMan. The performance difference over the $150–$250 tier is real but marginal for most players. Pro stock at this price point is often the smarter play — same build, much lower cost.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 CARE & MAINTENANCE -->
+  <div class="section">
+    <div class="section-number">06</div>
+    <h2>Care &amp; <span class="accent">Maintenance</span></h2>
+    <p>A well-maintained stick lasts longer and performs better. Most sticks are broken through misuse before they're ever worn out from skating.</p>
+
+    <div class="gear-grid">
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Tape Your Blade</div>
+          <div class="gear-desc">Blade tape protects the bottom of the blade from wear and improves puck feel. Cloth tape is standard — black or white is player preference. Tape from heel to toe with slightly overlapping strips. Retape when the tape starts fraying or balling up with snow. Most players tape before every game.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Do This</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Tape Your Knob</div>
+          <div class="gear-desc">A knob at the top of the shaft prevents the stick from flying out of gloves on face-offs and gives your top hand something to grip. Build it up with several layers of cloth tape. Some players add a rubber knob — personal preference.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Do This</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">How Long Do Sticks Last?</div>
+          <div class="gear-desc">Recreational players: 1–2 seasons on a composite stick. Competitive players: weeks to a few months depending on ice time and shooting volume. Youth sticks in travel hockey can snap in a single practice. Blade wear happens first — a worn blade with fraying carbon around the toe is close to the end of its life.</div>
+        </div>
+        <div class="gear-badge badge-optional">FYI</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">The Dead Stick Test</div>
+          <div class="gear-desc">Tap the shaft lightly with your knuckle — a live stick rings clearly; a dead or cracked stick sounds flat and dull. Hold it up to light and look down the shaft for cracks. If a shot feels like it went nowhere despite good mechanics, the stick is probably dead. Pros replace them constantly; rec players usually skate on them too long.</div>
+        </div>
+        <div class="gear-badge badge-warning">Watch For</div>
+      </div>
+    </div>
+
+    <div class="warning">
+      <div class="warning-label">Never Leave a Stick in a Hot Car</div>
+      <p>Heat destroys composite sticks. A stick left in a car on a summer day can delaminate, warp, or lose its flex profile entirely — and the damage isn't always visible. Store sticks indoors, out of direct sunlight. This applies to expensive sticks especially.</p>
+    </div>
+  </div>
+
+  <!-- 07 BRAND OVERVIEW -->
+  <div class="section">
+    <div class="section-number">07</div>
+    <h2>Brand <span class="accent">Overview</span></h2>
+    <p>The big four brands are all making quality sticks at every price point. Brand loyalty in hockey is real but rarely rational — the best stick is the one that fits your player's flex, curve, and budget. Here's a neutral read on each.</p>
+
+    <div class="gear-grid">
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Bauer</div>
+          <div class="gear-desc">The most widely distributed brand in North America. Excellent build quality at every tier. The Supreme line is known for a stiffer, more powerful feel; the Vapor line is lighter and more whippy. Very wide curve and flex selection. Easiest to find in stores — good for first-time buyers.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Most Common</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">CCM</div>
+          <div class="gear-desc">Bauer's main competitor and arguably equal at the top end. The Jetspeed line is extremely popular for its fast shot release. Slightly different feel in hand than Bauer — try both if possible. Strong pro stock availability through HockeyStickMan and similar retailers.</div>
+        </div>
+        <div class="gear-badge badge-recommended">Top Tier</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">Warrior</div>
+          <div class="gear-desc">Known for aggressive, high-performance sticks with a loyal following among players who want something different from the Bauer/CCM duopoly. The Covert QRE line has excellent shot feel. Slightly less available in smaller hockey shops. Great value mid-tier options.</div>
+        </div>
+        <div class="gear-badge badge-optional">Solid Choice</div>
+      </div>
+      <div class="gear-item">
+        <div class="gear-item-left">
+          <div class="gear-name">True</div>
+          <div class="gear-desc">Newer to sticks but highly regarded, especially by players who prioritize a unique feel and one-piece construction. The Catalyst line has a strong following among elite players. Smaller selection and less common in shops, but worth trying if your player wants to explore outside the big two.</div>
+        </div>
+        <div class="gear-badge badge-optional">Worth Trying</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 MONEY SAVING PRO TIPS -->
+  <div class="section">
+    <div class="section-number">08</div>
+    <h2>Money Saving <span class="accent">Pro Tips</span></h2>
+    <p>Hockey is expensive. Sticks are one of the few places where smart buying habits make a real dent in the budget. Here's how to pay less without sacrificing quality.</p>
+
+    <div class="callout">
+      <div class="callout-label">Never Pay Full Retail on a First Stick</div>
+      <p>If your player has never played before, buy used or buy entry-level. They will break it, lose it, or decide they don't love hockey. A $40 used stick from SidelineSwap or Play It Again Sports is the right call until you know they're sticking with it (pun intended).</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Pro Stock at HockeyStickMan</div>
+      <p>Once your player knows their flex and curve, buy pro stock. <strong>HockeyStickMan</strong> is the go-to source — inventory changes constantly, so check it regularly. Expect to pay $80–$160 for a stick that retails at $280–$380. The quality is identical. This is the single biggest money saver for serious players.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Buy Used on SidelineSwap</div>
+      <p><strong>SidelineSwap</strong> is eBay for hockey gear — players selling sticks they've grown out of, broken in, or simply switched away from. You can find lightly used $300 sticks for $80–$120. Filter by flex, curve, and brand. Check seller reviews. A "lightly used" composite from a trusted seller is a great deal.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">💳 Credit Card Warranty Extensions — Use Them</div>
+      <p>Most people don't know their credit card extends the manufacturer's warranty on purchases. If you're spending $150+ on a stick, pay with the right card:</p>
+      <p style="margin-top:12px"><strong>American Express</strong> — extends the original manufacturer's warranty by 1 additional year on warranties up to 5 years.</p>
+      <p style="margin-top:8px"><strong>Chase Sapphire (Preferred &amp; Reserve)</strong> — extends the original warranty by 1 additional year on warranties of 3 years or less.</p>
+      <p style="margin-top:8px"><strong>Citi (most cards)</strong> — doubles the original warranty up to 1 additional year.</p>
+      <p style="margin-top:12px">Coverage typically applies to <strong>manufacturing defects</strong> — not normal wear, impact breaks, or blade delamination from misuse. To make a claim: keep your original receipt, keep the original packaging (or photograph it), and document the defect with photos before contacting your card issuer. Claims are submitted through your card's benefits administrator, not the store or brand.</p>
+    </div>
+
+    <div class="warning">
+      <div class="warning-label">What Credit Card Warranties Don't Cover</div>
+      <p>Manufacturing defects are covered. <strong>Normal wear, snap breaks from a slash or shot block, blade separation from heavy use, and cosmetic damage are typically not covered.</strong> When in doubt, call your card's benefits number before discarding a broken stick — they'll tell you if it qualifies. Keep the stick until the claim is resolved.</p>
+    </div>
+
+    <p><strong>Quick summary:</strong> Buy pro stock or used when possible. Pay with a card that extends the warranty when buying new. Keep receipts and original packaging. Never buy full retail on a beginner's first stick.</p>
+  </div>
+
+  <div class="cta-block">
+    <h3>Find a <em>Rink</em> Near You</h3>
+    <p>Now that you've got the right stick — find ice time, stick &amp; puck sessions, and open skate near you.</p>
+    <a href="https://therinklink.com" class="btn">Browse Rinks →</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 The Rink Link · <a href="https://therinklink.com">therinklink.com</a> · Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>
