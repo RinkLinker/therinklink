@@ -1803,7 +1803,6 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
             <button class="chip active" onclick="setStoreSharpening('all',this)">All</button>
             <button class="chip" onclick="setStoreSharpening('yes',this)">✓ Sharpening</button>
             <button class="chip" onclick="setStoreSharpening('no',this)">No Sharpening</button>
-            <button class="chip" onclick="setStoreSharpening('unverified',this)">Call to confirm</button>
           </div>
           <span style="width:1px;height:16px;background:var(--border);display:inline-block;margin:0 2px"></span>
           <div class="chips" id="store-tag-chips">
@@ -2795,7 +2794,6 @@ function renderStores(){
       if(activeStoreState!=='all'&&s.state!==activeStoreState)return false;
       if(activeStoreSharpening==='yes'&&s.sharpening!==true)return false;
       if(activeStoreSharpening==='no'&&s.sharpening!==false)return false;
-      if(activeStoreSharpening==='unverified'&&s.sharpening!==null)return false;
       if(activeStoreTag==='new'&&!(s.tags||'').toLowerCase().includes('new'))return false;
       if(activeStoreTag==='used'&&!(s.tags||'').toLowerCase().includes('used'))return false;
       return true;
