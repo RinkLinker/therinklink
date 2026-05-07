@@ -450,6 +450,12 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 .formkit-form[data-uid="15976278e2"] .formkit-input{background:#0d1a35!important;color:#fff!important;border-color:#1e2d4a!important;}
 .formkit-form[data-uid="15976278e2"] .formkit-submit{background:#7dd3fc!important;color:#060d1f!important;}
 .formkit-form[data-uid="15976278e2"]{max-width:100%!important;}
+/* Suggest Website */
+.suggest-url-link{background:none;border:none;padding:0;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.7rem;color:var(--muted);letter-spacing:.3px;text-decoration:underline;text-underline-offset:2px;transition:color .15s}
+.suggest-url-link:hover{color:var(--ice)}
+#suggest-url-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);align-items:center;justify-content:center}
+#suggest-url-modal.open{display:flex}
+#suggest-url-inner{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;max-width:420px;width:calc(100% - 32px);position:relative}
 /* Hockey Map */
 #hockey-map{height:70vh;min-height:420px;border-radius:10px;overflow:hidden;margin-top:4px}
 .hmap-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
@@ -1867,6 +1873,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
             <button class="admin-tab" id="atab-tips" onclick="switchAdminTab('tips')">💡 Tips</button>
             <button class="admin-tab" id="atab-rinks" onclick="switchAdminTab('rinks')">🏒 Rink Submissions</button>
             <button class="admin-tab" id="atab-agent" onclick="switchAdminTab('agent')">🤖 Rink Agent</button>
+            <button class="admin-tab" id="atab-suggestions" onclick="switchAdminTab('suggestions')">🔗 Website Suggestions</button>
           </div>
           <div style="display:flex;gap:8px">
             <button class="btn btn-ghost btn-sm" onclick="adminRefresh()">↻ Refresh</button>
@@ -1961,12 +1968,41 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
           </div>
         </div>
 
+        <!-- Website Suggestions Tab -->
+        <div id="admin-tab-suggestions" style="display:none">
+          <div id="admin-suggestions-empty" style="text-align:center;padding:48px 0;color:var(--muted)"><div style="font-size:2rem;margin-bottom:12px">✅</div><div>No pending website suggestions.</div></div>
+          <div id="admin-suggestions-list"></div>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
 
 <div class="overlay" id="modal-ov" onclick="handleOvClick(event)"><div class="modal" id="modal-inner"></div></div>
+
+<!-- SUGGEST WEBSITE MODAL -->
+<div id="suggest-url-modal" onclick="if(event.target===this)closeSuggestWebsite()">
+  <div id="suggest-url-inner">
+    <button onclick="closeSuggestWebsite()" style="position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;line-height:1">✕</button>
+    <!-- Form state -->
+    <div id="suggest-url-form">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:4px;color:var(--white)">Suggest a Website</div>
+      <div id="suggest-url-rinkname" style="font-size:.82rem;color:var(--ice);margin-bottom:18px"></div>
+      <label style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px">Website URL</label>
+      <input id="suggest-url-input" type="url" class="finput" placeholder="https://example.com" style="width:100%;box-sizing:border-box;margin-bottom:6px" oninput="document.getElementById('suggest-url-err').style.display='none'"/>
+      <div id="suggest-url-err" style="display:none;color:#e74c3c;font-size:.78rem;margin-bottom:10px"></div>
+      <button class="btn btn-ice" style="width:100%;margin-top:8px" onclick="submitSuggestWebsite()">Submit Suggestion</button>
+    </div>
+    <!-- Thank-you state -->
+    <div id="suggest-url-thanks" style="display:none;text-align:center;padding:12px 0">
+      <div style="font-size:2rem;margin-bottom:10px">🙏</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);margin-bottom:6px">Thanks!</div>
+      <div style="font-size:.85rem;color:var(--muted)">We'll review your suggestion and add it if it checks out.</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:18px" onclick="closeSuggestWebsite()">Close</button>
+    </div>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -2558,7 +2594,9 @@ function renderRinks(){
     +'<span style="font-size:.6rem;color:#334155;padding:2px 4px;align-self:center">+ more inside →</span>'
     +'</div>';
 })()
-      +'<div class="card-foot"><button class="btn btn-ice btn-sm" onclick="event.stopPropagation();openModal('+r.id+')" style="font-weight:800;font-size:.8rem">View Full Details →</button></div>'
+      +'<div class="card-foot"><button class="btn btn-ice btn-sm" onclick="event.stopPropagation();openModal('+r.id+')" style="font-weight:800;font-size:.8rem">View Full Details →</button>'
+      +(!r.website?'<button class="suggest-url-link" onclick="event.stopPropagation();openSuggestWebsite('+r.id+',\''+r.name.replace(/'/g,"\\'")+'\')" >Suggest website →</button>':'')
+      +'</div>'
       +'</div>';
   };
   const favDivider=favList.length&&restList.length
@@ -4945,7 +4983,7 @@ let adminUnlocked = false;
 
 // ── ADMIN TAB SWITCHING ──────────────────────────────────────────
 function switchAdminTab(tab){
-  ['reviews','coaches','camps','tips','rinks','agent'].forEach(t=>{
+  ['reviews','coaches','camps','tips','rinks','agent','suggestions'].forEach(t=>{
     document.getElementById('admin-tab-'+t).style.display = tab===t?'block':'none';
     document.getElementById('atab-'+t).classList.toggle('active', tab===t);
   });
@@ -4954,6 +4992,7 @@ function switchAdminTab(tab){
   if(tab==='camps') adminLoadCamps();
   if(tab==='tips') adminLoadTips();
   if(tab==='rinks') adminLoadRinks();
+  if(tab==='suggestions') adminLoadSuggestions();
 }
 
 async function adminLoadCoaches(){
@@ -5112,6 +5151,50 @@ async function adminRejectRink(id){
   await sbFetch('Submissions?id=eq.'+id,'DELETE');
   document.getElementById('scard-'+id)?.remove();
   toast('🗑 Submission rejected.');
+}
+
+// ── WEBSITE SUGGESTIONS (ADMIN) ──────────────────────────────────
+async function adminLoadSuggestions(){
+  const list = document.getElementById('admin-suggestions-list');
+  const empty = document.getElementById('admin-suggestions-empty');
+  list.innerHTML = '<div style="color:var(--muted);padding:20px;text-align:center">Loading...</div>';
+  try{
+    const rows = await sbFetch('rink_suggestions?status=eq.pending&order=id.desc');
+    if(!rows.length){ list.innerHTML=''; empty.style.display='block'; return; }
+    empty.style.display='none';
+    list.innerHTML = rows.map(s => `
+      <div id="sugcard-${s.id}" style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;color:var(--white)">${s.rink_name}</div>
+            <div style="font-size:.78rem;color:var(--ice);margin-top:4px">
+              <a href="${s.suggested_url}" target="_blank" rel="noopener" style="color:var(--ice)">${s.suggested_url}</a>
+            </div>
+            <div style="font-size:.72rem;color:var(--muted);margin-top:4px">Submitted ${s.submitted_at ? new Date(s.submitted_at).toLocaleDateString() : ''} · rink_id: ${s.rink_id}</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-shrink:0">
+            <button class="btn btn-sm" style="background:#2ecc71;color:#fff;font-weight:700" onclick="adminApproveSuggestion(${s.id},${s.rink_id},'${s.suggested_url.replace(/'/g,"\\'")}')">✓ Approve</button>
+            <button class="btn btn-sm" style="background:#e74c3c;color:#fff;font-weight:700" onclick="adminRejectSuggestion(${s.id})">✕ Reject</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }catch(e){ list.innerHTML='<div style="color:#e74c3c;padding:20px">Error: '+e.message+'</div>'; }
+}
+
+async function adminApproveSuggestion(suggId, rinkId, url){
+  await sbFetch('rink_suggestions?id=eq.'+suggId, 'PATCH', {status:'approved'});
+  await sbFetch('rinks?id=eq.'+rinkId, 'PATCH', {website: url});
+  const rink = RINKS.find(r => r.id === rinkId);
+  if(rink) rink.website = url;
+  document.getElementById('sugcard-'+suggId)?.remove();
+  toast('✅ Website approved and saved to rink!');
+}
+
+async function adminRejectSuggestion(suggId){
+  await sbFetch('rink_suggestions?id=eq.'+suggId, 'PATCH', {status:'rejected'});
+  document.getElementById('sugcard-'+suggId)?.remove();
+  toast('🗑 Suggestion rejected.');
 }
 
 // ── RINK AGENT ───────────────────────────────────────────────────
@@ -7678,6 +7761,49 @@ function makeLeafletMap(containerId, rinks) {
 }
 
 function closeAllPopups(){ if(rinksLeaflet)rinksLeaflet.closePopup(); if(regionLeaflet)regionLeaflet.closePopup(); }
+
+// ── SUGGEST WEBSITE ────────────────────────────────────────────────────────
+let _suggestRinkId = null, _suggestRinkName = '';
+
+function openSuggestWebsite(rinkId, rinkName) {
+  _suggestRinkId = rinkId;
+  _suggestRinkName = rinkName;
+  document.getElementById('suggest-url-rinkname').textContent = rinkName;
+  document.getElementById('suggest-url-input').value = '';
+  document.getElementById('suggest-url-err').style.display = 'none';
+  document.getElementById('suggest-url-form').style.display = 'block';
+  document.getElementById('suggest-url-thanks').style.display = 'none';
+  document.getElementById('suggest-url-modal').classList.add('open');
+  setTimeout(() => document.getElementById('suggest-url-input').focus(), 80);
+}
+
+function closeSuggestWebsite() {
+  document.getElementById('suggest-url-modal').classList.remove('open');
+}
+
+async function submitSuggestWebsite() {
+  const url = (document.getElementById('suggest-url-input').value || '').trim();
+  const errEl = document.getElementById('suggest-url-err');
+  if (!url || !/^https?:\/\/.+\..+/.test(url)) {
+    errEl.textContent = 'Please enter a valid URL starting with http:// or https://';
+    errEl.style.display = 'block';
+    return;
+  }
+  try {
+    await sbFetch('rink_suggestions', 'POST', {
+      rink_id:       _suggestRinkId,
+      rink_name:     _suggestRinkName,
+      suggested_url: url,
+      status:        'pending',
+      submitted_at:  new Date().toISOString(),
+    });
+    document.getElementById('suggest-url-form').style.display = 'none';
+    document.getElementById('suggest-url-thanks').style.display = 'block';
+  } catch(e) {
+    errEl.textContent = 'Could not submit — please try again.';
+    errEl.style.display = 'block';
+  }
+}
 
 // ── HOCKEY MAP ─────────────────────────────────────────────────────────────
 let hockeyMapLeaflet = null;
