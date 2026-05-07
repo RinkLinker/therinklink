@@ -1803,6 +1803,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
             <button class="chip active" onclick="setStoreSharpening('all',this)">All</button>
             <button class="chip" onclick="setStoreSharpening('yes',this)">✓ Sharpening</button>
             <button class="chip" onclick="setStoreSharpening('no',this)">No Sharpening</button>
+            <button class="chip" onclick="setStoreSharpening('unverified',this)">Call to confirm</button>
           </div>
           <span style="width:1px;height:16px;background:var(--border);display:inline-block;margin:0 2px"></span>
           <div class="chips" id="store-tag-chips">
@@ -2410,6 +2411,20 @@ function starsH(r,c='s'){if(r===null)return '<span style="color:var(--muted);fon
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 function updateFavBadge(){document.getElementById('fav-num').textContent=favorites.size;}
 
+function hasSharpening(place){
+  // Store path: top-level boolean/null field (store objects have no .nearby property)
+  if(place.nearby===undefined){
+    const v=place.sharpening;
+    return v===true?true:v===false?false:null;
+  }
+  // Rink path: derive from nearby text, amenities list, or shops list
+  const nv=place.nearby?.sharpening;
+  if(nv&&!/n\/a/i.test(nv))return true;
+  if(place.amenities?.some(a=>a.toLowerCase().includes('sharp')))return true;
+  if(place.shops?.some(s=>(s.detail||'').toLowerCase().includes('sharpen')))return true;
+  return null;
+}
+
 function isOpen(rink){
   const days=['sun','mon','tue','wed','thu','fri','sat'];
   const d=days[new Date().getDay()];
@@ -2583,7 +2598,7 @@ function renderRinks(){
       +(()=>{
   const hasWifi=r.parentInfo&&r.parentInfo.wifi&&r.parentInfo.wifi.available;
   const hasLB=r.parentInfo&&r.parentInfo.livebarn&&r.parentInfo.livebarn.available;
-  const hasSharp=(r.amenities&&r.amenities.some(a=>a.toLowerCase().includes('sharp')))||(r.nearby&&r.nearby.sharpening&&/on.site|facilit|available/i.test(r.nearby.sharpening))||(r.shops&&r.shops.some(s=>(s.detail||'').toLowerCase().includes('sharp')));
+  const hasSharp=hasSharpening(r)===true;
   const hasLockers=r.locker&&r.locker.rooms>0;
   const pill=(label,on)=>'<span style="font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:10px;background:'+(on?'rgba(46,204,113,.1)':'rgba(255,255,255,.04)')+';border:1px solid '+(on?'rgba(46,204,113,.3)':'var(--border)')+';color:'+(on?'#2ecc71':'#334155')+'">'+label+'</span>';
   return '<div style="display:flex;flex-wrap:wrap;gap:4px;padding:0 14px 10px">'
@@ -2758,7 +2773,7 @@ async function fetchStores(){
       tags:r.tags??'',
       notes:r.notes??null,
       website:r.website??null,
-      sharpening:!!r.sharpening,
+      sharpening:r.sharpening==null?null:!!r.sharpening,
       pro_stock:!!r.pro_stock,
       skate_fitting:!!r.skate_fitting,
     }));
@@ -2778,17 +2793,20 @@ function renderStores(){
   }else{
     f=STORES.filter(s=>{
       if(activeStoreState!=='all'&&s.state!==activeStoreState)return false;
-      if(activeStoreSharpening==='yes'&&!s.sharpening)return false;
-      if(activeStoreSharpening==='no'&&s.sharpening)return false;
+      if(activeStoreSharpening==='yes'&&s.sharpening!==true)return false;
+      if(activeStoreSharpening==='no'&&s.sharpening!==false)return false;
+      if(activeStoreSharpening==='unverified'&&s.sharpening!==null)return false;
       if(activeStoreTag==='new'&&!(s.tags||'').toLowerCase().includes('new'))return false;
       if(activeStoreTag==='used'&&!(s.tags||'').toLowerCase().includes('used'))return false;
       return true;
     });
   }
   const makeStoreCard=s=>{
-    const sharpenBadge=s.sharpening
+    const sharpenBadge=s.sharpening===true
       ?'<span style="background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.35);color:#2ecc71;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:4px">✓ Sharpening</span>'
-      :'<span style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:4px">— No Sharpening</span>';
+      :s.sharpening===false
+      ?'<span style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:4px">— No Sharpening</span>'
+      :'<span style="background:transparent;border:1px dashed rgba(122,143,176,.4);color:#4a5a78;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:4px">Call to confirm</span>';
     const proStockBadge=s.pro_stock?'<span style="background:rgba(232,184,75,.12);border:1px solid rgba(232,184,75,.3);color:var(--gold);font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:4px">Pro Stock</span>':'';
     const fittingBadge=s.skate_fitting?'<span style="background:rgba(91,184,245,.1);border:1px solid rgba(91,184,245,.3);color:var(--ice);font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:4px">Skate Fitting</span>':'';
     const badges=[sharpenBadge,proStockBadge,fittingBadge].filter(Boolean).join(' ');
@@ -4461,8 +4479,7 @@ function getCardIcons(r){
     const fd=fm[r.parentInfo.food.tier];
     if(fd) icons.push('<span class="ci '+fd.cls+'">🍕 '+fd.label+'</span>');
   }
-  const hasSharp=(r.amenities&&r.amenities.some(a=>a.toLowerCase().includes('sharp')))||(r.nearby&&r.nearby.sharpening&&/on.site|facilit|available/i.test(r.nearby.sharpening));
-  if(hasSharp) icons.push('<span class="ci ci-sharp">⚙️ Sharpening</span>');
+  if(hasSharpening(r)===true) icons.push('<span class="ci ci-sharp">⚙️ Sharpening</span>');
   return icons.length?'<div class="card-icons">'+icons.join('')+'</div>':'';
 }
 
@@ -5923,10 +5940,7 @@ function renderSharpen(){
     if(sharpenState!=='all'&&(r.state||'CO')!==sharpenState)return false;
     if(r.closed)return false;
     if(sv&&!r.name.toLowerCase().includes(sv)&&!r.city.toLowerCase().includes(sv))return false;
-    // Only rinks with on-site sharpening or shops with sharpening mentioned
-    const hasSharp = (r.nearby&&r.nearby.sharpening&&!r.nearby.sharpening.toLowerCase().includes('n/a')) ||
-                     (r.shops&&r.shops.some(s=>s.detail.toLowerCase().includes('sharpen')));
-    return hasSharp;
+    return hasSharpening(r)===true;
   });
 
   const countEl=document.getElementById('sharpen-count');
