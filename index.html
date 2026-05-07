@@ -450,9 +450,19 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 .formkit-form[data-uid="15976278e2"] .formkit-input{background:#0d1a35!important;color:#fff!important;border-color:#1e2d4a!important;}
 .formkit-form[data-uid="15976278e2"] .formkit-submit{background:#7dd3fc!important;color:#060d1f!important;}
 .formkit-form[data-uid="15976278e2"]{max-width:100%!important;}
+/* Hockey Map */
+#hockey-map{height:70vh;min-height:420px;border-radius:10px;overflow:hidden;margin-top:4px}
+.hmap-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.hmap-chip{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.5px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.hmap-chip.active{background:var(--ice);color:var(--navy);border-color:var(--ice)}
+.hmap-chip.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
+.hmap-zip-row{display:flex;gap:8px;align-items:center;margin-bottom:12px}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 </head>
 <body>
 <div class="beta-banner" id="beta-banner">
@@ -480,6 +490,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <li class="nav-dropdown">
       <a class="nav-dropdown-trigger" id="nav-resources">Guides & Info ▾</a>
       <div class="nav-dropdown-menu">
+        <a onclick="showPage('hockeymap');closeDropdowns()">🗺️ Hockey Map</a>
         <a onclick="showPage('stores');closeDropdowns()">🏒 Hockey Stores</a>
         <a onclick="showPage('sharpen');closeDropdowns()">⚙️ Sharpening Finder</a>
         <a onclick="showPage('checklist');closeDropdowns()">✅ What to Bring</a>
@@ -543,6 +554,11 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div class="mnav-card-icon">🎯</div>
       <div class="mnav-card-title">Training Facilities</div>
       <div class="mnav-card-desc">Skills rinks, dryland & development</div>
+    </div>
+    <div class="mnav-card" onclick="mobileNav('hockeymap')">
+      <div class="mnav-card-icon">🗺️</div>
+      <div class="mnav-card-title">Hockey Map</div>
+      <div class="mnav-card-desc">Rinks, stores & resources on a map</div>
     </div>
   </div>
 
@@ -1795,6 +1811,36 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   </div>
 </div>
 
+<div id="page-hockeymap" class="page">
+  <div class="section">
+    <div class="container">
+      <div class="sh">
+        <div class="sl">Hockey Map</div>
+        <div class="st">Hockey Map</div>
+        <div class="sd">Rinks, stores, and hockey resources across the US — all in one map.</div>
+      </div>
+      <!-- Layer toggle chips -->
+      <div class="hmap-chips" id="hmap-layer-chips">
+        <button class="hmap-chip active" id="hmap-chip-rinks" onclick="toggleHockeyLayer('rinks',this)">🏟️ Rinks</button>
+        <button class="hmap-chip active" id="hmap-chip-stores" onclick="toggleHockeyLayer('stores',this)">🏒 Stores</button>
+        <button class="hmap-chip" id="hmap-chip-sharpen" onclick="toggleHockeyLayer('sharpen',this)">⚙️ Sharpening Only</button>
+        <button class="hmap-chip disabled" title="Coming soon">👨‍🏫 Coaches</button>
+        <button class="hmap-chip disabled" title="Coming soon">🍽️ Restaurants</button>
+        <button class="hmap-chip disabled" title="Coming soon">☕ Coffee</button>
+        <button class="hmap-chip disabled" title="Coming soon">🏆 Activities</button>
+        <button class="hmap-chip disabled" title="Coming soon">🏨 Hotels</button>
+      </div>
+      <!-- Zip search -->
+      <div class="hmap-zip-row">
+        <input id="hmap-zip-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="ZIP code..." onkeydown="if(event.key==='Enter')hockeyMapZipSearch()" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;outline:none;letter-spacing:.5px;width:110px"/>
+        <button class="btn btn-ice" onclick="hockeyMapZipSearch()" style="padding:7px 16px;font-size:.82rem;letter-spacing:1px">Go</button>
+      </div>
+      <!-- Map container -->
+      <div id="hockey-map"></div>
+    </div>
+  </div>
+</div>
+
 <div id="page-admin" class="page">
   <div class="section">
     <div class="container" style="max-width:860px">
@@ -2409,6 +2455,7 @@ function showPage(name, skipHistory){
   if(name==='camps')renderCamps();
   if(name==='training')renderTraining();
   if(name==='stores')renderStores();
+  if(name==='hockeymap')renderHockeyMap();
   if(typeof updateBottomTabs==='function')updateBottomTabs(name);
   if(name==='submit'){loadSubmissions().then(()=>{updateSubmitCount();});resetSubmitForm&&document.getElementById('submit-form-wrap')&&(document.getElementById('submit-success').style.display='none',document.getElementById('submit-form-wrap').style.display='block');}
   if(name==='admin'){if(!adminUnlocked){document.getElementById('admin-pw-input').value='';document.getElementById('admin-pw-err').style.display='none';}}
@@ -7631,6 +7678,127 @@ function makeLeafletMap(containerId, rinks) {
 }
 
 function closeAllPopups(){ if(rinksLeaflet)rinksLeaflet.closePopup(); if(regionLeaflet)regionLeaflet.closePopup(); }
+
+// ── HOCKEY MAP ─────────────────────────────────────────────────────────────
+let hockeyMapLeaflet = null;
+const hockeyMapLayers = {};
+const hockeyMapLayerState = { rinks: true, stores: true, sharpen: false };
+let _hmapStoresRaw = null;
+
+function _hmapBlueIcon() {
+  return L.divIcon({
+    className: '',
+    html: '<div style="width:13px;height:13px;background:#378ADD;border:2px solid #fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.55)"></div>',
+    iconSize: [13,13], iconAnchor: [6,6]
+  });
+}
+
+function _hmapRedIcon() {
+  return L.divIcon({
+    className: '',
+    html: '<div style="width:13px;height:13px;background:#E8403A;border:2px solid #fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.55)"></div>',
+    iconSize: [13,13], iconAnchor: [6,6]
+  });
+}
+
+function _hmapPopup(f) {
+  let h = '<div style="font-family:\'Barlow Condensed\',sans-serif;min-width:190px;line-height:1.4">';
+  if (f.name)    h += '<div style="font-weight:800;font-size:1rem;margin-bottom:4px">'+f.name+'</div>';
+  if (f.address) h += '<div style="font-size:.82rem;color:#999;margin-bottom:3px">'+f.address+'</div>';
+  if (f.phone)   h += '<div style="font-size:.82rem;margin-bottom:3px"><a href="tel:'+f.phone+'" style="color:#7dd3fc">'+f.phone+'</a></div>';
+  if (f.website) h += '<div style="font-size:.82rem"><a href="'+f.website+'" target="_blank" rel="noopener" style="color:#7dd3fc">Visit Website →</a></div>';
+  h += '</div>';
+  return h;
+}
+
+function initHockeyMap() {
+  if (hockeyMapLeaflet) {
+    setTimeout(() => hockeyMapLeaflet.invalidateSize(), 80);
+    return;
+  }
+  hockeyMapLeaflet = L.map('hockey-map').setView([39.5, -98.35], 4);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 18
+  }).addTo(hockeyMapLeaflet);
+}
+
+function addHockeyMapLayer(layerId, markers) {
+  if (hockeyMapLayers[layerId]) {
+    hockeyMapLeaflet.removeLayer(hockeyMapLayers[layerId].group);
+  }
+  const group = L.markerClusterGroup({ maxClusterRadius: 50, chunkedLoading: true });
+  markers.forEach(m => group.addLayer(m));
+  hockeyMapLayers[layerId] = { group, enabled: true };
+  group.addTo(hockeyMapLeaflet);
+}
+
+function toggleHockeyLayer(layerId, btn) {
+  if (layerId === 'sharpen') {
+    hockeyMapLayerState.sharpen = !hockeyMapLayerState.sharpen;
+    btn.classList.toggle('active', hockeyMapLayerState.sharpen);
+    _hmapRebuildStores();
+    return;
+  }
+  const layer = hockeyMapLayers[layerId];
+  if (!layer) return;
+  layer.enabled = !layer.enabled;
+  btn.classList.toggle('active', layer.enabled);
+  if (layerId === 'rinks') hockeyMapLayerState.rinks = layer.enabled;
+  if (layerId === 'stores') hockeyMapLayerState.stores = layer.enabled;
+  layer.enabled ? layer.group.addTo(hockeyMapLeaflet) : hockeyMapLeaflet.removeLayer(layer.group);
+}
+
+function _hmapRebuildStores() {
+  if (!_hmapStoresRaw) return;
+  const data = hockeyMapLayerState.sharpen ? _hmapStoresRaw.filter(s => s.sharpening) : _hmapStoresRaw;
+  const markers = data
+    .filter(s => s.lat && s.lng)
+    .map(s => {
+      const addr = [s.street, s.city, s.state].filter(Boolean).join(', ');
+      return L.marker([s.lat, s.lng], { icon: _hmapRedIcon() })
+        .bindPopup(_hmapPopup({ name: s.name, address: addr, phone: s.phone, website: s.website }));
+    });
+  addHockeyMapLayer('stores', markers);
+  if (!hockeyMapLayerState.stores) {
+    hockeyMapLeaflet.removeLayer(hockeyMapLayers['stores'].group);
+    hockeyMapLayers['stores'].enabled = false;
+  }
+}
+
+async function renderHockeyMap() {
+  initHockeyMap();
+
+  if (!hockeyMapLayers['rinks']) {
+    const rinkMarkers = RINKS
+      .filter(r => r.lat && r.lng)
+      .map(r => {
+        const addr = [r.address, r.city, r.state].filter(Boolean).join(', ');
+        return L.marker([r.lat, r.lng], { icon: _hmapBlueIcon() })
+          .bindPopup(_hmapPopup({ name: r.name, address: addr, phone: r.phone, website: r.website }));
+      });
+    addHockeyMapLayer('rinks', rinkMarkers);
+  }
+
+  if (!_hmapStoresRaw) {
+    _hmapStoresRaw = (STORES && STORES.length) ? STORES : await fetchStores();
+  }
+  if (!hockeyMapLayers['stores']) {
+    _hmapRebuildStores();
+  }
+}
+
+async function hockeyMapZipSearch() {
+  const zip = (document.getElementById('hmap-zip-input').value || '').trim();
+  if (!zip || !/^\d{5}$/.test(zip)) return;
+  try {
+    const res = await fetch('https://nominatim.openstreetmap.org/search?postalcode=' + zip + '&country=us&format=json&limit=1');
+    const data = await res.json();
+    if (data && data[0]) {
+      hockeyMapLeaflet.flyTo([parseFloat(data[0].lat), parseFloat(data[0].lon)], 10, { duration: 1.2 });
+    }
+  } catch(e) { console.warn('Hockey map zip geocode failed:', e); }
+}
 
 function setRinksView(view){
   const lv=document.getElementById('rinks-list-view'),mv=document.getElementById('rinks-map-view');
