@@ -2498,8 +2498,7 @@ function showPage(name, skipHistory){
 }
 
 window.addEventListener('popstate',function(e){
-  const page=e.state&&e.state.page?e.state.page:'home';
-  showPage(page,true);
+  if(e.state&&e.state.page)showPage(e.state.page,true);
 });
 
 function getWearBadge(r){
@@ -2543,9 +2542,10 @@ function renderRinks(){
     const rv=reviews[r.id]||[],a=avgR(rv),cnt=rv.filter(x=>!x.pending).length,op=isOpen(r),isFav=favorites.has(r.id);
     const psPrice=r.pricing&&r.pricing.publicSkate?r.pricing.publicSkate.replace(/\|.*$/,'').trim().split(' ')[0]:'Check site';
     const snpPrice=r.pricing&&r.pricing.stickPuck?r.stickPuckTimes&&r.stickPuckTimes.cost&&r.stickPuckTimes.cost!=='Check website'?r.stickPuckTimes.cost.split(' ')[0]:'Check site':'—';
-    const snpUrl=r.stickPuckTimes&&r.stickPuckTimes.scheduleUrl?r.stickPuckTimes.scheduleUrl:null;
-    const snpBookUrl=r.stickPuckTimes&&r.stickPuckTimes.bookingUrl?r.stickPuckTimes.bookingUrl:null;
-    const psUrl=r.website||null;
+    const safeUrl=u=>u&&!/^https?:\/\//i.test(u)?'https://'+u:u||null;
+    const snpUrl=safeUrl(r.stickPuckTimes&&r.stickPuckTimes.scheduleUrl?r.stickPuckTimes.scheduleUrl:null);
+    const snpBookUrl=safeUrl(r.stickPuckTimes&&r.stickPuckTimes.bookingUrl?r.stickPuckTimes.bookingUrl:null);
+    const psUrl=safeUrl(r.website||null);
     const snpBtn=snpBookUrl
       ?'<a href="'+snpBookUrl+'" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;background:rgba(91,184,245,.12);border:1px solid rgba(91,184,245,.35);color:var(--ice);font-size:.67rem;font-weight:700;padding:4px 10px;border-radius:5px;text-decoration:none;margin-bottom:4px">🎟 Book Ice Time ↗</a>'
       :snpUrl?'<a href="'+snpUrl+'" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;background:rgba(91,184,245,.07);border:1px solid rgba(91,184,245,.2);color:var(--ice);font-size:.67rem;font-weight:700;padding:4px 10px;border-radius:5px;text-decoration:none;margin-bottom:4px">📅 View Schedule ↗</a>'
