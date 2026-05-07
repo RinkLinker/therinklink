@@ -3281,6 +3281,9 @@ function openModal(id){
   prefetchRinkData(id);
 }
 
+function safeStr(v, fallback='—'){ return (v != null && v !== '') ? String(v) : fallback; }
+function safeArr(v){ return Array.isArray(v) ? v : []; }
+
 function buildModal(r){
   _modalRink=r;
   const rv=reviews[r.id]||[],a=avgR(rv),cnt=rv.filter(x=>!x.pending).length,op=isOpen(r),isFav=favorites.has(r.id);
@@ -3292,9 +3295,9 @@ function buildModal(r){
   const psIsUnverified=psPrice&&psPrice.includes('⚠️');
   document.getElementById('modal-inner').innerHTML=
     '<div class="mhead"><div>'
-    +'<div style="font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px">'+r.region+' &middot; '+r.city+(r.type==='outdoor'?' &middot; <span style="color:var(--cold)">❄ Outdoor/Seasonal</span>':'')+'</div>'
-    +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.6rem;font-weight:800;line-height:1.1;margin-bottom:3px">'+r.name+'</div>'
-    +'<div style="color:var(--muted);font-size:.77rem;margin-bottom:7px">'+r.address+'</div>'
+    +'<div style="font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px">'+safeStr(r.region)+' &middot; '+safeStr(r.city)+(r.type==='outdoor'?' &middot; <span style="color:var(--cold)">❄ Outdoor/Seasonal</span>':'')+'</div>'
+    +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.6rem;font-weight:800;line-height:1.1;margin-bottom:3px">'+safeStr(r.name,'Unnamed Rink')+'</div>'
+    +'<div style="color:var(--muted);font-size:.77rem;margin-bottom:7px">'+safeStr(r.address)+'</div>'
     +'<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'
     +'<div class="stars">'+starsH(a)+'</div>'
     +'<span style="font-size:.72rem;color:var(--muted);font-weight:600">'+(a?a.toFixed(1)+' &middot; '+cnt+' review'+(cnt!==1?'s':''):'No reviews yet')+'</span>'
@@ -3309,7 +3312,7 @@ function buildModal(r){
     +'<div style="padding:14px;display:flex;flex-direction:column;gap:8px">'
     +'<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">'
     +'<div style="background:rgba(91,184,245,.07);border:1px solid rgba(91,184,245,.18);border-radius:8px;padding:8px 6px;text-align:center">'
-    +'<div style="font-size:.95rem;font-weight:900;font-family:\'Barlow Condensed\',sans-serif;color:var(--ice)">'+r.sheets+'</div>'
+    +'<div style="font-size:.95rem;font-weight:900;font-family:\'Barlow Condensed\',sans-serif;color:var(--ice)">'+safeStr(r.sheets,'?')+'</div>'
     +'<div style="font-size:.58rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-top:1px">NHL Sheets</div>'
     +'</div>'
     +'<div id="'+weatherId+'" style="background:rgba(91,184,245,.07);border:1px solid rgba(91,184,245,.18);border-radius:8px;padding:8px 6px;text-align:center">'
@@ -3327,12 +3330,12 @@ function buildModal(r){
     +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white)">📅 Ice Schedule</div>'
     +'<div style="font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.5">Times shift weekly — always verify before heading out</div>'
     +'</div>'
-    +'<a href="'+r.website+'" target="_blank" rel="noopener" style="flex-shrink:0;background:linear-gradient(135deg,#1a9be6,#0e7abf);color:#fff;font-weight:700;font-size:.75rem;padding:8px 13px;border-radius:8px;text-decoration:none">View ↗</a>'
+    +(r.website?'<a href="'+r.website+'" target="_blank" rel="noopener" style="flex-shrink:0;background:linear-gradient(135deg,#1a9be6,#0e7abf);color:#fff;font-weight:700;font-size:.75rem;padding:8px 13px;border-radius:8px;text-decoration:none">View ↗</a>':'')
     +'</div>'
     +'<div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(91,184,245,.15)">'
     +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'
     +'<div style="font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#f39c12">⛸️ Public Skate</div>'
-    +'<a href="'+r.website+'" target="_blank" rel="noopener" style="font-size:.68rem;color:var(--ice);font-weight:700;text-decoration:none">Schedule ↗</a>'
+    +(r.website?'<a href="'+r.website+'" target="_blank" rel="noopener" style="font-size:.68rem;color:var(--ice);font-weight:700;text-decoration:none">Schedule ↗</a>':'')
     +'</div>'
     +(psPrice&&!psIsUnverified
       ?'<div style="font-size:.75rem;color:var(--muted);line-height:1.5">'+psPrice+'</div>'
@@ -3342,7 +3345,7 @@ function buildModal(r){
       ?'<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(91,184,245,.1)">'
         +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'
         +'<div style="font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ice)">🏒 Stick &amp; Puck</div>'
-        +'<a href="'+spBookUrl+'" target="_blank" rel="noopener" style="font-size:.68rem;color:#2ecc71;font-weight:700;text-decoration:none">'+spBookLabel+'</a>'
+        +(spBookUrl?'<a href="'+spBookUrl+'" target="_blank" rel="noopener" style="font-size:.68rem;color:#2ecc71;font-weight:700;text-decoration:none">'+spBookLabel+'</a>':'')
         +'</div>'
         +(r.stickPuckTimes.cost?'<div style="font-size:.75rem;color:var(--muted)">'+r.stickPuckTimes.cost+'</div>':'')
         +'</div>'
@@ -3383,7 +3386,7 @@ function buildModalSection(section,rinkId,el){
 }
 
 function buildSectionPricing(r){
-  const pr=r.pricing;
+  const pr=r.pricing||{};
   let html='<div style="display:flex;flex-direction:column;gap:8px;padding:14px">';
   [{lbl:'Public Skate',val:pr.publicSkate},{lbl:'Skate Rental',val:pr.rental},{lbl:'Stick & Puck',val:pr.stickPuck},{lbl:'Ice Practice',val:pr.icePractice}].forEach(row=>{
     if(!row.val)return;
@@ -3396,8 +3399,8 @@ function buildSectionPricing(r){
   if(r.discounts&&r.discounts.length){
     r.discounts.forEach(d=>{
       html+='<div style="background:rgba(232,184,75,.06);border:1px solid rgba(232,184,75,.18);border-radius:7px;padding:8px 11px;margin-top:2px">'
-        +'<div style="font-size:.72rem;font-weight:700;color:var(--gold)">🎟 '+d.name+'</div>'
-        +'<div style="font-size:.72rem;color:var(--muted);margin-top:2px">'+d.detail+'</div>'
+        +'<div style="font-size:.72rem;font-weight:700;color:var(--gold)">🎟 '+safeStr(d.name)+'</div>'
+        +'<div style="font-size:.72rem;color:var(--muted);margin-top:2px">'+safeStr(d.detail)+'</div>'
         +'</div>';
     });
   }
@@ -3465,15 +3468,15 @@ function buildSectionAmenities(r){
       +'<div style="font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">🚪 Locker Rooms</div>'
       +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">'
       +'<div style="background:rgba(91,184,245,.06);border:1px solid rgba(91,184,245,.15);border-radius:8px;padding:10px;text-align:center">'
-      +'<div style="font-size:1.3rem;font-weight:900;font-family:\'Barlow Condensed\',sans-serif;color:var(--ice)">'+l.rooms+'</div>'
+      +'<div style="font-size:1.3rem;font-weight:900;font-family:\'Barlow Condensed\',sans-serif;color:var(--ice)">'+safeStr(l.rooms,'?')+'</div>'
       +'<div style="font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:1px">Rooms</div>'
       +'</div>'
       +'<div style="background:rgba(91,184,245,.06);border:1px solid rgba(91,184,245,.15);border-radius:8px;padding:10px;text-align:center">'
-      +'<div style="font-size:.82rem;font-weight:700;color:var(--white)">'+l.capacity+'</div>'
+      +'<div style="font-size:.82rem;font-weight:700;color:var(--white)">'+safeStr(l.capacity)+'</div>'
       +'<div style="font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:1px">Capacity</div>'
       +'</div></div>'
-      +'<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">'+l.features.map(f=>'<span style="background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted);font-size:.68rem;font-weight:600;padding:4px 9px;border-radius:20px">'+f+'</span>').join('')+'</div>'
-      +'<div style="font-size:.75rem;color:var(--muted);line-height:1.6">'+l.notes+'</div>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">'+safeArr(l.features).map(f=>'<span style="background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted);font-size:.68rem;font-weight:600;padding:4px 9px;border-radius:20px">'+f+'</span>').join('')+'</div>'
+      +'<div style="font-size:.75rem;color:var(--muted);line-height:1.6">'+safeStr(l.notes)+'</div>'
       +'</div>';
   }
   const onSiteShops=(r.shops||[]).filter(s=>s.dist==='On-site'||s.dist==='On campus'||s.dist==='In arena');
@@ -3482,8 +3485,8 @@ function buildSectionAmenities(r){
       +'<div style="font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">🛒 On-Site Shops</div>'
       +'<div style="display:flex;flex-direction:column;gap:7px">'
       +onSiteShops.map(s=>'<div style="padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
-        +'<div style="font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:2px">'+s.name+'</div>'
-        +'<div style="font-size:.73rem;color:var(--muted)">'+s.detail+'</div>'
+        +'<div style="font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:2px">'+safeStr(s.name)+'</div>'
+        +'<div style="font-size:.73rem;color:var(--muted)">'+safeStr(s.detail)+'</div>'
         +'</div>').join('')
       +'</div></div>';
   }
@@ -3508,24 +3511,30 @@ function buildSectionAmenities(r){
 
 function buildSectionContact(r){
   return '<div style="display:flex;flex-direction:column;gap:10px;padding:14px">'
-    +'<div style="display:flex;justify-content:space-between;align-items:center">'
-    +'<span style="font-size:.78rem;color:var(--muted)">📞 Phone</span>'
-    +'<a href="tel:'+r.phone+'" style="font-size:.85rem;font-weight:700;color:var(--ice);text-decoration:none">'+r.phone+'</a>'
-    +'</div>'
-    +'<div style="height:1px;background:var(--border)"></div>'
-    +'<div style="display:flex;justify-content:space-between;align-items:center">'
-    +'<span style="font-size:.78rem;color:var(--muted)">🌐 Website</span>'
-    +'<a href="'+r.website+'" target="_blank" rel="noopener" style="font-size:.85rem;font-weight:700;color:var(--ice);text-decoration:none">Visit ↗</a>'
-    +'</div>'
-    +'<div style="height:1px;background:var(--border)"></div>'
-    +'<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">'
-    +'<span style="font-size:.78rem;color:var(--muted)">📍 Address</span>'
-    +'<a href="https://maps.google.com/?q='+encodeURIComponent(r.address+' '+r.city)+'" target="_blank" rel="noopener" style="font-size:.78rem;font-weight:700;color:var(--ice);text-decoration:none;text-align:right;max-width:60%">'+r.address+' ↗</a>'
-    +'</div>'
-    +'<div style="height:1px;background:var(--border)"></div>'
+    +(r.phone
+      ?'<div style="display:flex;justify-content:space-between;align-items:center">'
+        +'<span style="font-size:.78rem;color:var(--muted)">📞 Phone</span>'
+        +'<a href="tel:'+r.phone+'" style="font-size:.85rem;font-weight:700;color:var(--ice);text-decoration:none">'+r.phone+'</a>'
+        +'</div>'
+        +'<div style="height:1px;background:var(--border)"></div>'
+      :'')
+    +(r.website
+      ?'<div style="display:flex;justify-content:space-between;align-items:center">'
+        +'<span style="font-size:.78rem;color:var(--muted)">🌐 Website</span>'
+        +'<a href="'+r.website+'" target="_blank" rel="noopener" style="font-size:.85rem;font-weight:700;color:var(--ice);text-decoration:none">Visit ↗</a>'
+        +'</div>'
+        +'<div style="height:1px;background:var(--border)"></div>'
+      :'')
+    +(r.address
+      ?'<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">'
+        +'<span style="font-size:.78rem;color:var(--muted)">📍 Address</span>'
+        +'<a href="https://maps.google.com/?q='+encodeURIComponent(r.address+(r.city?' '+r.city:''))+'" target="_blank" rel="noopener" style="font-size:.78rem;font-weight:700;color:var(--ice);text-decoration:none;text-align:right;max-width:60%">'+r.address+' ↗</a>'
+        +'</div>'
+        +'<div style="height:1px;background:var(--border)"></div>'
+      :'')
     +'<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">'
     +'<span style="font-size:.78rem;color:var(--muted);flex-shrink:0">🅿️ Parking</span>'
-    +'<span style="font-size:.78rem;color:var(--white);text-align:right;max-width:65%">'+r.parking+'</span>'
+    +'<span style="font-size:.78rem;color:var(--white);text-align:right;max-width:65%">'+safeStr(r.parking,'Check with rink')+'</span>'
     +'</div>'
     +'</div>';
 }
@@ -3538,12 +3547,12 @@ function buildSectionAroundRink(r){
   let html='<div style="display:flex;flex-direction:column;gap:10px;padding:14px">';
   html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
     +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:8px">⚡ Skate Sharpening</div>'
-    +'<div style="font-size:.82rem;color:var(--muted)">'+r.nearby.sharpening+'</div>'
+    +'<div style="font-size:.82rem;color:var(--muted)">'+safeStr(r.nearby.sharpening,'Check with rink')+'</div>'
     +'</div>';
   html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
     +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:10px">🍔 Food &amp; Drinks</div>'
     +'<div style="display:flex;flex-direction:column;gap:7px">'
-    +r.nearby.food.map(f=>{
+    +safeArr(r.nearby.food).map(f=>{
       const name=f.split('(')[0].trim();
       const dist=f.includes('(')?f.split('(')[1].replace(')','').trim():'';
       return '<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
@@ -3555,7 +3564,7 @@ function buildSectionAroundRink(r){
   html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
     +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:10px">🏨 Hotels</div>'
     +'<div style="display:flex;flex-direction:column;gap:7px">'
-    +r.nearby.hotels.map(h=>{
+    +safeArr(r.nearby.hotels).map(h=>{
       const name=h.split('(')[0].trim();
       const dist=h.includes('(')?h.split('(')[1].replace(')','').trim():'';
       return '<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
@@ -3571,10 +3580,10 @@ function buildSectionAroundRink(r){
       +'<div style="display:flex;flex-direction:column;gap:7px">'
       +nearbyShops.map(s=>'<div style="padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
         +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">'
-        +'<span style="font-size:.82rem;font-weight:700;color:var(--white)">'+s.name+'</span>'
-        +'<span style="font-size:.7rem;color:var(--muted)">'+s.dist+'</span>'
+        +'<span style="font-size:.82rem;font-weight:700;color:var(--white)">'+safeStr(s.name)+'</span>'
+        +'<span style="font-size:.7rem;color:var(--muted)">'+safeStr(s.dist)+'</span>'
         +'</div>'
-        +'<div style="font-size:.73rem;color:var(--muted)">'+s.detail+'</div>'
+        +'<div style="font-size:.73rem;color:var(--muted)">'+safeStr(s.detail)+'</div>'
         +'</div>').join('')
       +'</div></div>';
   }
