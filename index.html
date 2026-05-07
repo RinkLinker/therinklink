@@ -3284,7 +3284,7 @@ function buildModal(r){
   _modalRink=r;
   const rv=reviews[r.id]||[],a=avgR(rv),cnt=rv.filter(x=>!x.pending).length,op=isOpen(r),isFav=favorites.has(r.id);
   const weatherId='wx-m-'+r.id;
-  const parkingShort=r.parking.toLowerCase().includes('free')?'Free':'Check';
+  const parkingShort=(r.parking||'').toLowerCase().includes('free')?'Free':'Check';
   const spBookUrl=r.stickPuckTimes&&(r.stickPuckTimes.bookingUrl||r.stickPuckTimes.scheduleUrl)||r.website;
   const spBookLabel=r.stickPuckTimes&&r.stickPuckTimes.bookingUrl?'Book ↗':'Schedule ↗';
   const psPrice=r.pricing&&r.pricing.publicSkate?r.pricing.publicSkate:null;
@@ -4481,7 +4481,7 @@ function buildTabOverview(r){
     +'<div style="font-size:1.6rem;font-weight:900;font-family:\'Barlow Condensed\',sans-serif;color:var(--gold)">'+(a?a.toFixed(1):'--')+'</div>'
     +'<div style="font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px">Rating ('+cnt+' reviews)</div>'
     +'</div>';
-  const parkingShort=r.parking.toLowerCase().includes('free')?'Free':'Paid';
+  const parkingShort=(r.parking||'').toLowerCase().includes('free')?'Free':'Paid';
   html+='<div style="background:rgba(91,184,245,.07);border:1px solid rgba(91,184,245,.18);border-radius:10px;padding:14px;text-align:center">'
     +'<div style="font-size:1.6rem;font-weight:900;font-family:\'Barlow Condensed\',sans-serif;color:var(--ice)">'+parkingShort+'</div>'
     +'<div style="font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px">Parking</div>'
@@ -4592,7 +4592,7 @@ function buildTabTheRink(r){
   let html='<div style="padding:14px;display:flex;flex-direction:column;gap:8px">';
 
   // ── QUICK STATS (always open) ──
-  const parkingShort=r.parking.toLowerCase().includes('free')?'Free':'Check';
+  const parkingShort=(r.parking||'').toLowerCase().includes('free')?'Free':'Check';
   html+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">'
     +'<div style="background:rgba(91,184,245,.07);border:1px solid rgba(91,184,245,.18);border-radius:8px;padding:8px 6px;text-align:center">'
     +'<div style="font-size:.95rem;font-weight:900;font-family:\'Barlow Condensed\',sans-serif;color:var(--ice)">'+r.sheets+'</div>'
