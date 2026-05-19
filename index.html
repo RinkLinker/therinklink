@@ -2162,7 +2162,7 @@ async function fetchRinks() {
       offset+=PAGE;
     }
     const remote = rows.map(r => ({
-      id:       r.id,
+      id:       parseInt(r.id, 10),
       lat:      parseFloat(r.lat),
       lng:      parseFloat(r.lng),
       state:    r.state     || null,
@@ -3289,7 +3289,7 @@ function setNearby(f,btn){
 
 function openModal(id){
   currentRinkId=id;
-  const r=RINKS.find(x=>x.id===id);if(!r)return;
+  const r=RINKS.find(x=>x.id===id||x.id===String(id)||String(x.id)===String(id));if(!r)return;
   buildModal(r);
   document.getElementById('modal-ov').classList.add('open');
   document.body.style.overflow='hidden';
@@ -3390,7 +3390,7 @@ function lazyAccordion(uid,label,emoji,rinkId,section){
 }
 
 function buildModalSection(section,rinkId,el){
-  const r=RINKS.find(x=>x.id===rinkId);
+  const r=RINKS.find(x=>x.id===rinkId||x.id===String(rinkId)||String(x.id)===String(rinkId));
   if(!r){el.innerHTML='<div style="padding:14px;color:var(--muted)">Data not available.</div>';return;}
   if(section==='pricing')el.innerHTML=buildSectionPricing(r);
   else if(section==='amenities')el.innerHTML=buildSectionAmenities(r);
