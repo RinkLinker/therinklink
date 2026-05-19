@@ -820,8 +820,9 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div id="rinks-list-view">
         <div class="toolbar" style="flex-direction:column;align-items:stretch;gap:8px">
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-            <div class="search-wrap" style="flex:1"><input class="search-input" type="text" placeholder="Search rinks or cities..." id="rink-search" oninput="nearbyRinks=null;renderRinks()"/><span class="search-icon">🔍</span></div>
+            <div class="search-wrap" style="flex:1"><input class="search-input" type="text" placeholder="Search rinks, cities, or ZIP..." id="rink-search" oninput="rinkSearchInput(this.value)" onkeydown="if(event.key==='Enter'&&/^\d{5}$/.test(this.value))rinkZipSearch(this.value)"/><span class="search-icon">🔍</span></div>
           </div>
+          <div id="rink-zip-msg" style="display:none;font-size:.75rem;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px;padding:6px 12px;border-radius:6px;margin-top:-2px"></div>
           <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
             <select id="state-select" onchange="setState(this.value)" style="background:var(--card);color:var(--text);border:1.5px solid var(--border);border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;padding:6px 10px;cursor:pointer;outline:none;letter-spacing:.5px"></select>
             <div id="region-chips-wrap" style="display:none;align-items:center;gap:6px">
@@ -2532,7 +2533,7 @@ function renderRinks(){
   let f,nearbyBanner='';
   if(nearbyRinks){
     f=nearbyRinks;
-    nearbyBanner='<div style="background:rgba(91,184,245,.1);border:1px solid rgba(91,184,245,.3);border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;grid-column:1/-1"><span style="color:var(--ice);font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.88rem">📍 '+f.length+' rink'+(f.length!==1?'s':'')+' within '+nearbyRadiusMi+' miles of '+nearbyZip+'</span><button onclick="nearbyRinks=null;renderRinks()" style="background:none;border:1px solid rgba(91,184,245,.4);color:var(--ice);font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.75rem;padding:3px 10px;border-radius:5px;cursor:pointer">✕ Clear</button></div>';
+    nearbyBanner='<div style="background:rgba(91,184,245,.1);border:1px solid rgba(91,184,245,.3);border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;grid-column:1/-1"><span style="color:var(--ice);font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.88rem">📍 '+f.length+' rink'+(f.length!==1?'s':'')+' within '+nearbyRadiusMi+' miles of '+nearbyZip+'</span><button onclick="clearRinkZip()" style="background:none;border:1px solid rgba(91,184,245,.4);color:var(--ice);font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.75rem;padding:3px 10px;border-radius:5px;cursor:pointer">✕ Clear</button></div>';
   } else {
     const sv=(document.getElementById('rink-search').value||'').toLowerCase();
     f=RINKS.filter(r=>{
@@ -2622,7 +2623,7 @@ const STATE_REGIONS={};
 const STATE_EMOJI={CO:'🏔',WY:'🤠',UT:'⛷',NE:'🌽'};
 const STATE_NAMES={AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',DC:'Washington D.C.'};
 
-let nearbyRinks=null,nearbyZip='',nearbyRadiusMi=50;
+let nearbyRinks=null,nearbyZip='',nearbyRadiusMi=50,_rinkZipTimer;
 
 function haversine(lat1,lng1,lat2,lng2){
   const R=3958.8,rad=Math.PI/180;
@@ -2718,6 +2719,72 @@ async function heroZipSearch(){
   }
   if(btn){btn.innerHTML=origLabel;btn.disabled=false;}
 }
+
+function rinkSearchInput(val){
+  clearTimeout(_rinkZipTimer);
+  if(/^\d{5}$/.test(val)){
+    _rinkZipTimer=setTimeout(()=>rinkZipSearch(val),300);
+  } else {
+    nearbyRinks=null;
+    renderRinks();
+  }
+}
+
+async function rinkZipSearch(zip){
+  const inp=document.getElementById('rink-search');
+  const msg=document.getElementById('rink-zip-msg');
+  const showMsg=(text,isErr)=>{
+    if(!msg)return;
+    msg.textContent=text;
+    msg.style.display='block';
+    msg.style.background=isErr?'rgba(231,76,60,.18)':'rgba(46,204,113,.15)';
+    msg.style.border='1px solid '+(isErr?'rgba(231,76,60,.5)':'rgba(46,204,113,.4)');
+    msg.style.color=isErr?'#f88':'#6ee7b7';
+    if(isErr)setTimeout(()=>{if(msg)msg.style.display='none';},4500);
+  };
+  if(msg)msg.style.display='none';
+  try{
+    const res=await fetch('https://api.zippopotam.us/us/'+zip);
+    if(!res.ok)throw new Error('ZIP '+zip+' not found — try another.');
+    const data=await res.json();
+    const place=data.places[0];
+    const lat=parseFloat(place.latitude),lng=parseFloat(place.longitude);
+    const results=RINKS
+      .filter(r=>r.lat&&r.lng)
+      .map(r=>({...r,_miles:haversine(lat,lng,r.lat,r.lng)}))
+      .filter(r=>r._miles<=25)
+      .sort((a,b)=>a._miles-b._miles);
+    if(!results.length){
+      if(inp)inp.style.borderColor='rgba(231,76,60,.6)';
+      setTimeout(()=>{if(inp)inp.style.borderColor='';},2500);
+      showMsg('No rinks found within 25 miles of '+zip+'. Use Find a Rink on the home page for wider radius options.',true);
+      nearbyRinks=null;
+      renderRinks();
+      return;
+    }
+    nearbyRinks=results;
+    nearbyZip=zip;
+    nearbyRadiusMi=25;
+    renderRinks();
+  }catch(e){
+    console.error('rinkZipSearch:',e);
+    if(inp)inp.style.borderColor='rgba(231,76,60,.6)';
+    setTimeout(()=>{if(inp)inp.style.borderColor='';},2500);
+    showMsg(e.message||'Could not look up that ZIP — check your connection.',true);
+    nearbyRinks=null;
+    renderRinks();
+  }
+}
+
+function clearRinkZip(){
+  nearbyRinks=null;
+  const inp=document.getElementById('rink-search');
+  if(inp)inp.value='';
+  const msg=document.getElementById('rink-zip-msg');
+  if(msg)msg.style.display='none';
+  renderRinks();
+}
+
 function setState(s,btn){
   nearbyRinks=null;
   activeState=s;activeRegion='all';
