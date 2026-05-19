@@ -323,6 +323,7 @@ nav{position:fixed;top:38px;left:0;right:0;z-index:199;display:flex;align-items:
 .nc-rating{display:flex;align-items:center;gap:4px;font-size:.72rem;color:var(--gold);margin-top:6px}
 .nc-sponsored{display:inline-flex;align-items:center;gap:4px;font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);background:rgba(234,175,60,.12);border:1px solid rgba(234,175,60,.25);border-radius:4px;padding:2px 6px;margin-bottom:8px}
 .nc-team-badge{display:inline-flex;align-items:center;gap:4px;font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4ade80;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);border-radius:4px;padding:2px 6px;margin-left:4px}
+.nc-local-badge{display:inline-flex;align-items:center;font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#e8b84b;background:rgba(232,184,75,.12);border:1px solid rgba(232,184,75,.28);border-radius:4px;padding:2px 6px}
 .nc-card.is-sponsored{border-color:rgba(234,175,60,.3);background:linear-gradient(135deg,var(--card),rgba(234,175,60,.04))}
 .nc-btn{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;padding:6px 12px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;transition:opacity .15s}
 .nc-btn:hover{opacity:.85}
@@ -921,7 +922,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 <div id="page-nearby" class="page">
   <div class="section">
     <div class="container">
-      <div class="sh"><div class="sl">Game Day Guide</div><div class="st">Around the Rink</div><div class="sd">Pick a rink, see everything around it — food, hotels, skate shops, sharpening and team hangouts. All hockey-family friendly.</div></div>
+      <div class="sh"><div class="sl">Game Day Guide</div><div class="st">Around the Rink</div><div class="sd">Pick a rink. See everything around it — food, sharpening, coffee, and team hangouts. All hockey-family friendly.</div><div class="sd" style="margin-top:10px">Locally owned spots are tagged and listed first — the family-run coffee shop, the breakfast place the team always hits, the burger joint with kids&#39; team photos on the wall. Everything else hockey families need is here too.</div><div class="sd" style="margin-top:10px">Heads up: this guide is in progress. We&#39;re building it rink by rink, with help from hockey families like yours. If your rink isn&#39;t showing many spots yet, that just means we haven&#39;t gotten there. This is where you can help other hockey families and your favorite local business.</div><div class="sd" style="margin-top:10px">Know a great spot near your rink? <a href="https://forms.gle/KxEgRfU5jbKUNy8Q6" target="_blank" rel="noopener" style="color:var(--ice);font-weight:700;text-decoration:none">Tell us about it &#8594;</a></div></div>
 
       <!-- Rink Selector -->
       <div class="nc-rink-selector">
@@ -2252,58 +2253,55 @@ const CAMPS=[
 // mapsQuery: pre-built Google Maps search string for directions
 const NEARBY=[
   // ── COLORADO SPRINGS ────────────────────────────────────────────
-  {type:"Restaurant",icon:"🍔",name:"Texas Roadhouse — Colorado Springs",lat:38.8418,lng:-104.7978,detail:"Great for large teams — big booths, bread rolls on arrival, loud and forgiving of hockey bags. Open until 10pm most nights.",rink:"Colorado Springs",rinkIds:[2,3,4],dist:"1.4mi from World Arena",sponsored:false,teamFriendly:true,phone:"(719) 570-7427",mapsQuery:"Texas+Roadhouse+Colorado+Springs+CO"},
-  {type:"Restaurant",icon:"☕",name:"Stir Coffee & Cocktails",lat:38.8341,lng:-104.8232,detail:"Steps from Ed Robson Arena. Perfect before 6am skate times — opens early. Also does cocktails for the adults after games.",rink:"Colorado Springs",rinkIds:[3],dist:"0.1mi from Ed Robson",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Stir+Coffee+Cocktails+Colorado+Springs+CO"},
-  {type:"Hotel",icon:"🏨",name:"The Broadmoor",lat:38.7879,lng:-104.8688,detail:"Colorado Springs' landmark resort. Book tournament blocks months ahead — sells out fast for major hockey weekends.",rink:"Colorado Springs",rinkIds:[2],dist:"0.5mi from World Arena",sponsored:false,teamFriendly:false,phone:"(719) 577-5775",mapsQuery:"The+Broadmoor+Colorado+Springs+CO"},
-  {type:"Hotel",icon:"🏨",name:"Antlers Hotel",lat:38.8327,lng:-104.8213,detail:"Downtown Colorado Springs, walkable to Ed Robson Arena. Team blocks available — ask for group rates.",rink:"Colorado Springs",rinkIds:[3],dist:"0.4mi from Ed Robson",sponsored:false,teamFriendly:true,phone:"(719) 955-5600",mapsQuery:"Antlers+Hotel+Colorado+Springs+CO"},
-  {type:"Skate Sharpening",icon:"⚡",name:"World Arena Pro Shop",detail:"On-site at World Arena Ice Hall. All hollows available, fast turnaround. Open during all rink hours.",rink:"Colorado Springs",rinkIds:[2],dist:"On-site",sponsored:false,teamFriendly:true,phone:"(719) 477-2100",mapsQuery:"Broadmoor+World+Arena+Ice+Hall+Colorado+Springs"},
-  {type:"Equipment Shop",icon:"🏒",name:"Pure Hockey — Colorado Springs",lat:38.8621,lng:-104.7611,detail:"Full equipment, custom boot fitting, stick customization. Great for last-minute tournament gear.",rink:"Colorado Springs",rinkIds:[2,3,4],dist:"3.2mi from Ed Robson",sponsored:false,teamFriendly:true,phone:"(719) 380-9490",mapsQuery:"Pure+Hockey+Colorado+Springs+CO"},
-  {type:"Equipment Shop",icon:"🏒",name:"Play It Again Sports — Colorado Springs",lat:38.8555,lng:-104.8012,detail:"Used and new equipment. Best for growing youth players — budget-friendly, good selection.",rink:"Colorado Springs",rinkIds:[2,3,4],dist:"2.8mi from World Arena",sponsored:false,teamFriendly:true,phone:"(719) 536-9900",mapsQuery:"Play+It+Again+Sports+Colorado+Springs+CO"},
-  {type:"Grocery",icon:"🛒",name:"King Soopers — Colorado Springs",lat:38.7989,lng:-104.8342,detail:"Full grocery store for tournament meal prep. Deli, hot food bar, and a Starbucks inside.",rink:"Colorado Springs",rinkIds:[2,3,4],dist:"1.2mi",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"King+Soopers+Colorado+Springs+CO+near+World+Arena"},
-  {type:"Parking",icon:"🅿️",name:"Sertich City Lot",lat:38.83363,lng:-104.79552,detail:"Free city-owned parking. Rarely fills even on tournament days. Adjacent to the arena.",rink:"Colorado Springs",rinkIds:[4],dist:"On-site",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Sertich+Ice+Center+parking+Colorado+Springs"},
+  {type:"Restaurant",icon:"🍔",name:"Texas Roadhouse — Colorado Springs",lat:38.8418,lng:-104.7978,detail:"Great for large teams — big booths, bread rolls on arrival, loud and forgiving of hockey bags. Open until 10pm most nights.",rink:"Colorado Springs",rinkIds:[2,3,4],dist:"1.4mi from World Arena",sponsored:false,teamFriendly:true,phone:"(719) 570-7427",mapsQuery:"Texas+Roadhouse+Colorado+Springs+CO",local:false},
+  {type:"Restaurant",icon:"☕",name:"Stir Coffee & Cocktails",lat:38.8341,lng:-104.8232,detail:"Steps from Ed Robson Arena. Perfect before 6am skate times — opens early. Also does cocktails for the adults after games.",rink:"Colorado Springs",rinkIds:[3],dist:"0.1mi from Ed Robson",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Stir+Coffee+Cocktails+Colorado+Springs+CO",local:true},
+  {type:"Hotel",icon:"🏨",name:"The Broadmoor",lat:38.7879,lng:-104.8688,detail:"Colorado Springs' landmark resort. Book tournament blocks months ahead — sells out fast for major hockey weekends.",rink:"Colorado Springs",rinkIds:[2],dist:"0.5mi from World Arena",sponsored:false,teamFriendly:false,phone:"(719) 577-5775",mapsQuery:"The+Broadmoor+Colorado+Springs+CO",local:true},
+  {type:"Hotel",icon:"🏨",name:"Antlers Hotel",lat:38.8327,lng:-104.8213,detail:"Downtown Colorado Springs, walkable to Ed Robson Arena. Team blocks available — ask for group rates.",rink:"Colorado Springs",rinkIds:[3],dist:"0.4mi from Ed Robson",sponsored:false,teamFriendly:true,phone:"(719) 955-5600",mapsQuery:"Antlers+Hotel+Colorado+Springs+CO",local:true},
+  {type:"Skate Sharpening",icon:"⚡",name:"World Arena Pro Shop",detail:"On-site at World Arena Ice Hall. All hollows available, fast turnaround. Open during all rink hours.",rink:"Colorado Springs",rinkIds:[2],dist:"On-site",sponsored:false,teamFriendly:true,phone:"(719) 477-2100",mapsQuery:"Broadmoor+World+Arena+Ice+Hall+Colorado+Springs",local:true},
+  {type:"Equipment Shop",icon:"🏒",name:"Pure Hockey — Colorado Springs",lat:38.8621,lng:-104.7611,detail:"Full equipment, custom boot fitting, stick customization. Great for last-minute tournament gear.",rink:"Colorado Springs",rinkIds:[2,3,4],dist:"3.2mi from Ed Robson",sponsored:false,teamFriendly:true,phone:"(719) 380-9490",mapsQuery:"Pure+Hockey+Colorado+Springs+CO",local:false},
+  {type:"Equipment Shop",icon:"🏒",name:"Play It Again Sports — Colorado Springs",lat:38.8555,lng:-104.8012,detail:"Used and new equipment. Best for growing youth players — budget-friendly, good selection.",rink:"Colorado Springs",rinkIds:[2,3,4],dist:"2.8mi from World Arena",sponsored:false,teamFriendly:true,phone:"(719) 536-9900",mapsQuery:"Play+It+Again+Sports+Colorado+Springs+CO",local:false},
+  {type:"Grocery",icon:"🛒",name:"King Soopers — Colorado Springs",lat:38.7989,lng:-104.8342,detail:"Full grocery store for tournament meal prep. Deli, hot food bar, and a Starbucks inside.",rink:"Colorado Springs",rinkIds:[2,3,4],dist:"1.2mi",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"King+Soopers+Colorado+Springs+CO+near+World+Arena",local:false},
+  {type:"Parking",icon:"🅿️",name:"Sertich City Lot",lat:38.83363,lng:-104.79552,detail:"Free city-owned parking. Rarely fills even on tournament days. Adjacent to the arena.",rink:"Colorado Springs",rinkIds:[4],dist:"On-site",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Sertich+Ice+Center+parking+Colorado+Springs",local:true},
 
   // ── DENVER METRO / APEX ──────────────────────────────────────────
-  {type:"Restaurant",icon:"🌮",name:"Qdoba Mexican Eats — Arvada",lat:39.837,lng:-105.129,detail:"Right near Apex Center. Fast, filling, easy for teams. Big burrito bowls to fuel up before or after the game.",rink:"Denver Metro",rinkIds:[13],dist:"0.4mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Qdoba+Arvada+CO+near+Apex+Center"},
-  {type:"Restaurant",icon:"🍔",name:"Chili's — Arvada",lat:39.8421,lng:-105.1401,detail:"Reliable team dinner spot near Apex. Big tables, full bar for parents, kids menu. Good for post-game groups.",rink:"Denver Metro",rinkIds:[13],dist:"0.8mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Chili's+Arvada+CO"},
-  {type:"Restaurant",icon:"🍕",name:"Old Chicago — Arvada/Westminster",lat:39.8512,lng:-105.0824,detail:"Classic Colorado sports bar. Great for team dinners — big space, pizza, pasta, full bar. Hockey families welcome.",rink:"Denver Metro",rinkIds:[13],dist:"~2mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Old+Chicago+Arvada+Westminster+CO"},
-  {type:"Coffee",icon:"☕",name:"Starbucks — Arvada (Wadsworth)",lat:39.8389,lng:-105.1308,detail:"Closest Starbucks to Apex Center. Drive-through open early for those 5am skate times.",rink:"Denver Metro",rinkIds:[13],dist:"0.6mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Starbucks+Arvada+CO+Wadsworth"},
-  {type:"Hotel",icon:"🏨",name:"Hyatt Place — Arvada/Westminster",lat:39.8501,lng:-105.1271,detail:"Closest hotel to Apex Center. Team-friendly, breakfast included, indoor pool.",rink:"Denver Metro",rinkIds:[13],dist:"1.2mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Hyatt+Place+Arvada+Westminster+CO"},
-  {type:"Hotel",icon:"🏨",name:"Courtyard Denver West/Westminster",lat:39.8634,lng:-105.0952,detail:"Good team hotel near Apex. Multiple room types, pool, easy highway access from Denver or mountains.",rink:"Denver Metro",rinkIds:[13],dist:"2mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Courtyard+Denver+West+Westminster+CO"},
-  {type:"Grocery",icon:"🛒",name:"King Soopers — Arvada (72nd & Wadsworth)",lat:39.8379,lng:-105.1301,detail:"Right near Apex Center. Stock up on snacks, drinks, and pre-game fuel. Open early.",rink:"Denver Metro",rinkIds:[13],dist:"0.5mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"King+Soopers+Arvada+72nd+Wadsworth+CO"},
-  {type:"Team Hangout",icon:"🎳",name:"Bowling near Apex — Arvada",lat:39.8512,lng:-105.105,detail:"Check Google Maps for current bowling and team hangout options near Apex Center.",rink:"Denver Metro",rinkIds:[13],dist:"~3mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"bowling+Arvada+CO"},
-  {type:"Equipment Shop",icon:"🏒",name:"Pure Hockey — Westminster",lat:39.8619,lng:-105.0634,detail:"Closest Pure Hockey to Apex Center. Full equipment, custom fitting, sharpening. Open 7 days.",rink:"Denver Metro",rinkIds:[13],dist:"2.5mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Pure+Hockey+Westminster+CO"},
+  {type:"Restaurant",icon:"🌮",name:"Qdoba Mexican Eats — Arvada",lat:39.837,lng:-105.129,detail:"Right near Apex Center. Fast, filling, easy for teams. Big burrito bowls to fuel up before or after the game.",rink:"Denver Metro",rinkIds:[13],dist:"0.4mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Qdoba+Arvada+CO+near+Apex+Center",local:false},
+  {type:"Restaurant",icon:"🍔",name:"Chili's — Arvada",lat:39.8421,lng:-105.1401,detail:"Reliable team dinner spot near Apex. Big tables, full bar for parents, kids menu. Good for post-game groups.",rink:"Denver Metro",rinkIds:[13],dist:"0.8mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Chili's+Arvada+CO",local:false},
+  {type:"Restaurant",icon:"🍕",name:"Old Chicago — Arvada/Westminster",lat:39.8512,lng:-105.0824,detail:"Classic Colorado sports bar. Great for team dinners — big space, pizza, pasta, full bar. Hockey families welcome.",rink:"Denver Metro",rinkIds:[13],dist:"~2mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Old+Chicago+Arvada+Westminster+CO",local:false},
+  {type:"Coffee",icon:"☕",name:"Starbucks — Arvada (Wadsworth)",lat:39.8389,lng:-105.1308,detail:"Closest Starbucks to Apex Center. Drive-through open early for those 5am skate times.",rink:"Denver Metro",rinkIds:[13],dist:"0.6mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Starbucks+Arvada+CO+Wadsworth",local:false},
+  {type:"Hotel",icon:"🏨",name:"Hyatt Place — Arvada/Westminster",lat:39.8501,lng:-105.1271,detail:"Closest hotel to Apex Center. Team-friendly, breakfast included, indoor pool.",rink:"Denver Metro",rinkIds:[13],dist:"1.2mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Hyatt+Place+Arvada+Westminster+CO",local:false},
+  {type:"Hotel",icon:"🏨",name:"Courtyard Denver West/Westminster",lat:39.8634,lng:-105.0952,detail:"Good team hotel near Apex. Multiple room types, pool, easy highway access from Denver or mountains.",rink:"Denver Metro",rinkIds:[13],dist:"2mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Courtyard+Denver+West+Westminster+CO",local:false},
+  {type:"Grocery",icon:"🛒",name:"King Soopers — Arvada (72nd & Wadsworth)",lat:39.8379,lng:-105.1301,detail:"Right near Apex Center. Stock up on snacks, drinks, and pre-game fuel. Open early.",rink:"Denver Metro",rinkIds:[13],dist:"0.5mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"King+Soopers+Arvada+72nd+Wadsworth+CO",local:false},
+  {type:"Team Hangout",icon:"🎳",name:"Bowling near Apex — Arvada",lat:39.8512,lng:-105.105,detail:"Check Google Maps for current bowling and team hangout options near Apex Center.",rink:"Denver Metro",rinkIds:[13],dist:"~3mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"bowling+Arvada+CO",local:false},
+  {type:"Equipment Shop",icon:"🏒",name:"Pure Hockey — Westminster",lat:39.8619,lng:-105.0634,detail:"Closest Pure Hockey to Apex Center. Full equipment, custom fitting, sharpening. Open 7 days.",rink:"Denver Metro",rinkIds:[13],dist:"2.5mi from Apex",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Pure+Hockey+Westminster+CO",local:false},
 
   // ── DENVER METRO / EDGE, FAMILY SPORTS, ICE RANCH ───────────────
-  {type:"Restaurant",icon:"🥙",name:"Chipotle — Littleton",lat:39.5691,lng:-105.1312,detail:"Right next to Edge Ice Arena. Fast, filling, budget-friendly for teams. Big orders welcome.",rink:"Denver Metro",rinkIds:[9],dist:"0.2mi from Edge",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Chipotle+Littleton+CO+near+Edge+Ice+Arena"},
-  {type:"Restaurant",icon:"🍕",name:"Beau Jo's Colorado Style Pizza",lat:39.8219,lng:-105.1372,detail:"Colorado's mountain pizza institution. Honey on the table for the crust — a Colorado hockey tradition. Big tables for teams.",rink:"Denver Metro",rinkIds:[9,10,11],dist:"~2mi from Foothills/Edge",sponsored:false,teamFriendly:true,phone:"(303) 279-8100",mapsQuery:"Beau+Jo's+Pizza+Arvada+CO"},
-  {type:"Restaurant",icon:"🍕",name:"Santoro's — Ice Ranch",lat:39.553,lng:-105.0658,detail:"On-site at Ice Ranch. Pizza, pasta, sports bar atmosphere. Open during all rink hours — no need to leave the building.",rink:"Denver Metro",rinkIds:[11],dist:"On-site",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Santoro's+Ice+Ranch+Littleton+CO"},
-  {type:"Hotel",icon:"🏨",name:"Courtyard Denver South — Centennial",lat:39.5721,lng:-104.8794,detail:"Close to Family Sports Center. Team-friendly: indoor pool, hot tub, breakfast buffet. Ask for hockey team block.",rink:"Denver Metro",rinkIds:[1,12],dist:"1.2mi from Family Sports",sponsored:false,teamFriendly:true,phone:"(303) 290-7800",mapsQuery:"Courtyard+Denver+South+Centennial+CO"},
-  {type:"Skate Sharpening",icon:"⚡",name:"Edge Ice Arena Pro Shop",lat:39.56694,lng:-105.02572,detail:"Walk-in sharpening during all rink hours. Multiple hollow options, fast turnaround.",rink:"Denver Metro",rinkIds:[9],dist:"On-site",sponsored:false,teamFriendly:true,phone:"(303) 979-9444",mapsQuery:"Edge+Ice+Arena+Littleton+CO"},
-  {type:"Equipment Shop",icon:"🏒",name:"Pure Hockey — Centennial",lat:39.5898,lng:-104.8821,detail:"Large store, full equipment inventory, custom fitting, trade-ins accepted. Near Family Sports.",rink:"Denver Metro",rinkIds:[1,12],dist:"1.5mi from Family Sports",sponsored:false,teamFriendly:true,phone:"(303) 770-9660",mapsQuery:"Pure+Hockey+Centennial+CO"},
-  {type:"Parking",icon:"🅿️",name:"Family Sports Free Lot",lat:39.57739,lng:-104.87863,detail:"300+ free spaces, no time limit on game days. Overflow lot available for tournaments.",rink:"Denver Metro",rinkIds:[1],dist:"On-site",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Family+Sports+Center+Ice+Arena+Centennial+CO"},
-  {type:"Parking",icon:"🅿️",name:"Edge Ice Arena Free Lot",lat:39.56694,lng:-105.02572,detail:"Large free surface lot. Rarely fills, even on busy tournament weekends.",rink:"Denver Metro",rinkIds:[9],dist:"On-site",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Edge+Ice+Arena+parking+Littleton+CO"},
-  {type:"Grocery",icon:"🛒",name:"Safeway — Centennial",lat:39.5887,lng:-104.8879,detail:"Full grocery, Starbucks inside. Good for pre-tournament stock-up runs.",rink:"Denver Metro",rinkIds:[1,12],dist:"0.8mi from Family Sports",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Safeway+Centennial+CO+near+Family+Sports+Center"},
-  {type:"Team Hangout",icon:"🎳",name:"Bowlero — Greenwood Village",lat:39.5981,lng:-104.8897,detail:"Full-service bowling with food and bar. Great for team bonding nights — book lanes ahead for groups.",rink:"Denver Metro",rinkIds:[1,12,9],dist:"~3mi",sponsored:false,teamFriendly:true,phone:"(303) 694-9940",mapsQuery:"Bowlero+Greenwood+Village+CO"},
+  {type:"Restaurant",icon:"🥙",name:"Chipotle — Littleton",lat:39.5691,lng:-105.1312,detail:"Right next to Edge Ice Arena. Fast, filling, budget-friendly for teams. Big orders welcome.",rink:"Denver Metro",rinkIds:[9],dist:"0.2mi from Edge",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Chipotle+Littleton+CO+near+Edge+Ice+Arena",local:false},
+  {type:"Restaurant",icon:"🍕",name:"Beau Jo's Colorado Style Pizza",lat:39.8219,lng:-105.1372,detail:"Colorado's mountain pizza institution. Honey on the table for the crust — a Colorado hockey tradition. Big tables for teams.",rink:"Denver Metro",rinkIds:[9,10,11],dist:"~2mi from Foothills/Edge",sponsored:false,teamFriendly:true,phone:"(303) 279-8100",mapsQuery:"Beau+Jo's+Pizza+Arvada+CO",local:true},
+  {type:"Restaurant",icon:"🍕",name:"Santoro's — Ice Ranch",lat:39.553,lng:-105.0658,detail:"On-site at Ice Ranch. Pizza, pasta, sports bar atmosphere. Open during all rink hours — no need to leave the building.",rink:"Denver Metro",rinkIds:[11],dist:"On-site",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Santoro's+Ice+Ranch+Littleton+CO",local:true},
+  {type:"Hotel",icon:"🏨",name:"Courtyard Denver South — Centennial",lat:39.5721,lng:-104.8794,detail:"Close to Family Sports Center. Team-friendly: indoor pool, hot tub, breakfast buffet. Ask for hockey team block.",rink:"Denver Metro",rinkIds:[1,12],dist:"1.2mi from Family Sports",sponsored:false,teamFriendly:true,phone:"(303) 290-7800",mapsQuery:"Courtyard+Denver+South+Centennial+CO",local:false},
+  {type:"Skate Sharpening",icon:"⚡",name:"Edge Ice Arena Pro Shop",lat:39.56694,lng:-105.02572,detail:"Walk-in sharpening during all rink hours. Multiple hollow options, fast turnaround.",rink:"Denver Metro",rinkIds:[9],dist:"On-site",sponsored:false,teamFriendly:true,phone:"(303) 979-9444",mapsQuery:"Edge+Ice+Arena+Littleton+CO",local:true},
+  {type:"Equipment Shop",icon:"🏒",name:"Pure Hockey — Centennial",lat:39.5898,lng:-104.8821,detail:"Large store, full equipment inventory, custom fitting, trade-ins accepted. Near Family Sports.",rink:"Denver Metro",rinkIds:[1,12],dist:"1.5mi from Family Sports",sponsored:false,teamFriendly:true,phone:"(303) 770-9660",mapsQuery:"Pure+Hockey+Centennial+CO",local:false},
+  {type:"Parking",icon:"🅿️",name:"Family Sports Free Lot",lat:39.57739,lng:-104.87863,detail:"300+ free spaces, no time limit on game days. Overflow lot available for tournaments.",rink:"Denver Metro",rinkIds:[1],dist:"On-site",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Family+Sports+Center+Ice+Arena+Centennial+CO",local:true},
+  {type:"Parking",icon:"🅿️",name:"Edge Ice Arena Free Lot",lat:39.56694,lng:-105.02572,detail:"Large free surface lot. Rarely fills, even on busy tournament weekends.",rink:"Denver Metro",rinkIds:[9],dist:"On-site",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Edge+Ice+Arena+parking+Littleton+CO",local:true},
+  {type:"Grocery",icon:"🛒",name:"Safeway — Centennial",lat:39.5887,lng:-104.8879,detail:"Full grocery, Starbucks inside. Good for pre-tournament stock-up runs.",rink:"Denver Metro",rinkIds:[1,12],dist:"0.8mi from Family Sports",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Safeway+Centennial+CO+near+Family+Sports+Center",local:false},
+  {type:"Team Hangout",icon:"🎳",name:"Bowlero — Greenwood Village",lat:39.5981,lng:-104.8897,detail:"Full-service bowling with food and bar. Great for team bonding nights — book lanes ahead for groups.",rink:"Denver Metro",rinkIds:[1,12,9],dist:"~3mi",sponsored:false,teamFriendly:true,phone:"(303) 694-9940",mapsQuery:"Bowlero+Greenwood+Village+CO",local:false},
 
   // ── MOUNTAIN / BRECKENRIDGE ──────────────────────────────────────
-  {type:"Restaurant",icon:"🍕",name:"Fatty's Pizzeria — Breckenridge",lat:39.4823,lng:-106.0471,detail:"Classic après-hockey pizza spot. Big portions, lively atmosphere. Perfect post-game team dinner.",rink:"Breckenridge",rinkIds:[7],dist:"0.8mi from Breck Arena",sponsored:false,teamFriendly:true,phone:"(970) 453-9802",mapsQuery:"Fatty's+Pizzeria+Breckenridge+CO"},
-  {type:"Hotel",icon:"🏨",name:"Beaver Run Resort — Breckenridge",lat:39.4791,lng:-106.0501,detail:"Full kitchens for team meal prep, multiple room configurations. Book team blocks early — fills fast for hockey weekends.",rink:"Breckenridge",rinkIds:[7],dist:"1.2mi from Breck Arena",sponsored:false,teamFriendly:true,phone:"(970) 453-6000",mapsQuery:"Beaver+Run+Resort+Breckenridge+CO"},
-  {type:"Equipment Shop",icon:"🏒",name:"Breckenridge Ski & Sport",lat:39.4813,lng:-106.0478,detail:"Full ski and hockey equipment, expert mountain sports staff. Great for forgetting something critical at altitude.",rink:"Breckenridge",rinkIds:[7],dist:"In town",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Breckenridge+Ski+Sport+Breckenridge+CO"},
-  {type:"Grocery",icon:"🛒",name:"City Market — Breckenridge",lat:39.4831,lng:-106.0436,detail:"Full grocery store. Stock up on snacks, sports drinks, and team meal supplies before tournament day.",rink:"Breckenridge",rinkIds:[7],dist:"In town",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"City+Market+Breckenridge+CO"},
+  {type:"Restaurant",icon:"🍕",name:"Fatty's Pizzeria — Breckenridge",lat:39.4823,lng:-106.0471,detail:"Classic après-hockey pizza spot. Big portions, lively atmosphere. Perfect post-game team dinner.",rink:"Breckenridge",rinkIds:[7],dist:"0.8mi from Breck Arena",sponsored:false,teamFriendly:true,phone:"(970) 453-9802",mapsQuery:"Fatty's+Pizzeria+Breckenridge+CO",local:true},
+  {type:"Hotel",icon:"🏨",name:"Beaver Run Resort — Breckenridge",lat:39.4791,lng:-106.0501,detail:"Full kitchens for team meal prep, multiple room configurations. Book team blocks early — fills fast for hockey weekends.",rink:"Breckenridge",rinkIds:[7],dist:"1.2mi from Breck Arena",sponsored:false,teamFriendly:true,phone:"(970) 453-6000",mapsQuery:"Beaver+Run+Resort+Breckenridge+CO",local:true},
+  {type:"Equipment Shop",icon:"🏒",name:"Breckenridge Ski & Sport",lat:39.4813,lng:-106.0478,detail:"Full ski and hockey equipment, expert mountain sports staff. Great for forgetting something critical at altitude.",rink:"Breckenridge",rinkIds:[7],dist:"In town",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Breckenridge+Ski+Sport+Breckenridge+CO",local:false},
+  {type:"Grocery",icon:"🛒",name:"City Market — Breckenridge",lat:39.4831,lng:-106.0436,detail:"Full grocery store. Stock up on snacks, sports drinks, and team meal supplies before tournament day.",rink:"Breckenridge",rinkIds:[7],dist:"In town",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"City+Market+Breckenridge+CO",local:false},
 
   // ── VAIL ─────────────────────────────────────────────────────────
-  {type:"Restaurant",icon:"🍺",name:"Bart & Yeti's — Vail Village",lat:39.6427,lng:-106.3739,detail:"Vail's legendary sports bar, steps from Dobson Arena. Great burgers, big TVs, hockey-friendly crowd.",rink:"Vail",rinkIds:[8],dist:"0.2mi from Dobson",sponsored:false,teamFriendly:true,phone:"(970) 476-2754",mapsQuery:"Bart+and+Yeti's+Vail+CO"},
-  {type:"Skate Sharpening",icon:"⚡",name:"Dobson Skate Shop",detail:"On-site at Dobson Arena. Sharpening while you skate — ready when your session ends.",rink:"Vail",rinkIds:[8],dist:"On-site",sponsored:false,teamFriendly:true,phone:"(970) 479-2271",mapsQuery:"Dobson+Ice+Arena+Vail+CO"},
-  {type:"Parking",icon:"🅿️",name:"Lionshead Parking Structure",lat:39.6425,lng:-106.381,detail:"Vail's main paid parking. 5-min walk to Dobson. $5–$20/day depending on season.",rink:"Vail",rinkIds:[8],dist:"0.4mi from Dobson",sponsored:false,teamFriendly:false,phone:"",mapsQuery:"Lionshead+parking+structure+Vail+CO"},
+  {type:"Restaurant",icon:"🍺",name:"Bart & Yeti's — Vail Village",lat:39.6427,lng:-106.3739,detail:"Vail's legendary sports bar, steps from Dobson Arena. Great burgers, big TVs, hockey-friendly crowd.",rink:"Vail",rinkIds:[8],dist:"0.2mi from Dobson",sponsored:false,teamFriendly:true,phone:"(970) 476-2754",mapsQuery:"Bart+and+Yeti's+Vail+CO",local:true},
+  {type:"Skate Sharpening",icon:"⚡",name:"Dobson Skate Shop",detail:"On-site at Dobson Arena. Sharpening while you skate — ready when your session ends.",rink:"Vail",rinkIds:[8],dist:"On-site",sponsored:false,teamFriendly:true,phone:"(970) 479-2271",mapsQuery:"Dobson+Ice+Arena+Vail+CO",local:true},
+  {type:"Parking",icon:"🅿️",name:"Lionshead Parking Structure",lat:39.6425,lng:-106.381,detail:"Vail's main paid parking. 5-min walk to Dobson. $5–$20/day depending on season.",rink:"Vail",rinkIds:[8],dist:"0.4mi from Dobson",sponsored:false,teamFriendly:false,phone:"",mapsQuery:"Lionshead+parking+structure+Vail+CO",local:false},
 
   // ── FORT COLLINS / NOCO ──────────────────────────────────────────
-  {type:"Restaurant",icon:"🍔",name:"Coopersmith's Pub & Brewing",lat:40.5873,lng:-105.0773,detail:"Fort Collins landmark. Big space, good food, local craft beer for the adults. Team dinners welcome.",rink:"Fort Collins",rinkIds:[22,23],dist:"~2mi from EPIC",sponsored:false,teamFriendly:true,phone:"(970) 498-0483",mapsQuery:"Coopersmith's+Pub+Brewing+Fort+Collins+CO"},
-  {type:"Grocery",icon:"🛒",name:"King Soopers — Fort Collins",lat:40.5581,lng:-105.0852,detail:"Multiple locations near EPIC and NoCo Ice. Best for tournament day bulk snack runs.",rink:"Fort Collins",rinkIds:[22,23],dist:"Near EPIC",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"King+Soopers+Fort+Collins+CO"},
-  {type:"Team Hangout",icon:"🎯",name:"Spare Time — Fort Collins",lat:40.5789,lng:-105.0931,detail:"Bowling, laser tag, arcade and full bar. Perfect team hangout between tournament games. Book ahead for groups.",rink:"Fort Collins",rinkIds:[22,23],dist:"~3mi from EPIC",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Spare+Time+Fort+Collins+CO"},
+  {type:"Restaurant",icon:"🍔",name:"Coopersmith's Pub & Brewing",lat:40.5873,lng:-105.0773,detail:"Fort Collins landmark. Big space, good food, local craft beer for the adults. Team dinners welcome.",rink:"Fort Collins",rinkIds:[22,23],dist:"~2mi from EPIC",sponsored:false,teamFriendly:true,phone:"(970) 498-0483",mapsQuery:"Coopersmith's+Pub+Brewing+Fort+Collins+CO",local:true},
+  {type:"Grocery",icon:"🛒",name:"King Soopers — Fort Collins",lat:40.5581,lng:-105.0852,detail:"Multiple locations near EPIC and NoCo Ice. Best for tournament day bulk snack runs.",rink:"Fort Collins",rinkIds:[22,23],dist:"Near EPIC",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"King+Soopers+Fort+Collins+CO",local:false},
+  {type:"Team Hangout",icon:"🎯",name:"Spare Time — Fort Collins",lat:40.5789,lng:-105.0931,detail:"Bowling, laser tag, arcade and full bar. Perfect team hangout between tournament games. Book ahead for groups.",rink:"Fort Collins",rinkIds:[22,23],dist:"~3mi from EPIC",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Spare+Time+Fort+Collins+CO",local:false},
 
-  // ── UNIVERSAL (all rinks) ────────────────────────────────────────
-  {type:"Coffee",icon:"☕",name:"Starbucks — Find Nearest",detail:"The 5am hockey parent's lifeline. Use Google Maps to find the closest one to your rink.",rink:"All Rinks",rinkIds:[],allRinks:true,dist:"Varies",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Starbucks+near+me"},
-  {type:"Coffee",icon:"☕",name:"Dutch Bros Coffee",detail:"Drive-through coffee chain spreading across Colorado — fast, large drinks, great for pre-game fuel.",rink:"All Rinks",rinkIds:[],allRinks:true,dist:"Varies",sponsored:false,teamFriendly:true,phone:"",mapsQuery:"Dutch+Bros+Coffee+Colorado"},
 ];
 
 // No seed reviews — all reviews come from Supabase
@@ -3191,8 +3189,8 @@ function setNearbyRink(val){
 
 function renderNearby(){
   initNearbyRinkSelect();
-  // Filter by type
-  let items=NEARBY.filter(s=>nearbyFilter==='all'||s.type===nearbyFilter);
+  // Filter by type (Parking entries suppressed — belong in rink modal logistics)
+  let items=NEARBY.filter(s=>s.type!=='Parking'&&(nearbyFilter==='all'||s.type===nearbyFilter));
   // Filter by rink if one selected
   if(nearbyRinkId!=='all'){
     // allRinks:true = show for every rink (e.g. Starbucks, Dutch Bros)
@@ -3215,10 +3213,12 @@ function renderNearby(){
     }
   }
 
-  // Sort: sponsored first, then team-friendly, then rest
+  // Sort: sponsored first, then local, then team-friendly, then rest
   items.sort((a,b)=>{
     if(a.sponsored&&!b.sponsored)return -1;
     if(!a.sponsored&&b.sponsored)return 1;
+    if(a.local&&!b.local)return -1;
+    if(!a.local&&b.local)return 1;
     if(a.teamFriendly&&!b.teamFriendly)return -1;
     if(!a.teamFriendly&&b.teamFriendly)return 1;
     return 0;
@@ -3254,6 +3254,7 @@ function nearbyCard(s){
   const mapsHref=s.mapsQuery?'https://www.google.com/maps/search/'+encodeURIComponent(s.mapsQuery):'';
   return '<div class="nc-card'+(s.sponsored?' is-sponsored':'')+'">'
     +'<div class="nc-card-body">'
+    +(s.local?'<div><span class="nc-local-badge">LOCALLY OWNED</span></div>':'')
     +(s.sponsored?'<div><span class="nc-sponsored">⭐ Featured</span>'+(s.teamFriendly?'<span class="nc-team-badge">🏒 Team Friendly</span>':'')+'</div>':'')
     +(!s.sponsored&&s.teamFriendly?'<div><span class="nc-team-badge">🏒 Team Friendly</span></div>':'')
     +'<div class="nc-type" style="margin-top:6px">'+s.icon+' '+s.type+'</div>'
@@ -6435,6 +6436,7 @@ const LOCAL_BIZ = [
    tags:['Skate Sharpening','Used Gear','Consignment','Custom Fitting','Rentals'],
    cta:'Shop Online',ctaUrl:'https://www.sportsplusdenver.com/pages/hockey',
    hours:'Mon–Fri 10am–7pm · Sat 10am–6pm · Sun 11am–5pm',
+   local:true,
    logo:null,
   },
   {id:'purehockey-westminster',name:'Pure Hockey — Westminster',type:'shop',featured:true,
@@ -6446,6 +6448,7 @@ const LOCAL_BIZ = [
    tags:['Skate Sharpening','Skate Baking','Team Orders','Expert Fitting','All Levels'],
    cta:'Find Your Gear',ctaUrl:'https://www.purehockey.com/c/ice-hockey',
    hours:'Mon–Sat 10am–8pm · Sun 11am–6pm',
+   local:false,
    logo:null,
   },
   {id:'purehockey-littleton',name:'Pure Hockey — Littleton',type:'shop',featured:true,
@@ -6457,6 +6460,7 @@ const LOCAL_BIZ = [
    tags:['Skate Sharpening','Skate Baking','Team Orders','Expert Fitting'],
    cta:'Find Your Gear',ctaUrl:'https://www.purehockey.com/c/ice-hockey',
    hours:'Mon–Sat 10am–8pm · Sun 11am–6pm',
+   local:false,
    logo:null,
   },
   // ── TRAINING / SKILL ACADEMIES ────────────────────────────────
@@ -6469,6 +6473,7 @@ const LOCAL_BIZ = [
    tags:['Private Lessons','Group Skills','All Ages','CAHA Coaches','Youth & Adult'],
    cta:'View Programs',ctaUrl:'https://www.krivohockey.com',
    hours:'By appointment — see website for schedule',
+   local:true,
    logo:null,
   },
   {id:'sportstable-training',name:'Blue Sport Stable — EYG Player Development',type:'training',featured:false,
@@ -6480,6 +6485,7 @@ const LOCAL_BIZ = [
    tags:['Youth Programs','Adult Skills','Camps','Private Ice','On-Site'],
    cta:'View Programs',ctaUrl:'https://www.bluesportstable.com/programs',
    hours:'See bluesportstable.com for schedule',
+   local:true,
    logo:null,
   },
   // ── TEAM GEAR / UNIFORMS ──────────────────────────────────────
@@ -6492,6 +6498,7 @@ const LOCAL_BIZ = [
    tags:['Custom Jerseys','Team Packages','Adult Leagues','Youth Teams','Fast Turnaround'],
    cta:'Get a Quote',ctaUrl:'https://www.sportsplusdenver.com/pages/custom-uniforms',
    hours:'Mon–Fri 10am–7pm · Sat 10am–6pm',
+   local:true,
    logo:null,
   },
   // ── PHOTOGRAPHY ─────────────────────────────────────────────────────────────
@@ -6506,6 +6513,7 @@ const LOCAL_BIZ = [
    tags:['Skate Sharpening','On-Site','Walk-In'],
    cta:'Call Ahead',ctaUrl:'tel:3034032598',
    hours:'During rink hours — call to confirm',
+   local:true,
    logo:null,
   },
   // ── SPORTS MEDICINE / HEALTH ──────────────────────────────────
@@ -6518,6 +6526,7 @@ const LOCAL_BIZ = [
    tags:['Physical Therapy','Hockey Injuries','On-Site','Return to Play'],
    cta:'Learn More',ctaUrl:'https://www.bluesportstable.com/impact',
    hours:'See bluesportstable.com for hours',
+   local:true,
    logo:null,
   },
   {id:'childrens-sports-med',name:"Children's Colorado Sports Medicine",type:'health',featured:false,
@@ -6529,6 +6538,7 @@ const LOCAL_BIZ = [
    tags:['Youth Athletes','Concussion Protocol','Injury Prevention','Official Partner'],
    cta:'Find a Location',ctaUrl:'https://www.childrenscolorado.org/doctors-and-departments/departments/orthopedics/programs/sports-medicine-center/',
    hours:'By appointment — multiple locations',
+   local:true,
    logo:null,
   },
   // ── FOOD & DRINK ──────────────────────────────────────────────
@@ -6541,6 +6551,7 @@ const LOCAL_BIZ = [
    tags:['Pizza','Italian','Dine-In','Take-Out','Team Parties','Post-Game','Family Friendly'],
    cta:'View Menu',ctaUrl:'https://www.randispizza.com/take-out-menu',
    hours:'Tue–Sun 11am–8pm · Closed Monday',
+   local:true,
    logo:null,
   },
   {id:'redsilo-arvada',name:'Red Silo Coffee Roasters — Arvada',type:'food',featured:true,
@@ -6552,6 +6563,7 @@ const LOCAL_BIZ = [
    tags:['Coffee','Pastries','Breakfast','Early Hours','Local Roastery','Take-Out'],
    cta:'See Locations',ctaUrl:'https://redsilocoffeeroasters.com',
    hours:'Mon–Fri 6am–4pm · Sat–Sun 7am–4pm',
+   local:true,
    logo:null,
   },
   {id:'redsilo-golden',name:'Red Silo Coffee Roasters — Golden',type:'food',featured:false,
@@ -6563,6 +6575,7 @@ const LOCAL_BIZ = [
    tags:['Coffee','Pastries','Breakfast','Early Hours','Downtown Golden'],
    cta:'See All Locations',ctaUrl:'https://redsilocoffeeroasters.com',
    hours:'Mon–Fri 7am–4pm · Sat–Sun hours vary',
+   local:true,
    logo:null,
   },
   // ── TEAM ACTIVITIES ──────────────────────────────────────────
@@ -6575,6 +6588,7 @@ const LOCAL_BIZ = [
    tags:['Bowling','Arcade','Bar & Grill','Private Events','Team Parties'],
    cta:'Book Lanes',ctaUrl:'https://www.bowlero.com/location/bowlero-centennial',
    hours:'Mon–Thu 11am–12am · Fri 11am–2am · Sat 9am–2am · Sun 9am–12am',
+   local:false,
    logo:null,
   },
   {id:'escape-room-denver',name:'Escape Room Denver',type:'activity',featured:false,
@@ -6586,6 +6600,7 @@ const LOCAL_BIZ = [
    tags:['Escape Room','Team Building','Private Events','Groups','All Ages'],
    cta:'Book a Room',ctaUrl:'https://www.escaperoomdenver.com/book',
    hours:'Daily 10am–10pm (last booking 9pm)',
+   local:true,
    logo:null,
   },
   {id:'topgolf-centennial',name:'Top Golf Centennial',type:'activity',featured:false,
@@ -6597,6 +6612,7 @@ const LOCAL_BIZ = [
    tags:['Golf','Bar & Grill','Team Outing','All Ages','Entertainment'],
    cta:'Reserve a Bay',ctaUrl:'https://topgolf.com/us/centennial/reserve',
    hours:'Mon–Thu 9am–12am · Fri 9am–2am · Sat 7am–2am · Sun 7am–12am',
+   local:false,
    logo:null,
   },
   {id:'main-event-centennial',name:'Main Event — Centennial',type:'activity',featured:false,
@@ -6608,6 +6624,7 @@ const LOCAL_BIZ = [
    tags:['Bowling','Laser Tag','Arcade','Go-Karts','Restaurant','Team Packages'],
    cta:'See Packages',ctaUrl:'https://www.mainevent.com/parties-and-events',
    hours:'Mon–Thu 11am–12am · Fri 11am–1am · Sat 10am–1am · Sun 10am–12am',
+   local:false,
    logo:null,
   },
   {id:'pinstripes-lone-tree',name:'Pinstripes — Lone Tree',type:'activity',featured:false,
@@ -6619,6 +6636,7 @@ const LOCAL_BIZ = [
    tags:['Bowling','Bocce','Italian Food','Private Events','Upscale'],
    cta:'Make a Reservation',ctaUrl:'https://pinstripes.com/lonetree/reservations',
    hours:'Mon–Thu 11:30am–12am · Fri 11:30am–1am · Sat 10am–1am · Sun 10am–12am',
+   local:false,
    logo:null,
   },
   {id:'scene75-colorado',name:'Dezerland Park Denver',type:'activity',featured:false,
@@ -6630,6 +6648,7 @@ const LOCAL_BIZ = [
    tags:['Go-Karts','Mini Golf','Laser Tag','Arcade','Multiple Restaurants'],
    cta:'See Attractions',ctaUrl:'https://dezerlandpark.com/denver/attractions',
    hours:'Mon–Thu 10am–10pm · Fri 10am–12am · Sat 9am–12am · Sun 9am–10pm',
+   local:false,
    logo:null,
   },
   {id:'mystery-room-springs',name:'Mystery Room — Colorado Springs',type:'activity',featured:false,
@@ -6641,6 +6660,7 @@ const LOCAL_BIZ = [
    tags:['Escape Room','Team Building','Private Bookings','Groups'],
    cta:'Book Now',ctaUrl:'https://www.mysteryroom.com/colorado-springs/book',
    hours:'Daily 10am–10pm',
+   local:false,
    logo:null,
   },
   {id:'bowling-fort-collins',name:'Chipper\'s Lanes — Fort Collins',type:'activity',featured:false,
@@ -6652,6 +6672,7 @@ const LOCAL_BIZ = [
    tags:['Bowling','Arcade','Bar & Grill','Group Rates','Team Parties'],
    cta:'See Events',ctaUrl:'https://www.chipperslanes.com/events',
    hours:'Mon–Thu 11am–11pm · Fri–Sat 11am–1am · Sun 11am–11pm',
+   local:true,
    logo:null,
   },
   {id:'bowlmor-colorado-springs',name:'Splitsville — Colorado Springs',type:'activity',featured:false,
@@ -6663,6 +6684,7 @@ const LOCAL_BIZ = [
    tags:['Bowling','Billiards','Arcade','Bar','Private Events'],
    cta:'Reserve Lanes',ctaUrl:'https://splitsvillelanes.com/reservations',
    hours:'Mon–Thu 11am–11pm · Fri–Sat 11am–1am · Sun 11am–10pm',
+   local:false,
    logo:null,
   },
 
@@ -6692,8 +6714,14 @@ function renderBiz(){
     return true;
   });
 
-  // Featured first
-  filtered.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
+  // Featured first, then local, then rest
+  filtered.sort((a,b)=>{
+    if(a.featured&&!b.featured)return -1;
+    if(!a.featured&&b.featured)return 1;
+    if(a.local&&!b.local)return -1;
+    if(!a.local&&b.local)return 1;
+    return 0;
+  });
 
   if(!filtered.length){
     grid.innerHTML='<div style="text-align:center;padding:40px 0;color:var(--muted)">No businesses listed in that category yet. <button class="btn btn-ghost btn-sm" onclick="showPage(\'submit\')">Submit a Business</button></div>';
@@ -6711,6 +6739,7 @@ function renderBiz(){
     return `<div style="background:${bg};border:1px solid ${border};border-radius:14px;padding:20px;margin-bottom:16px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px">
         <div style="flex:1;min-width:0">
+          ${b.local?'<div style="margin-bottom:5px"><span class="nc-local-badge">LOCALLY OWNED</span></div>':''}
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
             <span style="font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)">${typeIcon[b.type]} ${typeLabel[b.type]}</span>
             ${isFeatured?'<span style="background:rgba(232,184,75,.2);border:1px solid rgba(232,184,75,.4);color:var(--gold);font-size:.58rem;font-weight:800;padding:2px 8px;border-radius:10px;letter-spacing:1px;text-transform:uppercase">⭐ Featured</span>':''}
@@ -6759,11 +6788,18 @@ function buildBizTab(r){
   let html='<div class="ms"><div class="ms-title">🛒 Local Businesses Near This Rink</div>';
   html+='<div style="font-size:.75rem;color:var(--muted);margin-bottom:16px">Shops, trainers and services that serve this rink\'s community.</div>';
 
-  nearby.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)).forEach(b=>{
+  nearby.sort((a,b)=>{
+    if(a.featured&&!b.featured)return -1;
+    if(!a.featured&&b.featured)return 1;
+    if(a.local&&!b.local)return -1;
+    if(!a.local&&b.local)return 1;
+    return 0;
+  }).forEach(b=>{
     const isFeatured=b.featured;
     const bg=isFeatured?'linear-gradient(135deg,rgba(232,184,75,.1),rgba(232,184,75,.03))':'rgba(168,212,245,.04)';
     const border=isFeatured?'rgba(232,184,75,.28)':'var(--border)';
     html+=`<div style="background:${bg};border:1px solid ${border};border-radius:10px;padding:14px;margin-bottom:10px">
+      ${b.local?'<div style="margin-bottom:5px"><span class="nc-local-badge">LOCALLY OWNED</span></div>':''}
       <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
         <span style="font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)">${typeIcon[b.type]} ${typeLabel[b.type]}</span>
         ${isFeatured?'<span style="background:rgba(232,184,75,.2);border:1px solid rgba(232,184,75,.35);color:var(--gold);font-size:.55rem;font-weight:800;padding:1px 7px;border-radius:8px">⭐ Featured</span>':''}
