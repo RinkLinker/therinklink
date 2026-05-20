@@ -226,6 +226,9 @@ nav{position:fixed;top:38px;left:0;right:0;z-index:199;display:flex;align-items:
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:2px}.fgrp{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
 .flbl{font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}.finput{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:5px;padding:9px 12px;color:var(--white);font-family:'Barlow',sans-serif;font-size:.85rem;outline:none;transition:border-color .2s}.finput:focus{border-color:var(--border2)}.finput::placeholder{color:#3a4a6a}textarea.finput{resize:vertical;min-height:82px}
 .spicker{display:flex;gap:5px}.sp{font-size:1.32rem;color:#2a3a5a;cursor:pointer;user-select:none;transition:color .1s}.sp.on{color:var(--gold)}
+.cf-cat-btn{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);padding:7px 14px;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Barlow',sans-serif}
+.cf-cat-btn.selected{background:rgba(125,211,252,.15);border-color:rgba(125,211,252,.45);color:var(--ice)}
+.cf-cat-btn.cf-cat-muted{opacity:.45;cursor:not-allowed;pointer-events:none}
 .cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}.citem{display:flex;flex-direction:column;gap:4px}.clbl{font-size:.63rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}.cpicker{display:flex;gap:3px}.cs{font-size:.92rem;color:#2a3a5a;cursor:pointer;user-select:none}.cs.on{color:var(--gold)}
 .factions{display:flex;gap:9px;margin-top:3px}.fsub{background:var(--ice);color:var(--navy);font-family:\'Barlow Condensed\',sans-serif;font-size:.8rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:10px 23px;border-radius:4px;border:none;cursor:pointer}.fsub:hover{background:var(--ice2)}.fcan{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:\'Barlow Condensed\',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:10px 19px;border-radius:4px;cursor:pointer}.fcan:hover{border-color:var(--ice);color:var(--ice)}.fnote{font-size:.69rem;color:var(--muted);margin-top:8px;font-style:italic}
 .nav-dropdown{position:relative}
@@ -1108,11 +1111,12 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         <div class="toolbar" style="margin-bottom:24px">
           <div class="chips" id="coach-chips">
             <button class="chip active" onclick="filterCoaches('all',this)">All</button>
-            <button class="chip" onclick="filterCoaches('Power Skating',this)">⛸️ Power Skating</button>
-            <button class="chip" onclick="filterCoaches('Shooting',this)">🥅 Shooting</button>
+            <button class="chip" onclick="filterCoaches('Skating',this)">⛸️ Skating</button>
+            <button class="chip" onclick="filterCoaches('Multi-Skill Training',this)">🏒 Multi-Skill</button>
+            <button class="chip" onclick="filterCoaches('Stickhandling Skills',this)">🏑 Stickhandling</button>
+            <button class="chip" onclick="filterCoaches('Shooting & Scoring',this)">🥅 Shooting</button>
             <button class="chip" onclick="filterCoaches('Goalie',this)">🧤 Goalie</button>
-            <button class="chip" onclick="filterCoaches('Skills',this)">🏒 Skills</button>
-            <button class="chip" onclick="filterCoaches('Off-Ice',this)">💪 Off-Ice</button>
+            <button class="chip" onclick="filterCoaches('Off-Ice / Conditioning',this)">💪 Off-Ice</button>
           </div>
         </div>
         <div id="coaches-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-bottom:48px"></div>
@@ -1145,11 +1149,12 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
             <div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:6px">What do you need to work on?</div>
             <div style="font-size:.83rem;color:var(--muted);margin-bottom:24px">Pick the specialty you're looking for.</div>
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px">
-              <button class="quiz-opt" onclick="cqPick(2,'specialty','Power Skating')">⛸️ Power Skating<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Edge work, stride, speed</span></button>
-              <button class="quiz-opt" onclick="cqPick(2,'specialty','Shooting')">🥅 Shooting<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Wrist shot, snap, slap, release</span></button>
+              <button class="quiz-opt" onclick="cqPick(2,'specialty','Skating')">⛸️ Skating<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Edge work, stride, speed</span></button>
+              <button class="quiz-opt" onclick="cqPick(2,'specialty','Shooting & Scoring')">🥅 Shooting &amp; Scoring<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Wrist shot, snap, slap, release</span></button>
               <button class="quiz-opt" onclick="cqPick(2,'specialty','Goalie')">🧤 Goalie Training<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Positioning, reactions, crease work</span></button>
-              <button class="quiz-opt" onclick="cqPick(2,'specialty','Skills')">🏒 General Skills<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Stickhandling, passing, puck control</span></button>
-              <button class="quiz-opt" onclick="cqPick(2,'specialty','Off-Ice')">💪 Off-Ice Conditioning<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Strength, agility, dryland</span></button>
+              <button class="quiz-opt" onclick="cqPick(2,'specialty','Stickhandling Skills')">🏑 Stickhandling<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Puck control, passing, hands</span></button>
+              <button class="quiz-opt" onclick="cqPick(2,'specialty','Off-Ice / Conditioning')">💪 Off-Ice<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Strength, agility, dryland</span></button>
+              <button class="quiz-opt" onclick="cqPick(2,'specialty','Multi-Skill Training')">🏒 General Skills<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Full development, all-around</span></button>
               <button class="quiz-opt" onclick="cqPick(2,'specialty','any')">🤷 Not sure yet<br><span style="font-size:.72rem;color:var(--muted);font-weight:400">Show me all options</span></button>
             </div>
           </div>
@@ -1261,18 +1266,50 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
                 <input class="finput" type="email" id="cf-email" placeholder="coach@email.com"/>
               </div>
             </div>
+            <div class="fgrp" style="margin-bottom:12px">
+              <label class="flbl">Category * <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— pick 1 or 2</span></label>
+              <div id="cf-cat-group" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px">
+                <button type="button" class="cf-cat-btn" data-cat="Skating" onclick="toggleCoachCat(this)">⛸️ Skating</button>
+                <button type="button" class="cf-cat-btn" data-cat="Multi-Skill Training" onclick="toggleCoachCat(this)">🏒 Multi-Skill Training</button>
+                <button type="button" class="cf-cat-btn" data-cat="Stickhandling Skills" onclick="toggleCoachCat(this)">🏑 Stickhandling Skills</button>
+                <button type="button" class="cf-cat-btn" data-cat="Shooting & Scoring" onclick="toggleCoachCat(this)">🥅 Shooting &amp; Scoring</button>
+                <button type="button" class="cf-cat-btn" data-cat="Goalie" onclick="toggleCoachCat(this)">🧤 Goalie</button>
+                <button type="button" class="cf-cat-btn" data-cat="Off-Ice / Conditioning" onclick="toggleCoachCat(this)">💪 Off-Ice / Conditioning</button>
+              </div>
+              <div id="cf-cat-limit-msg" style="display:none;font-size:.72rem;color:var(--muted);margin-top:5px">2 selected — deselect one to change</div>
+            </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
               <div class="fgrp">
-                <label class="flbl">Specialty *</label>
-                <select class="finput" id="cf-specialty">
+                <label class="flbl">Your Specialty Label *</label>
+                <select class="finput" id="cf-specialty-pick" onchange="handleSpecialtyPick(this.value)">
                   <option value="">Select...</option>
-                  <option>Power Skating</option>
-                  <option>Shooting &amp; Scoring</option>
-                  <option>Goalie Coaching</option>
-                  <option>Skills &amp; Stickhandling</option>
-                  <option>Off-Ice Training</option>
-                  <option>General Skills</option>
+                  <optgroup label="Skating">
+                    <option>Power Skating</option>
+                    <option>Edge Work</option>
+                  </optgroup>
+                  <optgroup label="Stickhandling Skills">
+                    <option>Stickhandling &amp; Puck Control</option>
+                    <option>Passing &amp; Receiving</option>
+                  </optgroup>
+                  <optgroup label="Shooting &amp; Scoring">
+                    <option>Shooting &amp; Scoring</option>
+                    <option>Wrist Shot &amp; Release</option>
+                  </optgroup>
+                  <optgroup label="Goalie">
+                    <option>Goalie Training</option>
+                    <option>Butterfly &amp; Positioning</option>
+                  </optgroup>
+                  <optgroup label="Off-Ice / Conditioning">
+                    <option>Off-Ice Conditioning</option>
+                    <option>Dryland Training</option>
+                  </optgroup>
+                  <optgroup label="Multi-Skill Training">
+                    <option>General Skills Development</option>
+                    <option>Youth Hockey Development</option>
+                  </optgroup>
+                  <option value="__other__">Other (type your own)</option>
                 </select>
+                <input class="finput" type="text" id="cf-specialty-other" placeholder="Describe your specialty…" style="display:none;margin-top:6px"/>
               </div>
               <div class="fgrp">
                 <label class="flbl">Age Groups</label>
@@ -7619,19 +7656,19 @@ function showCoachResults(){
   document.getElementById('cq-results').style.display='block';
 
   let matches=COACHES.filter(c=>{
-    const specMatch=specialty==='any'||c.specialty===specialty;
+    const specMatch=specialty==='any'||(Array.isArray(c.categories)&&c.categories.includes(specialty));
     const reg=regionMatches(c,region);
     const ag=ageMatches(c,age);
     const bud=budgetMatches(c,budget);
     return specMatch&&reg&&ag&&bud;
   });
 
-  // Sort: featured first, then by specialty exact match
+  // Sort: featured first, then by category match
   matches.sort((a,b)=>{
     if(a.featured&&!b.featured)return -1;
     if(!a.featured&&b.featured)return 1;
-    const aExact=a.specialty===specialty?1:0;
-    const bExact=b.specialty===specialty?1:0;
+    const aExact=(Array.isArray(a.categories)&&a.categories.includes(specialty))?1:0;
+    const bExact=(Array.isArray(b.categories)&&b.categories.includes(specialty))?1:0;
     return bExact-aExact;
   });
 
@@ -7651,6 +7688,27 @@ function showCoachResults(){
   noMatch.style.display='none';
 
   grid.innerHTML=matches.map(c=>coachCard(c)).join('');
+}
+
+function toggleCoachCat(btn){
+  const group=document.getElementById('cf-cat-group');
+  const selected=[...group.querySelectorAll('.cf-cat-btn.selected')];
+  if(btn.classList.contains('selected')){
+    btn.classList.remove('selected');
+    group.querySelectorAll('.cf-cat-btn').forEach(b=>b.classList.remove('cf-cat-muted'));
+    document.getElementById('cf-cat-limit-msg').style.display='none';
+  } else {
+    if(selected.length>=2)return;
+    btn.classList.add('selected');
+    if(selected.length+1>=2){
+      group.querySelectorAll('.cf-cat-btn:not(.selected)').forEach(b=>b.classList.add('cf-cat-muted'));
+      document.getElementById('cf-cat-limit-msg').style.display='block';
+    }
+  }
+}
+function handleSpecialtyPick(val){
+  const other=document.getElementById('cf-specialty-other');
+  if(other)other.style.display=val==='__other__'?'block':'none';
 }
 
 function scrollToCoachForm(){
@@ -7678,7 +7736,8 @@ async function loadDBCoaches(){
     const dbCoaches = rows.map(c=>({
       id: 'db-'+c.id,
       name: c.name,
-      specialty: c.specialty||'Skills',
+      categories: Array.isArray(c.categories)?c.categories:['Multi-Skill Training'],
+      specialty: c.specialty||(Array.isArray(c.categories)&&c.categories[0])||'Multi-Skill Training',
       bio: c.bio||'',
       ages: c.ages||'All ages',
       rate: c.rate||'Contact for rates',
@@ -7700,13 +7759,7 @@ async function loadDBCoaches(){
 function renderCoaches(){
   const grid=document.getElementById('coaches-grid');
   if(!grid)return;
-  let coaches=coachFilter==='all'?COACHES:COACHES.filter(c=>c.specialty===coachFilter||
-    (coachFilter==='Shooting'&&c.specialty==='Shooting')||
-    (coachFilter==='Goalie'&&c.specialty==='Goalie')||
-    (coachFilter==='Skills'&&c.specialty==='Skills')||
-    (coachFilter==='Off-Ice'&&c.specialty==='Off-Ice')||
-    (coachFilter==='Power Skating'&&c.specialty==='Power Skating')
-  );
+  let coaches=coachFilter==='all'?COACHES:COACHES.filter(c=>Array.isArray(c.categories)&&c.categories.includes(coachFilter));
   if(!coaches.length){
     grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🎯</div><div style="font-size:.98rem;font-weight:600;margin-bottom:6px">No coaches in this category yet</div><div style="font-size:.84rem">Be the first — submit your profile below.</div></div>';
     return;
@@ -7726,23 +7779,29 @@ function renderCoaches(){
 }
 
 function coachCard(c){
-  const specialtyColors={
-    'Power Skating':'var(--ice)',
+  const catColors={
+    'Skating':'var(--ice)',
+    'Multi-Skill Training':'#22c55e',
+    'Stickhandling Skills':'#3b82f6',
+    'Shooting & Scoring':'#ef4444',
     'Goalie':'#f59e0b',
-    'Shooting':'#ef4444',
-    'Skills':'#22c55e',
-    'Off-Ice':'#a855f7'
+    'Off-Ice / Conditioning':'#a855f7'
   };
-  const color=specialtyColors[c.specialty]||'var(--ice)';
+  const catEmoji={
+    'Skating':'⛸️','Multi-Skill Training':'🏒','Stickhandling Skills':'🏑',
+    'Shooting & Scoring':'🥅','Goalie':'🧤','Off-Ice / Conditioning':'💪'
+  };
+  const primaryCat=(c.categories&&c.categories[0])||'Multi-Skill Training';
+  const color=catColors[primaryCat]||'var(--ice)';
   return '<div style="background:var(--card);border:1px solid '+(c.featured?'rgba(232,184,75,.35)':'var(--border)')+';border-radius:13px;padding:20px;position:relative;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform=\'translateY(-3px)\';this.style.boxShadow=\'0 8px 24px rgba(0,0,0,.3)\'" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'\'">'
     +(c.featured?'<div style="position:absolute;top:14px;right:14px;background:rgba(232,184,75,.12);border:1px solid rgba(232,184,75,.3);color:var(--gold);font-size:.62rem;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:20px">⭐ FEATURED</div>':'')
     +(c.sample?'<div style="position:absolute;top:'+(c.featured?'40':'14')+'px;right:14px;background:rgba(168,212,245,.08);border:1px solid rgba(168,212,245,.2);color:var(--muted);font-size:.58rem;font-weight:700;letter-spacing:.5px;padding:2px 6px;border-radius:10px">SAMPLE</div>':'')
     +'<div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">'
     +'<div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,'+color+'22,'+color+'44);border:2px solid '+color+'55;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0">'
-    +({'Power Skating':'⛸️','Goalie':'🧤','Shooting':'🥅','Skills':'🏒','Off-Ice':'💪'}[c.specialty]||'🎯')
+    +(catEmoji[primaryCat]||'🎯')
     +'</div>'
     +'<div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.15rem;font-weight:800;margin-bottom:2px">'+c.name+'</div>'
-    +'<div style="font-size:.72rem;font-weight:700;color:'+color+';letter-spacing:.5px">'+c.specialty.toUpperCase()+'</div></div>'
+    +'<div style="font-size:.72rem;font-weight:700;color:'+color+';letter-spacing:.5px">'+(c.specialty||primaryCat).toUpperCase()+'</div></div>'
     +'</div>'
     +'<div style="font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:14px">'+c.bio+'</div>'
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">'
@@ -7776,10 +7835,12 @@ function coachContactButtons(c,color){
 async function submitCoach(){
   const name=document.getElementById('cf-name').value.trim();
   const email=document.getElementById('cf-email').value.trim();
-  const specialty=document.getElementById('cf-specialty').value;
+  const categories=[...document.querySelectorAll('#cf-cat-group .cf-cat-btn.selected')].map(b=>b.dataset.cat);
+  const specPick=document.getElementById('cf-specialty-pick').value;
+  const specialty=specPick==='__other__'?document.getElementById('cf-specialty-other').value.trim():specPick;
   const rinks=document.getElementById('cf-rinks').value.trim();
   const certified=document.getElementById('cf-certified').checked;
-  if(!name||!email||!specialty||!rinks){
+  if(!name||!email||!categories.length||!specialty||!rinks){
     alert('Please fill in all required fields.');return;
   }
   if(!certified){
@@ -7792,7 +7853,7 @@ async function submitCoach(){
   // Save to Supabase
   try{
     await sbFetch('Coaches', 'POST', {
-      name, email, specialty, rinks,
+      name, email, specialty, categories, rinks,
       rate: rate||null,
       ages: ages||null,
       bio: bio||null,
