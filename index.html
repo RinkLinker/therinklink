@@ -336,6 +336,14 @@ nav{position:fixed;top:38px;left:0;right:0;z-index:199;display:flex;align-items:
 .nc-maps-cta{background:linear-gradient(135deg,rgba(26,155,230,.08),rgba(26,155,230,.04));border:1px solid rgba(26,155,230,.2);border-radius:var(--r);padding:14px 18px;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .nc-maps-cta-text{font-size:.82rem;color:var(--muted)}
 .nc-maps-cta-text strong{color:var(--text)}
+#nearby-search-wrap{position:relative;margin-bottom:14px}
+#nearby-search-results{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:20;background:var(--card);border:1px solid var(--border2);border-radius:8px;max-height:264px;overflow-y:auto;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.nsr-item{display:block;width:100%;background:none;border:none;border-bottom:1px solid var(--border);padding:10px 14px;text-align:left;cursor:pointer;color:var(--text)}
+.nsr-item:last-child{border-bottom:none}
+.nsr-item:hover{background:rgba(125,211,252,.08)}
+.nsr-name{display:block;font-size:.88rem;font-weight:600;color:var(--white)}
+.nsr-meta{display:flex;gap:10px;font-size:.75rem;color:var(--muted);margin-top:3px}
+.nsr-no-results{padding:12px 14px;font-size:.82rem;color:var(--muted);font-style:italic}
 .nc-section-label{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin:24px 0 12px;display:flex;align-items:center;gap:10px}
 .nc-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
 .nc-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:.88rem}
@@ -924,6 +932,12 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   <div class="section">
     <div class="container">
       <div class="sh"><div class="sl">Game Day Guide</div><div class="st">Around the Rink</div><div class="sd">Pick a rink. See everything around it — food, sharpening, coffee, and team hangouts. All hockey-family friendly.</div><div class="sd" style="margin-top:10px">Locally owned spots are tagged and listed first — the family-run coffee shop, the breakfast place the team always hits, the burger joint with kids&#39; team photos on the wall. Everything else hockey families need is here too.</div><div class="sd" style="margin-top:10px">Heads up: this guide is in progress. We&#39;re building it rink by rink, with help from hockey families like yours. If your rink isn&#39;t showing many spots yet, that just means we haven&#39;t gotten there. This is where you can help other hockey families and your favorite local business.</div><div class="sd" style="margin-top:10px">Know a great spot near your rink? <a href="https://forms.gle/KxEgRfU5jbKUNy8Q6" target="_blank" rel="noopener" style="color:var(--ice);font-weight:700;text-decoration:none">Tell us about it &#8594;</a></div></div>
+
+      <!-- Game Day Search -->
+      <div id="nearby-search-wrap">
+        <div class="search-wrap" style="max-width:none"><input class="search-input" type="text" id="nearby-search-input" placeholder="Search by city, ZIP code, or rink name…" oninput="nearbySearchInput(this.value)" onkeydown="nearbySearchKey(event)" autocomplete="off"/><span class="search-icon">🔍</span></div>
+        <div id="nearby-search-results" hidden></div>
+      </div>
 
       <!-- Rink Selector -->
       <div class="nc-rink-selector">
@@ -3253,6 +3267,69 @@ function setNearbyRink(val){
   if(rc) rc.style.pointerEvents=nearbyRinkId==='all'?'none':'auto';
   renderNearby();
 }
+
+let _nearbySearchTimer;
+function nearbySearchInput(val){
+  clearTimeout(_nearbySearchTimer);
+  val=val.trim();
+  if(!val){hideNearbyResults();return;}
+  if(/^\d{5}$/.test(val)){
+    _nearbySearchTimer=setTimeout(()=>nearbyZipSearchGuide(val),300);
+  } else {
+    _nearbySearchTimer=setTimeout(()=>nearbyTextSearch(val),200);
+  }
+}
+function nearbySearchKey(e){
+  if(e.key==='Escape'){document.getElementById('nearby-search-input').value='';hideNearbyResults();}
+}
+async function nearbyZipSearchGuide(zip){
+  const res=document.getElementById('nearby-search-results');
+  if(!res)return;
+  res.hidden=false;
+  res.innerHTML='<div class="nsr-no-results">Looking up ZIP…</div>';
+  try{
+    const resp=await fetch('https://api.zippopotam.us/us/'+zip);
+    if(!resp.ok){res.innerHTML='<div class="nsr-no-results">ZIP not found.</div>';return;}
+    const d=await resp.json();
+    const lat=+d.places[0].latitude,lng=+d.places[0].longitude;
+    const matches=RINKS
+      .filter(r=>r.lat&&r.lng)
+      .map(r=>({...r,_miles:haversine(lat,lng,r.lat,r.lng)}))
+      .sort((a,b)=>a._miles-b._miles);
+    showNearbySearchResults(matches,true);
+  }catch(e){
+    res.innerHTML='<div class="nsr-no-results">Could not look up ZIP.</div>';
+  }
+}
+function nearbyTextSearch(val){
+  const q=val.toLowerCase();
+  const matches=RINKS
+    .filter(r=>r.name.toLowerCase().includes(q)||r.city.toLowerCase().includes(q))
+    .sort((a,b)=>a.name.localeCompare(b.name));
+  showNearbySearchResults(matches,false);
+}
+function showNearbySearchResults(matches,showDist){
+  const res=document.getElementById('nearby-search-results');
+  if(!res)return;
+  res.hidden=false;
+  if(!matches.length){res.innerHTML='<div class="nsr-no-results">No rinks found.</div>';return;}
+  res.innerHTML=matches.map(r=>`<button class="nsr-item" onclick="selectNearbyRink(${r.id})"><span class="nsr-name">${r.name}</span><span class="nsr-meta"><span>${r.city}, ${r.state}</span>${showDist&&r._miles!=null?`<span>${r._miles.toFixed(1)} mi away</span>`:''}</span></button>`).join('');
+}
+function selectNearbyRink(id){
+  const sel=document.getElementById('nearby-rink-select');
+  if(sel)sel.value=id;
+  setNearbyRink(String(id));
+  const inp=document.getElementById('nearby-search-input');
+  if(inp)inp.value='';
+  hideNearbyResults();
+}
+function hideNearbyResults(){
+  const res=document.getElementById('nearby-search-results');
+  if(res)res.hidden=true;
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('#nearby-search-wrap'))hideNearbyResults();
+});
 
 function renderNearby(){
   initNearbyRinkSelect();
