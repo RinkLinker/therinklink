@@ -1280,36 +1280,8 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
               <div class="fgrp">
-                <label class="flbl">Your Specialty Label *</label>
-                <select class="finput" id="cf-specialty-pick" onchange="handleSpecialtyPick(this.value)">
-                  <option value="">Select...</option>
-                  <optgroup label="Skating">
-                    <option>Power Skating</option>
-                    <option>Edge Work</option>
-                  </optgroup>
-                  <optgroup label="Stickhandling Skills">
-                    <option>Stickhandling &amp; Puck Control</option>
-                    <option>Passing &amp; Receiving</option>
-                  </optgroup>
-                  <optgroup label="Shooting &amp; Scoring">
-                    <option>Shooting &amp; Scoring</option>
-                    <option>Wrist Shot &amp; Release</option>
-                  </optgroup>
-                  <optgroup label="Goalie">
-                    <option>Goalie Training</option>
-                    <option>Butterfly &amp; Positioning</option>
-                  </optgroup>
-                  <optgroup label="Off-Ice / Conditioning">
-                    <option>Off-Ice Conditioning</option>
-                    <option>Dryland Training</option>
-                  </optgroup>
-                  <optgroup label="Multi-Skill Training">
-                    <option>General Skills Development</option>
-                    <option>Youth Hockey Development</option>
-                  </optgroup>
-                  <option value="__other__">Other (type your own)</option>
-                </select>
-                <input class="finput" type="text" id="cf-specialty-other" placeholder="Describe your specialty…" style="display:none;margin-top:6px"/>
+                <label class="flbl">Specialty Headline *</label>
+                <input class="finput" type="text" id="cf-specialty" placeholder="e.g., Power Skating, Goalie Crease Mechanics — keep it short (3–5 words)" maxlength="40"/>
               </div>
               <div class="fgrp">
                 <label class="flbl">Age Groups</label>
@@ -7706,10 +7678,6 @@ function toggleCoachCat(btn){
     }
   }
 }
-function handleSpecialtyPick(val){
-  const other=document.getElementById('cf-specialty-other');
-  if(other)other.style.display=val==='__other__'?'block':'none';
-}
 
 function scrollToCoachForm(){
   setCoachTab('browse');
@@ -7836,8 +7804,7 @@ async function submitCoach(){
   const name=document.getElementById('cf-name').value.trim();
   const email=document.getElementById('cf-email').value.trim();
   const categories=[...document.querySelectorAll('#cf-cat-group .cf-cat-btn.selected')].map(b=>b.dataset.cat);
-  const specPick=document.getElementById('cf-specialty-pick').value;
-  const specialty=specPick==='__other__'?document.getElementById('cf-specialty-other').value.trim():specPick;
+  const specialty=document.getElementById('cf-specialty').value.trim();
   const rinks=document.getElementById('cf-rinks').value.trim();
   const certified=document.getElementById('cf-certified').checked;
   if(!name||!email||!categories.length||!specialty||!rinks){
