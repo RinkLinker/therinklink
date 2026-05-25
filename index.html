@@ -118,6 +118,7 @@ nav{position:fixed;top:38px;left:0;right:0;z-index:199;display:flex;align-items:
 .rinks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;align-items:start}
 .rink-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;display:flex;flex-direction:column}.rink-card:hover{transform:translateY(-3px);border-color:rgba(125,211,252,.35);box-shadow:0 10px 36px rgba(0,0,0,.38)}
 .fav-star{position:absolute;top:36px;right:10px;font-size:1.1rem;color:#2a3a5a;background:rgba(6,13,31,.55);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;transition:color .2s,transform .2s;cursor:pointer}.fav-star:hover{transform:scale(1.2)}.fav-star.on{color:var(--gold)}
+.card-corner{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;align-items:flex-end;gap:6px;z-index:2}.card-corner .fav-star{position:static;top:auto;right:auto}
 .card-status-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--border)}
 .op-pill{display:flex;align-items:center;gap:4px;font-size:.64rem;font-weight:700;letter-spacing:.5px}
 .op-open{color:var(--green)}.op-closed{color:var(--red)}.op-unknown{color:var(--muted)}
@@ -2596,12 +2597,12 @@ function renderRinks(){
     const foodLabel=foodTier==='restaurant'?'🍽️ Restaurant on-site':foodTier==='snackbar'?'🍕 Snack bar on-site':foodTier==='vending'?'🥤 Vending only':'🍔 Look nearby';
     const foodColor=foodOnSite?'#2ecc71':foodTier==='vending'?'var(--gold)':'var(--muted)';
     return '<div class="rink-card" onclick="openModal('+r.id+')">'
-      +'<div class="fav-star'+(isFav?' on':'')+'" onclick="event.stopPropagation();toggleFav('+r.id+')">'+(isFav?'&#9733;':'&#9734;')+'</div>'
-      +'<div class="card-status-bar"><div class="op-pill op-'+op+'"><span class="op-dot"></span>'+(op==='open'?'Open Now':op==='closed'?'Closed':'Hours Unknown')+'</div>'
+      +'<div class="card-corner">'
       +(r.sheets?'<span class="card-sheets">'+r.sheets+' '+(r.sheets===1?'sheet':'sheets')+'</span>':'')
+      +'<div class="fav-star'+(isFav?' on':'')+'" onclick="event.stopPropagation();toggleFav('+r.id+')">'+(isFav?'&#9733;':'&#9734;')+'</div>'
       +'</div>'
       +'<div class="card-head">'
-      +'<div class="card-region">'+r.region+' &middot; '+r.city+(r.type==='outdoor'?' <span style="color:var(--cold);font-size:.58rem;font-weight:800">❄ OUTDOOR</span>':'')+'</div>'
+      +'<div class="card-region">'+r.region+' &middot; '+r.city+', '+r.state+(r.type==='outdoor'?' <span style="color:var(--cold);font-size:.58rem;font-weight:800">❄ OUTDOOR</span>':'')+'</div>'
       +'<div class="card-name">'+r.name+(r.id===homeRink?' <span style="background:rgba(232,184,75,.13);border:1px solid rgba(232,184,75,.25);color:var(--gold);padding:1px 6px;border-radius:4px;font-size:.58rem;font-weight:700">&#127968; Home</span>':'')+'</div>'
       +'<div class="card-addr">'+r.address+'</div>'
       +(r.phone?'<a class="card-phone-inline" href="tel:'+r.phone+'" onclick="event.stopPropagation()">'+r.phone+'</a>':'')
