@@ -2182,71 +2182,124 @@ async function fetchRinks() {
     const PAGE=1000;
     let rows=[],offset=0;
     while(true){
-      const batch=await sbFetch(`rinks?select=*&id=gte.79&order=id.asc&limit=${PAGE}&offset=${offset}`);
+      const batch=await sbFetch(`rinks?select=*&id=gte.1&order=id.asc&limit=${PAGE}&offset=${offset}`);
       rows=rows.concat(batch);
       if(batch.length<PAGE)break;
       offset+=PAGE;
     }
-    const remote = rows.map(r => ({
-      id:       parseInt(r.id, 10),
-      lat:      parseFloat(r.lat),
-      lng:      parseFloat(r.lng),
-      state:    r.state     || null,
-      name:     r.name      ?? '',
-      region:   r.region    ?? '',
-      city:     r.city      ?? '',
-      address:  r.address   ?? '',
-      phone:    r.phone     ?? null,
-      sheets:   r.sheets    ?? 1,
-      website:  r.website   ?? null,
-      type:     r.type      ?? 'indoor',
-      highlight: null,
-      amenities: [],
-      hours: {mon:'Check website',tue:'Check website',wed:'Check website',
-              thu:'Check website',fri:'Check website',sat:'Check website',sun:'Check website'},
-      iceTimes: null,
-      notes:    r.notes     ?? null,
-      parking:  r.parking   ?? null,
-      transit:  null,
-      nearby: {
-        food:       r.food       ? [r.food]  : [],
-        hotels:     [],
-        sharpening: r.sharpening ? 'On-site' : null,
-      },
-      temp:     null,
-      locker: {
-        rooms:       r.locker_rooms ?? null,
-        capacity:    null,
-        features:    [],
-        reservation: null,
-        notes:       null,
-      },
-      pricing: {
-        publicSkate: r.price_public_skate ?? null,
-        rental:      null,
-        stickPuck:   r.price_stick_puck   ?? null,
-        icePractice: null,
-        lessons:     null,
-      },
-      discounts: [],
-      shops: r.on_site_shops ? [{name:'On-site shop',dist:'On-site',detail:null}] : [],
-      stickPuckTimes: {
-        scheduleUrl: r.registration_url  ?? null,
-        bookingUrl:  r.registration_url  ?? null,
-        schedule:    ['Check website'],
-        cost:        r.price_stick_puck  ?? null,
-        limit:       null,
-        tips:        null,
-      },
-      parentInfo: {
-        livebarn:    {available: r.livebarn ?? false, url: null},
-        wifi:        r.wifi != null ? {available: r.wifi, cost:'free'} : null,
-        food:        r.food ? {tier:'unknown',name:r.food,details:r.food} : null,
-        localCoffee: null,
-      },
-      mapPos: {x:null, y:null},
-    }));
-    return [...RINKS_LOCAL, ...remote].sort((a, b) => {
+    // Index Supabase rows by id for O(1) lookup
+    const sbById = {};
+    rows.forEach(r => { sbById[parseInt(r.id, 10)] = r; });
+
+    // For hardcoded rinks: overlay Supabase fields (only when Supabase has a non-empty value)
+    const localIds = new Set(RINKS_LOCAL.map(r => r.id));
+    const merged = RINKS_LOCAL.map(local => {
+      const r = sbById[local.id];
+      if (!r) return local;
+      return {
+        ...local,
+        lat:     r.lat      != null ? parseFloat(r.lat)     : local.lat,
+        lng:     r.lng      != null ? parseFloat(r.lng)     : local.lng,
+        state:   r.state    || local.state,
+        name:    r.name     || local.name,
+        region:  r.region   || local.region,
+        city:    r.city     || local.city,
+        address: r.address  || local.address,
+        phone:   r.phone    || local.phone,
+        sheets:  r.sheets   != null ? r.sheets              : local.sheets,
+        website: r.website  || local.website,
+        type:    r.type     || local.type,
+        notes:   r.notes    || local.notes,
+        parking: r.parking  || local.parking,
+        locker: {
+          ...local.locker,
+          rooms: r.locker_rooms != null ? r.locker_rooms : local.locker.rooms,
+        },
+        pricing: {
+          ...local.pricing,
+          publicSkate: r.price_public_skate || local.pricing.publicSkate,
+          stickPuck:   r.price_stick_puck   || local.pricing.stickPuck,
+        },
+        stickPuckTimes: {
+          ...local.stickPuckTimes,
+          scheduleUrl: r.registration_url || local.stickPuckTimes.scheduleUrl,
+          bookingUrl:  r.registration_url || local.stickPuckTimes.bookingUrl,
+          cost:        r.price_stick_puck  || local.stickPuckTimes.cost,
+        },
+        parentInfo: {
+          ...local.parentInfo,
+          livebarn: r.livebarn != null
+            ? {available: r.livebarn, url: (local.parentInfo.livebarn || {}).url || null}
+            : local.parentInfo.livebarn,
+          wifi: r.wifi != null ? {available: r.wifi, cost:'free'} : local.parentInfo.wifi,
+        },
+      };
+    });
+
+    // For rinks only in Supabase (id >= 79 or newly added), build from scratch
+    const remoteOnly = rows
+      .filter(r => !localIds.has(parseInt(r.id, 10)))
+      .map(r => ({
+        id:       parseInt(r.id, 10),
+        lat:      parseFloat(r.lat),
+        lng:      parseFloat(r.lng),
+        state:    r.state     || null,
+        name:     r.name      ?? '',
+        region:   r.region    ?? '',
+        city:     r.city      ?? '',
+        address:  r.address   ?? '',
+        phone:    r.phone     ?? null,
+        sheets:   r.sheets    ?? 1,
+        website:  r.website   ?? null,
+        type:     r.type      ?? 'indoor',
+        highlight: null,
+        amenities: [],
+        hours: {mon:'Check website',tue:'Check website',wed:'Check website',
+                thu:'Check website',fri:'Check website',sat:'Check website',sun:'Check website'},
+        iceTimes: null,
+        notes:    r.notes     ?? null,
+        parking:  r.parking   ?? null,
+        transit:  null,
+        nearby: {
+          food:       r.food       ? [r.food]  : [],
+          hotels:     [],
+          sharpening: r.sharpening ? 'On-site' : null,
+        },
+        temp:     null,
+        locker: {
+          rooms:       r.locker_rooms ?? null,
+          capacity:    null,
+          features:    [],
+          reservation: null,
+          notes:       null,
+        },
+        pricing: {
+          publicSkate: r.price_public_skate ?? null,
+          rental:      null,
+          stickPuck:   r.price_stick_puck   ?? null,
+          icePractice: null,
+          lessons:     null,
+        },
+        discounts: [],
+        shops: r.on_site_shops ? [{name:'On-site shop',dist:'On-site',detail:null}] : [],
+        stickPuckTimes: {
+          scheduleUrl: r.registration_url  ?? null,
+          bookingUrl:  r.registration_url  ?? null,
+          schedule:    ['Check website'],
+          cost:        r.price_stick_puck  ?? null,
+          limit:       null,
+          tips:        null,
+        },
+        parentInfo: {
+          livebarn:    {available: r.livebarn ?? false, url: null},
+          wifi:        r.wifi != null ? {available: r.wifi, cost:'free'} : null,
+          food:        r.food ? {tier:'unknown',name:r.food,details:r.food} : null,
+          localCoffee: null,
+        },
+        mapPos: {x:null, y:null},
+      }));
+
+    return [...merged, ...remoteOnly].sort((a, b) => {
       const s = (a.state || '\uffff').localeCompare(b.state || '\uffff');
       return s !== 0 ? s : a.name.localeCompare(b.name);
     });
