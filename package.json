@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "puppeteer": "^24.42.0",
     "sharp": "^0.34.5"

@@ -6,35 +6,546 @@
   <title>Warroad Gardens Arena — Ice Skating in Warroad, MN | The Rink Link</title>
   <meta name="description" content="Public skating info for Warroad Gardens Arena in Warroad, MN. Hours, prices, amenities and more.">
   <link rel="canonical" href="https://www.therinklink.com/rinks/warroad-gardens-arena-warroad-mn.html">
-  <meta property="og:title" content="Warroad Gardens Arena — The Rink Link">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Warroad Gardens Arena — Ice Skating in Warroad, MN | The Rink Link">
   <meta property="og:description" content="Public skating info for Warroad Gardens Arena in Warroad, MN. Hours, prices, amenities and more.">
   <meta property="og:url" content="https://www.therinklink.com/rinks/warroad-gardens-arena-warroad-mn.html">
-  <meta property="og:type" content="website">
-  <link rel="stylesheet" href="../rink-page.css">
-  <script type="application/ld+json">{
-    "@context": "https://schema.org",
-    "@type": "SportsActivityLocation",
-    "name": "Warroad Gardens Arena",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "707 Elk St NW",
-      "addressLocality": "Warroad",
-      "addressRegion": "MN"
-    }, "url": "https://www.warroadhockey.com"
-  }</script>
+  
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Warroad Gardens Arena — Ice Skating in Warroad, MN">
+  <meta name="twitter:description" content="Public skating info for Warroad Gardens Arena in Warroad, MN.">
+  
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  "name": "Warroad Gardens Arena",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "707 Elk St NW",
+    "addressLocality": "Warroad",
+    "addressRegion": "MN",
+    "postalCode": "56763",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 48.90612,
+    "longitude": -95.32341
+  },
+  "telephone": "(218) 386-3862",
+  "url": "https://www.warroadhockey.com/"
+}
+</script>
+
+  <style>
+    :root {
+      --navy:   #060d1f;
+      --navy2:  #0c1a35;
+      --card:   #0e1e3a;
+      --card2:  #112245;
+      --ice:    #a8d4f5;
+      --gold:   #e8b84b;
+      --white:  #f0f4ff;
+      --muted:  #7a8fb0;
+      --border:  rgba(168,212,245,0.11);
+      --border2: rgba(168,212,245,0.22);
+      --r: 10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Header ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy2);
+      border-bottom: 1px solid var(--border);
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    .logo .rink-word { color: var(--ice); }
+
+    .header-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .header-cta .full-text { display: inline; }
+    .header-cta .short-text { display: none; }
+
+    /* ── Hero ── */
+    .rink-hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 1.5rem;
+    }
+
+    .rink-hero-wrap {
+      border-radius: var(--r);
+      overflow: hidden;
+      padding: 2.5rem 1.25rem 1.5rem;
+    }
+
+    .eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .breadcrumb a { color: var(--ice); }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .rink-location {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .rink-location a {
+      color: var(--ice);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .rink-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      color: var(--ice);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 5px;
+    }
+
+    /* ── Body ── */
+    .rink-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.25rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* ── Claim banner ── */
+    .claim-banner {
+      background: rgba(232,184,75,0.08);
+      border: 1px solid rgba(232,184,75,0.25);
+      border-radius: var(--r);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .claim-banner a {
+      color: var(--gold);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── Conversion card ── */
+    .conversion-card {
+      background: rgba(26,155,230,0.08);
+      border: 1px solid var(--border2);
+      border-radius: var(--r);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .conversion-card .cc-copy p {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--ice);
+    }
+
+    .conversion-card .cc-copy .sub {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Sections ── */
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.25rem 1.5rem;
+    }
+
+    section h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ice);
+      margin-bottom: 0.85rem;
+    }
+
+    /* ── Amenity badges ── */
+    .badge-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(168,212,245,0.08);
+      border: 1px solid var(--border);
+      color: var(--ice);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    /* ── Contact ── */
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-list strong {
+      color: var(--muted);
+      font-weight: 500;
+      margin-right: 0.3rem;
+    }
+
+    .contact-list a {
+      color: var(--ice);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── Notes / spectator ── */
+    .notes p, .spectator-notes p {
+      font-size: 0.95rem;
+      color: var(--white);
+      line-height: 1.65;
+    }
+
+    /* ── Updated at ── */
+    .updated-at {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+      font-style: italic;
+    }
+
+    /* ── Reviews ── */
+    .reviews-empty {
+      text-align: center;
+      padding: 0.5rem 0 0.25rem;
+    }
+
+    .reviews-empty p {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .btn-outline-gold {
+      display: inline-block;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+    }
+
+    /* ── Footer stores ── */
+    .footer-stores-block {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.25rem 2rem;
+    }
+
+    .footer-stores-block h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .store-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .store-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1rem 1.2rem;
+      transition: border-color 0.15s;
+    }
+
+    .store-card:hover { border-color: var(--border2); }
+
+    .sc-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ice);
+      margin-bottom: 0.15rem;
+    }
+
+    .sc-dist {
+      font-size: 0.75rem;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .sc-address, .sc-detail {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 0.2rem;
+    }
+
+    .sc-detail a { color: var(--ice); text-decoration: underline; text-underline-offset: 2px; }
+
+    .sc-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.4rem;
+    }
+
+    .sc-link {
+      font-size: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .sc-link a { color: var(--ice); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ── Footer CTA block ── */
+    .footer-cta-block {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.25rem 3rem;
+    }
+
+    .footer-cta-block h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .footer-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1rem 1.2rem;
+      display: block;
+      transition: border-color 0.15s;
+    }
+
+    .footer-card:hover { border-color: var(--border2); }
+
+    .footer-card .fc-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ice);
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-card .fc-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── Site footer ── */
+    .site-footer {
+      background: var(--navy2);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.5rem 1.25rem;
+    }
+
+    .site-footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .site-footer a {
+      color: var(--ice);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 480px) {
+      .header-cta .full-text { display: none; }
+      .header-cta .short-text { display: inline; }
+      .header-cta { font-size: 0.7rem; padding: 0.35rem 0.65rem; }
+      h1 { font-size: 1.65rem; }
+      .conversion-card { flex-direction: column; align-items: flex-start; }
+      .claim-banner { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      .site-header, .conversion-card, .footer-cta-block, .footer-stores-block, .site-footer { display: none; }
+      body { background: #fff; color: #000; }
+      section { border: 1px solid #ccc; }
+      a { color: #000; }
+    }
+  </style>
 </head>
-<body>
+<body data-rink-slug="warroad-gardens-arena-warroad-mn" data-lat="48.90612" data-lng="-95.32341">
 
 <header class="site-header">
-  <a href="../index.html" class="logo">&#x2744; The Rink Link</a>
-  <nav>
-    <a href="../index.html">Find a Rink</a>
-  </nav>
+  <a href="../index.html" class="logo">The <span class="rink-word">Rink</span> Link</a>
+  <a href="../?rink=warroad-gardens-arena-warroad-mn" class="header-cta">
+    <span class="full-text">&#11088; VIEW ICE TIMES &amp; SCHEDULES &rarr;</span>
+    <span class="short-text">OPEN IN APP &rarr;</span>
+  </a>
 </header>
 
-<main class="rink-page">
+<main>
 
   <div class="rink-hero">
+    <div class="eyebrow">Northwest Minnesota &middot; Warroad, MN</div>
     <div class="breadcrumb">
       <a href="../index.html">All Rinks</a> &rsaquo;
       <span>MN</span> &rsaquo;
@@ -43,52 +554,101 @@
     <h1>Warroad Gardens Arena</h1>
     <p class="rink-location">
       <a href="https://www.google.com/maps/search/?api=1&query=48.90612,-95.32341" target="_blank" rel="noopener">707 Elk St NW</a>
-      &nbsp;&middot;&nbsp; Northwest Minnesota
     </p>
     <div class="rink-meta">
       <span class="tag">Indoor</span>
-      <span class="tag">2.0 sheets</span>
+      <span class="tag">2 Sheets</span>
     </div>
   </div>
 
   <div class="rink-body">
 
+    
+    <div class="claim-banner">
+      <span>Is this your rink?</span>
+      <a href="mailto:hello@therinklink.com?subject=Claim%20Warroad%20Gardens%20Arena">Claim this page &rarr;</a>
+    </div>
+
+    <div class="conversion-card">
+      <div class="cc-copy">
+        <p>See this rink live in The Rink Link</p>
+        <p class="sub">Live weather, schedules, reviews &amp; save your home rink.</p>
+      </div>
+      <a href="../?rink=warroad-gardens-arena-warroad-mn" class="btn-gold">&#11088; View Ice Times &amp; Schedules &rarr;</a>
+    </div>
+
+    
     <section class="amenities">
       <h2>Amenities</h2>
       <div class="badge-grid">
-        <span class="badge badge-yes">LiveBarn</span><span class="badge badge-yes">Year-Round</span><span class="badge badge-yes">Snack Bar</span><span class="badge badge-info" title="Free">Parking</span>
+        <span class="badge">Snack Bar</span>
+        <span class="badge">Parking Free</span>
+        <span class="badge">LiveBarn</span>
       </div>
     </section>
 
     
 
     <section class="contact">
-      <h2>Contact & Info</h2>
+      <h2>Contact &amp; Info</h2>
       <ul class="contact-list">
+        <li><strong>Phone:</strong> <a href="tel:+12183863862">(218) 386-3862</a></li>
+        <li><strong>Website:</strong> <a href="https://www.warroadhockey.com/" target="_blank" rel="noopener">warroadhockey.com</a></li>
         
-        
-        <li><strong>Website:</strong> <a href="https://www.warroadhockey.com" target="_blank" rel="noopener">https://www.warroadhockey.com</a></li>
         <li><strong>Address:</strong> <a href="https://www.google.com/maps/search/?api=1&query=48.90612,-95.32341" target="_blank" rel="noopener">707 Elk St NW</a></li>
+        
+        <li><strong>Registration:</strong> <a href="https://www.warroadhockey.com/" target="_blank" rel="noopener">Warroad Youth Hockey</a></li>
+        <li class="updated-at">Last updated May 2026</li>
       </ul>
-      
-      <a href="https://www.warroadhockey.com" class="btn-register" target="_blank" rel="noopener">Warroad Youth Hockey</a>
     </section>
 
-    <section class="notes"><h2>About this rink</h2><p>Home of the Warriors; one of the most iconic hockey towns in America.</p></section>
     
 
-    <section class="map-section">
-      <h2>Location</h2>
-      <a href="https://www.google.com/maps/search/?api=1&query=48.90612,-95.32341" target="_blank" rel="noopener" class="map-link">Open in Google Maps &rarr;</a>
+    
+    <section class="notes">
+      <h2>About this rink</h2>
+      <p>Home of the Warriors; one of the most iconic hockey towns in America.</p>
     </section>
+
+    <section class="reviews">
+      <h2>Reviews</h2>
+      <div class="reviews-empty">
+        <p>No reviews yet. Be the first to share your experience.</p>
+        <a href="../?rink=warroad-gardens-arena-warroad-mn&action=review" class="btn-outline-gold">&#11088; Be the First to Review &rarr;</a>
+      </div>
+    </section>
+
+    <!-- FUTURE: Ice Schedule section (data not yet stable) -->
+    <!-- FUTURE: Around the Rink / restaurants section -->
+    <!-- FUTURE: Teams & Resources section -->
 
   </div>
 
 </main>
 
+
+
+<div class="footer-cta-block">
+  <h3>More on The Rink Link</h3>
+  <div class="footer-cards">
+    <a href="../index.html" class="footer-card">
+      <div class="fc-label">It&rsquo;s not just rinks</div>
+      <div class="fc-desc">Stores, sharpening, leagues, coaches &amp; more &rarr;</div>
+    </a>
+    <a href="../index.html" class="footer-card">
+      <div class="fc-label">Know a great hockey coach?</div>
+      <div class="fc-desc">Help us build the directory &rarr;</div>
+    </a>
+    <a href="../youth-hockey-gear-guide.html" class="footer-card">
+      <div class="fc-label">New to hockey gear?</div>
+      <div class="fc-desc">Skates, sticks, what to buy first &rarr;</div>
+    </a>
+  </div>
+</div>
+
 <footer class="site-footer">
   <p>&copy; 2026 The Rink Link &middot; <a href="../index.html">Find a rink near you</a></p>
-  <p class="footer-small">Know something we don&rsquo;t? <a href="mailto:hello@therinklink.com">Let us know</a></p>
+  <p>Know something we don&rsquo;t? <a href="mailto:hello@therinklink.com">Let us know</a></p>
 </footer>
 
 </body>
