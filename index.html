@@ -727,7 +727,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     </svg>
     <div class="eyebrow">America's Hockey Resource</div>
     <h1>THE <em>RINK</em><br>LINK</h1>
-    <p class="hero-sub">Built by hockey families, for hockey families. The largest directory of ice rinks across all 50 states — plus coaches, camps, sharpening, nearby food, and activities. Whether it's your kid's first skate, a AAA tryout, or your Thursday night adult league — we've got you covered.</p>
+    <p class="hero-sub">Built by hockey families, for hockey families. The largest directory of ice rinks across all 50 states — 1,160 and counting. Coaches, camps, sharpening, and nearby food are growing city by city, starting in Colorado.</p>
     <div style="display:flex;gap:8px;justify-content:center;align-items:center;margin-top:22px;margin-bottom:20px;flex-wrap:wrap;position:relative">
       <input id="hero-zip" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="Enter zip code" style="padding:12px 18px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;letter-spacing:.5px;outline:none;width:160px;text-align:center" onkeydown="if(event.key==='Enter')heroZipSearch()"/>
       <select id="hero-radius" style="background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.25);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;padding:12px 10px;cursor:pointer;outline:none">
@@ -2213,25 +2213,25 @@ async function fetchRinks() {
         parking: r.parking  || local.parking,
         locker: {
           ...local.locker,
-          rooms: r.locker_rooms != null ? r.locker_rooms : local.locker.rooms,
+          rooms: r.locker_rooms != null ? r.locker_rooms : local.locker?.rooms,
         },
         pricing: {
           ...local.pricing,
-          publicSkate: r.price_public_skate || local.pricing.publicSkate,
-          stickPuck:   r.price_stick_puck   || local.pricing.stickPuck,
+          publicSkate: r.price_public_skate || local.pricing?.publicSkate,
+          stickPuck:   r.price_stick_puck   || local.pricing?.stickPuck,
         },
         stickPuckTimes: {
           ...local.stickPuckTimes,
-          scheduleUrl: r.registration_url || local.stickPuckTimes.scheduleUrl,
-          bookingUrl:  r.registration_url || local.stickPuckTimes.bookingUrl,
-          cost:        r.price_stick_puck  || local.stickPuckTimes.cost,
+          scheduleUrl: r.registration_url || local.stickPuckTimes?.scheduleUrl,
+          bookingUrl:  r.registration_url || local.stickPuckTimes?.bookingUrl,
+          cost:        r.price_stick_puck  || local.stickPuckTimes?.cost,
         },
         parentInfo: {
           ...local.parentInfo,
           livebarn: r.livebarn != null
-            ? {available: r.livebarn, url: (local.parentInfo.livebarn || {}).url || null}
-            : local.parentInfo.livebarn,
-          wifi: r.wifi != null ? {available: r.wifi, cost:'free'} : local.parentInfo.wifi,
+            ? {available: r.livebarn, url: local.parentInfo?.livebarn?.url || null}
+            : local.parentInfo?.livebarn,
+          wifi: r.wifi != null ? {available: r.wifi, cost:'free'} : local.parentInfo?.wifi,
         },
       };
     });
@@ -2304,7 +2304,7 @@ async function fetchRinks() {
       return s !== 0 ? s : a.name.localeCompare(b.name);
     });
   } catch(e) {
-    console.warn('fetchRinks failed, using local data only:', e);
+    console.error('fetchRinks failed, using local data only:', e);
     return RINKS_LOCAL;
   }
 }
