@@ -1902,6 +1902,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
             <button class="admin-tab" id="atab-rinks" onclick="switchAdminTab('rinks')">🏒 Rink Submissions</button>
             <button class="admin-tab" id="atab-agent" onclick="switchAdminTab('agent')">🤖 Rink Agent</button>
             <button class="admin-tab" id="atab-suggestions" onclick="switchAdminTab('suggestions')">🔗 Website Suggestions</button>
+            <button class="admin-tab" id="atab-leads" onclick="switchAdminTab('leads')">💼 Leads</button>
           </div>
           <div style="display:flex;gap:8px">
             <button class="btn btn-ghost btn-sm" onclick="adminRefresh()">↻ Refresh</button>
@@ -2000,6 +2001,12 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         <div id="admin-tab-suggestions" style="display:none">
           <div id="admin-suggestions-empty" style="text-align:center;padding:48px 0;color:var(--muted)"><div style="font-size:2rem;margin-bottom:12px">✅</div><div>No pending website suggestions.</div></div>
           <div id="admin-suggestions-list"></div>
+        </div>
+
+        <!-- Business Leads Tab -->
+        <div id="admin-tab-leads" style="display:none">
+          <div id="admin-leads-empty" style="text-align:center;padding:48px 0;color:var(--muted)"><div style="font-size:2rem;margin-bottom:12px">✅</div><div>No new business leads.</div></div>
+          <div id="admin-leads-list"></div>
         </div>
 
       </div>
@@ -5297,7 +5304,7 @@ let adminUnlocked = false;
 
 // ── ADMIN TAB SWITCHING ──────────────────────────────────────────
 function switchAdminTab(tab){
-  ['reviews','coaches','camps','tips','rinks','agent','suggestions'].forEach(t=>{
+  ['reviews','coaches','camps','tips','rinks','agent','suggestions','leads'].forEach(t=>{
     document.getElementById('admin-tab-'+t).style.display = tab===t?'block':'none';
     document.getElementById('atab-'+t).classList.toggle('active', tab===t);
   });
@@ -5307,6 +5314,7 @@ function switchAdminTab(tab){
   if(tab==='tips') adminLoadTips();
   if(tab==='rinks') adminLoadRinks();
   if(tab==='suggestions') adminLoadSuggestions();
+  if(tab==='leads') adminLoadLeads();
 }
 
 async function adminLoadCoaches(){
@@ -5509,6 +5517,53 @@ async function adminRejectSuggestion(suggId){
   await sbFetch('rink_suggestions?id=eq.'+suggId, 'PATCH', {status:'rejected'});
   document.getElementById('sugcard-'+suggId)?.remove();
   toast('🗑 Suggestion rejected.');
+}
+
+// ── BUSINESS LEADS (ADMIN) ─────────────────────────────────────────
+async function adminLoadLeads(){
+  const list = document.getElementById('admin-leads-list');
+  const empty = document.getElementById('admin-leads-empty');
+  list.innerHTML = '<div style="color:var(--muted);padding:20px;text-align:center">Loading...</div>';
+  try{
+    const rows = await sbFetch('business_leads?status=eq.new&order=id.desc');
+    if(!rows.length){ list.innerHTML=''; empty.style.display='block'; return; }
+    empty.style.display='none';
+    list.innerHTML = rows.map(l => `
+      <div id="leadcard-${l.id}" style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;color:var(--white)">${l.business_name} <span style="color:var(--gold);font-size:.8rem">${l.business_type||''}</span></div>
+            <div style="font-size:.78rem;color:var(--ice);margin-top:4px">${l.owner_name||''}</div>
+            <div style="font-size:.75rem;color:var(--muted);margin-top:4px">${l.phone||''}${l.email?' · '+l.email:''}${l.city?' · '+l.city:''}</div>
+            <div style="font-size:.72rem;color:var(--muted);margin-top:4px">Heard via: ${l.how_they_heard||'Not specified'} · Submitted ${l.created_at ? new Date(l.created_at).toLocaleDateString() : ''}</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-shrink:0">
+            <button class="btn btn-sm" style="background:#2ecc71;color:#fff;font-weight:700" onclick="adminContactedLead(${l.id})">✓ Contacted</button>
+            <button class="btn btn-sm" style="background:#f5c842;color:#0d1b2a;font-weight:700" onclick="adminWonLead(${l.id})">💰 Won</button>
+            <button class="btn btn-sm" style="background:#e74c3c;color:#fff;font-weight:700" onclick="adminDeclinedLead(${l.id})">✕ Declined</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }catch(e){ list.innerHTML='<div style="color:#e74c3c;padding:20px">Error: '+e.message+'</div>'; }
+}
+
+async function adminContactedLead(id){
+  await sbFetch('business_leads?id=eq.'+id, 'PATCH', {status:'contacted'});
+  document.getElementById('leadcard-'+id)?.remove();
+  toast('✅ Marked as contacted!');
+}
+
+async function adminWonLead(id){
+  await sbFetch('business_leads?id=eq.'+id, 'PATCH', {status:'won'});
+  document.getElementById('leadcard-'+id)?.remove();
+  toast('💰 Marked as won!');
+}
+
+async function adminDeclinedLead(id){
+  await sbFetch('business_leads?id=eq.'+id, 'PATCH', {status:'declined'});
+  document.getElementById('leadcard-'+id)?.remove();
+  toast('🗑 Lead declined.');
 }
 
 // ── RINK AGENT ───────────────────────────────────────────────────
