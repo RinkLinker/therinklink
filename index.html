@@ -2492,7 +2492,7 @@ async function sbFetch(path, method='GET', body=null){
 let reviews={},rinkTipsCache={},upvoted=new Set(),favorites=new Set(),homeRink=null;
 let activeState='all',activeRegion='all',activeType='all',filterOpen=false,filterFavs=false,nearbyFilter='all';
 let currentRinkId=null,selMapRink=null,_modalRink=null;
-let BIZ_SUPABASE_CACHE = null; // rink-13 test only — see buildBizTab()
+let BIZ_CACHE = {}; // keyed by rink id — see buildBizTab() / prefetchRinkData()
 let STORES=[], activeStoreState='all', activeStoreSharpening='all', activeStoreTag='all';
 let nearbyStores=null, nearbyStoreZip='', nearbyStoreRadiusMi=25;
 
@@ -3005,6 +3005,15 @@ async function fetchStores(){
     console.warn('fetchStores failed:',e);
     return [];
   }
+}
+
+function storesNearRink(r,radius){
+  if(!r.lat||!r.lng)return [];
+  return STORES
+    .filter(s=>s.lat&&s.lng)
+    .map(s=>({...s,_miles:haversine(r.lat,r.lng,s.lat,s.lng)}))
+    .filter(s=>s._miles<=radius)
+    .sort((a,b)=>a._miles-b._miles);
 }
 
 function renderStores(){
@@ -3855,30 +3864,17 @@ function buildSectionAroundRink(r){
     +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:8px">⚡ Skate Sharpening</div>'
     +'<div style="font-size:.82rem;color:var(--muted)">'+safeStr(r.nearby.sharpening,'Check with rink')+'</div>'
     +'</div>';
-  html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
-    +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:10px">🍔 Food &amp; Drinks</div>'
-    +'<div style="display:flex;flex-direction:column;gap:7px">'
-    +safeArr(r.nearby.food).map(f=>{
-      const name=f.split('(')[0].trim();
-      const dist=f.includes('(')?f.split('(')[1].replace(')','').trim():'';
-      return '<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
-        +'<span style="font-size:.82rem;color:var(--white)">🍴 '+name+'</span>'
-        +(dist?'<span style="font-size:.7rem;color:var(--muted);flex-shrink:0;margin-left:8px">'+dist+'</span>':'')
-        +'</div>';
-    }).join('')
-    +'</div></div>';
-  html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
-    +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:10px">🏨 Hotels</div>'
-    +'<div style="display:flex;flex-direction:column;gap:7px">'
-    +safeArr(r.nearby.hotels).map(h=>{
-      const name=h.split('(')[0].trim();
-      const dist=h.includes('(')?h.split('(')[1].replace(')','').trim():'';
-      return '<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
-        +'<span style="font-size:.82rem;color:var(--white)">🏨 '+name+'</span>'
-        +(dist?'<span style="font-size:.7rem;color:var(--muted);flex-shrink:0;margin-left:8px">'+dist+'</span>':'')
-        +'</div>';
-    }).join('')
-    +'</div></div>';
+  const shops15=storesNearRink(r,15);
+  if(shops15.length){
+    html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
+      +'<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:10px">🛒 Skate Shops Nearby</div>'
+      +'<div style="display:flex;flex-direction:column;gap:7px">'
+      +shops15.map(s=>'<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px">'
+        +'<span style="font-size:.82rem;color:var(--white)">🛒 '+safeStr(s.name)+'</span>'
+        +'<span style="font-size:.7rem;color:var(--muted);flex-shrink:0;margin-left:8px">'+s._miles.toFixed(1)+' mi</span>'
+        +'</div>').join('')
+      +'</div></div>';
+  }
   const nearbyShops=(r.shops||[]).filter(s=>s.dist!=='On-site'&&s.dist!=='On campus'&&s.dist!=='In arena');
   if(nearbyShops.length){
     html+='<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:15px">'
@@ -4206,10 +4202,12 @@ async function loadDBTips(rid){
 
 async function prefetchRinkData(id){
   try{
-    const [reviewRows,tipRows]=await Promise.all([
+    const [reviewRows,tipRows,bizRows]=await Promise.all([
       sbFetch('Reviews?rink_id=eq.'+id+'&pending=eq.false&order=id.desc'),
-      sbFetch('rinkTips?rink_id=eq.'+id+'&pending=eq.false&order=id.desc')
+      sbFetch('rinkTips?rink_id=eq.'+id+'&pending=eq.false&order=id.desc'),
+      fetchBizForRink(id).catch(e=>{console.warn('fetchBizForRink failed:',e.message);return null;})
     ]);
+    if(bizRows)BIZ_CACHE[id]=bizRows;
     // Merge reviews into local state
     const existing=(reviews[id]||[]).filter(x=>x.pending);
     reviews[id]=[...reviewRows.map(row=>({
@@ -4237,6 +4235,8 @@ async function prefetchRinkData(id){
     if(revEl&&revEl.dataset.loaded==='true'){revEl.innerHTML=buildSectionReviews(r);attachPickers();}
     const amenEl=document.getElementById('acc-'+id+'-fac');
     if(amenEl&&amenEl.dataset.loaded==='true')amenEl.innerHTML=buildSectionAmenities(r);
+    const aroundEl=document.getElementById('acc-'+id+'-around');
+    if(bizRows&&aroundEl&&aroundEl.dataset.loaded==='true')aroundEl.innerHTML=buildSectionAroundRink(r);
   }catch(e){console.warn('prefetchRinkData error:',e.message);}
 }
 
@@ -7108,7 +7108,7 @@ function renderBiz(){
 }
 
 function buildBizTab(r){
-  const nearby=(r.id===13 && BIZ_SUPABASE_CACHE) ? BIZ_SUPABASE_CACHE : LOCAL_BIZ.filter(b=>b.rinkIds.includes(r.id));
+  const nearby=BIZ_CACHE[r.id] || LOCAL_BIZ.filter(b=>b.rinkIds.includes(r.id));
   if(!nearby.length){
     return '<div class="ms"><div class="ms-title">🛒 Local Businesses</div>'
       +'<div style="text-align:center;padding:24px 0">'
@@ -8440,7 +8440,6 @@ function setRegionView(view){
 }
 
 (async()=>{
-  fetchBizForRink(13).then(rows=>{BIZ_SUPABASE_CACHE=rows;}).catch(e=>console.warn('rink-13 biz fetch failed, using LOCAL_BIZ fallback:',e));
   await loadAll();RINKS=await fetchRinks();buildStateSelects();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();
   STORES=await fetchStores();buildStoreStateSelect();renderStores();
   if(window.location.hash==="#admin") showPage("admin");
