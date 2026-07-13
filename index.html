@@ -931,7 +931,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 <div id="page-nearby" class="page">
   <div class="section">
     <div class="container">
-      <div class="sh"><div class="sl">Game Day Guide</div><div class="st">Around the Rink</div><div class="sd">Pick a rink. See everything around it — food, sharpening, coffee, and team hangouts. All hockey-family friendly.</div><div class="sd" style="margin-top:10px">Locally owned spots are tagged and listed first — the family-run coffee shop, the breakfast place the team always hits, the burger joint with kids&#39; team photos on the wall. Everything else hockey families need is here too.</div><div class="sd" style="margin-top:10px">Heads up: this guide is in progress. We&#39;re building it rink by rink, with help from hockey families like yours. If your rink isn&#39;t showing many spots yet, that just means we haven&#39;t gotten there. This is where you can help other hockey families and your favorite local business.</div><div class="sd" style="margin-top:10px">Own a business near a rink? <a onclick="openGetFeatured()" style="cursor:pointer;color:var(--ice);font-weight:700;text-decoration:none">Get Featured &#8594;</a></div></div>
+      <div class="sh"><div class="sl">Game Day Guide</div><div class="st">What's Near Your Rink</div><div class="sd">Pick a rink. See everything around it — food, sharpening, coffee, and team hangouts. All hockey-family friendly.</div><div class="sd" style="margin-top:10px">Locally owned spots are tagged and listed first — the family-run coffee shop, the breakfast place the team always hits, the burger joint with kids&#39; team photos on the wall. Everything else hockey families need is here too.</div><div class="sd" style="margin-top:10px">Heads up: this guide is in progress. We&#39;re building it rink by rink, with help from hockey families like yours. If your rink isn&#39;t showing many spots yet, that just means we haven&#39;t gotten there. This is where you can help other hockey families and your favorite local business.</div><div class="sd" style="margin-top:10px">Own a business near a rink? <a onclick="openGetFeatured()" style="cursor:pointer;color:var(--ice);font-weight:700;text-decoration:none">Get Featured &#8594;</a></div></div>
 
       <!-- Game Day Search -->
       <div id="nearby-search-wrap">
@@ -3662,7 +3662,7 @@ function buildModal(r){
     +lazyAccordion('acc-'+r.id+'-fac','Amenities','🏟️',r.id,'amenities')
     +lazyAccordion('acc-'+r.id+'-contact','Contact & Info','📞',r.id,'contact')
     +lazyAccordion('acc-'+r.id+'-reviews','Reviews','⭐',r.id,'reviews')
-    +lazyAccordion('acc-'+r.id+'-around','Around the Rink','📍',r.id,'around')
+    +lazyAccordion('acc-'+r.id+'-around','Near Your Rink','📍',r.id,'around')
     +lazyAccordion('acc-'+r.id+'-teams','Teams & Resources','🏒',r.id,'teams');
   attachPickers();
   setTimeout(()=>fetchRinkWeather(r.lat,r.lng,weatherId),50);
