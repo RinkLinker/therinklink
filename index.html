@@ -497,7 +497,6 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   <ul class="nav-links">
     <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
     <li><a onclick="showPage('rinks')" id="nav-rinks">Rinks</a></li>
-    <li><a onclick="showPage('nearby')" id="nav-nearby">🎒 Game Day Guide</a></li>
     <li class="nav-dropdown">
       <a class="nav-dropdown-trigger" id="nav-icetime">Want Ice Time ▾</a>
       <div class="nav-dropdown-menu">
@@ -605,11 +604,6 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div class="mnav-card-icon">📋</div>
       <div class="mnav-card-title">Age & Levels</div>
       <div class="mnav-card-desc">USA Hockey level guide</div>
-    </div>
-    <div class="mnav-card" onclick="mobileNav('nearby')">
-      <div class="mnav-card-icon">🎒</div>
-      <div class="mnav-card-title">Game Day Guide</div>
-      <div class="mnav-card-desc">Food, hotels & hangouts by rink</div>
     </div>
   </div>
 
@@ -813,7 +807,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <div class="footer-tag">Hockey Rinks, Stick & Puck, and Everything Around the Ice — All 50 States</div>
     <div class="footer-links">
       <a onclick="showPage('rinks')">Rinks</a>
-      <a onclick="showPage('nearby')">Game Day Guide</a><a onclick="showPage('sticknpuck')">Stick & Puck</a><a onclick="showPage('dropin')">Drop-In Hockey</a><a onclick="showPage('openskate')">Open Skate</a><a onclick="showPage('sharpen')">Sharpening</a>
+      <a onclick="showPage('sticknpuck')">Stick & Puck</a><a onclick="showPage('dropin')">Drop-In Hockey</a><a onclick="showPage('openskate')">Open Skate</a><a onclick="showPage('sharpen')">Sharpening</a>
       <a onclick="showPage('checklist')">What to Bring</a><a onclick="showPage('levels')">Age Guide</a><a onclick="showPage('camps')">Hockey Camps</a><a href="/how-to-choose-a-hockey-coach.html" target="_blank">Parent Guides</a><a href="/hockey-lingo-guide.html" target="_blank">Hockey Lingo</a><a href="/youth-hockey-gear-guide.html" target="_blank">Gear Guide</a><a href="/what-is-aaa-hockey.html" target="_blank">AAA Guide</a><a href="/hockey-tryout-guide.html" target="_blank">Tryout Guide</a><a href="/hockey-skate-stick-sizing.html" target="_blank">Sizing Guide</a><a href="/hockey-stick-guide.html" target="_blank">Hockey Stick Guide</a>
       <a onclick="showPage('favs')">Favorites</a><a onclick="showPage('coaches')">Coaches</a><a onclick="showPage('submit')">Submit a Rink</a><a href="mailto:crew@therinklink.com">crew@therinklink.com</a>
     </div>
@@ -937,7 +931,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 <div id="page-nearby" class="page">
   <div class="section">
     <div class="container">
-      <div class="sh"><div class="sl">Game Day Guide</div><div class="st">Around the Rink</div><div class="sd">Pick a rink. See everything around it — food, sharpening, coffee, and team hangouts. All hockey-family friendly.</div><div class="sd" style="margin-top:10px">Locally owned spots are tagged and listed first — the family-run coffee shop, the breakfast place the team always hits, the burger joint with kids&#39; team photos on the wall. Everything else hockey families need is here too.</div><div class="sd" style="margin-top:10px">Heads up: this guide is in progress. We&#39;re building it rink by rink, with help from hockey families like yours. If your rink isn&#39;t showing many spots yet, that just means we haven&#39;t gotten there. This is where you can help other hockey families and your favorite local business.</div><div class="sd" style="margin-top:10px">Know a great spot near your rink? <a href="https://forms.gle/KxEgRfU5jbKUNy8Q6" target="_blank" rel="noopener" style="color:var(--ice);font-weight:700;text-decoration:none">Tell us about it &#8594;</a></div></div>
+      <div class="sh"><div class="sl">Game Day Guide</div><div class="st">Around the Rink</div><div class="sd">Pick a rink. See everything around it — food, sharpening, coffee, and team hangouts. All hockey-family friendly.</div><div class="sd" style="margin-top:10px">Locally owned spots are tagged and listed first — the family-run coffee shop, the breakfast place the team always hits, the burger joint with kids&#39; team photos on the wall. Everything else hockey families need is here too.</div><div class="sd" style="margin-top:10px">Heads up: this guide is in progress. We&#39;re building it rink by rink, with help from hockey families like yours. If your rink isn&#39;t showing many spots yet, that just means we haven&#39;t gotten there. This is where you can help other hockey families and your favorite local business.</div><div class="sd" style="margin-top:10px">Own a business near a rink? <a onclick="openGetFeatured()" style="cursor:pointer;color:var(--ice);font-weight:700;text-decoration:none">Get Featured &#8594;</a></div></div>
 
       <!-- Game Day Search -->
       <div id="nearby-search-wrap">
