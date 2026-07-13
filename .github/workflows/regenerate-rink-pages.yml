@@ -35,4 +35,4 @@ jobs:
           fi
           DATE=$(date +'%B %-d %Y')
           git commit -m "Auto-regenerate rink pages - ${DATE}"
-          git push
+          git pull --rebase origin master && git push origin master
