@@ -467,6 +467,9 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
 #suggest-url-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);align-items:center;justify-content:center}
 #suggest-url-modal.open{display:flex}
 #suggest-url-inner{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;max-width:420px;width:calc(100% - 32px);position:relative}
+#get-featured-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);align-items:center;justify-content:center}
+#get-featured-modal.open{display:flex}
+#get-featured-inner{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;max-width:480px;width:calc(100% - 32px);max-height:92vh;overflow-y:auto;position:relative}
 /* Hockey Map */
 #hockey-map{height:70vh;min-height:420px;border-radius:10px;overflow:hidden;margin-top:4px}
 .hmap-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
@@ -987,7 +990,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
       <div style="margin-top:40px;background:linear-gradient(135deg,rgba(234,175,60,.07),rgba(234,175,60,.03));border:1px solid rgba(234,175,60,.2);border-radius:var(--r);padding:22px 24px;text-align:center">
         <div style="font-size:1.1rem;font-weight:700;margin-bottom:6px">🏒 Own a Team-Friendly Business?</div>
         <div style="font-size:.83rem;color:var(--muted);max-width:480px;margin:0 auto 14px">Get featured in front of hockey families at the rinks nearest you. Restaurants, hotels, pro shops, bowling alleys and more — we bring the team traffic to you.</div>
-        <a href="https://forms.gle/KxEgRfU5jbKUNy8Q6" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#0d1b2a;font-weight:800;font-size:.82rem;padding:10px 20px;border-radius:8px;text-decoration:none;letter-spacing:.5px">✉️ Get Featured →</a>
+        <a onclick="openGetFeatured()" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#0d1b2a;font-weight:800;font-size:.82rem;padding:10px 20px;border-radius:8px;text-decoration:none;letter-spacing:.5px">✉️ Get Featured →</a>
       </div>
     </div>
   </div>
@@ -1601,7 +1604,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
           <div style="font-size:.85rem;color:var(--white);font-weight:600">Own a hockey-related business? Get featured here.</div>
           <div style="font-size:.75rem;color:var(--muted);margin-top:2px">Featured listings appear at the top, near relevant rinks, with your logo and a direct CTA.</div>
         </div>
-        <a href="https://forms.gle/KxEgRfU5jbKUNy8Q6" target="_blank" rel="noopener" class="btn btn-gold btn-sm">Get Featured →</a>
+        <a onclick="openGetFeatured()" class="btn btn-gold btn-sm" style="cursor:pointer">Get Featured →</a>
       </div>
 
       <div class="toolbar">
@@ -2028,6 +2031,85 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     </div>
   </div>
 </div>
+
+<!-- GET FEATURED MODAL -->
+<div id="get-featured-modal" onclick="if(event.target===this)closeGetFeatured()">
+  <div id="get-featured-inner">
+    <button onclick="closeGetFeatured()" style="position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;line-height:1">✕</button>
+    <!-- Form state -->
+    <div id="get-featured-form">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:4px;color:var(--white)">Get Featured</div>
+      <div style="font-size:.82rem;color:var(--ice);margin-bottom:18px">Tell us about your business and we'll follow up.</div>
+
+      <div class="fgrp">
+        <label class="flbl">Business Name *</label>
+        <input class="finput" type="text" id="gf-name" placeholder="Rinkside Grill" oninput="document.getElementById('gf-err').style.display='none'"/>
+      </div>
+
+      <div class="frow">
+        <div class="fgrp">
+          <label class="flbl">Owner Name</label>
+          <input class="finput" type="text" id="gf-owner" placeholder="Jane Smith"/>
+        </div>
+        <div class="fgrp">
+          <label class="flbl">Phone *</label>
+          <input class="finput" type="tel" id="gf-phone" placeholder="(303) 555-0100" oninput="document.getElementById('gf-err').style.display='none'"/>
+        </div>
+      </div>
+
+      <div class="frow">
+        <div class="fgrp">
+          <label class="flbl">Email</label>
+          <input class="finput" type="email" id="gf-email" placeholder="jane@example.com"/>
+        </div>
+        <div class="fgrp">
+          <label class="flbl">City</label>
+          <input class="finput" type="text" id="gf-city" placeholder="Denver"/>
+        </div>
+      </div>
+
+      <div class="frow">
+        <div class="fgrp">
+          <label class="flbl">Business Type</label>
+          <select class="finput" id="gf-type">
+            <option value="">Select type...</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Pro Shop">Pro Shop</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Bowling/Entertainment">Bowling/Entertainment</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="fgrp">
+          <label class="flbl">How'd You Hear About Us?</label>
+          <select class="finput" id="gf-heard">
+            <option value="">Select one...</option>
+            <option value="Hockey parent">Hockey parent</option>
+            <option value="Coach referral">Coach referral</option>
+            <option value="Social media">Social media</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="fgrp">
+        <label class="flbl">Notes</label>
+        <textarea class="finput" id="gf-notes" placeholder="Anything else we should know?"></textarea>
+      </div>
+
+      <div id="gf-err" style="display:none;color:#e74c3c;font-size:.78rem;margin-bottom:10px"></div>
+      <button class="btn btn-ice" style="width:100%;margin-top:8px" onclick="submitGetFeatured()">Submit</button>
+    </div>
+    <!-- Thank-you state -->
+    <div id="get-featured-thanks" style="display:none;text-align:center;padding:12px 0">
+      <div style="font-size:2rem;margin-bottom:10px">🙌</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);margin-bottom:6px">Thanks!</div>
+      <div style="font-size:.85rem;color:var(--muted)">We got your info and will be in touch about getting your business featured.</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:18px" onclick="closeGetFeatured()">Close</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -2409,6 +2491,7 @@ async function sbFetch(path, method='GET', body=null){
 let reviews={},rinkTipsCache={},upvoted=new Set(),favorites=new Set(),homeRink=null;
 let activeState='all',activeRegion='all',activeType='all',filterOpen=false,filterFavs=false,nearbyFilter='all';
 let currentRinkId=null,selMapRink=null,_modalRink=null;
+let BIZ_SUPABASE_CACHE = null; // rink-13 test only — see buildBizTab()
 let STORES=[], activeStoreState='all', activeStoreSharpening='all', activeStoreTag='all';
 let nearbyStores=null, nearbyStoreZip='', nearbyStoreRadiusMi=25;
 
@@ -6976,7 +7059,7 @@ function renderBiz(){
 }
 
 function buildBizTab(r){
-  const nearby=LOCAL_BIZ.filter(b=>b.rinkIds.includes(r.id));
+  const nearby=(r.id===13 && BIZ_SUPABASE_CACHE) ? BIZ_SUPABASE_CACHE : LOCAL_BIZ.filter(b=>b.rinkIds.includes(r.id));
   if(!nearby.length){
     return '<div class="ms"><div class="ms-title">🛒 Local Businesses</div>'
       +'<div style="text-align:center;padding:24px 0">'
@@ -7022,6 +7105,15 @@ function buildBizTab(r){
   html+='<button onclick="closeModal();showPage(\'biz\')" class="btn btn-ghost btn-sm" style="margin-top:4px">Browse All Local Businesses →</button>';
   html+='</div>';
   return html;
+}
+
+// Fetches businesses linked to `rinkId` via rink_business_links, joined to businesses.
+// locally_owned/cta_url are aliased to local/ctaUrl to match the shape buildBizTab() expects.
+async function fetchBizForRink(rinkId){
+  const rows = await sbFetch(
+    `rink_business_links?select=businesses(id,name,type,featured,region,city,address,phone,url,tagline,description,tags,cta,ctaUrl:cta_url,hours,local:locally_owned,logo:logo_url)&rink_id=eq.${rinkId}`
+  );
+  return rows.map(row => row.businesses).filter(Boolean);
 }
 
 const DROPIN_DATA=[
@@ -8088,6 +8180,56 @@ async function submitSuggestWebsite() {
   }
 }
 
+// ── GET FEATURED ─────────────────────────────────────────────────────────
+function openGetFeatured() {
+  ['gf-name','gf-owner','gf-phone','gf-email','gf-city','gf-notes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('gf-type').value = '';
+  document.getElementById('gf-heard').value = '';
+  document.getElementById('gf-err').style.display = 'none';
+  document.getElementById('get-featured-form').style.display = 'block';
+  document.getElementById('get-featured-thanks').style.display = 'none';
+  document.getElementById('get-featured-modal').classList.add('open');
+  setTimeout(() => document.getElementById('gf-name').focus(), 80);
+}
+
+function closeGetFeatured() {
+  document.getElementById('get-featured-modal').classList.remove('open');
+}
+
+async function submitGetFeatured() {
+  const name = (document.getElementById('gf-name').value || '').trim();
+  const phone = (document.getElementById('gf-phone').value || '').trim();
+  const errEl = document.getElementById('gf-err');
+  if (!name) {
+    errEl.textContent = 'Please enter your business name';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (!phone) {
+    errEl.textContent = 'Please enter a phone number';
+    errEl.style.display = 'block';
+    return;
+  }
+  try {
+    await sbFetch('business_leads', 'POST', {
+      business_name:   name,
+      owner_name:      (document.getElementById('gf-owner').value || '').trim() || null,
+      phone:           phone,
+      email:           (document.getElementById('gf-email').value || '').trim() || null,
+      city:            (document.getElementById('gf-city').value || '').trim() || null,
+      business_type:   document.getElementById('gf-type').value || null,
+      how_they_heard:  document.getElementById('gf-heard').value || null,
+      notes:           (document.getElementById('gf-notes').value || '').trim() || null,
+      status:          'new',
+    });
+    document.getElementById('get-featured-form').style.display = 'none';
+    document.getElementById('get-featured-thanks').style.display = 'block';
+  } catch(e) {
+    errEl.textContent = 'Could not submit — please try again.';
+    errEl.style.display = 'block';
+  }
+}
+
 // ── HOCKEY MAP ─────────────────────────────────────────────────────────────
 let hockeyMapLeaflet = null;
 const hockeyMapLayers = {};
@@ -8249,6 +8391,7 @@ function setRegionView(view){
 }
 
 (async()=>{
+  fetchBizForRink(13).then(rows=>{BIZ_SUPABASE_CACHE=rows;}).catch(e=>console.warn('rink-13 biz fetch failed, using LOCAL_BIZ fallback:',e));
   await loadAll();RINKS=await fetchRinks();buildStateSelects();await loadSubmissions();loadColdnessVotes();updateSubmitCount();updateFavBadge();renderRinks();renderNearby();renderSNP();renderCamps();renderOpenSkate();
   STORES=await fetchStores();buildStoreStateSelect();renderStores();
   if(window.location.hash==="#admin") showPage("admin");
