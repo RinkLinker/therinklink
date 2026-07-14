@@ -441,7 +441,7 @@
 
     <div class="callout">
       <div class="callout-label">Quick Tip</div>
-      <p>Ready to hand off bag duty? Check out the <strong>Player's Packing Guide</strong> — written for your kid, not you.</p>
+      <p>Ready to hand off bag duty? Check out the <a href="/hockey-player-packing-guide.html" target="_blank" style="color:var(--ice);font-weight:700;text-decoration:none">Player's Packing Guide</a> — written for your kid, not you.</p>
     </div>
   </div>
 
@@ -716,3 +716,74 @@
 
 </body>
 </html>
+<style>
+@media print {
+  * { -webkit-print-color-adjust: exact; color-adjust: exact; }
+  
+  nav, .cta-block, footer { display: none !important; }
+  
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: .95rem;
+  }
+  
+  .hero {
+    padding: 24px 0 16px;
+    background: #fff !important;
+  }
+  .hero::before { display: none; }
+  .hero-tag {
+    color: #333 !important;
+    border-color: #333 !important;
+  }
+  .hero h1 { color: #111 !important; font-size: 2.8rem; }
+  .hero h1 em { color: #111 !important; }
+  .hero-sub { color: #444 !important; }
+  .hero-meta { color: #666 !important; }
+  
+  .divider { background: #111 !important; }
+  
+  .content { padding: 0 0 24px; }
+  
+  .section { margin-bottom: 28px; page-break-inside: avoid; }
+  .section-number { color: #eee !important; }
+  .section h2 { color: #111 !important; border-bottom-color: #ccc !important; }
+  .section h2 .accent { color: #111 !important; }
+  .section p { color: #333 !important; }
+  
+  .gear-item {
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+  }
+  .gear-name { color: #111 !important; }
+  .gear-desc { color: #555 !important; }
+  .gear-badge {
+    background: #f0f0f0 !important;
+    color: #333 !important;
+    border-color: #ccc !important;
+  }
+  
+  .callout {
+    background: #f5f5f5 !important;
+    border-left-color: #333 !important;
+  }
+  .callout p { color: #222 !important; }
+  .callout-label { color: #333 !important; }
+  
+  .warning {
+    background: #f9f9f9 !important;
+    border-left-color: #333 !important;
+  }
+  .warning p { color: #222 !important; }
+  .warning-label { color: #333 !important; }
+  
+  .two-col-card {
+    background: #f5f5f5 !important;
+    border-color: #ccc !important;
+  }
+  .two-col-label { color: #111 !important; }
+  .two-col-list li { color: #333 !important; }
+}
+</style>

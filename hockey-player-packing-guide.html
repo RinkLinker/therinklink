@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pack Your Own Bag | Hockey Player's Guide | The Rink Link</title>
+<meta name="description" content="A packing guide written for hockey players ages 8-10. Pack your own bag, show up ready, and make your parents proud."/>
+<meta property="og:title" content="Pack Your Own Bag — The Hockey Player's Guide"/>
+<meta property="og:description" content="You're old enough to pack your own bag. Here's exactly what goes in it."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(245,158,11,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(245,158,11,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--gold); }
+  .section p { color: var(--muted); margin-bottom: 16px; font-size: 1.05rem; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  .callout {
+    background: var(--bg3);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .callout p { margin: 0; color: var(--text); font-size: 1rem; }
+  .callout-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .check-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+  .check-item:hover { border-color: rgba(245,158,11,.3); }
+  .check-item.checked { opacity: .5; }
+  .check-box {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: background .2s;
+  }
+  .check-item.checked .check-box {
+    background: var(--gold);
+    color: #060d1f;
+  }
+  .check-content { flex: 1; }
+  .check-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .check-desc { font-size: .85rem; color: var(--muted); }
+
+  .big-tip {
+    background: linear-gradient(135deg, rgba(245,158,11,.08), rgba(245,158,11,.03));
+    border: 1px solid rgba(245,158,11,.2);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .big-tip-emoji { font-size: 2.5rem; margin-bottom: 12px; }
+  .big-tip-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .big-tip p { color: var(--text); font-size: .95rem; margin: 0; }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--gold);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .cta-block { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">For Players</div>
+  <h1>Pack Your <em>Own Bag</em></h1>
+  <p class="hero-sub">You're old enough to do this yourself. Here's exactly what goes in your bag — and how to never forget anything again.</p>
+  <div class="hero-meta">
+    <span>🏒 Ages 8–10</span>
+    <span>·</span>
+    <span>Mites & Squirts</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <div class="section">
+    <p style="font-size:1.1rem;color:var(--text);">Here's the deal: <strong>good hockey players take care of their own stuff.</strong> That means knowing what goes in your bag, checking it yourself the night before, and never making your mom or dad run back inside because you forgot your helmet.</p>
+    <p>This is your list. Learn it. Use it. Own it.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>The Gear <span class="accent">That Goes In Every Time</span></h2>
+    <p>Every practice. Every game. Every single time. No exceptions.</p>
+
+    <div class="check-list">
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">⛸️ Skates</div>
+          <div class="check-desc">Check that your laces aren't fraying. If they look rough, tell a parent before game day — not in the parking lot.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">⛑️ Helmet</div>
+          <div class="check-desc">With your cage or shield attached. No helmet = no skating. Don't be that kid.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">🛡️ Neck Guard</div>
+          <div class="check-desc">It's required. It protects you. Wear it every time, no arguments.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">💪 Shoulder Pads</div>
+          <div class="check-desc">Make sure nothing feels loose or broken. Tell a parent if something feels off.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">🦾 Elbow Pads</div>
+          <div class="check-desc">Both of them. Yes, both.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">🧤 Gloves</div>
+          <div class="check-desc">Both of them. Same rule.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">🦵 Shin Guards</div>
+          <div class="check-desc">Tuck them inside your hockey socks. If they're sliding around, use sock tape.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">🏒 Hockey Pants</div>
+          <div class="check-desc">Also called breezers. They protect your hips and tailbone. Always in the bag.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">🩲 Jock or Jill</div>
+          <div class="check-desc">Always. No exceptions. You know why.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">🧦 Hockey Socks</div>
+          <div class="check-desc">Go over your shin guards. Use sock tape at the top to keep them up.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">👕 Jersey</div>
+          <div class="check-desc">Team jersey for games, practice jersey for practice. Know which one you need before you pack.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">🏒 Stick</div>
+          <div class="check-desc">Lean it by the front door the night before so you can't leave without it.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">😁 Mouthguard</div>
+          <div class="check-desc">Required. Keep a spare in your bag at all times. They're cheap. Teeth are not.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">💧 Water Bottle</div>
+          <div class="check-desc">Filled. With your name on it. Don't share. Don't show up without one.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="big-tip">
+      <div class="big-tip-emoji">🌙</div>
+      <div class="big-tip-title">Pack the night before. Every time.</div>
+      <p>If you pack your bag the night before practice or a game, you will never forget anything. Ever. This is the one habit that separates prepared players from the ones still looking for their glove in the parking lot at 5:50am.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>Smart Extras <span class="accent">to Keep in Your Bag</span></h2>
+    <p>These things live in your bag permanently. Once they're in there, leave them there.</p>
+
+    <div class="check-list">
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">Extra Skate Laces</div>
+          <div class="check-desc">One pair, same size as yours. Laces snap right before games. It happens. Be ready.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">Sock Tape</div>
+          <div class="check-desc">Keeps your shin guard socks up. Keep a roll in the front pocket of your bag.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">Skate Guards</div>
+          <div class="check-desc">Put them on when you walk to and from the ice. Take them off before you step on. Every single time.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">Small Towel</div>
+          <div class="check-desc">Wipe your blades dry after skating. Wet blades rust. Rust ruins edges. Dry blades = sharp blades.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">Spare Mouthguard</div>
+          <div class="check-desc">Keep one in a small bag in your hockey bag. The one you lost is always the only one you had.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>After Practice <span class="accent">— Your Job</span></h2>
+    <p>Packing the bag is only half of it. What you do after practice matters just as much.</p>
+
+    <div class="check-list">
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">Dry your skate blades</div>
+          <div class="check-desc">Use your towel. Takes 10 seconds. Keeps your edges sharp and your blades rust-free.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">Put your skate guards on</div>
+          <div class="check-desc">Before you walk anywhere off the ice. Protect those blades.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">Air out your gear at home</div>
+          <div class="check-desc">Don't leave wet gear zipped in your bag overnight. Hang it up or lay it out. Gear that dries smells way better. Trust us.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">Tell a parent if anything is broken or missing</div>
+          <div class="check-desc">Broken lace, cracked strap, lost mouthguard — tell them that night, not in the car on the way to the rink.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">Repack for next time before you go to bed</div>
+          <div class="check-desc">This is the move. Gear goes back in the bag the same night. Next morning is easy. No stress. Just skate.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Real Talk</div>
+      <p>The players who take care of their gear take care of their game. It's not just about being organized — it's about being the kind of player who shows up ready. Coaches notice that stuff. Teammates notice it too.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>The Things <span class="accent">Players Forget Most</span></h2>
+    <p>These are the most common things that get left behind. Don't be that player.</p>
+
+    <div class="check-list">
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">The Stick</div>
+          <div class="check-desc">Left leaning against the wall by the garage. Fix: it goes in the bag or next to the front door. Nowhere else.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">The Helmet</div>
+          <div class="check-desc">Left airing out on the shelf. Fix: it goes back in the bag after it dries, not back on the shelf.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">The Water Bottle</div>
+          <div class="check-desc">Still in the dishwasher or on the counter. Fix: water bottle lives in the bag. Period.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">The Mouthguard</div>
+          <div class="check-desc">On the bathroom counter in its little case. Fix: keep a spare in the bag at all times. The spare becomes the main one the day you lose the original.</div>
+        </div>
+      </div>
+      <div class="check-item" onclick="this.classList.toggle('checked');this.querySelector('.check-box').textContent=this.classList.contains('checked')?'✓':''">
+        <div class="check-box"></div>
+        <div class="check-content">
+          <div class="check-name">One Glove</div>
+          <div class="check-desc">Only one. Don't ask how it happens. It just does. Always count: two gloves, two shin guards, two elbow pads.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="big-tip" style="margin-bottom:56px">
+    <div class="big-tip-emoji">🏆</div>
+    <div class="big-tip-title">You've Got This</div>
+    <p>Packing your own bag is a small thing that makes a big difference. Every time you do it yourself, you're becoming a better teammate, a more prepared player, and a little more independent. Your parents will notice. Your coaches will notice. And honestly? It feels pretty good.</p>
+  </div>
+
+  <div class="cta-block">
+    <h3>Find Your Rink on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states — schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Share with a hockey family</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/hockey-player-packing-guide" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/hockey-player-packing-guide').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This packing guide is written for kids — good one to share with your player: https://therinklink.com/hockey-player-packing-guide" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a> — Built by hockey families, for hockey families.</p>
+</footer>
+
+<script>
+// Checkboxes persist state visually during the session
+</script>
+
+</body>
+</html>
+<style>
+@media print {
+  * { -webkit-print-color-adjust: exact; color-adjust: exact; }
+  
+  nav, .cta-block, footer { display: none !important; }
+  
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: .95rem;
+  }
+  
+  .hero {
+    padding: 24px 0 16px;
+    background: #fff !important;
+  }
+  .hero::before { display: none; }
+  .hero-tag {
+    color: #333 !important;
+    border-color: #333 !important;
+  }
+  .hero h1 { color: #111 !important; font-size: 2.8rem; }
+  .hero h1 em { color: #111 !important; }
+  .hero-sub { color: #444 !important; }
+  .hero-meta { color: #666 !important; }
+  
+  .divider { background: #111 !important; }
+  
+  .content { padding: 0 0 24px; }
+  
+  .section { margin-bottom: 28px; page-break-inside: avoid; }
+  .section-number { color: #eee !important; }
+  .section h2 { color: #111 !important; border-bottom-color: #ccc !important; }
+  .section h2 .accent { color: #111 !important; }
+  .section p { color: #333 !important; }
+  
+  .check-item {
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+  }
+  .check-box {
+    border-color: #333 !important;
+    background: #fff !important;
+    color: #fff !important;
+  }
+  .check-name { color: #111 !important; }
+  .check-desc { color: #555 !important; }
+  
+  .callout {
+    background: #f5f5f5 !important;
+    border-left-color: #333 !important;
+  }
+  .callout p { color: #222 !important; }
+  .callout-label { color: #333 !important; }
+  
+  .big-tip {
+    background: #f9f9f9 !important;
+    border-color: #ccc !important;
+  }
+  .big-tip-title { color: #111 !important; }
+  .big-tip p { color: #333 !important; }
+}
+</style>
