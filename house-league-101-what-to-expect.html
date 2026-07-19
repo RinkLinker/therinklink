@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>House League 101: What to Actually Expect Your First Season | The Rink Link</title>
+<meta name="description" content="No tryouts, no cuts, and a schedule that won't take over your life. Here's what a first season of house league hockey actually looks like."/>
+<meta property="og:title" content="House League 101: What to Actually Expect Your First Season"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What a first house league season really looks like, week to week."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">House League</div>
+  <h1>House League 101: What to <em>Actually</em> Expect</h1>
+  <p class="hero-sub">Every kid who signs up gets a jersey, and the schedule still fits around a real life. Here's what a first season actually looks like, week to week.</p>
+  <div class="hero-meta">
+    <span>🏒 New to Hockey</span>
+    <span>·</span>
+    <span>5 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>The Season <span class="accent">Nobody Explains</span></h2>
+
+    <p>You registered your kid for house league sometime in August, paid the fee, and got an email a few weeks later with a team name and a practice time. That's usually the whole onboarding process. Nobody hands you a handbook or walks you through an orientation night. You get a jersey number and a rink address, and you're expected to figure out the rest by showing up.</p>
+
+    <p>Here's what you actually signed up for. House league, sometimes called rec hockey depending on your rink, is hockey without the tryout. Teams are formed by draft, by birthdate, or just by whoever registered together, and every kid who signs up gets a spot on a roster. Nobody's refreshing a cut list at 10pm. That particular ritual belongs to a different level of hockey entirely.</p>
+
+    <p>That single fact changes the entire texture of the season, since a travel team gets built around winning and a house league team gets built around who signed up, and those two starting points shape everything downstream even though both end in a kid wearing skates.</p>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>Skill Levels <span class="accent">All Over the Map</span></h2>
+
+    <p>Because rosters aren't built around ability, you should expect a wide range on a single team. The kid who's been skating since he could walk lines up next to the kid who just got his first pair of skates for Christmas, and they're on the same line, in the same drill, most nights, because coaches at this level are working with whoever showed up rather than a group they picked for a specific reason.</p>
+
+    <p>Coaches at this level are managing something closer to a classroom than a competitive roster, and the good ones lean into it rather than fight it. Younger age groups in particular are often coached using cross-ice or half-ice formats instead of a full sheet, which looks strange the first time you see it if you're picturing an NHL rink cut down to size.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">Why the Ice Looks Smaller</div>
+      <p>USA Hockey's American Development Model, the framework most rinks build their youth programming around, pushes smaller-ice formats for younger age groups on purpose. In a full-ice five-on-five game, a young player might touch the puck a handful of times a period. Shrink the space and the number climbs sharply, since a Swedish and Finnish study on small-area games found players getting five to eight times as many puck touches in cross-ice formats compared to full ice.</p>
+      <p>More touches means more repetition, and more repetition is how a six or seven year old actually learns to handle a puck. It's also, not coincidentally, the format that tends to keep kids coming back season after season, because they're more involved and less standing around waiting for the play to reach them.</p>
+      <p class="expert-source">Source: USA Hockey American Development Model</p>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>What a Week <span class="accent">Actually Looks Like</span></h2>
+
+    <p>Most house league schedules land somewhere around one practice and one or two games a week, though this varies rink to rink and season to season depending on ice availability. It is nowhere near the three or four ice times a week you'll hear about from travel families, and that's the point for a lot of parents who chose this level in the first place.</p>
+
+    <p>Younger kids play shorter, smaller-format games. As your kid moves up through the age groups, the ice opens up, periods get longer, and games start to look more like the version of hockey you grew up watching, if you watched hockey at all before your kid asked to play. Even then, house league tends to stay lower commitment than travel, both in hours per week and in months per year.</p>
+
+    <p>Seasons generally run fall into late winter or early spring. Some rinks offer spring or summer sessions if your kid wants more ice, but nothing about house league requires a year-round calendar. Plenty of families here play a fall sport, ski all winter, and pick up baseball in the spring, and that flexibility is one of the clearest differences between this level and what comes later.</p>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>Before the First <span class="accent">Practice</span></h2>
+
+    <p>Gear is the first real hurdle, and it doesn't need to be expensive to start. If this is genuinely your kid's first season, our <a href="/youth-hockey-gear-guide.html" style="color:var(--ice);">gear guide</a> and <a href="/hockey-player-packing-guide.html" style="color:var(--ice);">packing guide</a> are worth reading before you buy anything, since a lot of house league families start with secondhand gear, a local swap, or rentals through the rink pro shop.</p>
+
+    <p>Jersey numbers get pinned to the jersey at most rinks, not taped on like you might expect from other sports. It's a small thing, but it trips up first-timers every year, usually the week before the first game when someone's frantically searching a junk drawer for safety pins at 9pm.</p>
+
+    <p>Attendance policy is worth asking about directly, since it varies by rink and by coach rather than following any league-wide standard. Some coaches are relaxed about a missed practice here and there. Others expect a heads-up text every time. Better to ask in week one than guess wrong in week four.</p>
+
+    <p>Locker rooms for younger age groups are usually parent-managed, with one assigned team parent handling snack schedules and communication. Say yes if you're asked to take that role at least once. It's the fastest way to understand how your specific team actually runs, faster than any email chain will get you there.</p>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>Where This <span class="accent">Can Go</span></h2>
+
+    <p>Some kids play house league every season and never want anything else, and that's a complete way to love this sport, not a lesser one. Other kids start asking about travel after a season or two, usually because a friend moved up, or because they want more ice, or because something in them just wants to see how far this can go.</p>
+
+    <p>There's no clock running on that decision, and you're not behind just because a friend moved up first. If you're starting to wonder whether your kid is ready for more, or whether your family is, that's a question worth its own guide: <a href="/house-vs-travel-do-we-need-to-move-up.html" style="color:var(--ice);">House vs. Travel: Do We Need to Move Up?</a></p>
+
+    <div class="closing-callout">
+      <p>For now, the only thing that matters is showing up Saturday morning with a filled water bottle and a kid who wants to be there. The rest works itself out by October.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a family just getting started?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/house-league-101-what-to-expect" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/house-league-101-what-to-expect').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This explains what to expect from a first house league season: https://therinklink.com/house-league-101-what-to-expect" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>

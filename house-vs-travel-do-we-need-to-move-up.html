@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>House vs. Travel: Do We Need to Move Up? | The Rink Link</title>
+<meta name="description" content="Your kid mentioned tryouts. Or a friend moved up. Here's what actually changes between house league and travel hockey, and how to think through the decision."/>
+<meta property="og:title" content="House vs. Travel: Do We Need to Move Up?"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What changes, what it costs, and how to know if your family is ready."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">House League</div>
+  <h1>House vs. Travel: Do We <em>Need</em> to Move Up?</h1>
+  <p class="hero-sub">Your kid mentioned tryouts, or a friend switched teams, and now you're wondering if you're falling behind. Here's what actually changes, and how to think it through.</p>
+  <div class="hero-meta">
+    <span>🏒 House League</span>
+    <span>·</span>
+    <span>6 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>The Question <span class="accent">Behind the Question</span></h2>
+
+    <p>It usually starts small. A kid on your son's team mentions he's trying out for a AA program in the spring. Your daughter comes home asking why one of her teammates left mid-season for a different club. Or your own kid, out of nowhere in the car after practice, asks if you think he's good enough to play travel.</p>
+
+    <p>What's actually underneath "should we move up" is usually something parents don't say out loud: are we doing right by our kid, and would moving up help or would it wreck something that's currently working. Both are fair things to wonder, and neither has an obvious answer from the outside.</p>
+
+    <p>What we've seen, talking to a lot of families who've made this jump at different ages, is that the decision gets easier once you understand what actually changes and what it actually costs, in every sense of that word. So let's get into that first, before the feelings part.</p>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>What Actually <span class="accent">Changes</span></h2>
+
+    <p>Travel hockey means tryouts, and tryouts happen every single year, not once when your kid first joins. Making a AA team at 10 doesn't guarantee a spot at 11. If your kid hasn't been through this yet, our <a href="/hockey-tryout-guide.html" style="color:var(--ice);">tryout guide</a> walks through what to expect, and it's worth reading well before the season your kid actually tries out.</p>
+
+    <p>The ice commitment jumps too, usually from one or two sessions a week to three or four, plus weekend tournaments that can eat most of a Saturday and Sunday. Where house league mostly stays local, travel often means driving an hour or more for games, and tournament weekends can mean a hotel two or three times a season depending on the level and the club.</p>
+
+    <p>Coaching gets more specialized, practices get more structured, and your kid will likely be surrounded by teammates who are all roughly at his skill level rather than the wide range you'd see in a house league locker room. How that lands tends to depend on the kid. Some soak up the higher bar without a second thought. Others need a season to adjust to not being the strongest player in the room anymore, and that adjustment is worth watching for rather than assuming either way.</p>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>What It <span class="accent">Actually Costs</span></h2>
+
+    <p>Money is the part everyone dances around at the rink and then has to face honestly at home. House league typically runs somewhere in the $1,400 to $4,100 range for a season, all in. The jump to A-level travel adds another $3,500 to $6,100 on top of that, mostly from paid coaching and a handful of tournaments. AA climbs to roughly $7,600 to $18,150, once you factor in tournament travel that alone can run $2,000 to $6,000.</p>
+
+    <p>Those figures come from cross-checking several national youth hockey cost-tracking sites against each other, since USA Hockey itself doesn't publish official national averages. Treat them as a ballpark to plan around rather than a number to hold your own club to, especially since the spread within each level is wide depending on your region and how far your club travels for tournaments. What tends to surprise families isn't the registration fee, but the accumulation of hotel nights, gas, tournament entry costs, and the meals eaten standing up in a rink lobby between games.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">The Cost Nobody Budgets For</div>
+      <p>Time is the other currency here, and it's easy to underestimate until you're living it. A travel schedule doesn't just cost your hockey-playing kid time. It costs siblings, who spend a lot of weekends in a rink lobby watching a game they're not part of, and it costs whichever parent is doing most of the driving, who gives up a chunk of their own weekend for a season that runs five or six months.</p>
+      <p>None of that is a reason not to do it. It's just worth naming honestly before you commit, since the families who go in with clear eyes about the time cost tend to handle the season better than the ones who only budgeted the dollars.</p>
+      <p class="expert-source">Source: cross-checked youth hockey cost estimates, 2026 season</p>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>Signs Worth <span class="accent">Paying Attention To</span></h2>
+
+    <p>The single clearest signal isn't skill. It's whether your kid is the one bringing this up, and whether it shows up in more than just talk. That can mean asking, repeatedly, over weeks rather than after one exciting game. It can also show up in what he does when nobody's making him: shooting pucks against the garage on his own, asking to go to open skate on an off day, watching hockey highlights instead of whatever else is on. A kid showing you he wants more, in ways big and small, tends to handle the jump well, even if he's not the most talented kid at the tryout.</p>
+
+    <p>Skill matters too, obviously, and a coach who knows your kid is usually a better source of honest feedback than a parent's own read on the situation. Ask directly. Most coaches will tell you plainly whether your kid looks ready for a tryout, and a good one will tell you if the answer is not yet without making it sound like a verdict on your kid's future.</p>
+
+    <p>Worth asking yourself too: is this about your kid, or is it about keeping pace with a friend group, a sibling comparison, or a feeling that everyone else is moving faster. Those pressures are real and understandable, but they point to a different conversation than the one about whether your specific kid, right now, wants this specific thing.</p>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>There's No <span class="accent">Wrong Answer Here</span></h2>
+
+    <p>Families move up at eight and families move up at 14, and both can work out fine. Families also try travel for a season, decide it doesn't fit, and go back to house league, and that's not a failure either, whatever the group chat implies. The kids who end up loving hockey long-term are usually the ones whose families paid attention to what actually fit them, rather than chasing a level because it sounded more impressive at a barbecue.</p>
+
+    <p>If your family decides to make the jump, our <a href="/hockey-tryout-guide.html" style="color:var(--ice);">tryout guide</a> and <a href="/how-hockey-tryouts-work.html" style="color:var(--ice);">how tryouts work</a> guide are the next stop. If your kid tries out and doesn't make it the first time, we've also written about that: <a href="/my-kid-got-cut-from-hockey-tryouts.html" style="color:var(--ice);">My Kid Got Cut, Now What?</a></p>
+
+    <div class="closing-callout">
+      <p>Whatever you decide, your kid isn't behind. There's no clock here except the one your own family sets.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a family weighing this decision?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/house-vs-travel-do-we-need-to-move-up" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/house-vs-travel-do-we-need-to-move-up').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This helped me think through house league vs travel hockey: https://therinklink.com/house-vs-travel-do-we-need-to-move-up" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>
