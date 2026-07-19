@@ -543,8 +543,7 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         <a href="/how-to-choose-a-hockey-coach.html" target="_blank">&#128214; Choosing a Coach</a>
       </div>
     </li>
-    <li><a onclick="showPage('coaches')" id="nav-coaches">Private Coaches</a></li>
-    <li><a onclick="showPage('camps')" id="nav-camps">Camps</a></li>
+    <li><a onclick="showPage('coaching')" id="nav-coaching">Private Coaching & Camps</a></li>
     <li><a onclick="showPage('submit')" id="nav-submit">➕ Submit</a></li>
   </ul>
   <div class="nav-right">
@@ -611,15 +610,10 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   <!-- Hire & Attend -->
   <div class="mobile-nav-section-label">🎯 Hire & Attend</div>
   <div class="mobile-nav-grid">
-    <div class="mnav-card" onclick="mobileNav('coaches')">
-      <div class="mnav-card-icon">👨‍🏫</div>
-      <div class="mnav-card-title">Coaches</div>
-      <div class="mnav-card-desc">Private skating coaches</div>
-    </div>
-    <div class="mnav-card" onclick="mobileNav('camps')">
-      <div class="mnav-card-icon">⛺</div>
-      <div class="mnav-card-title">Hockey Camps</div>
-      <div class="mnav-card-desc">Summer & seasonal camps</div>
+    <div class="mnav-card" onclick="mobileNav('coaching')">
+      <div class="mnav-card-icon">🎯</div>
+      <div class="mnav-card-title">Private Coaching & Camps</div>
+      <div class="mnav-card-desc">Find a coach or camp near you</div>
     </div>
   </div>
 
@@ -841,8 +835,8 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
     <div class="footer-links">
       <a onclick="showPage('rinks')">Rinks</a>
       <a onclick="showPage('sticknpuck')">Stick & Puck</a><a onclick="showPage('dropin')">Drop-In Hockey</a><a onclick="showPage('openskate')">Open Skate</a><a onclick="showPage('sharpen')">Sharpening</a>
-      <a onclick="showPage('checklist')">What to Bring</a><a onclick="showPage('levels')">Age Guide</a><a onclick="showPage('camps')">Hockey Camps</a><a href="/how-to-choose-a-hockey-coach.html" target="_blank">Parent Guides</a><a href="/hockey-lingo-guide.html" target="_blank">Hockey Lingo</a><a href="/youth-hockey-gear-guide.html" target="_blank">Gear Guide</a><a href="/what-is-aaa-hockey.html" target="_blank">AAA Guide</a><a href="/hockey-tryout-guide.html" target="_blank">Tryout Guide</a><a href="/hockey-skate-stick-sizing.html" target="_blank">Sizing Guide</a><a href="/hockey-stick-guide.html" target="_blank">Hockey Stick Guide</a>
-      <a onclick="showPage('favs')">Favorites</a><a onclick="showPage('coaches')">Coaches</a><a onclick="showPage('submit')">Submit a Rink</a><a href="mailto:crew@therinklink.com">crew@therinklink.com</a>
+      <a onclick="showPage('checklist')">What to Bring</a><a onclick="showPage('levels')">Age Guide</a><a onclick="showPage('coaching')">Hockey Camps</a><a href="/how-to-choose-a-hockey-coach.html" target="_blank">Parent Guides</a><a href="/hockey-lingo-guide.html" target="_blank">Hockey Lingo</a><a href="/youth-hockey-gear-guide.html" target="_blank">Gear Guide</a><a href="/what-is-aaa-hockey.html" target="_blank">AAA Guide</a><a href="/hockey-tryout-guide.html" target="_blank">Tryout Guide</a><a href="/hockey-skate-stick-sizing.html" target="_blank">Sizing Guide</a><a href="/hockey-stick-guide.html" target="_blank">Hockey Stick Guide</a>
+      <a onclick="showPage('favs')">Favorites</a><a onclick="showPage('coaching')">Coaches</a><a onclick="showPage('submit')">Submit a Rink</a><a href="mailto:crew@therinklink.com">crew@therinklink.com</a>
     </div>
     <div class="footer-copy">© 2026 The Rink Link. All rights reserved. &nbsp;·&nbsp; <a href="/legal.html" style="color:#2a3a5a">Privacy &amp; Legal</a> &nbsp;·&nbsp; <a href="mailto:crew@therinklink.com" style="color:#2a3a5a">crew@therinklink.com</a></div>
   </footer>
@@ -1069,43 +1063,6 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   </div>
 </div>
 
-<!-- HOCKEY CAMPS PAGE -->
-<div id="page-camps" class="page">
-  <div class="section">
-    <div class="container">
-      <div class="sh">
-        <div class="sl">Player Development</div>
-        <div class="st">Hockey Camps</div>
-        <div class="sd">From first-time skaters to elite development — Colorado's best hockey camps and academies.</div>
-        <div style="margin-top:16px">
-          <a href="/submit-a-camp.html" style="display:inline-block;background:linear-gradient(135deg,rgba(125,211,252,.15),rgba(125,211,252,.25));border:1px solid rgba(125,211,252,.4);color:var(--ice);font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:1px;padding:9px 20px;border-radius:8px;text-decoration:none">⛺ List Your Camp →</a>
-        </div>
-      </div>
-      <div class="toolbar">
-        <div class="search-wrap">
-          <input class="search-input" type="text" placeholder="Search camps, cities, orgs..." id="camp-search" oninput="renderCamps()"/>
-          <span class="search-icon">🔍</span>
-        </div>
-        <div class="chips" id="camp-type-chips">
-          <button class="chip active" onclick="setCampFilter('all',this)">All Camps</button>
-          <button class="chip" onclick="setCampFilter('beginner',this)">🐣 Beginner</button>
-          <button class="chip" onclick="setCampFilter('skills',this)">🏒 Skills</button>
-          <button class="chip" onclick="setCampFilter('elite',this)">⭐ Elite / D1</button>
-          <button class="chip" onclick="setCampFilter('development',this)">📋 Development</button>
-          <button class="chip" onclick="setCampFilter('specialty',this)">🥅 Specialty</button>
-        </div>
-        <div class="chips" id="camp-month-chips">
-          <button class="chip gold active" onclick="setCampMonth('all',this)">All Summer</button>
-          <button class="chip gold" onclick="setCampMonth('June',this)">June</button>
-          <button class="chip gold" onclick="setCampMonth('July',this)">July</button>
-          <button class="chip gold" onclick="setCampMonth('August',this)">August</button>
-        </div>
-      </div>
-      <div id="camps-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px"></div>
-    </div>
-  </div>
-</div>
-
 <!-- TRAINING FACILITIES PAGE -->
 <div id="page-training" class="page">
   <div class="section">
@@ -1120,15 +1077,24 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
   </div>
 </div>
 
-<!-- SUBMIT PAGE -->
-<div id="page-coaches" class="page">
+<!-- PRIVATE COACHING & CAMPS PAGE -->
+<div id="page-coaching" class="page">
   <div class="section">
     <div class="container">
       <div class="sh">
-        <div class="sl">Find Your Edge</div>
-        <div class="st">Private Hockey Coaches</div>
-        <div class="sd">Power skating, shooting, goalie training, skills development and off-ice conditioning — find a coach who works at your rink. Featured coaches are verified by The Rink Link.</div>
+        <div class="st">Private Coaching & Camps</div>
+        <div class="sd" style="font-weight:600;color:var(--ice);margin-bottom:8px">Currently serving Colorado, with new markets coming soon</div>
+        <div class="sd">Private coaches and camps, vetted by hockey families who've actually used them. We're starting where we live, in Colorado, and growing city by city from here. Know a coach we should add? <a onclick="setCoachingScope('coaches');scrollToCoachForm()" style="color:var(--ice);cursor:pointer;text-decoration:underline">Submit a Coach →</a> Running a camp? <a href="/submit-a-camp.html" style="color:var(--ice);text-decoration:underline">List Your Camp →</a></div>
       </div>
+
+      <!-- Coaching / Camps scope toggle -->
+      <div style="display:flex;gap:10px;margin-bottom:28px">
+        <button id="coaching-tab-coaches" onclick="setCoachingScope('coaches')" style="font-family:\'Barlow Condensed\',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;padding:9px 20px;border-radius:8px;cursor:pointer;transition:all .2s;background:var(--ice);color:var(--navy);border:none">👨‍🏫 Private Coaches</button>
+        <button id="coaching-tab-camps" onclick="setCoachingScope('camps')" style="font-family:\'Barlow Condensed\',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;padding:9px 20px;border-radius:8px;cursor:pointer;transition:all .2s;background:var(--card);color:var(--muted);border:1px solid var(--border)">⛺ Camps</button>
+      </div>
+
+      <!-- COACHES scope -->
+      <div id="coaching-panel-coaches">
 
       <!-- Mode toggle tabs -->
       <div style="display:flex;gap:10px;margin-bottom:28px">
@@ -1345,6 +1311,35 @@ nav{padding:0 14px}.nav-links{display:none}.hamburger{display:flex}.fav-btn{disp
         </div>
 
       </div>
+
+      </div>
+      <!-- /coaching-panel-coaches -->
+
+      <!-- CAMPS scope -->
+      <div id="coaching-panel-camps" style="display:none">
+        <div class="toolbar">
+          <div class="search-wrap">
+            <input class="search-input" type="text" placeholder="Search camps, cities, orgs..." id="camp-search" oninput="renderCamps()"/>
+            <span class="search-icon">🔍</span>
+          </div>
+          <div class="chips" id="camp-type-chips">
+            <button class="chip active" onclick="setCampFilter('all',this)">All Camps</button>
+            <button class="chip" onclick="setCampFilter('beginner',this)">🐣 Beginner</button>
+            <button class="chip" onclick="setCampFilter('skills',this)">🏒 Skills</button>
+            <button class="chip" onclick="setCampFilter('elite',this)">⭐ Elite / D1</button>
+            <button class="chip" onclick="setCampFilter('development',this)">📋 Development</button>
+            <button class="chip" onclick="setCampFilter('specialty',this)">🥅 Specialty</button>
+          </div>
+          <div class="chips" id="camp-month-chips">
+            <button class="chip gold active" onclick="setCampMonth('all',this)">All Summer</button>
+            <button class="chip gold" onclick="setCampMonth('June',this)">June</button>
+            <button class="chip gold" onclick="setCampMonth('July',this)">July</button>
+            <button class="chip gold" onclick="setCampMonth('August',this)">August</button>
+          </div>
+        </div>
+        <div id="camps-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px"></div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -2677,7 +2672,7 @@ function showPage(name, skipHistory){
   if(name==='rinks')renderRinks();
   if(name==='map')renderMap();
   if(name==='favs'){renderFavs();if(window._iceTimeFilter===undefined)window._iceTimeFilter='all';}
-  if(name==='coaches'){renderCoaches();loadDBCoaches();}
+  if(name==='coaching'){renderCoaches();loadDBCoaches();renderCamps();}
   if(name==='sharpen')renderSharpen();
   if(name==='checklist')renderChecklist();
   if(name==='levels')renderLevels();
@@ -2694,7 +2689,6 @@ function showPage(name, skipHistory){
     }
   }
   if(name==='sticknpuck')renderSNP();
-  if(name==='camps')renderCamps();
   if(name==='training')renderTraining();
   if(name==='stores')renderStores();
   if(name==='hockeymap')renderHockeyMap();
@@ -7764,6 +7758,25 @@ function renderTraining(){
 const COACHES=[];
 
 // ── COACH TAB / QUIZ ─────────────────────────────────────────────
+function setCoachingScope(scope){
+  const coachesPanel=document.getElementById('coaching-panel-coaches');
+  const campsPanel=document.getElementById('coaching-panel-camps');
+  const tabCoaches=document.getElementById('coaching-tab-coaches');
+  const tabCamps=document.getElementById('coaching-tab-camps');
+  if(scope==='coaches'){
+    coachesPanel.style.display='block';
+    campsPanel.style.display='none';
+    tabCoaches.style.background='var(--ice)';tabCoaches.style.color='var(--navy)';tabCoaches.style.border='none';
+    tabCamps.style.background='var(--card)';tabCamps.style.color='var(--muted)';tabCamps.style.border='1px solid var(--border)';
+  } else {
+    coachesPanel.style.display='none';
+    campsPanel.style.display='block';
+    tabCamps.style.background='var(--ice)';tabCamps.style.color='var(--navy)';tabCamps.style.border='none';
+    tabCoaches.style.background='var(--card)';tabCoaches.style.color='var(--muted)';tabCoaches.style.border='1px solid var(--border)';
+    renderCamps();
+  }
+}
+
 function setCoachTab(mode){
   const browseMode=document.getElementById('coach-browse-mode');
   const quizMode=document.getElementById('coach-quiz-mode');
