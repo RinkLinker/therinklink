@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>My Kid Got Cut from Hockey Tryouts: Now What? | The Rink Link</title>
+<meta name="description" content="Getting cut from hockey tryouts is one of the hardest moments in youth hockey. Here's what one hockey mom learned, and what the experts say about helping your kid through it."/>
+<meta property="og:title" content="My Kid Got Cut from Hockey Tryouts: Now What?"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What helped, what didn't, and what the research says."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TWO COL - softer framing */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  /* PLAYER CARDS */
+  .player-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 24px 0;
+  }
+  .player-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+  .player-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .player-story {
+    font-size: .88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p, .player-story { color: #333; }
+    .expert-block, .insight-block, .player-card, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    .player-name { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Hockey Parent Survival</div>
+  <h1>My Kid Got Cut. <em>Now What?</em></h1>
+  <p class="hero-sub">One hockey mom's experience, and what coaches and sports psychologists say about helping your kid through one of the harder moments in youth sports.</p>
+  <div class="hero-meta">
+    <span>💙 All Levels</span>
+    <span>·</span>
+    <span>6 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>The Moment Nobody <span class="accent">Prepares You For</span></h2>
+
+    <p>It is 10 o'clock on a school night. My kid is supposed to be sleeping. We are sitting somewhere in the house refreshing our phones, waiting for the list of numbers to show up , the ones that say who is moving on to the next set of tryouts. I was looking for one specific number. It was not on the list.</p>
+
+    <p>That is the moment. You start to question Did they have his number right? Who else made it through? Texts between parents start flashing and your heart just sinks, because now you have to walk down the hall and tell your kid he was cut on the first night.</p>
+
+    <p>My son started playing when he was eight, later than most, on an option team. He kept on improving. By the time he was trying out for Bantams he was pretty good. As a first-year Bantam we thought he had a real shot at AA. We found out he didn't by staring at a phone screen in the kitchen. Then we walked down the hall to tell him. He wasn't going to sleep. Neither were we.</p>
+
+    <p>He wasn't asleep. Neither were we. Waiting until morning felt wrong this time.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Worth Knowing</div>
+      <p>Sports psychologist Dr. Justin Anderson notes that making a team can feel so central to a young athlete's identity that not making it registers as genuine rejection, not just disappointment. "It's a really great microcosm for life," he says, "but you have to understand how much it can mean to them before you can help them through it."</p>
+      <p class="expert-source">Source: Dr. Justin Anderson, Premier Sport Psychology</p>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>That First <span class="accent">Conversation</span></h2>
+
+    <p>We walked into his room, sat down, and told him. Then we asked how he was feeling. Not what he thought happened. Not what he wanted to do next. Just how he was feeling right now.</p>
+
+    <p>Then we listened. That was basically it for that night. There was nothing to fix at 10pm on a school night, and trying to fix it would have made it about us. He needed to feel it first. The rest could come later.</p>
+
+    <p>A lot of hockey parents have been in that room. What tends to land well is simpler than you'd think: being present, asking an open question, and then staying quiet long enough for the answer to come. What tends to backfire is jumping too fast to explanations, solutions, or reassurances, even well-meaning ones.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--ice);">Things That Tend to Help</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--ice)">+</span> Asking how they're feeling and letting the answer come</li>
+          <li><span style="color:var(--ice)">+</span> Sitting with the silence if that's what they need</li>
+          <li><span style="color:var(--ice)">+</span> Saying you're proud of how hard they worked</li>
+          <li><span style="color:var(--ice)">+</span> Letting them know you're not going anywhere</li>
+          <li><span style="color:var(--ice)">+</span> Keeping the next morning as normal as possible</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--muted);">Things That Tend to Backfire</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--muted)">✕</span> "The coaches don't know what they're doing"</li>
+          <li><span style="color:var(--muted)">✕</span> Analyzing what went wrong on the ice that night</li>
+          <li><span style="color:var(--muted)">✕</span> Telling them it's not a big deal</li>
+          <li><span style="color:var(--muted)">✕</span> "Everything happens for a reason"</li>
+          <li><span style="color:var(--muted)">✕</span> Calling the coach that night or the next morning</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="expert-block">
+      <div class="expert-label">Why the Listening Matters</div>
+      <p>Parenting expert Sarah R. Moore puts it this way: let the emotions run their full course before moving into problem-solving. "Get curious, listen, and provide the child the experience of being heard." The instinct to fix things fast is natural, but moving too quickly past the feeling can leave kids without anywhere to put it.</p>
+      <p>Counselor and sports parent coach Rick Wolff adds that when his own kids got cut, he made a conscious effort to give them space first and then let them talk, let them vent, without needing to say much back. "Just be sincere," he says. "After the anger and tears subside for a day or two, then ask if they still want to play."</p>
+      <p class="expert-source">Source: Sarah R. Moore, author of <em>Peaceful Discipline</em> / Rick Wolff, AskCoachWolff.com</p>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>The Days <span class="accent">After</span></h2>
+
+    <p>They still have to go to school the next morning. That part is hard. The world doesn't pause because tryouts went sideways, and getting them up and out the door while they're carrying something heavy is its own kind of parenting. Keep the morning quiet. Normal helps.</p>
+
+    <p>In the days that follow, every kid processes differently. Some go quiet and need space. Some want to replay every detail. Some want to get back on the ice immediately and some need a week. Following their lead on the timing tends to work better than pushing a timeline for moving on.</p>
+
+    <p>The conversation about what's next, what team, what to work on, whether to try again, doesn't have to happen right away. A few days of just being your kid's parent, without the hockey agenda, can matter more than you'd expect.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">Something Worth Considering</div>
+      <p>Red River Counseling suggests that one useful thing parents can help their kids figure out is what they actually lost. Often it isn't the hockey itself. It's the teammates, the identity, the status of being on that team. Helping a kid name what they're grieving specifically can make the grief easier to move through, rather than leaving it as this general feeling of rejection.</p>
+      <p>It's also worth noting that calling the coach in the heat of the moment rarely helps and sometimes makes things harder for your kid in the community long-term. If you want feedback on the evaluation, and it's reasonable to want that, most coaches respond better to a calm conversation a week or two later, framed around your kid's development rather than the decision.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>Prove Them Wrong. <span class="accent">Make Them Regret It.</span></h2>
+
+    <p>This wasn't the first thing we said. It came a day or two later, when he had moved through the initial shock and started looking for somewhere to put the energy.</p>
+
+    <p>Prove them wrong. Make them regret they didn't pick you this season. That's what we told him. Not because we were bitter about the coaches, but because it gave him direction. Something to skate toward instead of away from.</p>
+
+    <p>The kids who come back from a cut and have a great season tend to be the ones who use it that way. They show up to the next practice differently. The season ahead of them becomes its own thing to play for, not just a consolation prize.</p>
+
+    <p>Maybe this is the year your kid gets more ice time than they would have gotten at the higher level. Maybe it's the year they become a leader on a team that actually needs them. Those things are real. They don't get talked about enough.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">What the Research Says About Resilience</div>
+      <p>Sport psychologist Frank Smoll of the University of Washington notes that being cut isn't a failure. It's an opportunity to learn and improve, and that framing matters enormously for how kids move through it. The parents who help their kids land on that framing tend to produce athletes who come back stronger, not just athletes who survive the disappointment.</p>
+      <p>The key, according to Dr. Justin Anderson, starts with the parent's own acceptance of the outcome. Kids take a lot of cues from how we carry it. "If parents can rationally share in their child's disappointment and then turn it into an opportunity to help them cope with adversity, the child will learn to accept the result and move on in a positive way."</p>
+      <p class="expert-source">Source: Dr. Frank Smoll, University of Washington / Dr. Justin Anderson, Premier Sport Psychology</p>
+    </div>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>For the Parent <span class="accent">Who Is Also Hurting</span></h2>
+
+    <p>This part doesn't get talked about enough. When your kid gets cut, you get cut too. You have driven to the early morning practices, paid the fees, washed the gear, and sat in cold bleachers wanting this for them. That grief is real.</p>
+
+    <p>It just needs somewhere to go that isn't your kid's room at 10pm on the night it happened.</p>
+
+    <p>Finding another hockey parent who gets it, not to vent about the coaches, just to be understood by someone who has sat where you're sitting. It helps more than most people expect. This community exists. The parking lot after practice is full of parents who have been exactly here.</p>
+
+    <p>Giving yourself a day or two before having any conversation with coaches, other parents, or anyone in the hockey world about what happened also tends to be wise. Anything said from a place of fresh hurt has a way of following you around a community you'll be part of for years.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">A Note on Your Own Feelings</div>
+      <p>Counselors who work with youth sports families often point out that when our kids don't make a team, our own unresolved feelings about rejection, fairness, and our kid's future can get tangled up in the moment. It doesn't mean the feelings aren't valid. It just means they're worth examining separately, so they don't land on your kid when they're already carrying something heavy.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 06 -->
+  <div class="section">
+    <div class="section-number">06</div>
+    <h2>They Kept Going Because <span class="accent">They Loved It</span></h2>
+
+    <p>Getting cut doesn't mean this is over. It means this particular team, this particular evaluator, this particular moment wasn't the right fit. That's a different thing entirely.</p>
+
+    <p>Some of the best players in hockey history were told no somewhere along the way. Not sharing this to suggest your kid is the next Hall of Famer. Just a reminder that an evaluator's opinion at 11 or 13 or 15 is not a final verdict on what your kid is capable of. The ones who made it kept going because the love of the game was bigger than the disappointment of the cut.</p>
+
+    <div class="player-grid">
+      <div class="player-card">
+        <div class="player-name">Martin St. Louis</div>
+        <div class="player-story">Cut from his top team at 12U. Cut again at 14U. Not drafted by a single NHL team. He went on to a 16-year Hall of Fame career: more than 1,000 points, an MVP award, and a Stanley Cup. He has talked openly about what getting cut actually did for him: "Being cut makes you want things a little more. I really dominated the BB level and confidence-wise it was a big deal." He landed on a lower level, found his game, and built from there.</div>
+      </div>
+      <div class="player-card">
+        <div class="player-name">Joe Sakic</div>
+        <div class="player-story">Didn't make his Midget A1 team. Stayed with the sport anyway. Eventually won the Stanley Cup with the Colorado Avalanche and became one of the most respected players in NHL history. The team that didn't take him probably thinks about that sometimes.</div>
+      </div>
+      <div class="player-card">
+        <div class="player-name">Brianne Jenner</div>
+        <div class="player-story">One of the most decorated players in women's hockey, Olympic gold medalist and captain of the PWHL's Ottawa Charge, has spoken about being cut and using it as fuel. She kept going because she loved the game. That turned out to be enough.</div>
+      </div>
+    </div>
+
+    <div class="closing-callout">
+      <p>Does your kid still love hockey? If yes, there is a season ahead of them and a team that needs them. The rest has a way of working itself out.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a hockey parent who needs this right now?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/my-kid-got-cut-from-hockey-tryouts" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/my-kid-got-cut-from-hockey-tryouts').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This helped me after my kid got cut from hockey tryouts: https://therinklink.com/my-kid-got-cut-from-hockey-tryouts" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>
