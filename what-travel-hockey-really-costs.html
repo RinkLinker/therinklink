@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>What Travel Hockey Really Costs | The Rink Link</title>
+<meta name="description" content="Real numbers by level, where the money actually goes, and the costs nobody mentions until you're already in the season."/>
+<meta property="og:title" content="What Travel Hockey Really Costs"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What travel hockey costs by level, and what's usually left out of that first number."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  /* COST TABLE */
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: .88rem;
+  }
+  .cost-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--border);
+  }
+  .cost-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .cost-table td:first-child { color: var(--text); font-weight: 600; }
+  .cost-table tr:last-child td { border-bottom: none; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+    .cost-table { font-size: .78rem; }
+    .cost-table th, .cost-table td { padding: 8px 8px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Travel Teams</div>
+  <h1>What Travel Hockey <em>Really</em> Costs</h1>
+  <p class="hero-sub">Real numbers by level, where the money actually goes, and the costs nobody mentions until you're already in the season.</p>
+  <div class="hero-meta">
+    <span>🏒 Travel Teams</span>
+    <span>·</span>
+    <span>8 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>The Number You're Told <span class="accent">Isn't the Number</span></h2>
+
+    <p>Ask a club what travel hockey costs and you'll usually get a registration fee. That number is real, but it's also the smallest honest answer they could give you. Registration typically covers ice time and coaching. It rarely covers tournament travel, gear replacement, extra training, or the dozen smaller costs that show up once the season is actually underway.</p>
+
+    <p>Families who go in expecting only the registration number tend to feel blindsided by February. Nobody lied to them. They just never got walked through the full picture up front, and that gap is what this guide is meant to close.</p>
+
+    <p>One note on methodology before the numbers: the figures below come from Hockey Budget, a consumer cost-tracking site that surveys registration fees, gear costs, and travel expenses across states and levels each season. It's not peer-reviewed research, and your own club's numbers may run higher or lower depending on your region and rink density. Treat these as a realistic range to plan around, not an exact quote.</p>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>Season Cost by <span class="accent">Level, Nationally</span></h2>
+
+    <p>Cost climbs fast as you move up the ladder, and it's not a gentle slope. Each jump roughly doubles the total, driven mainly by more ice time, paid coaching, and a heavier tournament schedule. The ranges below are all-in season totals, meaning registration, equipment, and tournament travel are already folded into the number, not stacked on top of it.</p>
+
+    <table class="cost-table">
+      <tr>
+        <th>Level</th>
+        <th>Typical Season Cost</th>
+      </tr>
+      <tr>
+        <td>House League</td>
+        <td>$1,400 – $4,100</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>$2,800 – $6,500</td>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td>$4,900 – $10,200</td>
+      </tr>
+      <tr>
+        <td>AA</td>
+        <td>$7,600 – $18,150</td>
+      </tr>
+      <tr>
+        <td>AAA</td>
+        <td>$11,000 – $30,000+</td>
+      </tr>
+    </table>
+
+    <p>A quick honesty check on that B row specifically: national cost-tracking sites break out House, A, AA, and AAA consistently, but B teams get tracked less often, since not every region uses the tier the same way. Some clubs run B as a genuine step below A, others use it as a second roster within the same club rostering both an A and a B team. The range above is a reasoned estimate that bridges the neighboring tiers rather than a directly sourced figure, so it's worth confirming against your own club's actual numbers.</p>
+
+    <p>Location matters too, sometimes as much as level does. A family in Minnesota, where hockey infrastructure is dense and house league runs as low as $1,400, will spend meaningfully less than a family in California or Hawaii, where the same level of house league can run closer to $4,100. If your state has its own hockey budget breakdown available, it's worth checking before you assume the national range applies directly to you.</p>
+
+    <p>That gap widens the most at the top. A AAA family in a Midwest hockey market might land closer to $12,000, while a AAA family in Southern California or parts of the Northeast has reported all-in totals around $30,000, driven mostly by private ice rental rates and longer travel distances to tournaments. If a number you've heard from another family sounds far outside the range above, market and region are usually the reason, not that either number is wrong.</p>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>Where the Money <span class="accent">Actually Goes</span></h2>
+
+    <p>That season total breaks down into a mix of costs you'd expect and a few that catch people off guard. Nothing on this list is hidden on purpose. It just rarely gets bundled into one conversation before the season starts.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--ice);">The Expected Costs</div>
+        <ul class="two-col-list">
+          <li><span>✓</span> Registration (ice time, coaching)</li>
+          <li><span>✓</span> Equipment and gear replacement</li>
+          <li><span>✓</span> Tournament entry fees</li>
+          <li><span>✓</span> USA Hockey membership</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--gold);">The Easy-to-Miss Costs</div>
+        <ul class="two-col-list">
+          <li><span>·</span> Hotels, gas, and meals for away games</li>
+          <li><span>·</span> Rink concessions, week after week</li>
+          <li><span>·</span> Team social costs: photos, gifts, banquets</li>
+          <li><span>·</span> Off-season skills training and camps</li>
+          <li><span>·</span> Lost wages or PTO for tournament travel days</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="insight-block">
+      <div class="insight-label">The Costs That Add Up Quietly</div>
+      <p>Tournament travel alone typically runs $1,000 to $3,000 a season in gas, hotels, and meals once a team starts entering four to eight tournaments a year. Rink concessions are the sneaky one: at five to twelve dollars a visit, two to four visits a week, over a 28-week season, that alone can land between $280 and $1,344, and almost no family tracks it as its own line item until they add it up.</p>
+      <p class="expert-source">Source: Hockey Budget's 2026 cost breakdown, a consumer cost-tracking resource, not peer-reviewed research</p>
+      <p>One more worth naming plainly, since no cost-tracking site puts a number on it: tournaments that start on a Friday often mean leaving mid-afternoon to make check-in and warmups, which means taking a Friday or a Monday off work several times a season, sometimes both in the same weekend if travel is far enough. For a parent without flexible PTO, that's a real dollar cost on top of the trip itself, worth factoring into the season total the same way gas and hotels are.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>Fundraising Isn't <span class="accent">Optional at Most Clubs</span></h2>
+
+    <p>Most travel teams run some kind of fundraising alongside registration, whether that's sponsorships, a raffle, or a team account that offsets tournament costs. How much of the total burden that actually removes from your own wallet varies enormously by club and by how organized the team parent running it is. Ask early what your team's fundraising commitment looks like, both in dollars raised and in hours of your own time.</p>
+
+    <p>The most common approaches are sponsorships from local businesses, raffles, restaurant or spirit nights, and gear or apparel sales where a portion of each sale goes back to the team fund. Some clubs also run a "buyout" option, where a family can opt out of active fundraising by paying a flat fee instead, which is worth asking about if selling raffle tickets door to door isn't realistic for your household. The most effective teams tend to pick one or two fundraisers and run them well, rather than stacking five half-hearted ones across a season.</p>
+
+    <p>Whoever ends up organizing all of this is doing real, unpaid work on top of everything else a season asks of a family. If you want the fuller picture of that role and the other volunteer jobs a travel team runs on, we cover it in <a href="/your-kid-is-not-just-signing-up-for-hockey-you-are-too.html" style="color:var(--ice);">Your Kid Is Not Just Signing Up for Hockey, You Are Too</a>.</p>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>Making the Number <span class="accent">Work for Your Family</span></h2>
+
+    <p>A few things help more than people expect. Many clubs and local shops run gear trade-in or swap programs each fall, where outgrown skates and pads get passed down for a fraction of retail. That's worth checking before buying new, especially at ages where kids outgrow skates every season. Asking your club directly about payment plans, which most offer even if they don't advertise it, spreads registration out instead of hitting your account in one lump sum. And checking whether your state has grant programs through NHL-affiliated foundations or USA Hockey's own assistance programs is worth the twenty minutes it takes, particularly for families new to travel who don't yet know these exist.</p>
+
+    <p>One caution on trade-in and used gear: skates and pads are the two pieces worth being strict about fit on, even if it costs a bit more to get right. A skate that's too big affects a kid's balance and edge control directly, and pads that don't sit correctly can leave real gaps in protection. Sizing up "for growing room," the way parents often do with regular shoes, doesn't work the same way with skates. If a trade-in or hand-me-down doesn't fit properly, it's worth the trip to a shop that can fit it, rather than saving the money and hoping it works out.</p>
+
+    <p>None of this makes travel hockey cheap. But going in with the real number, not just the registration line, is what keeps a family from feeling ambushed by their own season.</p>
+
+    <div class="closing-callout">
+      <p>Next up: what actually changes once that first travel season starts, beyond the budget. The schedule, the team dynamics, and what to expect in those first few months.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a family budgeting for travel?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/what-travel-hockey-really-costs" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/what-travel-hockey-really-costs').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This breaks down what travel hockey actually costs: https://therinklink.com/what-travel-hockey-really-costs" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>

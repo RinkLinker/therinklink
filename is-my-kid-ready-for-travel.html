@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Is My Kid Ready for Travel? | The Rink Link</title>
+<meta name="description" content="Skill is only part of the question. Here's how to actually tell if your kid, and your family, are ready for the jump to travel hockey."/>
+<meta property="og:title" content="Is My Kid Ready for Travel?"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What to actually look for before you decide travel hockey is the next step."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Travel Teams</div>
+  <h1>Is My Kid <em>Ready</em> for Travel?</h1>
+  <p class="hero-sub">Skill is only part of the question. Here's how to actually tell if your kid, and your family, are ready for the jump.</p>
+  <div class="hero-meta">
+    <span>🏒 Travel Teams</span>
+    <span>·</span>
+    <span>7 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>Skill Is the <span class="accent">Easy Part to Judge</span></h2>
+
+    <p>Most parents ask the wrong question first. They ask whether their kid is good enough, when the more useful question is whether their kid actually wants this, badly enough to handle the parts that have nothing to do with skill at all.</p>
+
+    <p>Kids who love the game for its own sake, not just for winning or for a coach's praise, tend to hold up better once travel gets hard. They keep showing up for practice even after a rough game. They stay engaged on the bench instead of checking out. That kind of engagement is a real signal, and it's one you can watch for at your current level before a single tryout happens.</p>
+
+    <p>Ability still matters, and coaches will absolutely evaluate it. But ability without the desire to grind through a harder season tends to burn out fast, while desire without much polish yet has real room to grow. If you're only weighing one side of that, you're missing half the picture.</p>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>What This Actually <span class="accent">Looks Like at Home</span></h2>
+
+    <p>Abstract enthusiasm is hard to measure. Concrete behavior isn't. A kid who's genuinely pulling toward more hockey usually shows it in small, unprompted ways: shooting pucks in the driveway without being asked, requesting extra open skate time, watching game highlights or full NHL games on their own, asking questions about players or positions that go beyond what you'd expect from someone just going through the motions.</p>
+
+    <p>None of that guarantees travel is the right move this year. Kids are inconsistent, and a kid who's obsessed with hockey in July can feel differently by October once school and other activities are back in the mix. Treat these as signals worth noticing, not a checklist that locks in a decision.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--ice);">Worth a Closer Look</div>
+        <ul class="two-col-list">
+          <li><span>✓</span> Asks to go to the rink on off days</li>
+          <li><span>✓</span> Bounces back from a bad game by the next practice</li>
+          <li><span>✓</span> Follows instruction from coaches without a fight</li>
+          <li><span>✓</span> Talks about teammates, not just their own stats</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--gold);">Worth Waiting On</div>
+        <ul class="two-col-list">
+          <li><span>·</span> Dreads practice more often than not</li>
+          <li><span>·</span> Only you are pushing for the move up</li>
+          <li><span>·</span> Struggles to recover emotionally from mistakes</li>
+          <li><span>·</span> Already stretched thin by school or other sports</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>What Coaches Are <span class="accent">Actually Watching For</span></h2>
+
+    <p>At tryouts, coaches aren't just ranking who's fastest. They're looking at a foundation: skating, stickhandling, and shooting that's solid enough to build on, plus whether a kid can take instruction and function inside a team structure rather than freelancing the whole game. A kid who's still shaky on edges or crossovers isn't necessarily a lost cause, but that gap tends to show up fast once the pace picks up at travel level.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Worth Asking Your Current Coach</div>
+      <p>Most house league and mite-level coaches will tell you honestly, if you ask directly, whether your kid looks ready for a travel evaluation. They've watched your kid against the same group of peers all season and usually have a clearer read than you do on how that compares to travel-level expectations.</p>
+      <p class="expert-source">Source: Common guidance echoed across youth hockey program resources, including Youth Hockey Guide and Pawling Youth Hockey's parent resources</p>
+    </div>
+
+    <p>If your kid hasn't been evaluated in a real tryout setting before, our <a href="/hockey-tryout-guide.html" style="color:var(--ice);">tryout guide</a> and <a href="/how-hockey-tryouts-work.html" style="color:var(--ice);">how tryouts work</a> guide explain what that day actually looks like, so at least the format itself isn't a surprise.</p>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>Age Matters Less <span class="accent">Than People Assume</span></h2>
+
+    <p>There's no single age where a kid becomes ready for travel. Some associations start travel programs as young as seven or eight, others wait until the mite-to-squirt transition around age nine, when full-ice games and more competitive structure typically kick in. Readiness is closer to a range than a specific birthday, and a kid who isn't ready at eight can be more than ready at ten.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">What the Research Actually Says</div>
+      <p>USA Hockey and sports medicine researchers generally recommend that young players stay in multiple sports rather than specializing in hockey year-round this early. Kids who play a different sport each season tend to build more varied movement patterns and show lower rates of overuse injury than kids locked into one sport full time.</p>
+      <p>That's a real argument for not rushing the move to a heavier travel schedule just because a spot is available this year. Waiting a season, or keeping a second sport in the mix once travel starts, isn't holding your kid back. For a lot of families it's what makes the whole thing sustainable.</p>
+      <p class="expert-source">Source: USA Hockey's long-term athlete development guidance, consistent with broader sports medicine research on youth specialization</p>
+    </div>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>The Family <span class="accent">Side of the Decision</span></h2>
+
+    <p>Even a kid who's completely ready doesn't make travel work on their own. Someone has to drive to practice three or four times a week, get to tournaments some weekends, and absorb a cost that runs well past a house league registration fee. Ask honestly whether that's realistic for your household this season, not just whether it would be nice in theory.</p>
+
+    <p>It also helps to remember this isn't a permanent decision. Kids move between house and travel, and between travel levels, more often than people expect. Saying not this year isn't closing a door. If you're still working through whether the whole family is ready, not just the kid, our guide on <a href="/house-vs-travel-do-we-need-to-move-up.html" style="color:var(--ice);">House vs. Travel: Do We Need to Move Up?</a> walks through that side of it directly.</p>
+
+    <div class="closing-callout">
+      <p>If the answer ends up being yes, the next question is almost always what it costs. We're finishing that guide now, since the number families plan for going in is rarely the number they land on by spring.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a family weighing this decision?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/is-my-kid-ready-for-travel" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/is-my-kid-ready-for-travel').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This helped me think through whether our kid is ready for travel hockey: https://therinklink.com/is-my-kid-ready-for-travel" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>

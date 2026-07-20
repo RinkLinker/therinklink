@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Travel Team Politics: What's Normal and What Isn't | The Rink Link</title>
+<meta name="description" content="Ice time, favoritism, coach's kids, and the parent group grapevine. How to tell what's a normal part of travel hockey and what's actually worth raising."/>
+<meta property="og:title" content="Travel Team Politics: What's Normal and What Isn't"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What's normal in travel hockey team dynamics, and what's actually worth addressing."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Travel Teams</div>
+  <h1>Travel Team Politics: <em>What's Normal and What Isn't</em></h1>
+  <p class="hero-sub">Ice time, favoritism, coach's kids, and the parent group grapevine. How to tell the difference between venting and something worth actually raising.</p>
+  <div class="hero-meta">
+    <span>🏒 Travel Teams</span>
+    <span>·</span>
+    <span>8 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>"Politics" Usually <span class="accent">Means One Thing</span></h2>
+
+    <p>Ask most hockey parents what they mean by team politics and the answer almost always comes back to the same thing: favoritism. A parent notices another player getting more ice time, or a better line, or a spot they thought their own kid deserved, and starts building a story about why. Sometimes that story involves a friendship between families, a sponsorship, or a coach's own kid on the roster.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Worth Hearing From the Other Side</div>
+      <p>People who work closely with youth hockey associations describe the perception of politics as almost always rooted in this same assumption: that one family's connection to the coach or the club is quietly tipping decisions in their favor. Sometimes that perception is accurate. Often it's a coincidence mistaken for a pattern, especially in smaller programs where families naturally know each other outside the rink too.</p>
+      <p class="expert-source">Source: Minnesota Hockey's interview with USA Hockey Coach-in-Chief Mike MacMillan on perceptions of favoritism in youth hockey</p>
+    </div>
+
+    <p>None of this means favoritism never happens. It means the word gets used constantly for situations that turn out to be ordinary coaching decisions, which makes it worth slowing down before deciding you're looking at real politics rather than just a decision you disagree with.</p>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>What's Actually <span class="accent">Normal at This Level</span></h2>
+
+    <p>Ice time is rarely split evenly once a team gets competitive, and that alone isn't evidence of anything. Coaches manage lines based on matchups, practice performance, and what a specific game situation calls for. A kid who's dominant in practice but nervous in games, or vice versa, will see that reflected in ice time in ways that have nothing to do with who their parents are.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--ice);">Usually Normal</div>
+        <ul class="two-col-list">
+          <li><span>✓</span> Ice time shifting game to game based on matchups</li>
+          <li><span>✓</span> A coach's own kid earning real ice time, if the play backs it up</li>
+          <li><span>✓</span> Line combinations changing without explanation given to parents</li>
+          <li><span>✓</span> A rough patch in playing time after a tough practice week</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--gold);">Worth Watching Closely</div>
+        <ul class="two-col-list">
+          <li><span>·</span> A consistent, season-long gap that doesn't track with performance</li>
+          <li><span>·</span> A coach's kid always playing over clearly stronger options</li>
+          <li><span>·</span> Roster or ice-time decisions that track suspiciously with donations or sponsorships</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>The difference usually isn't one bad game or one confusing practice. It's a pattern that holds up over weeks, not a single moment that felt unfair in the stands.</p>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>Start With How <span class="accent">Your Kid Feels About It</span></h2>
+
+    <p>Tension usually spikes over one specific moment: a kid expected to move up a line, or stay on one, and instead gets moved down without any explanation. To a parent watching from the stands, that can look like the whole season's worth of frustration confirmed in a single shift change. But before assuming the worst, it's worth finding out how your own kid actually feels about it, because that answer is often different from what you'd guess.</p>
+
+    <p>A lot of kids know exactly why a line change happened. They missed an assignment in practice, they're still working on something specific the coach mentioned, or they simply understand the matchup logic even if nobody spelled it out for them. Kids are often more at peace with playing time than their parents are, and that gap is worth noticing before it turns into a bigger issue than it needs to be.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">Teach the Kid to Ask First</div>
+      <p>Before a parent gets involved, encourage your kid to go to the coach directly and ask a simple, honest question: what can I work on to move back up? That's a completely normal thing for a player to ask, and most coaches respect a kid who asks it more than they respect a parent who asks it on the kid's behalf. It also builds something your kid needs well beyond this season, the ability to advocate for themselves instead of waiting for someone else to do it.</p>
+      <p>Parents still have a role here. Help your kid think through what to say beforehand, and be ready to ask a follow-up question afterward if the answer felt incomplete. But let your kid ask first.</p>
+    </div>
+
+    <p>If your kid has genuinely tried that and the answer still doesn't add up, or the same pattern keeps repeating without a clear reason, that's when it becomes worth a parent stepping in directly with the coach.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">How to Raise It Without It Backfiring</div>
+      <p>Go to the coach directly and privately, not through a group chat or the parent grapevine. Ask a genuine question rather than opening with an accusation: what are you seeing in practice that's shaping these decisions? A coach who has a real answer will usually give you one. If the response feels evasive, or the pattern continues without any real explanation, that's when it's worth taking the concern to the club or association, not before.</p>
+    </div>
+
+    <p>It's also worth being honest about why a line change stings as much as it does. For a lot of parents, it's not really about the shift, it's a feeling that a kid's playing time reflects on the family somehow. That's worth catching in yourself. Your kid's ice time isn't a scoreboard for how well you're doing as a parent, and letting go of that makes the whole season easier to watch.</p>
+
+    <p>Skipping the coach and going straight to the board, or straight to venting in the parent group chat, tends to escalate things fast and rarely gets your kid more ice time. Most clubs would rather a parent raise a concern directly than watch it spread through the team as gossip.</p>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>The Parent Group <span class="accent">Has Its Own Politics</span></h2>
+
+    <p>Separate from anything happening on the ice, travel teams develop their own social dynamics among the parents, and that layer can get just as tense. Rumors move fast through a tight group that sees each other constantly, and a claim that started as one parent's guess about why a lineup decision was made can turn into accepted fact by the next tournament.</p>
+
+    <p>It's worth being honest with yourself about how much of what you've heard is something you witnessed directly versus something that reached you through someone else. A rumor repeated by three people isn't three pieces of evidence. It's often one person's guess, passed along.</p>
+
+    <p>Staying out of the grapevine, both not spreading it and not fully believing it, tends to make a season easier for everyone involved, including your own kid, who usually picks up on parent tension more than adults realize.</p>
+
+    <p>None of that means the parent group has to be boring. Being part of that group is genuinely one of the fun parts of a travel season, and gossip doesn't have to be what fills the space. Some of the best team parent groups turn the time before a game into its own thing: a cornhole board out of someone's trunk, a speaker playing music while everyone sets up chairs, a thermos of coffee or hot chocolate making the rounds on a cold morning. That kind of easy, low-effort fun does more to build a good group than any conversation about the coach's decisions ever will, and it gives everyone something to actually look forward to besides the game itself. A team's parent group takes its tone from whoever's willing to set it, and a cornhole board in the parking lot sets a much better one than a group chat full of speculation.</p>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>Keep It Away <span class="accent">From Your Kid</span></h2>
+
+    <p>Whatever frustration you're carrying about ice time, a coach's decisions, or another family, your kid doesn't need to carry it too. Venting about the coach at home, even when you think they're not listening, tends to reach kids in ways parents don't expect, and it can shape how much they trust their own coach and teammates.</p>
+
+    <p>How you handle disagreement, calmly, directly, and without turning it into a public fight, is something your kid is watching just as closely as they're watching the game itself. Modeling that well is worth more long-term than winning any single argument about ice time.</p>
+
+    <div class="closing-callout">
+      <p>Most of what feels like a crisis in November looks smaller by March. Give it time, keep your own reactions in check, and let your kid work through the small stuff before you step in on their behalf.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a parent stuck in the middle of team drama?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/travel-team-politics-whats-normal-and-what-isnt" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/travel-team-politics-whats-normal-and-what-isnt').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This helped me make sense of our travel team's politics: https://therinklink.com/travel-team-politics-whats-normal-and-what-isnt" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>

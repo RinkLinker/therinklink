@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Your Kid Is Not Just Signing Up for Hockey, You Are Too | The Rink Link</title>
+<meta name="description" content="Team clock, scoresheet, treasurer, fundraising, parties, music, off-ice training. The unofficial jobs that come with a hockey roster spot, and how to survive them."/>
+<meta property="og:title" content="Your Kid Is Not Just Signing Up for Hockey, You Are Too"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. The volunteer jobs nobody explains until you're already doing one."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Hockey Parent Survival</div>
+  <h1>Your Kid Is Not Just Signing Up for Hockey, <em>You Are Too</em></h1>
+  <p class="hero-sub">Team clock, scoresheet, treasurer, fundraising, parties, music, off-ice training. The jobs nobody explains until you're already doing one.</p>
+  <div class="hero-meta">
+    <span>🏒 Hockey Parent Survival</span>
+    <span>·</span>
+    <span>7 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>The Second Registration <span class="accent">Nobody Mentions</span></h2>
+
+    <p>You signed your kid up to play. Somewhere in that first team meeting, a coach or club administrator will ask who's willing to help run things, and if nobody answers fast enough, the job tends to find a parent anyway. This isn't unique to hockey, but hockey leans on it more than most sports, because a single team touches ice scheduling, tournament logistics, and game-day operations that a rink simply can't staff on its own.</p>
+
+    <p>None of these roles require hockey experience. What they require is someone willing to own a piece of the season so the coach can focus on coaching. If you're new to this, it helps to know upfront what the actual jobs are, so you can pick one that fits your life instead of getting handed whatever's left.</p>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>The Two Jobs <span class="accent">Every Team Needs</span></h2>
+
+    <p>Most teams organize around two anchor roles, and everything else tends to branch off from them.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--ice);">Team Manager</div>
+        <ul class="two-col-list">
+          <li><span>·</span> Keeps the roster and scoresheet current</li>
+          <li><span>·</span> Books tournament entries and locker rooms</li>
+          <li><span>·</span> Communicates schedule changes to every family</li>
+          <li><span>·</span> Liaises between the coach, the club, and parents</li>
+          <li><span>·</span> Plans team dinners and end-of-season parties</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--gold);">Treasurer</div>
+        <ul class="two-col-list">
+          <li><span>·</span> Collects and tracks the team fund</li>
+          <li><span>·</span> Pays for referees, ice, and team gear</li>
+          <li><span>·</span> Applies fundraising proceeds to player accounts</li>
+          <li><span>·</span> Reports balances to parents regularly</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>These two roles are usually the ones a club actually requires filled before a season starts, and they're the heaviest lift. The social side, dinners, team parties, that kind of thing, is real work too, but it's the one piece of the manager role that's easiest to hand off to a parent who genuinely enjoys planning that stuff. A manager who's great with logistics but not a natural party planner doesn't need to force it. Everything past the two core roles can be shared, rotated, or skipped some seasons if nobody steps up.</p>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>Game Day Runs <span class="accent">on Volunteers</span></h2>
+
+    <p>Walk into a home game early and you'll usually find parents already working before puck drop. Someone is running the time clock and scoreboard. Someone else is keeping the official scoresheet, sometimes on paper, increasingly through an app the league assigns each season. A locker room monitor checks kids in and out between periods, someone is stationed at the penalty box, and someone's running music during warmups.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Worth Knowing Before Game One</div>
+      <p>Most USA Hockey associations require anyone volunteering in a role with direct player contact, including locker room monitors and bench staff, to register as a USA Hockey volunteer and complete SafeSport training. Both are typically free, and clubs usually walk new volunteers through the process rather than expecting you to find it on your own.</p>
+      <p class="expert-source">Source: Common requirements listed across youth hockey association volunteer pages, including Greeley Youth Hockey and New Richmond Youth Hockey</p>
+    </div>
+
+    <p>Almost none of this is decided informally. Most team managers set up a sign-up sheet at the start of the season, usually through the same app the team already uses for scheduling, like TeamSnap, or a separate tool like SignUpGenius, with a slot for every home game covering clock, scoresheet, penalty box, and music. Families claim slots directly, first come or by rotation depending on how the manager set it up, so nobody's standing around at the rink wondering whose job it is.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--ice);">Ask at the Preseason Meeting</div>
+        <ul class="two-col-list">
+          <li><span>·</span> What app or sign-up sheet does the team use?</li>
+          <li><span>·</span> Are slots first-come, or assigned in rotation?</li>
+          <li><span>·</span> Do I just sign up for one slot all season, or do I need to take more than one shift?</li>
+          <li><span>·</span> Who do I contact if I can't make a slot I signed up for?</li>
+          <li><span>·</span> Is there a quick walkthrough before the first game, or do you learn these roles by just doing them?</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color:var(--gold);">Away Games</div>
+        <ul class="two-col-list">
+          <li><span>·</span> Usually just a locker room monitor and penalty box</li>
+          <li><span>·</span> Host rink covers the clock and official scoring</li>
+          <li><span>·</span> Still signed up through the same team app</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>A growing number of teams also have someone filming games, either for the family group chat or for a livestream through the rink's own camera system. Some rinks run this themselves, others leave it entirely to the team, and it's usually its own slot on the same sign-up sheet rather than a separate arrangement. If your team streams games, a parent often ends up on commentary too, especially at tournaments. It's worth asking early whether that's rotated through the sign-up sheet like everything else or one person's standing gig for the season, since it's a small role but a genuinely appreciated one for grandparents and family who can't make the trip.</p>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>The Jobs Nobody <span class="accent">Officially Assigns</span></h2>
+
+    <p>Past the roles a club requires, there's a layer of team culture that somebody ends up carrying anyway. A fundraising lead coordinates raffles, sponsorships, or restaurant nights and reports proceeds to the treasurer. A social organizer plans the end-of-season party, arranges a team photo, and handles the coach gift most teams put together. Someone becomes the person who shows up with a speaker and a playlist for warmups, because a locker room without music before a big game feels wrong to a lot of players.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">Off-Ice Training Coordination</div>
+      <p>Many travel teams also organize group off-ice sessions, dryland training, or shared strength and conditioning time, especially at A level and above. This usually falls to whichever parent has a connection to a trainer or facility, and it's worth asking your coach directly whether the team does this formally or leaves it to individual families.</p>
+    </div>
+
+    <p>None of these unofficial roles are required. A team can run a full season without a social chair or a music person. But teams that have someone willing to carry these small things tend to feel more like a team, and less like a group of families who happen to share ice time.</p>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>You Don't Have <span class="accent">to Do All of It</span></h2>
+
+    <p>The biggest mistake new team managers make is trying to own every role themselves. Delegating isn't a failure to run things well, it's the entire point. A manager who hands off fundraising, social events, and game-day shifts to other willing parents usually has a better season than one who tries to carry the whole list alone, and so does everyone else on the team.</p>
+
+    <p>If you're weighing whether to raise your hand for one of these roles, start small. Volunteer for a single game-day shift before committing to team manager. See how the team's communication actually works before agreeing to run it. The role will still need someone next season, and there's no rule that says it has to be you this year.</p>
+
+    <div class="closing-callout">
+      <p>If you've already found yourself in one of these roles and it's starting to feel political, our upcoming guide on travel team politics digs into what's normal and what isn't, including the parts that involve exactly this kind of volunteer territory.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a parent about to get "volunteered"?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/your-kid-is-not-just-signing-up-for-hockey-you-are-too" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/your-kid-is-not-just-signing-up-for-hockey-you-are-too').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This explains all the team parent jobs that come with a hockey roster spot: https://therinklink.com/your-kid-is-not-just-signing-up-for-hockey-you-are-too" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>
