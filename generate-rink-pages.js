@@ -2,7 +2,7 @@
 /**
  * generate-rink-pages.js
  * Generates one HTML file per rink → rinks/{slug}.html
- * Rewrites sitemap.xml from scratch
+ * Merges rink URLs into sitemap.xml, preserving all non-rink entries
  * Reports slugless rinks (skipped) and orphaned HTML files (not deleted)
  *
  * Usage:
@@ -1040,17 +1040,87 @@ ${buildStoresSection(nearStores)}
 }
 
 // ─── Sitemap builder ──────────────────────────────────────────────────────────
+//
+// The sitemap holds two kinds of entries: rink pages (generated below from
+// Supabase) and everything else (homepage, guide pages, etc.), which live in
+// sitemap.xml but have no corresponding row in the `rinks` table. Previously
+// this function rebuilt the whole file from rink data alone, silently
+// deleting every non-rink URL on each run. It now reads the existing file,
+// leaves non-rink entries untouched, and only adds/updates/removes rink
+// entries — reusing the existing <url> block (including its <lastmod>)
+// whenever a rink's lastmod hasn't actually changed.
+
+function parseExistingSitemap(xml) {
+  const entries = [];
+  const urlBlockRe = /<url>[\s\S]*?<\/url>/g;
+  const locRe = /<loc>([\s\S]*?)<\/loc>/;
+  const lastmodRe = /<lastmod>([\s\S]*?)<\/lastmod>/;
+  const changefreqRe = /<changefreq>([\s\S]*?)<\/changefreq>/;
+  const priorityRe = /<priority>([\s\S]*?)<\/priority>/;
+
+  let m;
+  while ((m = urlBlockRe.exec(xml))) {
+    const block = m[0];
+    const loc = (block.match(locRe) || [])[1];
+    if (!loc) continue;
+    entries.push({
+      loc,
+      lastmod: (block.match(lastmodRe) || [])[1] || null,
+      changefreq: (block.match(changefreqRe) || [])[1] || null,
+      priority: (block.match(priorityRe) || [])[1] || null,
+    });
+  }
+  return entries;
+}
+
+function renderUrlEntry(e) {
+  return `
+  <url>
+    <loc>${e.loc}</loc>
+${e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>\n` : ''}${e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>\n` : ''}${e.priority ? `    <priority>${e.priority}</priority>\n` : ''}  </url>`;
+}
 
 function buildSitemap(rinks) {
-  const urls = rinks
+  const RINK_PREFIX = `${SITE_ORIGIN}/rinks/`;
+
+  let existingEntries = [];
+  if (fs.existsSync(SITEMAP_PATH)) {
+    try {
+      existingEntries = parseExistingSitemap(fs.readFileSync(SITEMAP_PATH, 'utf8'));
+    } catch (err) {
+      console.error(`   ⚠️  Could not parse existing sitemap.xml (${err.message}); non-rink URLs may be lost.`);
+    }
+  }
+
+  const existingRinkByLoc = new Map();
+  const nonRinkEntries = [];
+  for (const e of existingEntries) {
+    if (e.loc.startsWith(RINK_PREFIX)) existingRinkByLoc.set(e.loc, e);
+    else nonRinkEntries.push(e);
+  }
+
+  const rinkEntries = rinks
     .filter(r => r.slug)
-    .map(r => `
-  <url>
-    <loc>${SITE_ORIGIN}/rinks/${r.slug}.html</loc>
-    <lastmod>${isoDate(r.updated_at)}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>`).join('');
+    .map(r => {
+      const loc = `${RINK_PREFIX}${r.slug}.html`;
+      const lastmod = isoDate(r.updated_at);
+      const existing = existingRinkByLoc.get(loc);
+      // Reuse the existing block untouched when nothing changed, so lastmod
+      // only moves for rinks that actually updated.
+      return existing && existing.lastmod === lastmod
+        ? existing
+        : { loc, lastmod, changefreq: 'weekly', priority: '0.7' };
+    });
+
+  const removedRinkUrls = existingEntries.length
+    ? [...existingRinkByLoc.keys()].filter(loc => !rinkEntries.some(e => e.loc === loc))
+    : [];
+  if (removedRinkUrls.length) {
+    console.log(`   🗑️  Removing ${removedRinkUrls.length} rink URL(s) no longer in Supabase:`);
+    removedRinkUrls.forEach(loc => console.log(`        - ${loc}`));
+  }
+
+  const urls = [...rinkEntries, ...nonRinkEntries].map(renderUrlEntry).join('');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -1128,10 +1198,10 @@ async function main() {
   }
 
   // 7. Sitemap
-  console.log('🗺️  Writing sitemap.xml...');
+  console.log('🗺️  Merging rink URLs into sitemap.xml...');
   const sitemap = buildSitemap(withSlug);
   if (!DRY_RUN) fs.writeFileSync(SITEMAP_PATH, sitemap, 'utf8');
-  console.log(`   ✅ sitemap.xml ${DRY_RUN ? 'would include' : 'includes'} ${withSlug.length} URLs.\n`);
+  console.log(`   ✅ sitemap.xml ${DRY_RUN ? 'would include' : 'includes'} ${withSlug.length} rink URLs (non-rink entries preserved).\n`);
 
   console.log('🏁 Done.\n');
 }
