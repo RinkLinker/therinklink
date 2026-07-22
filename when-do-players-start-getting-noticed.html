@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>When Do Players Start Getting Noticed? | The Rink Link</title>
+<meta name="description" content="Bantam, Midget, and everything scouts actually look at. A realistic breakdown of when and how youth hockey players get noticed."/>
+<meta property="og:title" content="When Do Players Start Getting Noticed?"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What helped, what didn't, and what the research says."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+  .section a { color: var(--ice); text-decoration: none; border-bottom: 1px solid rgba(125,211,252,.35); transition: border-color .15s; }
+  .section a:hover { border-bottom-color: var(--ice); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TIMELINE TABLE */
+  .level-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: .88rem;
+  }
+  .level-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .level-table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  .level-table tr:last-child td { border-bottom: none; }
+  .level-table td:first-child { color: var(--ice); font-weight: 700; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .5px; white-space: nowrap; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .cta-block { padding: 32px 20px; }
+    .level-table { font-size: .78rem; }
+    .level-table th, .level-table td { padding: 8px 8px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">AAA & Elite Hockey</div>
+  <h1>When Do Players <em>Start Getting Noticed?</em></h1>
+  <p class="hero-sub">Bantam, Midget, and everything scouts actually look at. A realistic breakdown of when the recruiting conversation actually starts, and what it looks like when it does.</p>
+  <div class="hero-meta">
+    <span>🏆 AAA & Elite</span>
+    <span>·</span>
+    <span>7 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>The Honest <span class="accent">Starting Point</span></h2>
+
+    <p>For the vast majority of players, real recruiting conversations don't start until well into the teenage years, and this isn't just a general impression, it's backed by both the NCAA's own rules and its own data. Bantam, the 13 to 14 age group, is where most families first start thinking seriously about the NCAA or junior hockey path, even if nothing concrete happens yet.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">The Official Rule</div>
+      <p>College Hockey Inc., the recruiting resource jointly run by the NCAA and USA Hockey, states plainly in its own FAQ: Division I college hockey coaches are not allowed to initiate contact with prospective student-athletes until June 15 of a recruit's sophomore year of high school, roughly age 15 to 16. Before that date, coaches legally cannot reply to emails, texts, or phone calls from a recruit, no matter how good that player is.</p>
+      <p class="expert-source">Source: College Hockey Inc., official NCAA/USA Hockey recruiting FAQ</p>
+    </div>
+
+    <p>College Hockey Inc. also surveyed its own NCAA Division I player population ahead of the 2025-26 season, roughly 250 players across more than two dozen schools, and found the average commitment age was over 17 years old. That's a meaningfully later number than the "get noticed by 13" narrative that circulates in youth hockey circles, straight from the organization that runs the recruiting rules itself.</p>
+
+    <table class="level-table">
+      <tr>
+        <th>Age Group</th>
+        <th>What's Typically Happening</th>
+      </tr>
+      <tr>
+        <td>Peewee (11-12)</td>
+        <td>Rare, informal attention on standout players only</td>
+      </tr>
+      <tr>
+        <td>Bantam (13-14)</td>
+        <td>Informal evaluation begins at tournaments and camps; no official coach contact permitted yet</td>
+      </tr>
+      <tr>
+        <td>Minor Midget (15-16)</td>
+        <td>June 15 of sophomore year: official contact and verbal offers become legally permitted</td>
+      </tr>
+      <tr>
+        <td>Major Midget / Junior (16-20)</td>
+        <td>Heaviest scouting window; average NCAA D-I commitment age is 17+</td>
+      </tr>
+    </table>
+
+    <p>That said, "no official contact" doesn't mean "no evaluation." College Hockey Inc. and recruiting services both note that coaches attend tournaments, camps, and combines to evaluate talent as young as 8th grade, and may contact a recruit's club or high school coach for informal feedback well before that June 15 date. The formal contact rule governs direct communication with the player, not whether anyone's watching.</p>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>What "Getting Noticed" <span class="accent">Actually Looks Like</span></h2>
+
+    <p>It rarely looks like a single dramatic moment. Scouts and coaches attend showcase tournaments, watch AAA league games, and increasingly rely on video and stat-tracking platforms that follow players across seasons and leagues. A player's profile on a site like Elite Prospects has become something close to a hockey resume, tracked and compared well before any formal offer conversation happens.</p>
+
+    <p>Standout players occasionally get early attention. Some of the game's biggest names were known to scouts by 13, but that's the exception, not a typical timeline, and it doesn't mean a player who isn't drawing that kind of notice at 13 has missed anything. For players in Western Canada and Minnesota westward, the WHL Bantam Draft is a formal early entry point, teams scout second-year Bantams throughout the season and draft eligible players each spring, though this is specific to that region and league.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Worth Knowing</div>
+      <p>Most key NCAA and junior evaluations happen between ages 16 and 20, once players are competing in junior leagues or high-level Midget hockey. The players who reach that stage well-positioned are typically the ones who kept developing steadily, not the ones who were identified earliest. Early notice can open doors, but it's the years of development after that actually determine where a player ends up.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>The Tradeoffs of <span class="accent">Chasing Early Exposure</span></h2>
+
+    <p>The average NCAA commitment age is over 17, per College Hockey Inc.'s own player survey, but the extreme early end of that range has genuinely crept younger in recent years. A small number of high-profile commitments now happen at 14 or 15, early enough that it was part of the reason the NCAA revisited its eligibility rules in 2026, discussed in <a href="https://therinklink.com/how-ncaa-changes-are-affecting-the-youth-hockey-path.html">our guide on the recent NCAA changes</a>. That's still the exception, not the norm reflected in the 17+ average, and it's worth keeping that distinction in mind before assuming it's expected.</p>
+
+    <p>Families chasing early exposure often end up committing to more travel, more showcase tournaments, and a heavier financial investment, all in pursuit of visibility that may not be necessary for a player who's still developing at a normal pace. It can also mean less multi-sport participation and more year-round hockey at an age where physical and skill development benefits from variety, not specialization.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">Something Worth Considering</div>
+      <p>Chasing exposure too early can put pressure on a player and a family before it's actually useful. A kid who's still growing into their body, their game, and their love of the sport doesn't need to be seen by everyone at 13. What tends to matter more in the long run is steady development, staying healthy, and staying in a program where the player is actually getting real ice time, not just a name on an elite roster.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>What Actually Helps <span class="accent">a Player Get Seen</span></h2>
+
+    <p>Playing meaningful minutes at the highest level a kid can genuinely compete at tends to matter more than chasing every showcase on the calendar. Scouts are looking for players who perform consistently across games and seasons, not just a highlight reel from one strong tournament.</p>
+
+    <p>Video matters more than it used to. Games are recorded more than ever, and profiles on tracking platforms accumulate over years, not weeks. That means consistency across a full season carries more weight than any single standout performance. For the specifics of what actually belongs in a highlight video and what to track, see our <a href="https://therinklink.com/video-stats-and-getting-seen.html">Video, Stats, and Getting Seen</a> guide.</p>
+
+    <div class="closing-callout">
+      <p>For most families, there's no clock running out at 13. The path to being noticed runs through steady development over years, not a single moment of discovery. Let the timeline unfold at your kid's pace.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a hockey parent wondering about recruiting timelines?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/when-do-players-start-getting-noticed" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/when-do-players-start-getting-noticed').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This breaks down when hockey players actually get noticed by scouts: https://therinklink.com/when-do-players-start-getting-noticed" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>How High School Hockey Actually Works | The Rink Link</title>
+<meta name="description" content="School-sanctioned, club, prep, or academy — high school hockey means something different depending on where you live. Here's how the pieces fit together."/>
+<meta property="og:title" content="How High School Hockey Actually Works"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What helped, what didn't, and what the research says."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.6rem, 6.8vw, 4.8rem);
+    line-height: .96;
+    letter-spacing: 2px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+  .section a { color: var(--ice); text-decoration: none; border-bottom: 1px solid rgba(125,211,252,.35); transition: border-color .15s; }
+  .section a:hover { border-bottom-color: var(--ice); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">AAA & Elite Hockey</div>
+  <h1>How High School Hockey <em>Actually Works</em></h1>
+  <p class="hero-sub">School-sanctioned, club, prep, or academy, "high school hockey" means something different depending on where you live. Here's how the pieces actually fit together.</p>
+  <div class="hero-meta">
+    <span>🏆 AAA & Elite</span>
+    <span>·</span>
+    <span>7 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>Four Different Things Can <span class="accent">Be Called "High School Hockey"</span></h2>
+
+    <p>As covered in <a href="https://therinklink.com/a-vs-aa-vs-aaa-whats-the-difference.html">our A vs AA vs AAA guide</a>, high school hockey runs as its own parallel system, separate from club and travel hockey's tier structure. But "high school hockey" itself isn't one thing either. Depending on where you live, it can mean any of the following.</p>
+
+    <table class="level-table" style="width:100%;border-collapse:collapse;margin:24px 0;font-size:.86rem;">
+      <tr>
+        <th style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px;border-bottom:1px solid var(--border);">Type</th>
+        <th style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px;border-bottom:1px solid var(--border);">What It Means</th>
+      </tr>
+      <tr>
+        <td style="padding:12px 10px;border-bottom:1px solid var(--border);color:var(--ice);font-weight:700;font-family:'Barlow Condensed',sans-serif;">School-sanctioned varsity</td>
+        <td style="padding:12px 10px;border-bottom:1px solid var(--border);color:var(--text);">Run by the state's high school athletic association, just like football or basketball</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 10px;border-bottom:1px solid var(--border);color:var(--ice);font-weight:700;font-family:'Barlow Condensed',sans-serif;">Club high school hockey</td>
+        <td style="padding:12px 10px;border-bottom:1px solid var(--border);color:var(--text);">USA Hockey-sanctioned, not officially tied to the school district, common where schools don't field their own teams</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 10px;border-bottom:1px solid var(--border);color:var(--ice);font-weight:700;font-family:'Barlow Condensed',sans-serif;">Prep school hockey</td>
+        <td style="padding:12px 10px;border-bottom:1px solid var(--border);color:var(--text);">A private boarding or day school's own varsity team, academics-first with serious hockey</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 10px;border-bottom:1px solid var(--border);color:var(--ice);font-weight:700;font-family:'Barlow Condensed',sans-serif;">Hockey academy</td>
+        <td style="padding:12px 10px;border-bottom:1px solid var(--border);color:var(--text);">Hockey-first, often with online schooling built around a heavy ice-time schedule</td>
+      </tr>
+    </table>
+
+    <p>The first two are what most people mean by "high school hockey." The second two, prep schools and academies, are a different tier of decision entirely, closer in spirit to choosing an AAA program than to picking which local high school to attend.</p>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>Prep School Hockey: <span class="accent">What It Actually Offers</span></h2>
+
+    <p>Prep school hockey is essentially a private school's own varsity program, but with a level of coaching, ice time, and competition that regular public high school hockey usually can't match. New England prep schools in particular have long been one of the most productive pipelines in American hockey, Shattuck-St. Mary's alone has sent players like Sidney Crosby and Jonathan Toews through its program on the way to the NHL.</p>
+
+    <p>Academically, prep schools are generally a step up too, which is part of the appeal beyond hockey itself. Some New England prep leagues set firm standards, like requiring three-season sports participation, that regular high school or club programs don't.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Why Some Families Choose It Over Club Hockey</div>
+      <p>Midget AAA travel hockey can require missing 15 to 30 school days a year for tournaments and showcases, something many public and private schools have real problems accommodating. Prep schools tend to build that flexibility in from the start, since it's assumed and supported rather than treated as a disruption. It also cuts down dramatically on the driving, tournaments and travel that come with a AAA schedule, since the team and school are the same place.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>Hockey Academies: <span class="accent">A Different Trade-Off</span></h2>
+
+    <p>Academies are a newer, more hockey-forward model than traditional prep schools. Instead of a full traditional academic campus, many run on a combination of online coursework, tutors, and academic advisors built around an intensive hockey schedule, sometimes stretching close to ten months a year. Some use a billeting model rather than dormitories.</p>
+
+    <p>This can be a strong fit for a family fully committed to the hockey path, but it's worth going in with clear eyes about the trade-off. If your kid has strong academic ambitions, it's worth directly researching how a specific academy's coursework is viewed by NCAA eligibility standards and by the colleges your kid might eventually apply to, rather than assuming all "school" programs are equivalent.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">Worth Knowing</div>
+      <p>Prep is not the same as academy, even though they get lumped together in conversation. A traditional prep school is fundamentally an academic institution that also fields a strong hockey team. A hockey academy is fundamentally a hockey program that also provides schooling. Which one fits your family depends heavily on how you'd answer the question: if hockey stopped tomorrow, which environment would you still want your kid in?</p>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>The Transfer Question <span class="accent">Nobody Quite Wants to Talk About</span></h2>
+
+    <p>In some states, open enrollment policies technically let a student attend any public school in the state, not just their assigned district school. That naturally raises an obvious question in hockey circles: could a family use open enrollment purely to get their kid onto a stronger hockey program at another public school?</p>
+
+    <p>The honest answer is that this does happen, though the rules around it get complicated fast. It's generally against the rules for a coach to directly recruit an individual player to transfer, but schools can still promote their program publicly, and families do sometimes choose a school partly for its hockey team. Rules on transferring, including penalties like sitting out a season, vary significantly by state athletic association and can apply differently depending on whether a student is moving from public to private school or the other way around.</p>
+
+    <p>If you're considering a move like this for hockey reasons, the only reliable answer is to check your specific state's high school athletic association rules directly before assuming anything, since a transfer that's fine in one state's system could cost your kid a season of eligibility in another.</p>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>How Families Actually <span class="accent">Decide</span></h2>
+
+    <p>There's no universal right answer here, it depends on your kid's goals, your family's finances, and how strong the hockey option is in your local public school to begin with.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--ice);">Worth Weighing</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--ice)">+</span> Would your kid actually get real ice time, or sit behind recruited players?</li>
+          <li><span style="color:var(--ice)">+</span> How strong is the academic program on its own merits?</li>
+          <li><span style="color:var(--ice)">+</span> Is the cost genuinely sustainable for multiple years, not just one?</li>
+          <li><span style="color:var(--ice)">+</span> Does your kid want this, separate from what you want for them?</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--muted);">Common Mistakes</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--muted)">✕</span> Choosing based on a school's reputation without visiting or watching a practice</li>
+          <li><span style="color:var(--muted)">✕</span> Assuming "prep" and "academy" mean the same thing</li>
+          <li><span style="color:var(--muted)">✕</span> Deciding too late; prep and academy recruiting often starts by grade 8 or 9</li>
+          <li><span style="color:var(--muted)">✕</span> Skipping the question of what happens if hockey doesn't work out</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>If prep or academy hockey is on the table, start the research early, admissions and hockey recruitment for these programs often move a full year ahead of enrollment, and attending a showcase or camp associated with a specific school is generally more useful than cold-emailing a coach with no in-person visibility.</p>
+
+    <div class="closing-callout">
+      <p>Whichever version of high school hockey your family lands on, school-sanctioned, club, prep, or academy, the fit matters more than the label. Ask what a specific program actually looks like day to day before deciding based on its name.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a hockey family weighing high school hockey options?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/how-high-school-hockey-actually-works" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/how-high-school-hockey-actually-works').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This breaks down how high school hockey actually works: https://therinklink.com/how-high-school-hockey-actually-works" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Junior Hockey Camps: The Full Guide | The Rink Link</title>
+<meta name="description" content="What junior hockey camps actually cost, how they work, and how to make the most of one, whether or not your kid gets drafted."/>
+<meta property="og:title" content="Junior Hockey Camps: The Full Guide"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What helped, what didn't, and what the research says."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* LEVEL TABLE */
+  .level-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: .86rem;
+  }
+  .level-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .level-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  .level-table tr:last-child td { border-bottom: none; }
+  .level-table td:first-child { color: var(--ice); font-weight: 700; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .5px; white-space: nowrap; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+    .level-table { font-size: .76rem; }
+    .level-table th, .level-table td { padding: 8px 6px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">AAA & Elite Hockey</div>
+  <h1>Junior Hockey Camps. <em>The Full Guide.</em></h1>
+  <p class="hero-sub">What these camps actually cost, how they work, and how to make the most of one, whether or not your kid ends up drafted.</p>
+  <div class="hero-meta">
+    <span>🏆 AAA & Elite</span>
+    <span>·</span>
+    <span>7 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>What a Junior Camp <span class="accent">Actually Is</span></h2>
+
+    <p>Junior hockey teams in the U.S. run camps, sometimes called main camps, exposure camps, or pre-draft camps, that bring in players from all over the region, the country, and occasionally other parts of the world. These camps exist for two overlapping reasons: they let teams evaluate a large pool of prospects at once, and they let players and families see how they measure up against real competition ahead of a junior draft or tryout.</p>
+
+    <p>Unlike the team itself, which is typically tuition-free at the Tier 1 and Tier 2 levels, camps almost always come with a registration fee, generally somewhere between $250 and $500, depending on the league and length of the camp. That fee covers ice time, a camp jersey, officiating, and often some combination of player and parent seminars and exit meetings with coaching staff.</p>
+
+    <table class="level-table">
+      <tr>
+        <th>League</th>
+        <th>Tier</th>
+        <th>Tuition to Play</th>
+      </tr>
+      <tr>
+        <td>USHL</td>
+        <td>Tier 1</td>
+        <td>Free (tuition-free)</td>
+      </tr>
+      <tr>
+        <td>NAHL</td>
+        <td>Tier 2</td>
+        <td>Free (tuition-free)</td>
+      </tr>
+      <tr>
+        <td>NCDC (USPHL)</td>
+        <td>Tier 2</td>
+        <td>Free (tuition-free)</td>
+      </tr>
+      <tr>
+        <td>Other USPHL divisions</td>
+        <td>Tier 3</td>
+        <td>Varies by program</td>
+      </tr>
+    </table>
+
+    <div class="insight-block">
+      <div class="insight-label">Worth Knowing</div>
+      <p>Running a tuition-free junior program is genuinely expensive, ice time, travel, lodging, insurance, staff. Camp registration fees are one of the ways these programs help fund that. A camp of 150 players paying $250 generates real revenue for the host team, which is worth understanding as context, not as a reason to be cynical about it. The camps are still legitimate development and exposure opportunities. They're also a business necessity for the teams running them.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>How Big <span class="accent">These Camps Really Are</span></h2>
+
+    <p>USHL and NAHL main camps typically draw somewhere between 120 and 200 paying players. NCDC camps tend to run smaller, often 80 to 120. That scale matters for expectations: a player at one of these camps is one of well over a hundred prospects the coaching staff is trying to evaluate over a short window, not the sole focus of anyone's attention.</p>
+
+    <p>Some camps bring multiple teams together at once, like regional pre-draft camps that put four organizations in front of the same pool of players over a few days of games. These tend to offer more exposure per dollar spent, since a player is being seen by several coaching staffs rather than just one.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Worth Knowing</div>
+      <p>The NAHL alone sends more than 300 players to NCAA hockey each year, with roughly three-quarters of those going on to Division I programs. Nearly every NCDC player who wants to continue to college hockey gets that chance, mostly at Division III, though the league also sends a steady handful of players to Division I programs each year. These leagues are functioning pipelines, not long shots, for players who develop well within them.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>What to Actually <span class="accent">Do While You're There</span></h2>
+
+    <p>The players who get the most out of these camps tend to treat every shift and every conversation as part of the evaluation, not just the games themselves. Introducing yourself to coaches, competing at full effort in every session, and asking for direct, specific feedback before leaving camp all matter more than most players expect going in.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--ice);">Worth Doing</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--ice)">+</span> Introduce yourself to coaches directly</li>
+          <li><span style="color:var(--ice)">+</span> Ask for specific feedback before you leave</li>
+          <li><span style="color:var(--ice)">+</span> Compete at full effort every shift, not just standout ones</li>
+          <li><span style="color:var(--ice)">+</span> Attend the parent seminar if one is offered</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--muted);">Not Worth Doing</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--muted)">✕</span> Waiting to reach out to coaches until after camp</li>
+          <li><span style="color:var(--muted)">✕</span> Treating one camp as a make-or-break moment</li>
+          <li><span style="color:var(--muted)">✕</span> Skipping the exit meeting if one's offered</li>
+          <li><span style="color:var(--muted)">✕</span> Assuming not being drafted means the path is closed</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>If you can, thank the coaching staff in person before you leave and ask what your kid would need to work on to get to that level. That question, asked directly and specifically, tends to get a more useful answer than anything you'd get by emailing weeks later, and it leaves a better impression than saying nothing at all.</p>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>Setting Realistic <span class="accent">Expectations</span></h2>
+
+    <p>Most players who attend a junior camp, especially the first time, won't walk away with a draft pick or a roster spot. That's normal, not a sign the trip wasn't worth it. Teams have returning players, draft picks from prior seasons, tenders, and affiliate league players ahead of any camp attendee in the pecking order for open roster spots. A single camp is genuinely a small window into a much larger, ongoing evaluation process.</p>
+
+    <p>For players around 15 to 17, attending a Tier 1 or Tier 2 camp even without expecting to make a roster can be worth it purely for the experience: seeing what that level of speed and physicality actually feels like, and getting an honest sense of where your kid's game currently sits against it. That self-evaluation piece has real value on its own, separate from whatever happens with rosters that particular year.</p>
+
+    <div class="closing-callout">
+      <p>A camp is one data point in a much longer development timeline, not a verdict. The players who benefit most tend to be the ones who go in focused on getting better and getting real feedback, not just on getting picked.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a hockey family heading to a junior camp?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/junior-hockey-camps-full-guide" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/junior-hockey-camps-full-guide').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This is a full guide to junior hockey camps: https://therinklink.com/junior-hockey-camps-full-guide" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>

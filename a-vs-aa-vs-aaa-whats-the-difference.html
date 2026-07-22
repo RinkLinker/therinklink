@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>A vs AA vs AAA — What's the Difference? | The Rink Link</title>
+<meta name="description" content="B, A, AA, AAA. Tier 1, Tier 2, Tier 3. A plain-English breakdown of youth hockey's competitive levels, and why the answer isn't the same everywhere."/>
+<meta property="og:title" content="A vs AA vs AAA — What's the Difference?"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What helped, what didn't, and what the research says."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* LEVEL TABLE */
+  .level-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: .88rem;
+  }
+  .level-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .level-table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  .level-table tr:last-child td { border-bottom: none; }
+  .level-table td:first-child { color: var(--ice); font-weight: 700; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .5px; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .cta-block { padding: 32px 20px; }
+    .level-table { font-size: .78rem; }
+    .level-table th, .level-table td { padding: 8px 8px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">AAA & Elite Hockey</div>
+  <h1>A vs AA vs AAA. <em>What's the Difference?</em></h1>
+  <p class="hero-sub">B, A, AA, AAA. Tier 1, Tier 2, Tier 3. A plain-English breakdown of what these terms actually mean, and why the answer isn't quite the same everywhere.</p>
+  <div class="hero-meta">
+    <span>🏆 AAA & Elite</span>
+    <span>·</span>
+    <span>8 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>Two Systems, <span class="accent">Same Idea</span></h2>
+
+    <p>Youth hockey describes competitive level two different ways at once, and both are correct, which is exactly why this gets confusing. There's the letter system: B, A, AA, AAA, from most recreational to most competitive. And there's USA Hockey's official Tier system: Tier 1, Tier 2, Tier 3.</p>
+
+    <p>They map onto each other, but not always in a perfectly clean way. In broad terms, AAA is Tier 1. B, A, and AA fall under Tier 2, with the most competitive AA programs sitting near the top of that tier. Tier 3 is generally used for entry-level travel hockey, one step up from house league, and some regions add a Tier 4 or Tier 5 for other recreational travel levels.</p>
+
+    <table class="level-table">
+      <tr>
+        <th>Letter</th>
+        <th>Tier</th>
+        <th>What It Generally Means</th>
+      </tr>
+      <tr>
+        <td>House / B</td>
+        <td>Tier 3 (varies)</td>
+        <td>Recreational, local, lowest travel commitment</td>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td>Tier 2</td>
+        <td>Entry-level competitive travel hockey</td>
+      </tr>
+      <tr>
+        <td>AA</td>
+        <td>Tier 2</td>
+        <td>Advanced competitive travel, more intense schedule</td>
+      </tr>
+      <tr>
+        <td>AAA</td>
+        <td>Tier 1</td>
+        <td>Highest competitive level, most travel and cost</td>
+      </tr>
+    </table>
+
+    <div class="insight-block">
+      <div class="insight-label">The Honest Caveat</div>
+      <p>There is no single national standard that every club and state association follows identically. What counts as "AA" in one region can look closer to "A" in another. A team calling itself "Elite" or "Premier" doesn't automatically mean Tier 1 quality, some programs use those labels loosely as marketing. The letter or tier on a jersey tells you less than watching the team play, or asking your association directly what tier a given team is sanctioned at.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>A Trap Worth Knowing About: <span class="accent">Junior Hockey Uses the Same Words</span></h2>
+
+    <p>Here's where this gets genuinely confusing, even for hockey people. Once players age out of youth hockey into junior hockey, roughly 16 to 20 years old, "Tier 1," "Tier 2," and "Tier 3" show up again. It's an entirely separate system, describing different leagues, at a different age range, with no direct relationship to the youth tiers covered above.</p>
+
+    <table class="level-table">
+      <tr>
+        <th>Junior Tier</th>
+        <th>League(s)</th>
+        <th>What It Means</th>
+      </tr>
+      <tr>
+        <td>Tier 1</td>
+        <td>USHL</td>
+        <td>The only Tier 1 junior league in the U.S.; tuition-free, top NCAA D-I pipeline</td>
+      </tr>
+      <tr>
+        <td>Tier 2</td>
+        <td>NAHL, NCDC</td>
+        <td>Tuition-free or low-cost; strong NCAA pipeline, especially D-I and D-III</td>
+      </tr>
+      <tr>
+        <td>Tier 3</td>
+        <td>NA3HL, USPHL Premier/Elite, EHLP</td>
+        <td>Entry-level junior hockey; still sends players on to NCAA programs</td>
+      </tr>
+    </table>
+
+    <p>So a "Tier 1" youth team and a "Tier 1" junior league aren't the same thing at all, one is AAA hockey for a 12-year-old's age bracket, the other is the USHL for a player who might be 19. If someone mentions a "Tier 2" team without specifying youth or junior, it's worth asking which system they mean before assuming.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">It Gets Even More Tangled</div>
+      <p>To add to the confusion, USA Hockey classifies some Tier 3 junior programs for players under 18 as "Tier 1 youth" teams in its own paperwork. Even people who work in hockey full-time describe this system as needlessly confusing. If a tier or level comes up in conversation with a coach, club director, or another parent, it's completely reasonable to just ask them to clarify which system they're referencing.</p>
+    </div>
+
+    <p>For a full breakdown of how the individual junior leagues, USHL, NAHL, NCDC, and the Tier 3 leagues below them, actually differ, see our <a href="https://therinklink.com/junior-hockey-leagues-explained.html">Junior Hockey Leagues Explained</a> guide.</p>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>Where Does High School Hockey <span class="accent">Fit In?</span></h2>
+
+    <p>Here's the honest answer: it doesn't fit into the A/AA/AAA ladder at all. High school hockey runs as a separate, parallel system, not a rung on the same ladder as youth travel hockey, and how it works varies enormously depending on where you live.</p>
+
+    <p>In some states, high school hockey is a fully school-sanctioned varsity sport, run by the state's high school athletic association exactly like football or basketball, with its own state tournament. In other states or regions, "high school hockey" is really a club team, players from one or more high schools playing together under USA Hockey sanctioning, not officially affiliated with the school district, because the school itself doesn't field a team.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">Why This Varies So Much</div>
+      <p>In hockey-heavy states like Minnesota and Massachusetts, high school hockey is a genuinely huge deal, the Minnesota state tournament alone has drawn over 100,000 in combined attendance in a single year, and top high school programs there can be as competitive as AAA travel teams. In most other states, high school hockey exists at a more casual, recreational level, and the serious competitive path runs entirely through club and travel hockey instead. There's no single national answer to "how good is high school hockey," it depends entirely on the state.</p>
+    </div>
+
+    <p>This creates a real decision for families in strong club-hockey markets: some serious players skip high school hockey entirely to focus on AAA or prep school hockey instead, since that's where most college and junior recruiters are actually watching outside a handful of hockey-heavy states. In Minnesota and Massachusetts specifically, that calculus flips, high school hockey there can carry real recruiting weight on its own. A small number of prep schools blur the line further, fielding school teams that also compete at an AAA or Tier 1-caliber level.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Worth Knowing</div>
+      <p>If your kid plays both high school and club hockey, expect a scheduling conflict at some point, seasons often overlap, and priorities differ by family and by state association rules on how much a player can participate in both. Ask your state's high school athletic association and your club directly how they handle dual participation before assuming your kid can do both without issue.</p>
+    </div>
+
+    <p>For a full breakdown of school-sanctioned vs. club vs. prep school vs. hockey academy, and how families actually decide between them, see our <a href="https://therinklink.com/how-high-school-hockey-actually-works.html">How High School Hockey Actually Works</a> guide.</p>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>What Actually Changes <span class="accent">Between Levels</span></h2>
+
+    <p>The letters describe more than just skill. Moving up a level typically means a real shift in commitment, for the player and for the whole family.</p>
+
+    <p>A typical AAA roster carries around 15 to 18 skaters plus two goalies, filled through multiple days of tryouts, sometimes preceded by pre-tryout camps. Coaches at this level often hold advanced certifications and have played collegiately or professionally themselves. Games and practices multiply, travel expands beyond the local area, and the whole season starts to feel like a bigger commitment than the level below it.</p>
+
+    <p>AA sits one step down in most systems: still genuinely competitive, still a real travel commitment, but generally with a less grueling schedule and lower cost than AAA. Movement between the two levels each season is common. Roughly 15 to 25% of AA players move up to AAA at the next age group, and a comparable share move the other direction, sometimes due to roster cuts, sometimes family choice, sometimes just burnout.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Worth Knowing</div>
+      <p>Development matters more than the label on the jersey. A top-line role with real ice time on an AA team often develops a player better than bottom-line minutes on a AAA roster. AAA increases exposure to scouts, but exposure alone doesn't guarantee advancement, and there are plenty of AA players who go on to strong junior and college opportunities.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>When a Club Has <span class="accent">Multiple Teams at One Level</span></h2>
+
+    <p>Larger clubs often field more than one team at the same letter level in a given age group, especially at AA. You'll see this show up as color names (AA Black, AA White, AA Blue) or numbers (AA1, AA2). This isn't an official USA Hockey designation, it's a practical solution clubs use when they have more competitive players than one roster can hold.</p>
+
+    <p>Which team is "better" isn't always obvious from the name alone, and clubs handle this differently. Some genuinely tier their multiple teams by ability. Others split rosters more evenly to balance ice time and development across both groups. If your kid is looking at a club with multiple teams at one level, it's worth asking directly how that club structures and ranks its rosters, rather than assuming.</p>
+
+    <p>You'll also encounter major and minor designations within an age bracket, since most levels allow a two-year age window. A team made up mostly of players in their second year of eligibility for that bracket is typically called the major team; a team of mostly first-year players is the minor team. A 10-year-old Squirt, for example, might be playing on a "Squirt Major" roster if the bracket allows both 9- and 10-year-olds.</p>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">06</div>
+    <h2>Deciding Where <span class="accent">to Try Out</span></h2>
+
+    <p>One thing worth being clear-eyed about: you don't actually get to choose your kid's level. Coaches and evaluators do, based on tryouts. What you do choose is where to start that process, which tryouts to attend in the first place.</p>
+
+    <p>If your kid is new to travel hockey, trying out at the A level or a Tier 3 team is typically a reasonable place to begin, rather than starting at the most competitive tryout pool available and working backward. Most associations run evaluations that place players at an appropriate level regardless of which tryout they walked into, and coaches are generally willing to give honest feedback about where a kid's skill set currently sits if the fit isn't right.</p>
+
+    <p>It's also worth remembering that just because a team calls itself AAA in one league doesn't automatically mean it would beat a strong AA or even A team from a different league or region. Level names carry real weight within a given local system, but they don't translate perfectly across state lines or leagues.</p>
+
+    <div class="closing-callout">
+      <p>The letters and tiers are a starting point for a conversation, not a verdict on your kid's future in the sport. Ask your association what a given team's actual tier is, watch a few games if you can, and let development, not the label, guide the decision.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a hockey parent sorting out levels and tiers?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/a-vs-aa-vs-aaa-whats-the-difference" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/a-vs-aa-vs-aaa-whats-the-difference').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This explains A vs AA vs AAA hockey levels: https://therinklink.com/a-vs-aa-vs-aaa-whats-the-difference" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>

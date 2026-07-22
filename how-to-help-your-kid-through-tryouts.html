@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>How to Help Your Kid Through Tryouts | The Rink Link</title>
+<meta name="description" content="The nerves before tryouts are their own kind of hard. Here's what sports psychologists say actually helps, and what tends to backfire."/>
+<meta property="og:title" content="How to Help Your Kid Through Tryouts"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What helped, what didn't, and what the research says."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: .95;
+    letter-spacing: 3px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+  .section a { color: var(--ice); text-decoration: none; border-bottom: 1px solid rgba(125,211,252,.35); transition: border-color .15s; }
+  .section a:hover { border-bottom-color: var(--ice); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TWO COL - softer framing */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Hockey Parent Survival</div>
+  <h1>How to Help Your Kid <em>Through Tryouts</em></h1>
+  <p class="hero-sub">The nerves before the list even goes up are their own kind of hard. What sports psychologists say actually helps, and what tends to backfire.</p>
+  <div class="hero-meta">
+    <span>💙 All Levels</span>
+    <span>·</span>
+    <span>5 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>What Your Kid Is <span class="accent">Actually Feeling</span></h2>
+
+    <p>Racing heart. Sweaty palms. A stomach that won't settle. Those sensations show up before tryouts because your kid cares, not because something is wrong with them. Sports psychologists point out something worth knowing here: excitement and anxiety register in the body as the exact same physical response. The only difference is which label we put on it.</p>
+
+    <p>That reframe matters more than it sounds like it should. A kid who understands their racing heart as their body getting ready, rather than a sign something's off, tends to walk into tryouts steadier. It's normal to feel this. It doesn't mean they're not prepared.</p>
+
+    <p>This guide focuses on that emotional side specifically. If you're also looking for the logistics, what tryouts actually look like on the ice, how evaluations work, what to bring, our <a href="https://therinklink.com/hockey-tryout-guide.html">Hockey Tryout Guide</a> and <a href="https://therinklink.com/how-hockey-tryouts-work.html">How Hockey Tryouts Work</a> cover that ground.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Worth Knowing</div>
+      <p>"Anxiety isn't a bad thing," says Dr. Justin Anderson of Premier Sport Psychology. "It's your body getting ready." The goal isn't to eliminate the nerves before tryouts. It's helping your kid learn to work alongside them instead of being derailed by them.</p>
+      <p class="expert-source">Source: Dr. Justin Anderson, Premier Sport Psychology</p>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>Say Less, <span class="accent">Support More</span></h2>
+
+    <p>The instinct in the days before tryouts is to help by talking, more reminders, more tips, one more thing to watch for on the ice. Most of what actually helps runs in the opposite direction. Your kid has already put in the practice. What they need from you now is less coaching and more steadiness.</p>
+
+    <p>Ask how involved they want you to be. Some kids want to talk through what they're nervous about. Others would rather you just drop them off, stay calm, and not make it a bigger conversation than it needs to be. Let them lead on that, rather than assuming.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--ice);">Things That Tend to Help</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--ice)">+</span> Naming the nerves as normal, ahead of time</li>
+          <li><span style="color:var(--ice)">+</span> Keeping the days before feeling ordinary</li>
+          <li><span style="color:var(--ice)">+</span> Prioritizing sleep and a real meal beforehand</li>
+          <li><span style="color:var(--ice)">+</span> Asking what kind of support they want from you</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--muted);">Things That Tend to Backfire</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--muted)">✕</span> Last-minute tips and reminders on the drive in</li>
+          <li><span style="color:var(--muted)">✕</span> Turning tryouts into a multi-day countdown</li>
+          <li><span style="color:var(--muted)">✕</span> Talking up how great they've been playing lately</li>
+          <li><span style="color:var(--muted)">✕</span> Letting your own nerves show more than theirs</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="insight-block">
+      <div class="insight-label">A Note on Building Them Up Beforehand</div>
+      <p>It's tempting to hype your kid up before they walk in, tell them how good they've looked in practice, remind them what they're capable of. Evaluators who run tryouts regularly say this can backfire in two directions: it puts pressure on your kid to match an image you've built, and if they don't have their best day, the gap between the hype and the performance can feel worse than the tryout itself. Confidence built from their own preparation tends to hold up better than confidence handed to them right before they need it.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>Check Your Own <span class="accent">Nerves First</span></h2>
+
+    <p>Kids pick up on the energy around them, often before they can name what they're picking up on. If tryout week has your own stomach in knots, that tends to transfer, even when you think you're hiding it well. Calm is contagious in both directions.</p>
+
+    <p>This doesn't mean pretending tryouts aren't a big deal. It means keeping your own worry contained to conversations with other adults, not the car ride there. If you're feeling the pressure of this moment as much as your kid is, that's worth acknowledging to yourself, and worth finding another outlet for besides the front seat.</p>
+
+    <p>Keeping the rest of life normal in the days leading up helps more than it gets credit for. Regular bedtime, regular meals, regular routine. A nervous system that isn't also managing a disrupted schedule has more room to handle the tryout itself.</p>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>During and <span class="accent">Right After</span></h2>
+
+    <p>Once tryouts start, your job shrinks to almost nothing, and that's by design. Trust the preparation that's already happened. If nerves show up in real time, the same reframe applies: this is what excitement feels like too.</p>
+
+    <p>Right afterward, let your kid drive the conversation. If they want to talk through what happened, that's fine, but follow their lead rather than opening with questions. If they made a mistake they're stuck on, empathy goes further than analysis. Reminding them everyone makes mistakes lands better than breaking down what went wrong.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Something Worth Remembering</div>
+      <p>Many professional athletes were cut from a team at some point in their development. The youth sport experience is a long journey, and kids develop at different rates, on different timelines, in ways a single tryout can't fully capture. That perspective, held quietly by the parent rather than delivered as a speech in the moment, tends to help more than it sounds like it would.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>Circle Back <span class="accent">A Few Days Later</span></h2>
+
+    <p>Sometimes the biggest feelings show up after the adrenaline fades, not during tryouts themselves. A quiet check-in a few days later, how are you feeling about it now, gives space for anything that surfaced after the moment passed.</p>
+
+    <p>This works whether the result is still unknown, felt good, or felt rocky. The goal isn't to reopen anxiety that's settled. It's making sure your kid knows the door is still open if something's sitting with them that they didn't have words for on the day itself.</p>
+
+    <p>If the result doesn't go the way your kid hoped, you're not starting from zero. We've written separately about that specific moment, <a href="https://therinklink.com/my-kid-got-cut-from-hockey-tryouts.html">what to do when your kid gets cut</a>, including what one hockey mom learned and what sports psychologists say actually helps in the days after.</p>
+
+    <div class="closing-callout">
+      <p>The nerves before tryouts are proof your kid cares about this. That's not a problem to solve. It's just part of what showing up for something you love feels like.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a hockey parent with tryouts coming up?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/how-to-help-your-kid-through-tryouts" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/how-to-help-your-kid-through-tryouts').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This helped me get through tryout nerves with my hockey kid: https://therinklink.com/how-to-help-your-kid-through-tryouts" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>

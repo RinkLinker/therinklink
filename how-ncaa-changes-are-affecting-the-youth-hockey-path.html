@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>How the NCAA Changes Are Affecting the Youth Hockey Path | The Rink Link</title>
+<meta name="description" content="CHL players can now play NCAA hockey. Eligibility just went age-based. Here's what both changes actually mean for a family choosing a development path."/>
+<meta property="og:title" content="How the NCAA Changes Are Affecting the Youth Hockey Path"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What helped, what didn't, and what the research says."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6.5vw, 4.6rem);
+    line-height: .98;
+    letter-spacing: 2px;
+    position: relative;
+    max-width: 820px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+  .section a { color: var(--ice); text-decoration: none; border-bottom: 1px solid rgba(125,211,252,.35); transition: border-color .15s; }
+  .section a:hover { border-bottom-color: var(--ice); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .cta-block { padding: 32px 20px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">AAA & Elite Hockey</div>
+  <h1>How the NCAA Changes Are <em>Affecting the Youth Hockey Path</em></h1>
+  <p class="hero-sub">Two major rule changes in the last year have reshaped the road to college hockey. Here's what actually changed, and what it means for a family choosing a development path.</p>
+  <div class="hero-meta">
+    <span>🏆 AAA & Elite</span>
+    <span>·</span>
+    <span>9 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>Change One: <span class="accent">Major Junior No Longer Closes the NCAA Door</span></h2>
+
+    <p>Quick definition first: "major junior" refers to the Canadian Hockey League, the CHL, the highest level of junior hockey in Canada, made up of three leagues, the OHL, WHL, and QMJHL. It's a genuinely elite development path, home to a huge share of current NHL talent, and historically completely separate from the American college hockey pipeline covered in <a href="https://therinklink.com/junior-hockey-leagues-explained.html">our Junior Hockey Leagues guide</a>.</p>
+
+    <p>For decades, playing in the CHL meant permanently losing NCAA eligibility. Even attending a CHL camp for a few days could cost a player their college hockey future, because the NCAA classified any CHL participation as professional. It forced players and families to essentially choose a path, major junior or NCAA, often before the player had even finished growing.</p>
+
+    <p>That changed on August 1, 2025. The NCAA Division I Council voted to make CHL players eligible for NCAA Division I hockey, provided they aren't paid more than actual and necessary expenses. This rule applies to Division I only. CHL players remain ineligible for NCAA Division III.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">What This Looked Like in Practice</div>
+      <p>The clearest early signal came from Gavin McKenna, the widely projected first overall pick in the 2026 NHL Draft, who left the WHL's Medicine Hat Tigers in the summer of 2025 to play his draft-eligible season at Penn State instead. It was the first time a college hockey commitment of that magnitude was announced live on national television, and it signaled that the wall between major junior and NCAA hockey had genuinely come down, not just on paper.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>Change Two: <span class="accent">Eligibility Is Now Age-Based</span></h2>
+
+    <p>The bigger structural shift came almost a year later. On June 23, 2026, the NCAA Division I Cabinet unanimously approved a new age-based eligibility model, often called the "5-in-5" rule, replacing the previous system where student-athletes had four seasons of competition within a five-year window.</p>
+
+    <p>Under the new model, a player's five-year eligibility clock starts when they turn 19 or enroll in college full time, whichever comes first.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">Note: This Wasn't the Original Plan</div>
+      <p>The original proposal, announced in May 2026, would have started the clock at high school graduation or age 19, whichever came first. That version would have squeezed the junior-hockey window that many college-bound players rely on. After pushback from the NHL, USA Hockey, the USHL, and college coaches, the NCAA modified the rule on June 5, 2026, replacing "graduation" with "college enrollment." The final version, approved June 23, 2026, uses <strong>19th birthday or college enrollment</strong>, not graduation.</p>
+    </div>
+
+    <p>That specific detail matters a lot for hockey, since it gives players room to spend a year or more developing in juniors after high school without burning eligibility.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">What This Looks Like for a Real Kid</div>
+      <p>Say a player graduates high school in June around their 18th birthday. They play a full season of junior hockey that fall. They turn 19 the following March, mid-season. Their eligibility clock doesn't start until the fall semester after that birthday, by which point the season's already over. Result: a full season of junior development, fully protected, with all five years of NCAA eligibility still intact afterward.</p>
+    </div>
+
+    <div class="insight-block">
+      <div class="insight-label">The Timeline Families Need to Know</div>
+      <p>The new model is mandatory for any player enrolling full time in college starting fall 2027. Players with eligibility remaining after the 2025-26 season, and anyone enrolling during the 2026-27 academic year, get to use whichever system, old or new, works out better for them individually. This rule applies to Division I only; Division II and Division III are unaffected.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>What This Means for a <span class="accent">Family Choosing a Path</span></h2>
+
+    <p>Together, these two changes remove a lot of the pressure that used to force an early, high-stakes decision. A player no longer has to permanently choose between major junior and NCAA hockey as a young teenager. A season or two in the CHL is no longer an automatic dead end for a college hockey future, provided the compensation rules are followed.</p>
+
+    <p>The age-based eligibility clock also gives more breathing room for players who develop on a slower or later timeline, since delaying enrollment past high school no longer eats into the five-year window the way it could under the old rules. A player who spends a couple of extra years in junior hockey building strength, skill, and maturity before enrolling doesn't lose eligibility for taking that time.</p>
+
+    <p>That said, this is genuinely new terrain, both for the NCAA and for junior leagues like the USHL, which has historically been the primary development pipeline into NCAA hockey and is now competing more directly with the CHL for top prospects. How rosters, recruiting timelines, and junior league dynamics settle out over the next few seasons is still an open question. For a full breakdown of how USHL, NAHL, NCDC, and the other junior leagues actually differ, see our <a href="https://therinklink.com/junior-hockey-leagues-explained.html">Junior Hockey Leagues Explained</a> guide.</p>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>Is Recruiting Actually Shifting <span class="accent">Toward Canada?</span></h2>
+
+    <p>Yes, in real and measurable ways, though how much varies a lot by program. This isn't speculation at this point, it's already showing up in recruiting classes.</p>
+
+    <p>Some NCAA programs have leaned hard into the new pool: Bowling Green State filled 10 of its 15-player 2025-26 recruiting class from the CHL. Others have stayed largely loyal to their existing USHL relationships, often because of specific coaching connections to that league. It's genuinely uneven, program by program, rather than a single industry-wide shift.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">What's Happening to the Other Leagues</div>
+      <p>The USHL's count on NHL Central Scouting's list roughly halved in 2026 compared to its prior five-year average, real pressure, but on a per-team basis it still produces far more NCAA talent than the CHL, so it's facing more competition rather than being replaced. The BCHL, a Canadian junior league that used to be a top option specifically for players chasing an eventual NCAA path, has been hit harder, since the CHL now offers that same path directly without needing the BCHL as a stepping stone. Movement runs in both directions too, some USHL and U.S. National Team Development Program players are now choosing to play in the CHL, something that would have cost them their NCAA eligibility before this rule changed.</p>
+    </div>
+
+    <p>The practical risk worth naming honestly: as more Division I roster spots fill from the CHL, USHL, and BCHL, some players in smaller or unsanctioned junior leagues may find Division I harder to reach than it used to be, with Division III or ACHA club hockey becoming a more realistic target for that tier of player. This isn't settled yet, and it's genuinely too early to know exactly where the recruiting map lands, but it's worth factoring in if your kid's path runs through a smaller junior program hoping for a D-I opportunity.</p>
+
+    <div class="closing-callout">
+      <p>The short version: the path to NCAA hockey is more flexible than it's been in decades. That's generally good news for families, but it also means the landscape is still shifting. Stay in touch with your association and any junior programs your kid is considering, since the practical effects of these rules are still playing out.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a hockey family navigating the NCAA path?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/how-ncaa-changes-are-affecting-the-youth-hockey-path" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/how-ncaa-changes-are-affecting-the-youth-hockey-path').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This explains the recent NCAA hockey eligibility changes: https://therinklink.com/how-ncaa-changes-are-affecting-the-youth-hockey-path" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>

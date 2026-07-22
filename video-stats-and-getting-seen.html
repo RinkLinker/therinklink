@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Video, Stats, and Getting Seen: A Recruiting Profile Guide | The Rink Link</title>
+<meta name="description" content="How to build a highlight video coaches will actually watch, what stats to track, and how to put it all together into a profile that gets noticed."/>
+<meta property="og:title" content="Video, Stats, and Getting Seen: A Recruiting Profile Guide"/>
+<meta property="og:description" content="Built by hockey families, for hockey families. What helped, what didn't, and what the research says."/>
+<meta property="og:site_name" content="The Rink Link"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ice: #7dd3fc;
+    --gold: #f59e0b;
+    --bg: #060d1f;
+    --bg2: #0d1a35;
+    --bg3: #112040;
+    --muted: #94a3b8;
+    --text: #e2e8f0;
+    --border: rgba(125,211,252,0.12);
+    --green: #34d399;
+    --red: #f87171;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,13,31,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo em { color: var(--ice); font-style: normal; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ice);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(20,70,155,.45) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ice);
+    border: 1px solid rgba(125,211,252,.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6.5vw, 4.6rem);
+    line-height: .98;
+    letter-spacing: 2px;
+    position: relative;
+    max-width: 820px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 em { color: var(--ice); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: .8rem;
+    color: var(--muted);
+    position: relative;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ice), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section { margin-bottom: 56px; }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(125,211,252,.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h2 .accent { color: var(--ice); }
+  .section p { color: var(--muted); margin-bottom: 16px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section strong { color: var(--text); }
+  .section a { color: var(--ice); text-decoration: none; border-bottom: 1px solid rgba(125,211,252,.35); transition: border-color .15s; }
+  .section a:hover { border-bottom-color: var(--ice); }
+
+  /* EXPERT PULLOUT */
+  .expert-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--ice);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .expert-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 10px;
+  }
+  .expert-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .expert-block p:last-child { margin-bottom: 0; }
+  .expert-source {
+    font-size: .78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* INSIGHT BLOCK */
+  .insight-block {
+    background: rgba(245,158,11,.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .insight-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .insight-block p {
+    color: var(--text);
+    font-size: .97rem;
+    margin-bottom: 10px;
+  }
+  .insight-block p:last-child { margin-bottom: 0; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .two-col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .two-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .two-col-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .two-col-list li {
+    font-size: .88rem;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .two-col-list li span { flex-shrink: 0; margin-top: 1px; }
+
+  .closing-callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .closing-callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+  .cta-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .cta-block h3 em { color: var(--ice); font-style: normal; }
+  .cta-block p { color: var(--muted); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: var(--ice);
+    color: #060d1f;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--ice); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .two-col { grid-template-columns: 1fr; }
+    .cta-block { padding: 32px 20px; }
+  }
+
+  @media print {
+    nav, .cta-block, footer { display: none; }
+    body { background: #fff; color: #000; font-size: 13px; }
+    .hero { background: #fff; color: #000; padding: 20px 0; }
+    .hero h1, .section h2 { color: #000; }
+    .hero-sub, .section p { color: #333; }
+    .expert-block, .insight-block, .two-col-card, .closing-callout { background: #f5f5f5; border-color: #ccc; }
+    .expert-block p, .insight-block p, .closing-callout p { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://therinklink.com" class="nav-logo">THE RINK <em>LINK</em></a>
+  <a href="https://therinklink.com" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">AAA & Elite Hockey</div>
+  <h1>Video, Stats, and <em>Getting Seen</em></h1>
+  <p class="hero-sub">How to build a highlight video coaches will actually watch, what to track, and how to put it together into something that gets a response.</p>
+  <div class="hero-meta">
+    <span>🏆 AAA & Elite</span>
+    <span>·</span>
+    <span>9 min read</span>
+    <span>·</span>
+    <span>Built by hockey families</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- SECTION 01 -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2>Is Sending Video <span class="accent">Actually Helpful?</span></h2>
+
+    <p>Yes, genuinely. As covered in <a href="https://therinklink.com/when-do-players-start-getting-noticed.html">our guide on when players start getting noticed</a>, coaches can't legally initiate contact with a recruit before a certain point, but video is one of the tools that gets a player onto a coach's radar well before that date, and stays useful long after it too.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Why It Works</div>
+      <p>Video lets a coach evaluate hundreds of players without traveling to see each one in person, and it's something staff can revisit, share among assistants, and compare across a whole recruiting class. According to the National Field Hockey Coaches Association's own survey of college coaches, video consistently ranked among the top things coaches said they wanted from recruits, right alongside being contacted directly.</p>
+      <p class="expert-source">Source: NFHCA, Video Advice from College Coaches</p>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2>What Actually Belongs <span class="accent">in the Video</span></h2>
+
+    <p>Recruiting services that specialize in this, including NCSA and SportsRecruits, converge on a similar formula: keep it to three to six minutes, roughly 20 to 30 clips, and lead with your single best play. Coaches typically decide whether to keep watching within the first 30 seconds, so the strongest clip goes first, not buried in the middle.</p>
+
+    <table style="width:100%;border-collapse:collapse;margin:24px 0;font-size:.88rem;">
+      <tr>
+        <th style="font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);">Rule of Thumb</th>
+        <th style="font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);">Why</th>
+      </tr>
+      <tr>
+        <td style="padding:12px;border-bottom:1px solid var(--border);color:var(--ice);font-weight:700;font-family:'Barlow Condensed',sans-serif;">3–6 minutes, 20–30 clips</td>
+        <td style="padding:12px;border-bottom:1px solid var(--border);color:var(--text);">Long enough to show range, short enough that coaches actually finish it</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border-bottom:1px solid var(--border);color:var(--ice);font-weight:700;font-family:'Barlow Condensed',sans-serif;">Best clip first</td>
+        <td style="padding:12px;border-bottom:1px solid var(--border);color:var(--text);">Coaches decide to keep watching in the first 30 seconds</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border-bottom:1px solid var(--border);color:var(--ice);font-weight:700;font-family:'Barlow Condensed',sans-serif;">Game footage over drills</td>
+        <td style="padding:12px;border-bottom:1px solid var(--border);color:var(--text);">Shows decision-making under real pressure, not just isolated skill</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border-bottom:1px solid var(--border);color:var(--ice);font-weight:700;font-family:'Barlow Condensed',sans-serif;">Skip the music, add a closing slide</td>
+        <td style="padding:12px;border-bottom:1px solid var(--border);color:var(--text);">Many coaches watch on mute; name, position, grad year, and coach contact matter more</td>
+      </tr>
+    </table>
+
+    <p>Game footage matters more than skills or drill footage for skaters specifically, since it shows a player reading the ice and making decisions under real pressure, something a controlled drill can't demonstrate. Goalies are the one exception, coaches expect and want to see some clean save-selection and technique footage alongside game clips. Shoot at a wide enough angle to show how a play develops, not just a tight shot on the puck.</p>
+
+    <div class="insight-block">
+      <div class="insight-label">Worth Knowing</div>
+      <p>One recruiting video company that's produced thousands of these, SportsRecruits, surveyed the college coaches they work with directly and found coaches spend an average of about three minutes and fifteen seconds watching a single video. That's a useful gut-check: if your video runs eight minutes, most of it isn't getting watched.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2>What Information Players <span class="accent">Should Be Tracking</span></h2>
+
+    <p>Beyond video, the other half of getting noticed is having your actual information organized and ready to share the moment a coach asks, rather than scrambling to compile it after the fact.</p>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--ice);">Core Stats</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--ice)">+</span> Goals, assists, points by season</li>
+          <li><span style="color:var(--ice)">+</span> Team, league, and level played at each season</li>
+          <li><span style="color:var(--ice)">+</span> Awards, all-star selections, championships</li>
+          <li><span style="color:var(--ice)">+</span> Physical testing data if available (speed, conditioning)</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--muted);">Profile Info</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--muted)">✕</span> Current academic info, GPA, grad year</li>
+          <li><span style="color:var(--muted)">✕</span> Height, weight, position, shot side</li>
+          <li><span style="color:var(--muted)">✕</span> Current coach's name and contact info</li>
+          <li><span style="color:var(--muted)">✕</span> Camps, showcases, and tournaments attended</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>A verified profile on a platform like Elite Prospects has effectively become a player's hockey resume, according to Elite Prospects' own guidance for players. When a coach hears a name mentioned after a tournament and searches it that evening, that profile is often the first thing that comes up, so keeping it accurate and current matters more than most players realize.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">What Coaches Are Actually Looking For, Beyond the Stat Line</div>
+      <p>Elite Prospects notes that scouts track detail well beyond goals and assists, things like decision-making under pressure, how a player responds after a mistake, and general coachability. College coaches in particular are making four-year commitments to a person, not just a stat line, and they'll often talk to a player's coaches or teammates to get a read on character alongside skill. That's not something a highlight video can show, but it's worth knowing it's part of the evaluation.</p>
+      <p class="expert-source">Source: Elite Prospects, How to Use EP to Get Noticed by Hockey Scouts</p>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2>Putting It All <span class="accent">Together</span></h2>
+
+    <p>Once the video and the stats exist, they need to actually reach a coach. Most recruiting platforms let a player build a shareable profile page, and it's worth sending video and stats directly to specific programs a player is genuinely interested in rather than a mass blast to every school in a conference.</p>
+
+    <p>College Hockey Inc., the NCAA's own recruiting resource, points out something worth remembering here: college hockey has no draft, so a player genuinely has a say in where they end up, which makes a direct, targeted approach to programs of real interest more valuable than a scattershot one.</p>
+
+    <p>Update the video and stats through the season, not just once. Recruiting services consistently advise reordering the strongest clips to the front as new footage comes in, and resending an updated profile after a strong showcase or tournament performance, referencing that specific event, tends to land better than a generic follow-up.</p>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2>A Template <span class="accent">Worth Copying</span></h2>
+
+    <p>Recruiting services that specialize in coach outreach, including NCSA and hockey-specific recruiting site Ivy Hockey, converge on the same core structure for a first email: introduction, then athletic and academic snapshot, then a clear next step. Coaches scan hundreds of these, so fact-first and specific beats a long personal story every time.</p>
+
+    <div class="expert-block">
+      <div class="expert-label">Copy, Fill In, and Send</div>
+      <p style="font-family:monospace;font-size:.85rem;line-height:1.9;white-space:pre-wrap;">SUBJECT: [Your Full Name] | [Grad Year] | [Position] | [Key Stat or Event]
+
+Dear Coach [Last Name],
+
+My name is [your name], and I'm a [grade level] at [high school/club team name], where I play [position]. I graduate in [year].
+
+This past season I recorded [# goals, # assists, # points] playing [level/league], and [one more standout stat, award, or team result].
+
+I'm very interested in [program name] because [one specific, real reason, playing style, coaching staff, academics, something you've actually researched, not generic].
+
+Here's a link to my highlight video: [link]. My current coach, [name], can be reached at [email/phone] if you'd like more insight into my game.
+
+I'd welcome the chance to talk further or answer any questions. Thank you for your time and consideration.
+
+[Your name]
+[Phone number]
+[Email address]</p>
+    </div>
+
+    <div class="two-col">
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--ice);">Do</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--ice)">+</span> Send to the head coach and all assistants; the recruiting contact varies by school</li>
+          <li><span style="color:var(--ice)">+</span> Confirm the highlight video link actually works before sending</li>
+          <li><span style="color:var(--ice)">+</span> Personalize the "why this program" line for every school</li>
+          <li><span style="color:var(--ice)">+</span> Send a real update roughly every 3 months, new stats, video, or a season result</li>
+        </ul>
+      </div>
+      <div class="two-col-card">
+        <div class="two-col-label" style="color: var(--muted);">Don't</div>
+        <ul class="two-col-list">
+          <li><span style="color:var(--muted)">✕</span> Copy-paste the same "why this program" line to every school</li>
+          <li><span style="color:var(--muted)">✕</span> Panic if there's no reply for a couple of weeks; coaches are busy</li>
+          <li><span style="color:var(--muted)">✕</span> Send a nearly identical follow-up with nothing new to report</li>
+          <li><span style="color:var(--muted)">✕</span> Get the coach's name, title, or program details wrong</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>One important note: if the recruit is a younger player, NCAA rules restrict when a coach is legally allowed to respond, as covered in <a href="https://therinklink.com/when-do-players-start-getting-noticed.html">our guide on when players get noticed</a>. A player is generally allowed to send an email at any age, taking that initiative early tends to be viewed as a sign of maturity, even if the coach can't respond yet.</p>
+
+    <div class="closing-callout">
+      <p>Video and stats don't replace development or ice time, but they make sure the development that's already happening actually gets seen. Keep both current, keep the video short, and send it to the programs that are actually a real fit.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h3>Find Rinks Near You on <em>Rink Link</em></h3>
+    <p>The largest directory of ice rinks across all 50 states, with schedules, sharpening, and everything near your rink.</p>
+    <a href="https://therinklink.com" class="btn">Find Your Rink →</a>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Know a hockey family building a recruiting profile?</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://therinklink.com/video-stats-and-getting-seen" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(24,119,242,.15);border:1px solid rgba(24,119,242,.3);color:#7da8f5;text-decoration:none;">Share on Facebook</a>
+        <button onclick="navigator.clipboard.writeText('https://therinklink.com/video-stats-and-getting-seen').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy Link'},2000)})" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);cursor:pointer;">Copy Link</button>
+        <a href="sms:?body=This breaks down how to build a hockey recruiting video and profile: https://therinklink.com/video-stats-and-getting-seen" style="font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:10px 18px;border-radius:6px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);color:var(--ice);text-decoration:none;">Text a Hockey Parent</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://therinklink.com">The Rink Link</a>. Built by hockey families, for hockey families.</p>
+</footer>
+
+</body>
+</html>
